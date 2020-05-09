@@ -1,12 +1,24 @@
-<h1>Edu Hospice</h1>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1>Edu Hospice</h1>
+    <span class="example-spacer"></span>
+    <nav class="navigation">
+      <ul>
+        <li><a routerLink="/home" routerLinkActive="active" mat-button>Home</a></li>
+        <li><a routerLink="/login" routerLinkActive="active" mat-button>Login</a></li>
+        <li><a routerLink="/dashboard" routerLinkActive="active" mat-button>Dashboard</a></li>
+        <li><a routerLink="/course" routerLinkActive="active" mat-button>Course</a></li>
+      </ul>
+    </nav>
+    <mat-icon>account_circle</mat-icon>
+    <mat-icon>verified_user</mat-icon>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
 <!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
-<nav class="navigation">
-  <ul>
-    <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-    <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
-    <li><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
-    <li><a routerLink="/course" routerLinkActive="active">Course</a></li>
-  </ul>
-</nav>
 <!-- The routed views render in the <router-outlet>-->
 <router-outlet></router-outlet>
+
+
+

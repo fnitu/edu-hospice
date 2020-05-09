@@ -1,10 +1,14 @@
 .navigation {
   ul {
     display: flex;
+    justify-content: flex-end;
     list-style-type: none;
-
-    li {
-      flex: 1;
-    }
   }
+}
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
 }
