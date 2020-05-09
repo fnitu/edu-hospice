@@ -24,6 +24,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatDividerModule,
     MatChipsModule,
     MatProgressBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

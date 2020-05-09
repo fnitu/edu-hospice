@@ -26,6 +26,15 @@
     }
 
     .mat-expansion-panel-content {
+      .externalLinks {
+        .mat-icon {
+          margin-right: 5px;
+        }
+
+        a {
+          color: black;
+        }
+      }
       .iframe {
         width: 100%;
         height: 40vh;
