@@ -9,7 +9,7 @@
     "image": "https://studiipaliative.odoo.com/web/image/slide.channel/9/image_1024?unique=6912cb7",
     "name": "Introducere în îngrijiri paliative",
     "shortDescription": "Foarte probabil că majoritatea dintre noi am fost confruntaţi, în practica clinică sau în viaţa de familie, cu nevoia de a îngriji un pacient suferind de o boală incurabilă avansată.",
-    "startDate": "string",
+    "startDate": "20.08.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
     "updatedBy": 0
   },
@@ -23,7 +23,35 @@
     "image": "https://studiipaliative.odoo.com/web/image/slide.channel/9/image_1024?unique=6912cb7",
     "name": "Îngrijiri paliative de bază 1",
     "shortDescription": "Cursul este recomandat atât asistenților medicali care doresc să inițieze instruirea în vederea obținerii certificatului de 36 ore EMC în îngrijire paliativă",
-    "startDate": "string",
+    "startDate": "21.08.2020",
+    "updatedAt": "2020-05-09T22:04:44.370Z",
+    "updatedBy": 0
+  },
+  {
+    "createdAt": "2020-05-09T22:04:44.370Z",
+    "createdBy": 0,
+    "credits": 0,
+    "description": "string",
+    "hours": 6,
+    "id": 1,
+    "image": "https://studiipaliative.odoo.com/web/image/slide.channel/9/image_1024?unique=6912cb7",
+    "name": "Introducere în îngrijiri paliative",
+    "shortDescription": "Foarte probabil că majoritatea dintre noi am fost confruntaţi, în practica clinică sau în viaţa de familie, cu nevoia de a îngriji un pacient suferind de o boală incurabilă avansată.",
+    "startDate": "20.08.2020",
+    "updatedAt": "2020-05-09T22:04:44.370Z",
+    "updatedBy": 0
+  },
+  {
+    "createdAt": "2020-05-09T22:04:44.370Z",
+    "createdBy": 0,
+    "credits": 0,
+    "description": "string",
+    "hours": 12,
+    "id": 2,
+    "image": "https://studiipaliative.odoo.com/web/image/slide.channel/9/image_1024?unique=6912cb7",
+    "name": "Îngrijiri paliative de bază 1",
+    "shortDescription": "Cursul este recomandat atât asistenților medicali care doresc să inițieze instruirea în vederea obținerii certificatului de 36 ore EMC în îngrijire paliativă",
+    "startDate": "21.08.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
     "updatedBy": 0
   }
