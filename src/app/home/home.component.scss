@@ -1,32 +1,39 @@
-.example-large-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 16px;
-  padding: 16px;
-  border-radius: 8px;
+
+.mat-divider {
+  height: 400px;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+  background-image: url(https://www.hospice.ro/wp-content/uploads/2020/03/HOSPICE-1-1536x1026.jpg);
+  background-size: cover;
 }
 
 .mat-tab-group {
   margin: 0 60px;
 }
 
-.mat-tab-header {
-  margin: 0 110px;
-  border-bottom: none;
-}
 .mat-tab-labels {
   justify-content: space-evenly;
 }
 
-.mat-card-header-text .mat-card-subtitle {
-  display: flex;
-  justify-content: space-evenly;
-  margin: 0;
+.mat-tab-header {
+  border-bottom: none;
 }
 
-.mat-card-header {
-  margin-bottom: 10px;
+
+.mat-card-header .mat-card-header-text {
+  margin: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.mat-card-header .mat-card-title {
+  line-height: 1.2em;
+}
+
+.mat-chip-list .mat-chip-list-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 6px 0;
 }
 
 .mat-tab-body-content {
@@ -42,11 +49,33 @@
 
 .mat-card:not([class*=mat-elevation-z]) {
   box-shadow: none;
+  border-radius: 20px;
 }
 
-.mat-divider {
-  height: 400px;
-  border-bottom: 1px solid rgba(0, 0, 0, .12);
+.image-card {
+  padding-top: 50%;
+  background-image: url(https://studiipaliative.odoo.com/web/image/slide.channel/9/image_1024?unique=6912cb7);
+  background-size: cover;
+  background-position: center;
+
+}
+
+.mat-card-content p {
+  min-height: 60px;
+  height: 60px;
+  overflow: hidden;
+  padding-top: 10px;
+  text-align: justify;
+  line-height: 1.1em;
+}
+
+.progress-bar {
+  display: flex;
+}
+
+.progress-bar .percent {
+  margin-left: 6px;
+  margin-top: -8px;
 }
 
 .example-card {
@@ -56,4 +85,12 @@
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
+}
+
+.example-large-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  border-radius: 8px;
 }

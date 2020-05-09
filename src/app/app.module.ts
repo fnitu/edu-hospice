@@ -22,6 +22,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import {MatInputModule} from '@angular/material/input';
     MatTabsModule,
     MatDividerModule,
     MatChipsModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
