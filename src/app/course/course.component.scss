@@ -13,12 +13,23 @@
 }
 
 .courseContentCard {
-  .mat-expansion-panel-header-title {
-    .mat-icon {
-      margin-right: 5px;
+  .mat-expansion-panel {
+
+    .mat-expansion-panel-header-title {
+      .mat-icon {
+        margin-right: 5px;
+      }
+
+      .title {
+        line-height: 24px;
+      }
     }
-    .title {
-      line-height: 24px;
+
+    .mat-expansion-panel-content {
+      .iframe {
+        width: 100%;
+        height: 40vh;
+      }
     }
   }
 }
