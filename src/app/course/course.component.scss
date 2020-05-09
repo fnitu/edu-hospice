@@ -1,11 +1,22 @@
 .courseDescriptionCard {
   .mat-card-content {
     display: flex;
-    align-items: flex-start;
+    padding-left: 60px;
+    align-items: center;
     .courseDescriptionText {
       display: flex;
       flex-direction: column;
-      padding: 10px;
+      padding: 10px 30px;
+      line-height: 1.2em;
+    }
+    .courseBgImg img {
+      transform: scale(0.8);
+    }
+    .mat-chip {
+      width: 60px;
+      padding: 4px;
+      text-align: center;
+      border-radius: 20px;
     }
   }
 
