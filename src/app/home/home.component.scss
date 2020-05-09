@@ -2,7 +2,7 @@
   .mat-divider {
     height: 400px;
     border-bottom: 1px solid rgba(0, 0, 0, .12);
-    background-image: url(https://www.hospice.ro/wp-content/uploads/2020/03/HOSPICE-1-1536x1026.jpg);
+    background: linear-gradient( #7DC24133, #7DC24500 ), url(https://www.hospice.ro/wp-content/uploads/2020/03/HOSPICE-1-1536x1026.jpg);
     background-size: cover;
   }
 
@@ -52,7 +52,15 @@
   .mat-chip {
     border-radius: 6px;
     padding: 6px;
-    background-color: #7DC242;
+
+  }
+  .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+    background-color: #83A964;
+  }
+
+
+  .mat-chip.mat-standard-chip.mat-chip-selected.mat-accent {
+    background-color: #ED6995;
   }
 
   .mat-card:not([class*=mat-elevation-z]) {
