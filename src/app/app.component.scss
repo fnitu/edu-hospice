@@ -1,7 +1,13 @@
 .app {
   .mat-toolbar {
     background-color: #7DC242;
+    color: #ffffff;
   }
+
+  .mat-toolbar-row {
+    color: #ffffff;
+  }
+
   .navigation {
     ul {
       display: flex;
