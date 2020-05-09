@@ -1,14 +1,24 @@
-.navigation {
-  ul {
-    display: flex;
-    justify-content: flex-end;
-    list-style-type: none;
+.app {
+  .mat-toolbar {
+    background-color: #7DC242;
   }
-}
-.example-icon {
-  padding: 0 14px;
-}
+  .navigation {
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      list-style-type: none;
+    }
+  }
 
-.example-spacer {
-  flex: 1 1 auto;
+  .logo-title {
+    margin-left: 15px;
+  }
+
+  .example-icon {
+    padding: 0 14px;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
 }
