@@ -1,0 +1,24 @@
+.courseDescriptionCard {
+  .mat-card-content {
+    display: flex;
+    align-items: flex-start;
+    .courseDescriptionText {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+    }
+  }
+
+  margin-bottom: 15px;
+}
+
+.courseContentCard {
+  .mat-expansion-panel-header-title {
+    .mat-icon {
+      margin-right: 5px;
+    }
+    .title {
+      line-height: 24px;
+    }
+  }
+}
