@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {LoginService} from './login.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
+import {User} from '../common/user';
 
 @Component({
   selector: 'app-login',
@@ -27,8 +28,9 @@ export class LoginComponent implements OnInit {
       try {
         const email = this.form.get('email').value;
         const password = this.form.get('password').value;
-        this.loginService.login(email, password).subscribe((response => {
+        this.loginService.login(email, password).subscribe(((response: User) => {
           this.router.navigate(['dashboard']);
+          this.loginService.user = response;
           console.log(response);
         }));
       } catch (err) {

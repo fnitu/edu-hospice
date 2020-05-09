@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {LoginService} from '../login/login.service';
+import {User} from '../common/user';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,9 +10,13 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  public user: User;
+
+  constructor(private loginService: LoginService) {
+  }
 
   ngOnInit(): void {
+    this.user = this.loginService.user;
   }
 
 }
