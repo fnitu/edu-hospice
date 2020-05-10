@@ -11,7 +11,7 @@ import {Course} from '../common/course';
 export class HomeComponent implements OnInit {
 
   public courseList: Array<Course> = new Array<Course>();
-  public tabList = ["Noutati", "Asistenti", "Altii", "Toate cursurile"];
+  public tabList = ['Noutati', 'Asistenti', 'Altii', 'Toate cursurile'];
 
   constructor(private homeService: HomeService) {
   }

@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard/:token', component: DashboardComponent},
   {path: 'course', component: CourseComponent},
 ];
 
