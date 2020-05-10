@@ -52,16 +52,16 @@
     "createdBy": 0,
     "credits": 0,
     "description": "string",
-    "hours": 12,
+    "hours": 9,
     "id": 1,
-    "image": "https://studiipaliative.odoo.com/web/image/slide.channel/9/image_1024?unique=6912cb7",
-    "name": "Introducere în îngrijiri paliative",
-    "shortDescription": "Foarte probabil că majoritatea dintre noi am fost confruntaţi, în practica clinică sau în viaţa de familie, cu nevoia de a îngriji un pacient suferind de o boală incurabilă avansată.",
-    "startDate": "04.05.2020",
+    "image": "https://www.hospice.ro/wp-content/themes/hospice/img/social-default.jpg",
+    "name": "Etica în îngrijiri paliative",
+    "shortDescription": "La sfârşitul modulului participanţii vor fi capabili să reflecteze asupra unor situaţii în care au apelat la principiile etice medicale, să reflecteze la beneficiul cunoaşterii şi aplicării principiilor etice medicale, să reflecteze asupra implicării problemelor de etică în orice decizie medicală",
+    "startDate": "01.02.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
     "updatedBy": 0,
     "percentage": 10,
-    "courseType": "Curs teoretic"
+    "courseType": "Curs interactiv"
   },
   {
     "createdAt": "2020-05-09T22:04:44.370Z",
@@ -70,14 +70,14 @@
     "description": "string",
     "hours": 12,
     "id": 1,
-    "image": "https://studiipaliative.odoo.com/web/image/slide.channel/9/image_1024?unique=6912cb7",
-    "name": "Introducere în îngrijiri paliative",
-    "shortDescription": "Foarte probabil că majoritatea dintre noi am fost confruntaţi, în practica clinică sau în viaţa de familie, cu nevoia de a îngriji un pacient suferind de o boală incurabilă avansată.",
-    "startDate": "04.05.2020",
+    "image": "https://www.hospice.ro/wp-content/themes/hospice/img/social-default.jpg",
+    "name": "Burnout în îngrijiri paliative",
+    "shortDescription": "Accesul la curs este de maxim 3 săptămâni, timp în care parcurgerea celor 12 ore de curs poate fi planificată într-un ritm adaptat fiecărui cursant în parte.",
+    "startDate": "01.02.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
     "updatedBy": 0,
     "percentage": 10,
-    "courseType": "Curs teoretic"
+    "courseType": "Curs interactiv"
   }
- ]
-  
+  ]
+ 
