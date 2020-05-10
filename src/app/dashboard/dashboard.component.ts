@@ -14,6 +14,7 @@ import {DashboardService} from './dashboard.service';
 export class DashboardComponent implements OnInit {
 
   public user: User;
+  private token: string;
 
   public tabList = ['In desfasurare', 'Recomandat', 'Certificate'];
   public courseList: Array<Course> = new Array<Course>();
@@ -24,9 +25,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.loginService.user;
-    const token = this.route.snapshot.paramMap.get('token');
-    if (!this.user && token) {
-      this.loginService.getUserDetails(token).subscribe((response: User) => {
+    this.token = this.route.snapshot.paramMap.get('token');
+    if (!this.user && this.token) {
+      this.loginService.getUserDetails(this.token).subscribe((response: User) => {
         this.loginService.user = response;
         this.user = this.loginService.user;
         this.initCourses();
@@ -43,8 +44,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  public goToCourse() {
-    this.router.navigate(['course']);
+  public goToCourse(course: Course) {
+    this.router.navigate(['course', this.token, 'course', course.id]);
   }
 
 }
