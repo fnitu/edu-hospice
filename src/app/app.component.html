@@ -1,18 +1,18 @@
 <div class="app">
   <mat-toolbar class="mat-toolbar">
     <mat-toolbar-row>
-      <h2 class="logo-title">Edu Hospice</h2>
+      <h2 class="logo-title" (click)="goToHome()">Edu Hospice</h2>
       <span class="example-spacer"></span>
       <nav class="navigation">
         <ul>
           <li><a mat-button routerLink="/home" routerLinkActive="active">Home</a></li>
-          <li><a mat-button routerLink="/login" routerLinkActive="active">Login</a></li>
-          <li><a mat-button routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
-          <li><a mat-button routerLink="/course" routerLinkActive="active">Course</a></li>
+          <li><a mat-button routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn">Login</a></li>
         </ul>
       </nav>
-      <mat-icon>account_circle</mat-icon>
-      <mat-icon>verified_user</mat-icon>
+      <div class="userIcons">
+        <mat-icon *ngIf="isLoggedIn" (click)="goToDashboard()">account_circle</mat-icon>
+        <mat-icon *ngIf="isLoggedIn" (click)="logout()">exit_to_app</mat-icon>
+      </div>
     </mat-toolbar-row>
   </mat-toolbar>
 
