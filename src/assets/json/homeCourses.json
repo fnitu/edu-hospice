@@ -11,7 +11,8 @@
     "shortDescription": "Foarte probabil că majoritatea dintre noi am fost confruntaţi, în practica clinică sau în viaţa de familie, cu nevoia de a îngriji un pacient suferind de o boală incurabilă avansată.",
     "startDate": "20.08.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
-    "updatedBy": 0
+    "updatedBy": 0,
+    "percentage": 10
   },
   {
     "createdAt": "2020-05-09T22:04:44.370Z",
@@ -25,7 +26,8 @@
     "shortDescription": "Cursul este recomandat atât asistenților medicali care doresc să inițieze instruirea în vederea obținerii certificatului de 36 ore EMC în îngrijire paliativă",
     "startDate": "21.08.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
-    "updatedBy": 0
+    "updatedBy": 0,
+    "percentage": 40
   },
   {
     "createdAt": "2020-05-09T22:04:44.370Z",
@@ -39,7 +41,8 @@
     "shortDescription": "Foarte probabil că majoritatea dintre noi am fost confruntaţi, în practica clinică sau în viaţa de familie, cu nevoia de a îngriji un pacient suferind de o boală incurabilă avansată.",
     "startDate": "20.08.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
-    "updatedBy": 0
+    "updatedBy": 0,
+    "percentage": 10
   },
   {
     "createdAt": "2020-05-09T22:04:44.370Z",
@@ -53,6 +56,7 @@
     "shortDescription": "Cursul este recomandat atât asistenților medicali care doresc să inițieze instruirea în vederea obținerii certificatului de 36 ore EMC în îngrijire paliativă",
     "startDate": "21.08.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
-    "updatedBy": 0
+    "updatedBy": 0,
+    "percentage": 40
   }
 ]
