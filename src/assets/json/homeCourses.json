@@ -12,7 +12,8 @@
     "startDate": "20.08.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
     "updatedBy": 0,
-    "percentage": 10
+    "percentage": 10,
+    "courseType": "Curs teoretic"
   },
   {
     "createdAt": "2020-05-09T22:04:44.370Z",
@@ -27,7 +28,8 @@
     "startDate": "21.08.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
     "updatedBy": 0,
-    "percentage": 40
+    "percentage": 40,
+    "courseType": "Curs interactiv"
   },
   {
     "createdAt": "2020-05-09T22:04:44.370Z",
@@ -42,7 +44,8 @@
     "startDate": "20.08.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
     "updatedBy": 0,
-    "percentage": 10
+    "percentage": 10,
+    "courseType": "Curs practic"
   },
   {
     "createdAt": "2020-05-09T22:04:44.370Z",
@@ -57,6 +60,7 @@
     "startDate": "21.08.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
     "updatedBy": 0,
-    "percentage": 40
+    "percentage": 40,
+    "courseType": "Curs practic"
   }
 ]

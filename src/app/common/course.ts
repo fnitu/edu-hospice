@@ -10,4 +10,5 @@ export interface Course {
   'startDate': string;
   'percentage': number;
   'chapters': Array<Chapter>;
+  'courseType': string;
 }
