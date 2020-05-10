@@ -3,7 +3,7 @@
   "createdBy": 0,
   "credits": 0,
   "description": "Este un curs unde vă veţi familiariza cu noţiunile de paliaţie, cu modul de abordare holistică a pacientului şi cu noţiunile de stabilire a prognosticului la pacientul oncologic. De asemenea cursul abordează legislaţia la zi       legată de serviciile paliative şi modul de finanațare al acestora, precum și paşii care trebuie parcurşi în vederea deschiderii unui serviciu de îngrijiri paliative. Veți putea accesa şi descărca multiple resurse educaţionale: materialul de curs, protocoalele clinice, articole, broșuri. Inţelegem că este important contactul cu lectorii şi sprijinul oferit de aceştia pe parcursul învăţării online. Veţi putea comunica pe forumul cursului cu experţi în paliaţie, discutând probleme clinice concrete cu care vă întâlniţi în practică.",
-  "hours": 6,
+  "hours": 12,
   "id": 1,
   "image": "https://studiipaliative.odoo.com/web/image/slide.channel/9/image_1024?unique=6912cb7",
   "name": "Introducere în îngrijiri paliative",
@@ -89,6 +89,30 @@
     },
     {
       "id": 5,
+      "name": "Prezentare",
+      "expanded": false,
+      "disabled": false,
+      "resources": [
+        {
+          "id": 1,
+          "name": "Resursa suplimentara",
+          "url": "https://www.google.com"
+        }
+      ],
+      "type": "PDF",
+      "url": "/assets/Mobilizarea-pacientilor.pdf"
+    },
+    {
+      "id": 6,
+      "name": "Video introductiv",
+      "expanded": false,
+      "disabled": false,
+      "resources": [],
+      "type": "VIDEO",
+      "url": "https://www.youtube.com/embed/_YUQmUc60Jc"
+    },
+    {
+      "id": 7,
       "name": "Chestionar de evaluare finala",
       "expanded": false,
       "disabled": true,
