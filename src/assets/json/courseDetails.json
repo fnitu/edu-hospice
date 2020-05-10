@@ -16,7 +16,7 @@
     {
       "id": 1,
       "name": "Prezentare",
-      "expanded": true,
+      "expanded": false,
       "disabled": false,
       "resources": [
         {
