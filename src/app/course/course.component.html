@@ -1,22 +1,12 @@
 <mat-card class="courseDescriptionCard">
   <mat-card-content class="coruse">
     <div class="courseBgImg">
-      <img alt="" src="https://studiipaliative.odoo.com/web/image/slide.channel/9/image_1024?unique=6912cb7">
+      <img alt="" src="{{courseDetails.image}}">
     </div>
     <div class="courseDescriptionText">
-      <h1>Introducere în îngrijire paliativă</h1>
-      <p>Este un curs unde vă veţi familiariza cu noţiunile de paliaţie, cu modul de abordare holistică a pacientului şi
-        cu noţiunile de stabilire a prognosticului la pacientul oncologic. De asemenea cursul abordează legislaţia la zi
-        legată de serviciile paliative şi modul de finanațare al acestora, precum și paşii care trebuie parcurşi în
-        vederea deschiderii unui serviciu de îngrijiri paliative.</p>
-
-      <p>Veți putea accesa şi descărca multiple resurse educaţionale: materialul de curs, protocoalele clinice, articole,
-        broșuri.</p>
-
-      <p>Inţelegem că este important contactul cu lectorii şi sprijinul oferit de aceştia pe parcursul învăţării online.
-        Veţi putea comunica pe forumul cursului cu experţi în paliaţie, discutând probleme clinice concrete cu care vă
-        întâlniţi în practică. </p>
-      <mat-chip color="accent" selected id="hours">6 ore</mat-chip>
+      <h1>{{courseDetails.name}}</h1>
+      <p>{{courseDetails.description}}</p>
+      <mat-chip color="accent" selected id="hours">{{courseDetails.hours}} ore</mat-chip>
     </div>
   </mat-card-content>
 </mat-card>
@@ -26,109 +16,30 @@
 
   <mat-card-content>
     <mat-accordion>
-      <mat-expansion-panel expanded="true">
+      <mat-expansion-panel *ngFor="let chapter of courseDetails.chapters" [(expanded)]="chapter.expanded" [disabled]="chapter.disabled">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <mat-icon>picture_as_pdf</mat-icon>
-            <span class="title">Presentation</span>
+            <mat-icon *ngIf="chapter.type === 'PDF'">picture_as_pdf</mat-icon>
+            <mat-icon *ngIf="chapter.type === 'VIDEO'">video_library</mat-icon>
+            <mat-icon *ngIf="chapter.type === 'LINK'">link</mat-icon>
+            <mat-icon *ngIf="chapter.type === 'QUIZ'">help_outline</mat-icon>
+            <mat-icon *ngIf="chapter.type === 'ZOOM'">videocam</mat-icon>
+            <span class="title">{{chapter.name}}</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <iframe class="iframe" frameborder="0" src="/assets/Mobilizarea-pacientilor.pdf"
-                type="application/pdf"></iframe>
-        <mat-list class="externalLinks">
-          <mat-list-item>
-            <mat-icon>link</mat-icon>
-            <a href="https://google.com">External link 1</a>
-          </mat-list-item>
-          <mat-list-item>
-            <mat-icon>link</mat-icon>
-            <a href="https://google.com">External link 2</a>
-          </mat-list-item>
-          <mat-list-item>
-            <mat-icon>link</mat-icon>
-            <a href="https://google.com">External link 3</a>
-          </mat-list-item>
-          <mat-list-item>
-            <mat-icon>link</mat-icon>
-            <a href="https://google.com">External link 4</a>
-          </mat-list-item>
-        </mat-list>
-      </mat-expansion-panel>
 
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon>video_library</mat-icon>
-            <span class="title">Helpful video</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="iframe"
+        <iframe *ngIf="chapter.type === 'PDF'" class="iframe" frameborder="0" [src]="chapter.safeUrl"
+                type="application/pdf" ></iframe>
+        <iframe *ngIf="chapter.type === 'VIDEO'" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="iframe"
                 frameborder="0"
-                src="https://www.youtube.com/embed/_YUQmUc60Jc"></iframe>
-      </mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon>link</mat-icon>
-            <span class="title">External content</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
+                [src]="chapter.safeUrl"></iframe>
         <mat-list class="externalLinks">
-          <mat-list-item>
+          <mat-list-item *ngFor="let resource of chapter.resources">
             <mat-icon>link</mat-icon>
-            <a href="https://google.com">External link 1</a>
-          </mat-list-item>
-          <mat-list-item>
-            <mat-icon>link</mat-icon>
-            <a href="https://google.com">External link 2</a>
-          </mat-list-item>
-          <mat-list-item>
-            <mat-icon>link</mat-icon>
-            <a href="https://google.com">External link 3</a>
-          </mat-list-item>
-          <mat-list-item>
-            <mat-icon>link</mat-icon>
-            <a href="https://google.com">External link 4</a>
+            <a [href]="resource.safeUrl">{{resource.name}}</a>
           </mat-list-item>
         </mat-list>
       </mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon>videocam</mat-icon>
-            <span class="title">Zoom meeting</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-list class="externalLinks">
-          <mat-list-item>
-            <mat-icon>link</mat-icon>
-            <a href="https://google.com">Live Zoom session</a>
-          </mat-list-item>
-        </mat-list>
-      </mat-expansion-panel>
-
-      <mat-expansion-panel disabled="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon>link</mat-icon>
-            <span class="title">External content</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <p>I'm visible because I am open</p>
-      </mat-expansion-panel>
-
-      <mat-expansion-panel disabled="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon>help_outline</mat-icon>
-            <span class="title">Final Quiz</span>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        Quiz content
-      </mat-expansion-panel>
-
     </mat-accordion>
   </mat-card-content>
 </mat-card>

@@ -1,0 +1,106 @@
+{
+  "createdAt": "2020-05-09T22:04:44.370Z",
+  "createdBy": 0,
+  "credits": 0,
+  "description": "Este un curs unde vă veţi familiariza cu noţiunile de paliaţie, cu modul de abordare holistică a pacientului şi cu noţiunile de stabilire a prognosticului la pacientul oncologic. De asemenea cursul abordează legislaţia la zi       legată de serviciile paliative şi modul de finanațare al acestora, precum și paşii care trebuie parcurşi în vederea deschiderii unui serviciu de îngrijiri paliative. Veți putea accesa şi descărca multiple resurse educaţionale: materialul de curs, protocoalele clinice, articole, broșuri. Inţelegem că este important contactul cu lectorii şi sprijinul oferit de aceştia pe parcursul învăţării online. Veţi putea comunica pe forumul cursului cu experţi în paliaţie, discutând probleme clinice concrete cu care vă întâlniţi în practică.",
+  "hours": 6,
+  "id": 1,
+  "image": "https://studiipaliative.odoo.com/web/image/slide.channel/9/image_1024?unique=6912cb7",
+  "name": "Introducere în îngrijiri paliative",
+  "shortDescription": "Foarte probabil că majoritatea dintre noi am fost confruntaţi, în practica clinică sau în viaţa de familie, cu nevoia de a îngriji un pacient suferind de o boală incurabilă avansată.",
+  "startDate": "20.08.2020",
+  "updatedAt": "2020-05-09T22:04:44.370Z",
+  "updatedBy": 0,
+  "percentage": 10,
+  "chapters": [
+    {
+      "id": 1,
+      "name": "Prezentare",
+      "expanded": true,
+      "disabled": false,
+      "resources": [
+        {
+          "id": 1,
+          "name": "Resursa suplimentara",
+          "url": "https://www.google.com"
+        }
+      ],
+      "type": "PDF",
+      "url": "/assets/Mobilizarea-pacientilor.pdf"
+    },
+    {
+      "id": 2,
+      "name": "Video introductiv",
+      "expanded": false,
+      "disabled": false,
+      "resources": [],
+      "type": "VIDEO",
+      "url": "https://www.youtube.com/embed/_YUQmUc60Jc"
+    },
+    {
+      "id": 3,
+      "name": "Resurse suplimentare",
+      "expanded": false,
+      "disabled": false,
+      "resources": [
+        {
+          "id": 1,
+          "name": "Resursa suplimentara 1",
+          "url": "https://www.google.com"
+        },
+        {
+          "id": 1,
+          "name": "Resursa suplimentara 2",
+          "url": "https://www.google.com"
+        },
+        {
+          "id": 1,
+          "name": "Resursa suplimentara 3",
+          "url": "https://www.google.com"
+        },
+        {
+          "id": 1,
+          "name": "Resursa suplimentara 4",
+          "url": "https://www.google.com"
+        },
+        {
+          "id": 1,
+          "name": "Resursa suplimentara 5",
+          "url": "https://www.google.com"
+        }
+      ],
+      "type": "LINK",
+      "url": ""
+    },
+    {
+      "id": 4,
+      "name": "Workshop LIVE Zoom",
+      "expanded": false,
+      "disabled": false,
+      "resources": [
+        {
+          "id": 1,
+          "name": "Click aici pentru a te inregistra",
+          "url": "https://www.google.com"
+        }
+      ],
+      "type": "ZOOM",
+      "url": ""
+    },
+    {
+      "id": 5,
+      "name": "Chestionar de evaluare finala",
+      "expanded": false,
+      "disabled": true,
+      "resources": [
+        {
+          "id": 1,
+          "name": "Click aici pentru a te inregistra",
+          "url": "https://www.google.com"
+        }
+      ],
+      "type": "QUIZ",
+      "url": ""
+    }
+  ]
+}
