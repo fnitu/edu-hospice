@@ -78,6 +78,22 @@
     "updatedBy": 0,
     "percentage": 10,
     "courseType": "Curs interactiv"
+  },
+  {
+    "createdAt": "2020-05-09T22:04:44.370Z",
+    "createdBy": 0,
+    "credits": 0,
+    "description": "string",
+    "hours": 9,
+    "id": 1,
+    "image": "https://studiipaliative.odoo.com/web/image/slide.channel/12/image_1920/Nutri%C8%9Bia%20pacientului%20%C3%AEn%20%C3%AEngrijiri%20paliative%20%2812%20ore%29?unique=72a59a3",
+    "name": "Nutriție în îngrijiri paliative",
+    "shortDescription": "Accesul la curs este de maxim 3 săptămâni, timp în care parcurgerea celor 12 ore de curs poate fi planificată într-un ritm adaptat fiecărui cursant în parte.",
+    "startDate": "01.02.2020",
+    "updatedAt": "2020-05-09T22:04:44.370Z",
+    "updatedBy": 0,
+    "percentage": 10,
+    "courseType": "Curs interactiv"
   }
   ]
- 
+  
