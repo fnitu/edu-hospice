@@ -17,6 +17,7 @@
   }
 
   .logo-title {
+    cursor: pointer;
     margin-left: 15px;
   }
 
@@ -26,5 +27,13 @@
 
   .example-spacer {
     flex: 1 1 auto;
+  }
+
+  .userIcons{
+    .mat-icon {
+      margin-left: 15px;
+      margin-top: 7px;
+      cursor: pointer;
+    }
   }
 }

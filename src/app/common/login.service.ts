@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {User} from '../common/user';
+import {User} from './user';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,10 @@ import {User} from '../common/user';
 export class LoginService {
 
   private _user: User;
+
+  private _accessToken: string;
+
+  public userHasLoggedIn: Subject<boolean> = new Subject<boolean>();
 
   constructor(private http: HttpClient) {
   }
@@ -29,9 +34,23 @@ export class LoginService {
 
   set user(user: User) {
     this._user = user;
+    if (this._user) {
+      this.userHasLoggedIn.next(true);
+    }
+    else {
+      this.userHasLoggedIn.next(false);
+    }
   }
 
   get user() {
     return this._user;
+  }
+
+  set accessToken(accessToken: string) {
+    this._accessToken = accessToken;
+  }
+
+  get accessToken() {
+    return this._accessToken;
   }
 }

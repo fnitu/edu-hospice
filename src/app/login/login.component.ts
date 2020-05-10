@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {LoginService} from './login.service';
+import {LoginService} from '../common/login.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {User} from '../common/user';
@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
         const password = this.form.get('password').value;
         this.loginService.login(email, password).subscribe(((response: User) => {
           this.loginService.user = response;
-          this.router.navigate(['dashboard', response.accessToken]);
+          this.loginService.accessToken = response.accessToken;
+          this.router.navigate(['dashboard', this.loginService.accessToken]);
         }));
       } catch (err) {
         console.error(err);

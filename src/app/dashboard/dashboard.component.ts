@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {LoginService} from '../login/login.service';
+import {LoginService} from '../common/login.service';
 import {User} from '../common/user';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Course} from '../common/course';
