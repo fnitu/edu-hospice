@@ -25,6 +25,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatListModule} from '@angular/material/list';
+import {MaterialElevationDirective} from './material-elevation.directive';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {MatListModule} from '@angular/material/list';
     HomeComponent,
     LoginComponent,
     DashboardComponent,
-    CourseComponent
+    CourseComponent,
+    MaterialElevationDirective
   ],
   imports: [
     BrowserModule,

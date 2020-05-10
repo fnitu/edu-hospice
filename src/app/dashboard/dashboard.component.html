@@ -21,7 +21,7 @@
   <mat-tab-group dynamicHeight>
     <mat-tab *ngFor="let tab of tabList" label="{{tab}}">
       <div class="example-large-box mat-elevation-z4" *ngFor="let course of courseList">
-        <mat-card class="example-card" (click)="goToCourse(course)">
+        <mat-card class="example-card" (click)="goToCourse(course)"  appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="16">
           <mat-card-header>
             <mat-card-title>{{course.name}}</mat-card-title>
           </mat-card-header>
