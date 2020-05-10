@@ -91,7 +91,7 @@
       "id": 5,
       "name": "Prezentare",
       "expanded": false,
-      "disabled": false,
+      "disabled": true,
       "resources": [
         {
           "id": 1,
@@ -106,7 +106,7 @@
       "id": 6,
       "name": "Video introductiv",
       "expanded": false,
-      "disabled": false,
+      "disabled": true,
       "resources": [],
       "type": "VIDEO",
       "url": "https://www.youtube.com/embed/_YUQmUc60Jc"
