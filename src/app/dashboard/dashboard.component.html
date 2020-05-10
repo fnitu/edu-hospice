@@ -29,7 +29,7 @@
             <mat-chip color="primary" selected>{{course.courseType}}</mat-chip>
             <mat-chip color="accent" selected>{{course.hours}} ore</mat-chip>
           </mat-chip-list>
-          <div class="image-card"></div>
+          <div class="image-card" [ngStyle]="{'background-image': 'url(' + course.image + ')'}"></div>
           <mat-card-content>
             <p>
               {{course.shortDescription}}
