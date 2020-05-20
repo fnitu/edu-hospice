@@ -14,11 +14,13 @@ export class LoginService {
 
   public userHasLoggedIn: Subject<boolean> = new Subject<boolean>();
 
+  private readonly BASE_URL = 'https://edu-hospice-api.herokuapp.com/api';
+
   constructor(private http: HttpClient) {
   }
 
   public login(email, password) {
-    const url = 'https://safe-plateau-32477.herokuapp.com/api/auth/login';
+    const url = `${this.BASE_URL}/auth/login`;
 
     const formData = {'email': email, 'password': password};
 
@@ -26,7 +28,7 @@ export class LoginService {
   }
 
   public getUserDetails(token) {
-    const url = 'https://safe-plateau-32477.herokuapp.com/api/users/currentUser';
+    const url = `${this.BASE_URL}/users/currentUser`;
     return this.http.get(url, {
       headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
     });
