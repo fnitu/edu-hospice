@@ -1,0 +1,70 @@
+.mat-card.course-card {
+  max-width: 300px;
+  cursor: pointer;
+
+  &:not([class*=mat-elevation-z]) {
+    box-shadow: none;
+    border-radius: 20px;
+  }
+
+  .mat-card-header {
+    .mat-card-header-text {
+      margin: 0;
+      width: 100%;
+      text-align: left;
+
+      .mat-card-title {
+        line-height: 1.2em;
+      }
+    }
+  }
+
+  .mat-chip-list {
+    .mat-chip-list-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin: 0 0 6px 0;
+
+      .mat-chip {
+        border-radius: 6px;
+        padding: 6px;
+
+        &.mat-standard-chip.mat-chip-selected {
+          &.mat-primary {
+            background-color: #83A964;
+          }
+
+          &.mat-accent {
+            background-color: #ED6995;
+          }
+        }
+      }
+    }
+  }
+
+  .image-card {
+    padding-top: 50%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .mat-card-content {
+    .course-description {
+      min-height: 60px;
+      height: 60px;
+      overflow: hidden;
+      padding-top: 10px;
+      text-align: justify;
+      line-height: 1.1em;
+    }
+  }
+
+  .progress-bar {
+    display: flex;
+    align-items: center;
+    .percent {
+      margin-left: 6px;
+    }
+  }
+}

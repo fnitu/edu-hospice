@@ -21,25 +21,7 @@
   <mat-tab-group dynamicHeight>
     <mat-tab *ngFor="let tab of tabList" label="{{tab}}">
       <div class="example-large-box mat-elevation-z4" *ngFor="let course of courseList">
-        <mat-card class="example-card" (click)="goToCourse(course)"  appMaterialElevation [defaultElevation]="defaultElevation" raisedElevation="16">
-          <mat-card-header>
-            <mat-card-title>{{course.name}}</mat-card-title>
-          </mat-card-header>
-          <mat-chip-list>
-            <mat-chip color="primary" selected>{{course.courseType}}</mat-chip>
-            <mat-chip color="accent" selected>{{course.hours}} ore</mat-chip>
-          </mat-chip-list>
-          <div class="image-card" [ngStyle]="{'background-image': 'url(' + course.image + ')'}"></div>
-          <mat-card-content>
-            <p>
-              {{course.shortDescription}}
-            </p>
-          </mat-card-content>
-          <div class="progress-bar">
-            <mat-progress-bar mode="determinate" value="{{course.percentage}}"></mat-progress-bar>
-            <p class="percent">{{course.percentage}}%</p>
-          </div>
-        </mat-card>
+        <app-course-card [course]="course" [hasAction]="true" (cardAction)="goToCourse(course)"></app-course-card>
       </div>
     </mat-tab>
   </mat-tab-group>

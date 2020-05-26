@@ -1,0 +1,37 @@
+<!-- Common content for course card -->
+<ng-template #cardContent>
+  <mat-card-header>
+    <mat-card-title>{{course.name}}</mat-card-title>
+  </mat-card-header>
+  <mat-chip-list>
+    <mat-chip color="primary" selected>{{course.courseType}}</mat-chip>
+    <mat-chip color="accent" selected>{{course.hours}} ore</mat-chip>
+  </mat-chip-list>
+  <div class="image-card" [ngStyle]="{'background-image': 'url(' + course.image + ')'}"></div>
+  <mat-card-content>
+    <p class="course-description">
+      {{course.shortDescription}}
+    </p>
+  </mat-card-content>
+  <div class="progress-bar" *ngIf="course.percentage !== undefined">
+    <mat-progress-bar mode="determinate" value="{{course.percentage}}"></mat-progress-bar>
+    <div class="percent">{{course.percentage}}%</div>
+  </div>
+</ng-template>
+
+<!-- Card without action -->
+<mat-card class="course-card"
+          *ngIf="!hasAction" appMaterialElevation
+          [defaultElevation]="defaultElevation"
+          [raisedElevation]="raisedElevation">
+  <ng-container [ngTemplateOutlet]="cardContent"></ng-container>
+</mat-card>
+
+<!-- Card with action -->
+<mat-card class="course-card"
+          *ngIf="hasAction" appMaterialElevation
+          [defaultElevation]="defaultElevation"
+          [raisedElevation]="raisedElevation"
+          (click)="triggerCardAction()">
+  <ng-container [ngTemplateOutlet]="cardContent"></ng-container>
+</mat-card>
