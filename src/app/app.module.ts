@@ -25,7 +25,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatListModule} from '@angular/material/list';
-import {MaterialElevationDirective} from './material-elevation.directive';
+import { MaterialElevationDirective } from './common/core/material-elevation.directive';
 import { CourseCardComponent } from './common/components/course-card/course-card.component';
 
 
