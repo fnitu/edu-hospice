@@ -31,82 +31,12 @@ body {
   }
 
 
-  .mat-card-header .mat-card-header-text {
-    margin: 0;
-    width: 100%;
-    text-align: left;
-  }
-
-  .mat-card-header .mat-card-title {
-    line-height: 1.2em;
-  }
-
-  .mat-chip-list .mat-chip-list-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 0 6px 0;
-  }
-
   .mat-tab-body-content {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
   }
 
-  .mat-chip {
-    border-radius: 6px;
-    padding: 6px;
-
-  }
-  .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
-    background-color: #83A964;
-  }
-
-
-  .mat-chip.mat-standard-chip.mat-chip-selected.mat-accent {
-    background-color: #ED6995;
-  }
-
-  .mat-card:not([class*=mat-elevation-z]) {
-    box-shadow: none;
-    border-radius: 20px;
-  }
-
-  .image-card {
-    padding-top: 50%;
-    background-size: cover;
-    background-position: center;
-
-  }
-
-  .mat-card-content p {
-    min-height: 60px;
-    height: 60px;
-    overflow: hidden;
-    padding-top: 10px;
-    text-align: justify;
-    line-height: 1.1em;
-  }
-
-  .progress-bar {
-    display: flex;
-  }
-
-  .progress-bar .percent {
-    margin-left: 6px;
-    margin-top: -8px;
-  }
-
-  .example-card {
-    max-width: 300px;
-    cursor: pointer;
-  }
-
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
 
   .example-large-box {
     display: flex;

@@ -19,9 +19,6 @@ export class DashboardComponent implements OnInit {
   public tabList = ['In desfasurare', 'Recomandat', 'Certificate'];
   public courseList: Array<Course> = new Array<Course>();
 
-  defaultElevation = 2;
-  raisedElevation = 8;
-
   constructor(private loginService: LoginService, private dashboardService: DashboardService,
               private router: Router, private route: ActivatedRoute) {
   }
