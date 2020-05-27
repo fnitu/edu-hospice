@@ -1,6 +1,8 @@
 .mat-card.course-card {
-  max-width: 300px;
+  max-width: 400px;
   cursor: pointer;
+  margin: 60px;
+  border: 1px solid #cccccc;
 
   &:not([class*=mat-elevation-z]) {
     box-shadow: none;

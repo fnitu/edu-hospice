@@ -1,12 +1,10 @@
 <div class="home">
-  <div class="mat-divider">
-      <h1 class="title-home">Cursuri de ingrijiri paliative</h1>
-  </div>
-  <mat-tab-group dynamicHeight>
-    <mat-tab *ngFor="let tab of tabList" label="{{tab}}">
-      <div class="example-large-box mat-elevation-z4" *ngFor="let course of courseList">
-        <app-course-card [course]="course"></app-course-card>
-      </div>
-    </mat-tab>
-  </mat-tab-group>
+    <div class="mat-divider">
+        <h1 class="title-home">Cursuri de ingrijiri paliative</h1>
+    </div>
+    <div class="app-course-wrapper">
+        <div *ngFor="let course of courseList" >
+            <app-course-card class="mat-elevation-z4" [course]="course"></app-course-card>
+        </div>
+    </div>
 </div>
