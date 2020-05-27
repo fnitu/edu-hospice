@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {LoginService} from '../common/login.service';
+import {LoginService} from '../../shared/services/login/login.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {User} from '../common/user';
+import {User} from '../../shared/interfaces/user';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         this.loginService.login(email, password).subscribe(((response: User) => {
           this.loginService.user = response;
           this.loginService.accessToken = response.accessToken;
-          this.router.navigate(['dashboard', this.loginService.accessToken]);
+          this.router.navigate(['user/dashboard', this.loginService.accessToken]);
         }));
       } catch (err) {
         console.error(err);

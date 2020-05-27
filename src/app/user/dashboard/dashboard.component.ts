@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {LoginService} from '../common/login.service';
-import {User} from '../common/user';
+import {User} from '../../shared/interfaces/user';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Course} from '../common/course';
+import {Course} from '../../shared/interfaces/course';
 import {DashboardService} from './dashboard.service';
+import {LoginService} from '../../shared/services/login/login.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public goToCourse(course: Course) {
-    this.router.navigate(['course', this.token, 'course', course.id]);
+    this.router.navigate(['user/course', this.token, 'course', course.id]);
   }
 
 }

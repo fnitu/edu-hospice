@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
-import { Course } from '../../course';
+import { Course } from '../../interfaces/course';
 
 @Component({
   selector: 'app-course-card',
@@ -15,6 +15,7 @@ export class CourseCardComponent implements OnInit {
 
   public defaultElevation: number = 2;
   public raisedElevation: number = 16;
+
 
   constructor() {
   }

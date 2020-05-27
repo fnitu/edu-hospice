@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {HomeService} from './home.service';
-import {Course} from '../common/course';
+import {Course} from '../../../shared/interfaces/course';
 
 @Component({
   selector: 'app-home',

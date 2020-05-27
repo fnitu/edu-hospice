@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {LoginService} from './common/login.service';
+import {LoginService} from './shared/services/login/login.service';
 import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 
@@ -25,17 +25,17 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public goToHome() {
-    this.router.navigate(['home']);
+    this.router.navigate(['preview']);
   }
 
   public goToDashboard() {
-    this.router.navigate(['dashboard', this.loginService.accessToken]);
+    this.router.navigate(['user/dashboard', this.loginService.accessToken]);
   }
 
   public logout() {
     this.loginService.user = null;
     this.loginService.accessToken = undefined;
-    this.router.navigate(['home']);
+    this.router.navigate(['preview']);
   }
 
   ngOnDestroy() {
