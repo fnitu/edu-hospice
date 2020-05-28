@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     public logout() {
         this.userService.userDetails = null;
 
-        this.authService.accessToken = undefined;
+        this.authService.accessToken = "";
 
         this.router.navigate(['preview']);
     }
