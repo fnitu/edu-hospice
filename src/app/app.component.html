@@ -6,12 +6,12 @@
       <nav class="navigation">
         <ul>
           <li><a mat-button routerLink="/preview" routerLinkActive="active">Home</a></li>
-          <li><a mat-button routerLink="/user" routerLinkActive="active" *ngIf="!isLoggedIn">Login</a></li>
+          <li><a mat-button routerLink="/user" routerLinkActive="active" *ngIf="!authService.isAuthenticated()">Login</a></li>
         </ul>
       </nav>
       <div class="userIcons">
-        <mat-icon *ngIf="isLoggedIn" (click)="goToDashboard()">account_circle</mat-icon>
-        <mat-icon *ngIf="isLoggedIn" (click)="logout()">exit_to_app</mat-icon>
+        <mat-icon *ngIf="authService.isAuthenticated()" (click)="goToDashboard()">account_circle</mat-icon>
+        <mat-icon *ngIf="authService.isAuthenticated()" (click)="logout()">exit_to_app</mat-icon>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>

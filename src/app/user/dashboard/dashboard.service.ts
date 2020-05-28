@@ -1,17 +1,19 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class DashboardService {
 
 
-  constructor(private http: HttpClient) {
-  }
+    constructor(private http: HttpClient) {
+    }
 
-  public getCourses() {
-    const url = '/assets/json/homeCourses.json';
-    return this.http.get(url);
-  }
+    public getCourses(): Observable<any> {
+        const url = '/assets/json/homeCourses.json';
+
+        return this.http.get(url);
+    }
 }

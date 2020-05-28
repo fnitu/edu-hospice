@@ -1,45 +1,38 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {LoginService} from './shared/services/login/login.service';
-import {Subscription} from 'rxjs';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from './user/login/login.service';
+import { Router } from '@angular/router';
+import { AuthService } from "./shared/services/authentication/auth.service";
+import { UserService } from "./user/user.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
-  title = 'edu-hospice';
+export class AppComponent implements OnInit {
+    constructor(private loginService: LoginService,
+                private router: Router,
+                public authService: AuthService,
+                private userService: UserService) {
+    }
 
-  public isLoggedIn: boolean;
+    ngOnInit(): void {
+    }
 
-  subscriptionUserHasLoggedIn: Subscription;
+    public goToHome() {
+        this.router.navigate(['preview']);
+    }
 
-  constructor(private loginService: LoginService, private router: Router) {
-  }
+    public goToDashboard() {
+        this.router.navigate(['user/dashboard']);
+    }
 
-  ngOnInit(): void {
-    this.subscriptionUserHasLoggedIn = this.loginService.userHasLoggedIn.subscribe((value) => {
-      this.isLoggedIn = value;
-    });
-  }
+    public logout() {
+        this.userService.userDetails = null;
 
-  public goToHome() {
-    this.router.navigate(['preview']);
-  }
+        this.authService.accessToken = undefined;
 
-  public goToDashboard() {
-    this.router.navigate(['user/dashboard', this.loginService.accessToken]);
-  }
+        this.router.navigate(['preview']);
+    }
 
-  public logout() {
-    this.loginService.user = null;
-    this.loginService.accessToken = undefined;
-    this.router.navigate(['preview']);
-  }
-
-  ngOnDestroy() {
-    // prevent memory leak when component destroyed
-    this.subscriptionUserHasLoggedIn.unsubscribe();
-  }
 }
