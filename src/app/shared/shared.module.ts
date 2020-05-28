@@ -19,6 +19,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MaterialElevationDirective } from './core/material-elevation.directive';
 import { CourseCardComponent } from './components/course-card/course-card.component';
 import { HttpConfigService } from './services/http-interceptors/http-config.service';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
@@ -64,8 +65,9 @@ import { HttpConfigService } from './services/http-interceptors/http-config.serv
         MatProgressBarModule,
         MatExpansionModule,
         MatListModule,
-        CourseCardComponent
-    ]
+        CourseCardComponent,
+        TranslateModule
+  ]
 })
 export class SharedModule {
     static forRoot(): ModuleWithProviders<SharedModule> {

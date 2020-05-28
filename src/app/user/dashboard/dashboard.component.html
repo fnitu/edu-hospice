@@ -4,13 +4,13 @@
   </mat-card-header>
   <mat-card-content>
       <div fxLayout="row" fxFlex fxLayoutAlign="space-around center" class="userStatsContainer">
-      <mat-card-subtitle> Email:
+      <mat-card-subtitle> {{ 'general.email' | translate }}:
         <div class="userStats">{{user.email}}</div>
       </mat-card-subtitle>
-      <mat-card-subtitle> Ore totale:
+      <mat-card-subtitle> {{ 'user.dashboard.totalHours' | translate }}:
         <div class="userStats">120</div>
       </mat-card-subtitle>
-      <mat-card-subtitle> Cursuri totale:
+      <mat-card-subtitle> {{ 'user.dashboard.totalCourses' | translate }}:
         <div class="userStats">5</div>
       </mat-card-subtitle>
       </div>
