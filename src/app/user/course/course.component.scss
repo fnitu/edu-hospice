@@ -1,3 +1,5 @@
+@import "../../../styles/scss/imports";
+
 .courseDescriptionCard {
   .mat-card-content {
     display: flex;
@@ -43,7 +45,7 @@
         }
 
         a {
-          color: black;
+          color: $textColor;
         }
       }
       .iframe {

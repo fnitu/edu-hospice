@@ -1,7 +1,9 @@
+@import "../../../styles/scss/imports";
+
 .userProfileCard {
   margin: 10px 60px;
   justify-content: space-evenly;
-  background-color: #f2f2f2;
+  background-color: $cardBackgroundColor;
   .userStatsContainer {
     text-align: center;
     .userStats {

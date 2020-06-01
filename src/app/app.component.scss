@@ -1,11 +1,13 @@
+@import "../styles/scss/imports";
+
 .app {
   .mat-toolbar {
-    background-color: #7DC242;
-    color: #ffffff;
+    background-color: $nabBarBackgroundColor;
+    color: $navBarTextColor;
   }
 
   .mat-toolbar-row {
-    color: #ffffff;
+    color: $navBarTextColor;
   }
 
   .navigation {

@@ -1,3 +1,5 @@
+@import "../../../../styles/scss/imports";
+
 .app-course-wrapper {
   display: flex;
   justify-content: center;
@@ -9,7 +11,7 @@
   max-width: 400px;
   cursor: pointer;
   margin: 60px;
-  border: 1px solid #cccccc;
+  border: 1px solid $cardBorderColor;
 
   &:not([class*=mat-elevation-z]) {
     box-shadow: none;
@@ -41,11 +43,11 @@
 
         &.mat-standard-chip.mat-chip-selected {
           &.mat-primary {
-            background-color: #83A964;
+            background-color: $cardLabelCourseTypeColor;
           }
 
           &.mat-accent {
-            background-color: #ED6995;
+            background-color: $cardLabelHourColor;
           }
         }
       }
