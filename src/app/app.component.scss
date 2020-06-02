@@ -31,11 +31,21 @@
     flex: 1 1 auto;
   }
 
-  .userIcons{
+  .userIcons {
     .mat-icon {
       margin-left: 15px;
       margin-top: 7px;
       cursor: pointer;
+    }
+  }
+
+  ng-progress {
+    .ng-progress-bar {
+      &[active="true"] {
+        .ng-bar-placeholder {
+          height: 4px;
+        }
+      }
     }
   }
 }

@@ -19,7 +19,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MaterialElevationDirective } from './core/material-elevation.directive';
 import { CourseCardComponent } from './components/course-card/course-card.component';
 import { HttpConfigService } from './services/http-interceptors/http-config.service';
-import {TranslateModule} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgProgressModule } from 'ngx-progressbar';
+import { NgProgressHttpModule } from 'ngx-progressbar/http';
 
 
 @NgModule({
@@ -49,6 +51,8 @@ import {TranslateModule} from '@ngx-translate/core';
     exports: [
         CommonModule,
         HttpClientModule,
+        NgProgressModule,
+        NgProgressHttpModule,
         MatCardModule,
         FormsModule,
         ReactiveFormsModule,

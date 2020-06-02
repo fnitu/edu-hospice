@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LoginService } from './user/login/login.service';
 import { Router } from '@angular/router';
 import { AuthService } from "./shared/services/authentication/auth.service";
@@ -9,7 +9,8 @@ import TranslationsJson from '../assets/translations.json';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+    styleUrls: ['./app.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
     constructor(private loginService: LoginService,

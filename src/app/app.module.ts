@@ -17,7 +17,7 @@ import {TranslateModule} from '@ngx-translate/core';
     BrowserAnimationsModule,
     TranslateModule.forRoot(),
     AppRoutingModule,
-    SharedModule.forRoot(),
+    SharedModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
