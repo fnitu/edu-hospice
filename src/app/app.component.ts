@@ -41,4 +41,10 @@ export class AppComponent implements OnInit {
         this.router.navigate(['preview']);
     }
 
+    public getUserDetails() {
+      this.loginService.getUserDetails().subscribe(response=> {
+        console.log(response);
+      })
+    }
+
 }
