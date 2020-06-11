@@ -5,7 +5,10 @@ import * as _ from "lodash";
 @Component({
     selector: 'app-course-list',
     templateUrl: './course-list.component.html',
-    styleUrls: ['./course-list.component.scss'],
+    styleUrls: [
+        './course-list.component.scss',
+        '../../../../../node_modules/ag-grid-community/dist/styles/ag-grid.css',
+        '../../../../../node_modules/ag-grid-community/dist/styles/ag-theme-balham.css'],
     encapsulation: ViewEncapsulation.None
 })
 export class CourseListComponent implements OnInit {
@@ -56,7 +59,7 @@ export class CourseListComponent implements OnInit {
     public onGridReadyHandler(params) {
         const dataSource = {
             rowCount: null,
-            getRows:  (getRowsParams) =>this.getRowsHandler (getRowsParams)
+            getRows: (getRowsParams) => this.getRowsHandler(getRowsParams)
         }
 
         this.gridOptions.api.setDatasource(dataSource);
