@@ -1,6 +1,9 @@
 @import "../styles/scss/imports";
 
 .app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   .mat-toolbar {
     background-color: $nabBarBackgroundColor;
     color: $navBarTextColor;
@@ -37,6 +40,10 @@
       margin-top: 7px;
       cursor: pointer;
     }
+  }
+
+  .main-container {
+    flex: 1;
   }
 
   ng-progress {

@@ -1,0 +1,12 @@
+@import 'node_modules/ag-grid-community/dist/styles/ag-grid';
+@import 'node_modules/ag-grid-community/dist/styles/ag-theme-balham/sass/legacy/ag-theme-balham-v22-compat';
+
+.course-list-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .ag-grid-component {
+    flex: 1;
+  }
+}
+
