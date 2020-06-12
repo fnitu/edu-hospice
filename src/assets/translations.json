@@ -5,6 +5,10 @@
     "login": "Login",
     "siteName": "Edu Hospice"
   },
+  "field": {
+    "required": "Acest câmp este obligatoriu.",
+    "email": "E-mail-ul nu are un format valid."
+  },
   "preview": {
     "home": {
       "title": "Cursuri de îngrijiri paliative"
@@ -21,10 +25,11 @@
     "login": {
       "clickHere": "Click aici!",
       "forgotPassword": "Ai uitat parola?",
-      "loginPlaceholder": "Introduceți adresa de e-mail",
+      "loginPlaceholder": "Introdu adresa de e-mail",
       "password": "Parola",
-      "passwordPlaceholder": "Introduceți parola",
-      "register": "Înregistrează-te!"
+      "passwordPlaceholder": "Introdu parola",
+      "register": "Înregistrează-te!",
+      "invalidEmailOrPassword": "E-mail sau parolă incorectă!"
     }
   }
 }

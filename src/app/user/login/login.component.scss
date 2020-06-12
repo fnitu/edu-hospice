@@ -7,11 +7,13 @@
 
   mat-form-field {
     display: block;
+    margin-bottom: 10px;
   }
 
-  .mat-raised-button.mat-primary {
+  .mat-raised-button {
     background-color: $loginButtonColor;
     margin-bottom: 10px;
+    color: $navBarTextColor;
   }
 
   .register {

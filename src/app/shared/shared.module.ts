@@ -10,7 +10,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -22,6 +22,9 @@ import { HttpConfigService } from './services/http-interceptors/http-config.serv
 import { TranslateModule } from '@ngx-translate/core';
 import { NgProgressModule } from 'ngx-progressbar';
 import { NgProgressHttpModule } from 'ngx-progressbar/http';
+import { GlobalMatFormFieldConfig } from './constants/global-mat-form-field-config';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from '@angular/material/snack-bar';
+import { GlobalMatSnackBarConfig } from './constants/global-mat-snack-bar-config';
 
 
 @NgModule({
@@ -46,7 +49,8 @@ import { NgProgressHttpModule } from 'ngx-progressbar/http';
         MatChipsModule,
         MatProgressBarModule,
         MatExpansionModule,
-        MatListModule
+        MatListModule,
+        MatSnackBarModule
     ],
     exports: [
         CommonModule,
@@ -69,6 +73,7 @@ import { NgProgressHttpModule } from 'ngx-progressbar/http';
         MatProgressBarModule,
         MatExpansionModule,
         MatListModule,
+        MatSnackBarModule,
         CourseCardComponent,
         TranslateModule
   ]
@@ -82,7 +87,15 @@ export class SharedModule {
                     provide: HTTP_INTERCEPTORS,
                     useClass: HttpConfigService,
                     multi: true
-                }
+                },
+              {
+                provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+                useValue: GlobalMatFormFieldConfig
+              },
+              {
+                provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+                useValue: GlobalMatSnackBarConfig
+              }
             ]
         }
     }
