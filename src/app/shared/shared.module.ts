@@ -25,12 +25,14 @@ import { NgProgressHttpModule } from 'ngx-progressbar/http';
 import { GlobalMatFormFieldConfig } from './constants/global-mat-form-field-config';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from '@angular/material/snack-bar';
 import { GlobalMatSnackBarConfig } from './constants/global-mat-snack-bar-config';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 @NgModule({
     declarations: [
         MaterialElevationDirective,
-        CourseCardComponent
+        CourseCardComponent,
+        NotFoundComponent
     ],
     imports: [
         CommonModule,
@@ -50,7 +52,8 @@ import { GlobalMatSnackBarConfig } from './constants/global-mat-snack-bar-config
         MatProgressBarModule,
         MatExpansionModule,
         MatListModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        TranslateModule
     ],
     exports: [
         CommonModule,
@@ -97,6 +100,6 @@ export class SharedModule {
                 useValue: GlobalMatSnackBarConfig
               }
             ]
-        }
+        };
     }
 }

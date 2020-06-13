@@ -3,7 +3,9 @@
     "email": "E-mail",
     "home": "Home",
     "login": "Login",
-    "siteName": "Edu Hospice"
+    "siteName": "Edu Hospice",
+    "pageNotFound": "Pagina nu a fost gasita",
+    "error404": "Eroare 404"
   },
   "field": {
     "required": "Acest câmp este obligatoriu.",

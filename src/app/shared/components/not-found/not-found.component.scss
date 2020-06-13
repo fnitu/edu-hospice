@@ -1,0 +1,24 @@
+@import "../../../../styles/scss/imports";
+
+
+html, body, .app {
+  height: 100%;
+}
+
+.errorBox {
+  height: calc(100% - 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  line-height: 48px;
+
+  .errorNumber {
+    color: $loginButtonColor;
+  }
+
+  .errorMessage {
+    color: $nabBarBackgroundColor;
+  }
+}
