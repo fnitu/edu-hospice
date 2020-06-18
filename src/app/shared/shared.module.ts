@@ -26,13 +26,16 @@ import { GlobalMatFormFieldConfig } from './constants/global-mat-form-field-conf
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from '@angular/material/snack-bar';
 import { GlobalMatSnackBarConfig } from './constants/global-mat-snack-bar-config';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { GridComponent } from './components/grid/grid.component';
+import { AgGridModule } from "ag-grid-angular";
 
 
 @NgModule({
     declarations: [
         MaterialElevationDirective,
         CourseCardComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        GridComponent
     ],
     imports: [
         CommonModule,
@@ -53,7 +56,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
         MatExpansionModule,
         MatListModule,
         MatSnackBarModule,
-        TranslateModule
+        TranslateModule,
+        AgGridModule.withComponents([])
     ],
     exports: [
         CommonModule,
@@ -78,7 +82,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
         MatListModule,
         MatSnackBarModule,
         CourseCardComponent,
-        TranslateModule
+        TranslateModule,
+        GridComponent
   ]
 })
 export class SharedModule {

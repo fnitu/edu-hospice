@@ -1,6 +1,6 @@
 <div class="course-list-container">
 
-    <ag-grid-angular
-            class="ag-theme-balham ag-grid-component"
-            [gridOptions]="gridOptions"></ag-grid-angular>
+    <app-grid [gridColumns]="gridColumns"
+              [gridProperties]="gridProperties">
+    </app-grid>
 </div>

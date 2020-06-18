@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import * as _ from "lodash";
+import { GridPropertiesInterface } from "../../../shared/components/grid/grid-properties.interface";
 
 @Component({
     selector: 'app-course-list',
@@ -12,74 +11,19 @@ import * as _ from "lodash";
     encapsulation: ViewEncapsulation.None
 })
 export class CourseListComponent implements OnInit {
-    public gridOptions;
+    public gridProperties: GridPropertiesInterface;
+    public gridColumns;
 
-    constructor(private http: HttpClient) {
+    constructor() {
     }
 
     ngOnInit(): void {
-        this.gridOptions = _.merge({
-            columnDefs: this.getGridColumns()
-        }, this.getDefaultGridOptions());
+        this.gridColumns = CourseListComponent.getGridColumns();
+
+        this.gridProperties = CourseListComponent.getGridProperties();
     }
 
-    private getDefaultGridOptions() {
-        return {
-            defaultColDef: {
-                sortable: true,
-                filter: false,
-                suppressMenu: true,
-                unSortIcon: true,
-                menuTabs: [],
-                minWidth: 200
-            },
-
-            //columns
-            suppressMovableColumns: true,
-
-            //menus
-            suppressContextMenu: true,
-            suppressMenuHide: true,
-
-            rowModelType: 'infinite',
-            paginationPageSize: 20,
-            cacheOverflowSize: 2,
-            maxConcurrentDatasourceRequests: 1,
-            infiniteInitialRowCount: 0,
-            maxBlocksInCache: 2,
-            blockLoadDebounceMillis: 200,
-
-            //filtering
-            floatingFilter: false,
-
-            onGridReady: (params) => this.onGridReadyHandler(params)
-        }
-    }
-
-    public onGridReadyHandler(params) {
-        const dataSource = {
-            rowCount: null,
-            getRows: (getRowsParams) => this.getRowsHandler(getRowsParams)
-        }
-
-        this.gridOptions.api.setDatasource(dataSource);
-    }
-
-    private getRowsHandler(params) {
-        this.http.get("/assets/json/courseList.json").subscribe((response: []) => {
-            var rowsThisPage = response.slice(params.startRow, params.endRow);
-            // if on or after the last page, work out the last row.
-            var lastRow = -1;
-            if (response.length <= params.endRow) {
-                lastRow = response.length;
-            }
-            // call the success callback
-            params.successCallback(rowsThisPage, lastRow);
-
-        });
-    }
-
-    private getGridColumns() {
+    private static getGridColumns() {
         return [
             {
                 headerName: 'Course name',
@@ -88,4 +32,9 @@ export class CourseListComponent implements OnInit {
         ]
     }
 
+    private static getGridProperties(): GridPropertiesInterface {
+        return {
+            url: '/assets/json/courseList.json'
+        }
+    }
 }

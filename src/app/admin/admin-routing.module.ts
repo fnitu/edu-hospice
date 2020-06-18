@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: 'course-list',
-        component: CourseListComponent,
+        component: CourseListComponent
       },
     ]
   }
