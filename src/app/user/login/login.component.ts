@@ -3,44 +3,61 @@ import { LoginService } from './login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../shared/interfaces/user';
-import { AuthService } from "../../shared/services/authentication/auth.service";
-import { UserService } from "../user.service";
+import { AuthService } from '../../shared/services/authentication/auth.service';
+import { UserService } from '../user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomTranslateService } from '../../shared/services/custom-translate/custom-translate.service';
+import { FormlyFieldConfig } from '@ngx-formly/core';
+import { FormlyTemplateOptions } from '@ngx-formly/core/lib/components/formly.field.config';
+
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class LoginComponent implements OnInit {
-    form: FormGroup;
+export class LoginComponent {
+  form = new FormGroup({});
+  model = {
+    email: 'danut.chindris@test.com',
+    password: 'testpassword'
+  };
+  fields: FormlyFieldConfig[] = [
+    {
+      key: 'email',
+      type: 'input',
+      templateOptions: <FormlyTemplateOptions> {
+        label: this.customTranslateService.getTranslation('general.email'),
+        placeholder: this.customTranslateService.getTranslation('user.login.loginPlaceholder')
+      },
+      validators: {
+        validation: [Validators.required, Validators.email]
+      }
 
-    constructor(private loginService: LoginService,
-                private fb: FormBuilder,
-                private router: Router,
-                private authService: AuthService,
-                private userService: UserService,
-                private matSnackBar: MatSnackBar,
-                private customTranslateService: CustomTranslateService) {
+    },
+    {
+      key: 'password',
+      type: 'input',
+      templateOptions: <FormlyTemplateOptions> {
+        type: 'password',
+        label: this.customTranslateService.getTranslation('user.login.password'),
+        placeholder: this.customTranslateService.getTranslation('user.login.passwordPlaceholder')
+      },
+      validators: {
+        validation: [Validators.required]
+      }
     }
+  ];
 
-    ngOnInit(): void {
-        this.form = this.fb.group({
-            email: ['danut.chindris@test.com', [Validators.required, Validators.email]],
-            password: ['testpassword', Validators.required]
-        });
-    }
-
-  get email() {
-    return this.form.get('email');
+  constructor(private loginService: LoginService,
+              private fb: FormBuilder,
+              private router: Router,
+              private authService: AuthService,
+              private userService: UserService,
+              private matSnackBar: MatSnackBar,
+              private customTranslateService: CustomTranslateService) {
   }
-
-  get password() {
-    return this.form.get('password');
-  }
-
 
   onSubmit() {
     if (this.form.valid) {
@@ -59,8 +76,8 @@ export class LoginComponent implements OnInit {
 
         this.router.navigate(['user/dashboard']);
       }, error => {
-        if (error.status === 401){
-          this.password.setValue('');
+        if (error.status === 401) {
+          this.form.get('password').setValue('');
           this.matSnackBar.open(this.customTranslateService.getTranslation('user.login.invalidEmailOrPassword'));
         }
       });

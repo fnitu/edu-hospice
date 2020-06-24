@@ -23,6 +23,7 @@
     "@angular/platform-browser": "9.1.9",
     "@angular/platform-browser-dynamic": "9.1.9",
     "@angular/router": "9.1.9",
+    "@ngx-formly/schematics": "5.7.2",
     "@ngx-translate/core": "12.1.2",
     "ag-grid-angular": "23.2.0",
     "ag-grid-community": "23.2.0",
@@ -30,7 +31,9 @@
     "ngx-progressbar": "6.0.2",
     "rxjs": "6.5.5",
     "tslib": "1.10.0",
-    "zone.js": "0.10.3"
+    "zone.js": "0.10.3",
+    "@ngx-formly/core": "5.7.2",
+    "@ngx-formly/material": "5.7.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.901.7",

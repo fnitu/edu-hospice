@@ -28,6 +28,10 @@ import { GlobalMatSnackBarConfig } from './constants/global-mat-snack-bar-config
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { GridComponent } from './components/grid/grid.component';
 import { AgGridModule } from "ag-grid-angular";
+import { FORMLY_CONFIG, FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
+import { formlyValidationConfig } from './components/formly/formly-validation-config';
+import { CustomTranslateService } from './services/custom-translate/custom-translate.service';
 
 
 @NgModule({
@@ -57,7 +61,9 @@ import { AgGridModule } from "ag-grid-angular";
         MatListModule,
         MatSnackBarModule,
         TranslateModule,
-        AgGridModule.withComponents([])
+        AgGridModule.withComponents([]),
+        FormlyModule.forRoot(),
+        FormlyMaterialModule
     ],
     exports: [
         CommonModule,
@@ -83,28 +89,36 @@ import { AgGridModule } from "ag-grid-angular";
         MatSnackBarModule,
         CourseCardComponent,
         TranslateModule,
-        GridComponent
+        GridComponent,
+        FormlyModule,
+        FormlyMaterialModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpConfigService,
+      multi: true
+    },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: GlobalMatFormFieldConfig
+    },
+    {
+      provide: FORMLY_CONFIG,
+      multi: true,
+      useFactory: formlyValidationConfig,
+      deps: [CustomTranslateService]
+    },
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: GlobalMatSnackBarConfig
+    }
   ]
 })
 export class SharedModule {
     static forRoot(): ModuleWithProviders<SharedModule> {
         return {
-            ngModule: SharedModule,
-            providers: [
-                {
-                    provide: HTTP_INTERCEPTORS,
-                    useClass: HttpConfigService,
-                    multi: true
-                },
-              {
-                provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-                useValue: GlobalMatFormFieldConfig
-              },
-              {
-                provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
-                useValue: GlobalMatSnackBarConfig
-              }
-            ]
+            ngModule: SharedModule
         };
     }
 }
