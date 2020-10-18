@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LoginService } from './login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { User } from '../../shared/interfaces/user';
 import { AuthService } from '../../shared/services/authentication/auth.service';
 import { UserService } from '../user.service';
@@ -27,7 +27,7 @@ export class LoginComponent {
     {
       key: 'email',
       type: 'input',
-      templateOptions: <FormlyTemplateOptions> {
+      templateOptions: {
         label: this.customTranslateService.getTranslation('general.email'),
         placeholder: this.customTranslateService.getTranslation('user.login.loginPlaceholder')
       },
@@ -39,7 +39,7 @@ export class LoginComponent {
     {
       key: 'password',
       type: 'input',
-      templateOptions: <FormlyTemplateOptions> {
+      templateOptions: {
         type: 'password',
         label: this.customTranslateService.getTranslation('user.login.password'),
         placeholder: this.customTranslateService.getTranslation('user.login.passwordPlaceholder')
@@ -53,6 +53,7 @@ export class LoginComponent {
   constructor(private loginService: LoginService,
               private fb: FormBuilder,
               private router: Router,
+              private route: ActivatedRoute,
               private authService: AuthService,
               private userService: UserService,
               private matSnackBar: MatSnackBar,
@@ -65,7 +66,7 @@ export class LoginComponent {
       const password = this.form.get('password').value;
 
       this.loginService.login(email, password).subscribe((response) => {
-        this.userService.userDetails = <User> {
+        this.userService.userDetails = {
           firstName: response.firstName,
           lastName: response.lastName,
           email: response.email,
@@ -82,6 +83,10 @@ export class LoginComponent {
         }
       });
     }
+  }
+
+  public forgotPassword() {
+    this.router.navigate(['recover-or-change-password'], {relativeTo: this.route.parent});
   }
 
 }

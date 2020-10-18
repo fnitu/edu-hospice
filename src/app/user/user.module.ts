@@ -6,6 +6,7 @@ import {LoginComponent} from './login/login.component';
 import {SharedModule} from '../shared/shared.module';
 import {CourseComponent} from './course/course.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import { RecoverOrChangePasswordComponent } from './recover-or-change-password/recover-or-change-password.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {DashboardComponent} from './dashboard/dashboard.component';
     UserComponent,
     LoginComponent,
     DashboardComponent,
-    CourseComponent
+    CourseComponent,
+    RecoverOrChangePasswordComponent
   ],
   imports: [
     SharedModule,

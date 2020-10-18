@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CourseComponent } from './course/course.component';
 import { UserComponent } from './user.component';
+import {RecoverOrChangePasswordComponent} from './recover-or-change-password/recover-or-change-password.component';
 
 const routes: Routes = [
     {
@@ -19,6 +20,10 @@ const routes: Routes = [
             {
                 path: 'login',
                 component: LoginComponent,
+            },
+            {
+                path: 'recover-or-change-password',
+                component: RecoverOrChangePasswordComponent,
             },
             {
                 path: 'dashboard',

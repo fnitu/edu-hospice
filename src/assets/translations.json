@@ -32,6 +32,17 @@
       "passwordPlaceholder": "Introdu parola",
       "register": "Înregistrează-te!",
       "invalidEmailOrPassword": "E-mail sau parolă incorectă!"
+    },
+    "managePassword": {
+      "setPassword": "Set password",
+      "password": "Parola",
+      "passwordPlaceholder": "Introdu parola",
+      "passwordPlaceholderConfirmation": "Confirma parola",
+      "length": "Length: min. 6 - max. 10",
+      "numberOfNumericCharacters": "Number of numeric characters: min. 1 - max. 5",
+      "numberOfSpecialCharacters": "Number of special characters: min. 1 - maz. 5",
+      "numberOfCapitalLetters": "Number of capital letters: min. 1",
+      "passwordsMatch": "Password does not match"
     }
   }
 }
