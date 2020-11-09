@@ -28,7 +28,7 @@ export class RecoverPasswordEnterEmailComponent implements OnInit {
         placeholder: this.customTranslateService.getTranslation('user.login.loginPlaceholder'),
       },
       validators: {
-        validation: [Validators.required, Validators.email]
+        validation: [Validators.required, 'email']
       }
     }
   ];
