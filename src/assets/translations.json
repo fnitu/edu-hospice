@@ -5,11 +5,13 @@
     "login": "Login",
     "siteName": "Edu Hospice",
     "pageNotFound": "Pagina nu a fost găsită!",
-    "error404": "Eroare 404"
+    "error404": "Eroare 404",
+    "next": "Next"
   },
   "field": {
     "required": "Acest câmp este obligatoriu.",
-    "email": "E-mail-ul nu are un format valid."
+    "email": "E-mail-ul nu are un format valid.",
+    "emailNotExist": "E-mail does not exist. Please enter a valid email."
   },
   "preview": {
     "home": {

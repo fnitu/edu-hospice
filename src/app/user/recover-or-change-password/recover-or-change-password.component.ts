@@ -1,9 +1,13 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormGroup, Validators} from '@angular/forms';
-import { FormlyFieldConfig } from '@ngx-formly/core';
-import { FormlyTemplateOptions } from '@ngx-formly/core/lib/components/formly.field.config';
-import { CustomTranslateService } from '../../shared/services/custom-translate/custom-translate.service';
+import {FormlyFieldConfig} from '@ngx-formly/core';
+import {CustomTranslateService} from '../../shared/services/custom-translate/custom-translate.service';
 import {TooltipService} from '../../shared/services/tooltip/tooltip.service';
+import {LoginService} from '../login/login.service';
+import {UserService} from '../user.service';
+import {AuthService} from '../../shared/services/authentication/auth.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-recover-or-change-password',
@@ -45,7 +49,8 @@ export class RecoverOrChangePasswordComponent implements OnInit {
       validators: {
         validation: [Validators.required],
         passwordMatchCriteria: {
-          expression: (control) => this.validateInputPasswordCheck(control)
+          expression: (control) => this.validateInputPasswordCheck(control),
+          message: this.customTranslateService.getTranslation('user.managePassword.passwordsMatch')
         }
       }
     }
@@ -64,15 +69,44 @@ export class RecoverOrChangePasswordComponent implements OnInit {
   private capitalLettersRegex = /([A-Z])/g;
 
   private tippyInstancePasswordSet;
-  private tippyInstancePasswordCheck;
 
   constructor(private customTranslateService: CustomTranslateService,
-              private tooltipService: TooltipService) { }
+              private tooltipService: TooltipService,
+              private loginService: LoginService,
+              private userService: UserService,
+              private authService: AuthService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private matSnackBar: MatSnackBar,) {
+  }
 
   ngOnInit(): void {
+    console.log(history.state.data);
   }
 
   onSubmit() {
+    if (this.form.valid) {
+      const email = 'danut.chindris@test.com';
+      const password = 'testpassword';
+
+      this.loginService.login(email, password).subscribe((response) => {
+        this.userService.userDetails = {
+          firstName: response.firstName,
+          lastName: response.lastName,
+          email: response.email,
+          role: response.role
+        };
+
+        this.authService.accessToken = response.accessToken;
+
+        this.router.navigate(['user/dashboard']);
+      }, error => {
+        if (error.status === 401) {
+          this.form.get('password').setValue('');
+          this.matSnackBar.open(this.customTranslateService.getTranslation('user.login.invalidEmailOrPassword'));
+        }
+      });
+    }
   }
 
   validateInputPasswordSet(control) {
@@ -108,7 +142,7 @@ export class RecoverOrChangePasswordComponent implements OnInit {
     if (!valid) {
       this.initTooltipTippyInstancePasswordSet(element, message);
       this.tippyInstancePasswordSet.show();
-    } else if ( valid && this.tippyInstancePasswordSet) {
+    } else if (valid && this.tippyInstancePasswordSet) {
       this.tippyInstancePasswordSet.hide();
     }
 
@@ -116,25 +150,7 @@ export class RecoverOrChangePasswordComponent implements OnInit {
   }
 
   private validateInputPasswordCheck(control) {
-    let valid = true;
-    let message = '';
-    const element = document.getElementById('passwordCheck');
-
-    if (control.value) {
-      if (control.value !== this.form.controls.password.value) {
-        message += `<div>${this.customTranslateService.getTranslation('user.managePassword.passwordsMatch')}</div>`;
-        valid = false;
-      }
-    }
-
-    if (!valid) {
-      this.initTooltipTippyInstancePasswordCheck(element, message);
-      this.tippyInstancePasswordCheck.show();
-    } else if ( valid && this.tippyInstancePasswordCheck) {
-      this.tippyInstancePasswordCheck.hide();
-    }
-
-    return valid;
+    return control.value === this.form.get('password').value;
   }
 
   private initTooltipTippyInstancePasswordSet(element, message) {
@@ -142,17 +158,6 @@ export class RecoverOrChangePasswordComponent implements OnInit {
       this.tippyInstancePasswordSet.setContent(message);
     } else {
       this.tippyInstancePasswordSet = this.tooltipService.init(element, {
-        content: `<div>${message}</div>`,
-        trigger: 'manual'
-      });
-    }
-  }
-
-  private initTooltipTippyInstancePasswordCheck(element, message) {
-    if (this.tippyInstancePasswordCheck) {
-      this.tippyInstancePasswordCheck.setContent(message);
-    } else {
-      this.tippyInstancePasswordCheck = this.tooltipService.init(element, {
         content: `<div>${message}</div>`,
         trigger: 'manual'
       });

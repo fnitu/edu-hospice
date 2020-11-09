@@ -86,7 +86,7 @@ export class LoginComponent {
   }
 
   public forgotPassword() {
-    this.router.navigate(['recover-or-change-password'], {relativeTo: this.route.parent});
+    this.router.navigate(['recover-password-enter-email'], {relativeTo: this.route.parent});
   }
 
 }
