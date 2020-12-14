@@ -7,11 +7,20 @@ body {
   height: 100%;
 }
 
+a {
+  cursor: pointer;
+}
+
+@import "styles/scss/loading-mask";
+@import "styles/scss/tippy";
+
+
+// FIXME this styling must be removed from here
 .home {
   .mat-divider {
     height: 400px;
     border-bottom: 1px solid rgba(0, 0, 0, .12);
-    background: linear-gradient( #7DC24133, #7DC24500 ), url(https://www.hospice.ro/wp-content/uploads/2020/03/HOSPICE-1-1536x1026.jpg);
+    background: linear-gradient(#7DC24133, #7DC24500), url(https://www.hospice.ro/wp-content/uploads/2020/03/HOSPICE-1-1536x1026.jpg);
     background-size: cover;
   }
 

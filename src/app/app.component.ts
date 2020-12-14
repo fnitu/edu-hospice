@@ -3,8 +3,9 @@ import { LoginService } from './user/login/login.service';
 import { Router } from '@angular/router';
 import { AuthService } from "./shared/services/authentication/auth.service";
 import { UserService } from "./user/user.service";
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import TranslationsJson from '../assets/translations.json';
+import { LoadingMaskService } from "./shared/services/loading-mask/loading-mask.service";
 
 @Component({
     selector: 'app-root',
@@ -16,14 +17,21 @@ export class AppComponent implements OnInit {
     constructor(private loginService: LoginService,
                 private router: Router,
                 public authService: AuthService,
-                private userService: UserService, private translateService: TranslateService) {
-      //init translations
-      translateService.setTranslation("en", TranslationsJson);
-      translateService.setDefaultLang("en");
+                private userService: UserService,
+                private translateService: TranslateService,
+                private loadingMaskService: LoadingMaskService) {
+        //init translations
+        translateService.setTranslation("en", TranslationsJson);
+        translateService.setDefaultLang("en");
     }
 
     ngOnInit(): void {
     }
+
+    ngAfterViewInit() {
+        // this.loadingMaskService.init();
+    }
+
 
     public goToHome() {
         this.router.navigate(['preview']);
@@ -42,9 +50,9 @@ export class AppComponent implements OnInit {
     }
 
     public getUserDetails() {
-      this.loginService.getUserDetails().subscribe(response=> {
-        console.log(response);
-      })
+        this.loginService.getUserDetails().subscribe(response => {
+            console.log(response);
+        });
     }
 
 }

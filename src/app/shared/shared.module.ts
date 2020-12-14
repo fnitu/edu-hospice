@@ -33,6 +33,8 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 import { formlyValidationConfig } from './components/formly/formly-validation-config';
 import { CustomTranslateService } from './services/custom-translate/custom-translate.service';
 
+import * as $ from 'jquery';
+
 
 @NgModule({
     declarations: [
