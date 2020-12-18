@@ -16,15 +16,6 @@
   "preview": {
     "home": {
       "title": "Cursuri de îngrijiri paliative"
-    }
-  },
-  "user": {
-    "course": {
-      "content": "Conținut"
-    },
-    "dashboard": {
-      "totalCourses": "Cursuri totale",
-      "totalHours": "Ore totale"
     },
     "login": {
       "clickHere": "Click aici!",
@@ -45,6 +36,15 @@
       "numberOfSpecialCharacters": "Number of special characters: min. 1 - maz. 5",
       "numberOfCapitalLetters": "Number of capital letters: min. 1",
       "passwordsMatch": "Password does not match"
+    }
+  },
+  "user": {
+    "course": {
+      "content": "Conținut"
+    },
+    "dashboard": {
+      "totalCourses": "Cursuri totale",
+      "totalHours": "Ore totale"
     }
   }
 }

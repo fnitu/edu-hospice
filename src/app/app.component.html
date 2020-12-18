@@ -6,7 +6,7 @@
       <nav class="navigation">
         <ul>
           <li><a mat-button routerLink="/preview" routerLinkActive="active">{{ 'general.home' | translate }}</a></li>
-          <li><a mat-button routerLink="/user" routerLinkActive="active" *ngIf="!authService.isAuthenticated()">{{ 'general.login' | translate }}</a></li>
+          <li><a mat-button routerLink="/preview/login" routerLinkActive="active" *ngIf="!authService.isAuthenticated()">{{ 'general.login' | translate }}</a></li>
           <li><a mat-button *ngIf="authService.isAuthenticated()" (click)="getUserDetails()" routerLinkActive="active">TEST USER DETAILS</a></li>
         </ul>
       </nav>

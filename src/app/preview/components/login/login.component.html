@@ -5,8 +5,8 @@
       <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
 
       <button mat-raised-button (click)="onSubmit()" [disabled]="form.invalid">{{ 'general.login' | translate }}</button>
-      <p class="register">{{ 'user.login.forgotPassword' | translate }}<a (click)="forgotPassword()"> {{ 'user.login.clickHere' | translate }}</a></p>
-      <p class="register"><a href="/">{{ 'user.login.register' | translate }}</a></p>
+      <p class="register">{{ 'preview.login.forgotPassword' | translate }}<a (click)="forgotPassword()"> {{ 'preview.login.clickHere' | translate }}</a></p>
+      <p class="register"><a href="/">{{ 'preview.login.register' | translate }}</a></p>
     </form>
   </mat-card-content>
 </mat-card>

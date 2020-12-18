@@ -3,6 +3,9 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {HomeComponent} from './components/home/home.component';
 import {PreviewComponent} from './preview.component';
+import {LoginComponent} from './components/login/login.component';
+import {RecoverPasswordEnterEmailComponent} from './components/recover-password-enter-email/recover-password-enter-email.component';
+import {RecoverOrChangePasswordComponent} from './components/recover-or-change-password/recover-or-change-password.component';
 
 const routes: Routes = [
   {
@@ -17,6 +20,18 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
+      {
+        path: 'recover-password-enter-email',
+        component: RecoverPasswordEnterEmailComponent,
+      },
+      {
+        path: 'recover-or-change-password',
+        component: RecoverOrChangePasswordComponent,
       }
     ]
   }

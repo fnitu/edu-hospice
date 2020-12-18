@@ -1,11 +1,10 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormGroup, Validators} from '@angular/forms';
 import {FormlyFieldConfig} from '@ngx-formly/core';
-import {CustomTranslateService} from '../../shared/services/custom-translate/custom-translate.service';
-import {TooltipService} from '../../shared/services/tooltip/tooltip.service';
+import {CustomTranslateService} from '../../../shared/services/custom-translate/custom-translate.service';
+import {TooltipService} from '../../../shared/services/tooltip/tooltip.service';
 import {LoginService} from '../login/login.service';
-import {UserService} from '../user.service';
-import {AuthService} from '../../shared/services/authentication/auth.service';
+import {AuthService} from '../../../shared/services/authentication/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
@@ -27,8 +26,8 @@ export class RecoverOrChangePasswordComponent implements OnInit {
       id: 'passwordSet',
       templateOptions: {
         type: 'password',
-        label: this.customTranslateService.getTranslation('user.managePassword.password'),
-        placeholder: this.customTranslateService.getTranslation('user.managePassword.passwordPlaceholder')
+        label: this.customTranslateService.getTranslation('preview.managePassword.password'),
+        placeholder: this.customTranslateService.getTranslation('preview.managePassword.passwordPlaceholder')
       },
       validators: {
         validation: [Validators.required],
@@ -43,14 +42,14 @@ export class RecoverOrChangePasswordComponent implements OnInit {
       id: 'passwordCheck',
       templateOptions: {
         type: 'password',
-        label: this.customTranslateService.getTranslation('user.managePassword.password'),
-        placeholder: this.customTranslateService.getTranslation('user.managePassword.passwordPlaceholderConfirmation')
+        label: this.customTranslateService.getTranslation('preview.managePassword.password'),
+        placeholder: this.customTranslateService.getTranslation('preview.managePassword.passwordPlaceholderConfirmation')
       },
       validators: {
         validation: [Validators.required],
         passwordMatchCriteria: {
           expression: (control) => this.validateInputPasswordCheck(control),
-          message: this.customTranslateService.getTranslation('user.managePassword.passwordsMatch')
+          message: this.customTranslateService.getTranslation('preview.managePassword.passwordsMatch')
         }
       }
     }
@@ -73,7 +72,6 @@ export class RecoverOrChangePasswordComponent implements OnInit {
   constructor(private customTranslateService: CustomTranslateService,
               private tooltipService: TooltipService,
               private loginService: LoginService,
-              private userService: UserService,
               private authService: AuthService,
               private router: Router,
               private route: ActivatedRoute,
@@ -86,11 +84,12 @@ export class RecoverOrChangePasswordComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      const email = 'danut.chindris@test.com';
+      // FIXME replace this code to update password from the server when BE part is ready
+      const email = 'student.user@test.com';
       const password = 'testpassword';
 
       this.loginService.login(email, password).subscribe((response) => {
-        this.userService.userDetails = {
+        this.loginService.userDetails = {
           firstName: response.firstName,
           lastName: response.lastName,
           email: response.email,
@@ -103,7 +102,7 @@ export class RecoverOrChangePasswordComponent implements OnInit {
       }, error => {
         if (error.status === 401) {
           this.form.get('password').setValue('');
-          this.matSnackBar.open(this.customTranslateService.getTranslation('user.login.invalidEmailOrPassword'));
+          this.matSnackBar.open(this.customTranslateService.getTranslation('preview.login.invalidEmailOrPassword'));
         }
       });
     }
@@ -116,25 +115,25 @@ export class RecoverOrChangePasswordComponent implements OnInit {
 
     if (control.value) {
       if (control.value.length < this.passwordRules.textPassMinLength || control.value.length > this.passwordRules.textPassMaxLength) {
-        message += `<div>${this.customTranslateService.getTranslation('user.managePassword.length')}</div>`;
+        message += `<div>${this.customTranslateService.getTranslation('preview.managePassword.length')}</div>`;
         valid = false;
       }
 
       const matchNumberLength = control.value.match(this.numericRegex) ? control.value.match(this.numericRegex).length : null;
       if (this.passwordRules.textPassMinNum > matchNumberLength || this.passwordRules.textPassMaxNum < matchNumberLength) {
-        message += `<div>${this.customTranslateService.getTranslation('user.managePassword.numberOfNumericCharacters')}</div>`;
+        message += `<div>${this.customTranslateService.getTranslation('preview.managePassword.numberOfNumericCharacters')}</div>`;
         valid = false;
       }
 
       const matchSpecialCharactersLength = control.value.match(this.specialCharactersRegex) ? control.value.match(this.specialCharactersRegex).length : null;
       if (this.passwordRules.textPassMinSpecChars > matchSpecialCharactersLength || this.passwordRules.textPassMaxSpecChars < matchSpecialCharactersLength) {
-        message += `<div>${this.customTranslateService.getTranslation('user.managePassword.numberOfSpecialCharacters')}</div>`;
+        message += `<div>${this.customTranslateService.getTranslation('preview.managePassword.numberOfSpecialCharacters')}</div>`;
         valid = false;
       }
 
       const matchCapitalLettersLength = control.value.match(this.capitalLettersRegex) ? control.value.match(this.capitalLettersRegex) : null;
       if (this.passwordRules.textPassMinCaps > matchCapitalLettersLength) {
-        message += `<div>${this.customTranslateService.getTranslation('user.managePassword.numberOfCapitalLetters')}</div>`;
+        message += `<div>${this.customTranslateService.getTranslation('preview.managePassword.numberOfCapitalLetters')}</div>`;
         valid = false;
       }
     }

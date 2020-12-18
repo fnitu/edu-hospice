@@ -1,11 +1,11 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {FormlyFieldConfig} from '@ngx-formly/core';
-import {CustomTranslateService} from '../../shared/services/custom-translate/custom-translate.service';
-import {TooltipService} from '../../shared/services/tooltip/tooltip.service';
+import {CustomTranslateService} from '../../../shared/services/custom-translate/custom-translate.service';
+import {TooltipService} from '../../../shared/services/tooltip/tooltip.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RecoverPasswordEnterEmailService} from './recover-password-enter-email.service';
-import {GLOBALS} from '../../shared/core/globals';
+import {GLOBALS} from '../../../shared/core/globals';
 
 @Component({
   selector: 'app-recover-password-enter-email',
@@ -25,7 +25,7 @@ export class RecoverPasswordEnterEmailComponent implements OnInit {
       type: 'input',
       templateOptions: {
         label: this.customTranslateService.getTranslation('general.email'),
-        placeholder: this.customTranslateService.getTranslation('user.login.loginPlaceholder'),
+        placeholder: this.customTranslateService.getTranslation('preview.login.loginPlaceholder'),
       },
       validators: {
         validation: [Validators.required, 'email']

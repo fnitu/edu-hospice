@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { LoginService } from './user/login/login.service';
+import { LoginService } from './preview/components/login/login.service';
 import { Router } from '@angular/router';
 import { AuthService } from "./shared/services/authentication/auth.service";
-import { UserService } from "./user/user.service";
 import { TranslateService } from '@ngx-translate/core';
 import TranslationsJson from '../assets/translations.json';
 import { LoadingMaskService } from "./shared/services/loading-mask/loading-mask.service";
@@ -17,7 +16,6 @@ export class AppComponent implements OnInit {
     constructor(private loginService: LoginService,
                 private router: Router,
                 public authService: AuthService,
-                private userService: UserService,
                 private translateService: TranslateService,
                 private loadingMaskService: LoadingMaskService) {
         //init translations
@@ -42,7 +40,7 @@ export class AppComponent implements OnInit {
     }
 
     public logout() {
-        this.userService.userDetails = null;
+        this.loginService.userDetails = null;
 
         this.authService.accessToken = "";
 

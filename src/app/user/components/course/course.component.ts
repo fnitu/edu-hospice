@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CourseService } from './course.service';
 import { ActivatedRoute } from '@angular/router';
-import { Course } from '../../shared/interfaces/course';
+import { Course } from '../../../shared/interfaces/course';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({

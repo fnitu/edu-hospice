@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { User } from '../../shared/interfaces/user';
+import { User } from '../../../shared/interfaces/user';
 import { Router } from '@angular/router';
-import { Course } from '../../shared/interfaces/course';
+import { Course } from '../../../shared/interfaces/course';
 import { DashboardService } from './dashboard.service';
-import { LoginService } from '../login/login.service';
-import { UserService } from "../user.service";
+import {LoginService} from '../../../preview/components/login/login.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -18,14 +17,13 @@ export class DashboardComponent implements OnInit {
 
     public courseList: Array<Course> = new Array<Course>();
 
-    constructor(private loginService: LoginService,
-                private dashboardService: DashboardService,
+    constructor(private dashboardService: DashboardService,
                 private router: Router,
-                private userService: UserService) {
+                private loginService: LoginService) {
     }
 
     ngOnInit(): void {
-        this.user = this.userService.userDetails;
+        this.user = this.loginService.userDetails;
 
         this.initCourses();
     }
