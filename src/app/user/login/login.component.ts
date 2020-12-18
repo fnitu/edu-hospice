@@ -75,7 +75,11 @@ export class LoginComponent {
 
         this.authService.accessToken = response.accessToken;
 
-        this.router.navigate(['user/dashboard']);
+        if (response.role === 'ROLE_ADMIN') {
+          this.router.navigate(['admin/dashboard']);
+        } else {
+          this.router.navigate(['user/dashboard']);
+        }
       }, error => {
         if (error.status === 401) {
           this.form.get('password').setValue('');

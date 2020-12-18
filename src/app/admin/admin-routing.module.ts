@@ -3,12 +3,22 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminComponent } from './admin.component';
 import { CourseListComponent } from "./components/course-list/course-list.component";
+import {DashboardComponent} from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
       {
         path: 'course-list',
         component: CourseListComponent
