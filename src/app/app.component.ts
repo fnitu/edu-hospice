@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     }
 
     ngAfterViewInit() {
-        // this.loadingMaskService.init();
+        this.loadingMaskService.init();
     }
 
 
