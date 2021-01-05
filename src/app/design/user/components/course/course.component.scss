@@ -1,0 +1,76 @@
+@import "../../../../../styles/scss/imports";
+
+.courseDescriptionCard {
+  .mat-card-content {
+    display: flex;
+    padding-left: 60px;
+    align-items: center;
+    .courseDescriptionText {
+      display: flex;
+      flex-direction: column;
+      padding: 10px 30px;
+      line-height: 1.2em;
+    }
+    .courseBgImg img {
+      transform: scale(0.8);
+    }
+    .mat-chip {
+      width: 60px;
+      padding: 4px;
+      text-align: center;
+      border-radius: 20px;
+    }
+  }
+
+  margin-bottom: 15px;
+}
+
+.courseContentCard {
+  .mat-expansion-panel {
+
+    .mat-expansion-panel-header-title {
+      .mat-icon {
+        margin-right: 5px;
+      }
+
+      .title {
+        line-height: 24px;
+      }
+    }
+
+    .mat-expansion-panel-content {
+      .externalLinks {
+        .mat-icon {
+          margin-right: 5px;
+        }
+
+        a {
+          color: $textColor;
+        }
+      }
+      .iframe {
+        width: 100%;
+        height: 40vh;
+      }
+    }
+  }
+}
+
+.header {
+  height: 400px;
+  position: relative;
+}
+
+.course-header-img {
+  height: 400px; 
+  background-size: cover;
+  background-position: left;
+  filter: brightness(0.3);
+}
+
+.course-title {
+  color: #fff;
+  position: absolute;
+  bottom: 100px;
+  text-align: center;
+}

@@ -1,0 +1,96 @@
+
+	<div fxLayout="row" class="header">
+		<div fxFlex="80" fxLayoutAlign="space-evenly center" fxLayoutAlign.xs="center">
+			<div fxFlex="100">
+				<div class="card-avatar">
+					<a href="#">
+						<img src="https://demos.creative-tim.com/material-dashboard-pro-angular2/assets/img/faces/marc.jpg">
+					</a>
+				</div>
+			</div>
+			<div fxLayout="column" fxFlex="30" fxFlex.lt-md="80" fxLayoutAlign="center center">
+				<div class="card">
+					<div class="card-header card-header-icon">
+						<div class="card-icon-profile">
+							<i class="material-icons">account_circle</i>
+						</div>
+						<div class="card-title">
+							<h3>Profil</h3>
+						</div>
+					</div>
+					<div class="card-body">
+						<p><span class="mat-body-strong">Nume: </span>Studentescu Userian</p>
+						<p><span class="mat-body-strong">Membru din: </span>20.12.2020</p>
+					</div>
+				</div>
+			</div>
+			<div fxLayout="column" fxFlex="30" fxFlex.lt-md="80" fxLayoutAlign="center center">
+				<div class="card">
+					<div class="card-header card-header-icon">
+						<div class="card-icon-contact">
+							<i class="material-icons">email</i>
+						</div>
+						<div class="card-title">
+							<h3>Date de contact</h3>
+						</div>
+					</div>
+					<div class="card-body">
+						<p><span class="mat-body-strong">Email: </span>student.user@test.com</p>
+						<p><span class="mat-body-strong">Tel: </span>0745130568</p>
+					</div>
+				</div>
+			</div>
+			<div fxLayout="column" fxFlex="30" fxFlex.lt-md="80" fxLayoutAlign="center center">
+				<div class="card">
+					<div class="card-header card-header-icon">
+						<div class="card-icon-stats">
+							<i class="material-icons">library_books</i>
+						</div>
+						<div class="card-title">
+							<h3>Statistici</h3>
+						</div>
+					</div>
+					<div class="card-body">
+						<p><span class="mat-body-strong">Cursuri totale: </span>5</p>
+						<p><span class="mat-body-strong">Ore totale: </span>120</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div fxLayout="row" fxLayoutAlign="center" class="card-courses">
+		<div class="card" fxFlex="80" fxLayout="row wrap" fxLayoutAlign="space-evenly stretch" fxLayoutAlign.xs="center">
+			<div class="section-title" fxFlex="90">
+				<p>Cursuri in desfasurare</p>
+			</div>
+			<div fxLayout="column" fxFlex="30" fxFlex.sm="80" fxFlex.md="45" fxFlex.lt-sm="100" fxLayoutAlign="space-between center" *ngFor="let course of courseList">
+				<app-fancy-card [course]="course" [hasAction]="true" [types]="['active','recommended']" (cardAction)="goToCourse(course)">
+				</app-fancy-card>
+			</div>
+		</div>
+	</div>
+
+	<div fxLayout="row" fxLayoutAlign="center" class="card-courses">
+		<div class="card" fxFlex="80" fxLayout="row wrap" fxLayoutAlign="space-evenly stretch" fxLayoutAlign.xs="center">
+			<div class="section-title" fxFlex="90">
+				<p>Cursuri recomandate</p>
+			</div>
+			<div fxLayout="column" fxFlex="30" fxFlex.sm="80" fxFlex.md="45" fxFlex.lt-sm="100" fxLayoutAlign="space-between center" *ngFor="let course of recommendedCourseList">
+				<app-fancy-card [course]="course" [hasAction]="true" [types]="['recommended']" (cardAction)="goToCourse(course)">
+				</app-fancy-card>
+			</div>
+		</div>
+	</div>
+
+	<div fxLayout="row" fxLayoutAlign="center" class="card-courses">
+		<div class="card" fxFlex="80" fxLayout="row wrap" fxLayoutAlign="space-evenly stretch" fxLayoutAlign.xs="center">
+			<div class="section-title" fxFlex="90">
+				<p>Cursuri finalizate</p>
+			</div>
+			<div fxLayout="column" fxFlex="30" fxFlex.sm="80" fxFlex.md="45" fxFlex.lt-sm="100" fxLayoutAlign="space-between center" *ngFor="let course of finishedCourseList">
+				<app-fancy-card [course]="course" [hasAction]="true"  [types]="['finished']" (cardAction)="goToCourse(course)">
+				</app-fancy-card>
+			</div>
+		</div>
+	</div>

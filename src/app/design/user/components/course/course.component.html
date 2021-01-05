@@ -1,0 +1,65 @@
+<!-- <mat-card class="courseDescriptionCard">
+  <mat-card-content class="coruse">
+    <div class="courseBgImg">
+      <img alt="" src="{{courseDetails.image}}">
+    </div>
+    <div class="courseDescriptionText">
+      <h1>{{courseDetails.name}}</h1>
+      <p>{{courseDetails.description}}</p>
+    </div>
+  </mat-card-content>
+</mat-card>
+<mat-card class="courseContentCard">
+  <mat-card-header><h1>{{ 'user.course.content' | translate }}</h1></mat-card-header>
+
+  <mat-card-content>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let chapter of courseDetails.chapters" [(expanded)]="chapter.expanded" [disabled]="chapter.disabled">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon *ngIf="chapter.type === 'PDF'">picture_as_pdf</mat-icon>
+            <mat-icon *ngIf="chapter.type === 'VIDEO'">video_library</mat-icon>
+            <mat-icon *ngIf="chapter.type === 'LINK'">link</mat-icon>
+            <mat-icon *ngIf="chapter.type === 'QUIZ'">help_outline</mat-icon>
+            <mat-icon *ngIf="chapter.type === 'ZOOM'">videocam</mat-icon>
+            <span class="title">{{chapter.name}}</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <iframe *ngIf="chapter.type === 'PDF'" class="iframe" frameborder="0" [src]="chapter.safeUrl"
+                type="application/pdf" ></iframe>
+        <iframe *ngIf="chapter.type === 'VIDEO'" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="iframe"
+                frameborder="0"
+                [src]="chapter.safeUrl"></iframe>
+        <mat-list class="externalLinks">
+          <mat-list-item *ngFor="let resource of chapter.resources">
+            <mat-icon>link</mat-icon>
+            <a [href]="resource.safeUrl">{{resource.name}}</a>
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+</mat-card> -->
+
+<div fxLayout="row" fxLayoutAlign="center" class="header">
+  <div fxFlex="100" fxLayoutAlign="space-evenly center" fxLayoutAlign.xs="center">
+
+    <div class="course-header-img" fxFlex="100" fxLayoutAlign="center"
+      style="background-image: url({{courseDetails.image}})"></div>
+    <div fxFlex="45" class="course-title">
+      <h1>{{ courseDetails.name | uppercase }}</h1>
+      <p>{{ courseDetails.description }}</p>
+    </div>
+
+  </div>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center" class="content">
+  <div fxFlex="80" fxLayout.xs="center">
+    <h1>Conținut</h1>
+
+    <app-dialog *ngFor="let chapter of courseDetails.chapters" [chapter]="chapter"></app-dialog>
+
+  </div>
+</div>

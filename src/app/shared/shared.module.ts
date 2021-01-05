@@ -27,11 +27,17 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from '@angular/materi
 import { GlobalMatSnackBarConfig } from './constants/global-mat-snack-bar-config';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { GridComponent } from './components/grid/grid.component';
-import { AgGridModule } from "ag-grid-angular";
+import { AgGridModule } from 'ag-grid-angular';
 import { FORMLY_CONFIG, FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { formlyValidationConfig } from './components/formly/formly-validation-config';
 import { CustomTranslateService } from './services/custom-translate/custom-translate.service';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { FancyCardComponent } from './components/fancy-card/fancy-card.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
+
+
 
 import * as $ from 'jquery';
 
@@ -40,8 +46,9 @@ import * as $ from 'jquery';
     declarations: [
         MaterialElevationDirective,
         CourseCardComponent,
+        FancyCardComponent,
         NotFoundComponent,
-        GridComponent
+        GridComponent,
     ],
     imports: [
         CommonModule,
@@ -65,7 +72,9 @@ import * as $ from 'jquery';
         TranslateModule,
         AgGridModule.withComponents([]),
         FormlyModule.forRoot(),
-        FormlyMaterialModule
+        FormlyMaterialModule,
+        MatGridListModule,
+        MatDialogModule,
     ],
     exports: [
         CommonModule,
@@ -93,7 +102,10 @@ import * as $ from 'jquery';
         TranslateModule,
         GridComponent,
         FormlyModule,
-        FormlyMaterialModule
+        FormlyMaterialModule,
+        MatGridListModule,
+        FancyCardComponent,
+        MatDialogModule,
   ],
   providers: [
     {

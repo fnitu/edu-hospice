@@ -1,0 +1,32 @@
+<div class="card card-product" (click)="triggerCardAction()">
+  <div data-header-animation="true" class="card-header card-header-image img"
+    [ngStyle]="{'background-image': 'url(' + course.image + ')'}">
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">{{ course.name }}</h4>
+    <div class="course-label">
+      <span class="label label-1" *ngIf="types.indexOf('active') > -1">In desfasurare</span>
+      <span class="label label-2" *ngIf="types.indexOf('recommended') > -1">Recomandat</span>
+      <span class="label label-3" *ngIf="types.indexOf('finished') > -1">Finalizat</span>
+    </div>
+    <div class="card-description">{{ course.shortDescription }}</div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center">
+    <div class="details" fxFlex="80" fxLayoutAlign="space-between center">
+      <span>Progres: {{course.percentage}}%</span>
+      <span>Click pentru detalii</span>
+    </div>
+  </div>
+  <mat-progress-bar class="progress-{{ course.courseType.includes('teoretic') ? 'pink' : 'green' }}" mode="determinate"
+    [value]="course.percentage"></mat-progress-bar>
+  <div class="card-footer-{{ course.courseType.includes('teoretic') ? 'green' : 'pink' }}">
+    <div class="stats" fxFlex="50">
+      <div class="card-category"><i class="material-icons">outlined_flag</i></div>
+      <div>{{ course.courseType }}</div>
+    </div>
+    <div class="stats" fxFlex="50">
+      <div class="card-category"><i class="material-icons">schedule</i></div>
+      <div>{{ course.hours }} ore</div>
+    </div>
+  </div>
+</div>

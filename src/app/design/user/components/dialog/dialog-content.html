@@ -1,0 +1,24 @@
+<mat-icon *ngIf="chapter.type === 'PDF'">picture_as_pdf</mat-icon>
+<mat-icon *ngIf="chapter.type === 'VIDEO'">video_library</mat-icon>
+<mat-icon *ngIf="chapter.type === 'LINK'">link</mat-icon>
+<mat-icon *ngIf="chapter.type === 'QUIZ'">help_outline</mat-icon>
+<mat-icon *ngIf="chapter.type === 'ZOOM'">videocam</mat-icon>
+<h2 mat-dialog-title>{{chapter.name}}</h2>
+
+<mat-dialog-content class="mat-typography">
+  <iframe *ngIf="chapter.type === 'PDF'" class="iframe" frameborder="0" [src]="chapter.safeUrl"
+    type="application/pdf"></iframe>
+  <iframe *ngIf="chapter.type === 'VIDEO'"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="iframe"
+    frameborder="0" [src]="chapter.safeUrl"></iframe>
+  <mat-list class="externalLinks">
+    <mat-list-item *ngFor="let resource of chapter.resources">
+      <mat-icon>link</mat-icon>
+      <a [href]="resource.safeUrl">{{resource.name}}</a>
+    </mat-list-item>
+  </mat-list>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Inchide</button>
+</mat-dialog-actions>

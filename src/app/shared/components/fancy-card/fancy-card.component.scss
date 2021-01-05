@@ -1,0 +1,311 @@
+@import "../../../../styles/scss/imports";
+
+/* =================================== HEADER ======================================= */
+
+.header {
+  justify-content: center;
+}
+
+.card-avatar {
+  max-width: 130px;
+  max-height: 130px;
+  margin: -50px auto 0;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 0;
+  box-shadow: 0 16px 38px -12px rgba(0,0,0,.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+
+ .card-avatar img {
+  width: 100%;
+  height: auto;
+}
+
+.header>div {
+  margin-top: 60px;
+  flex-flow: row wrap;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  border-radius: 6px;
+  background-color: #eeeeee50;
+}
+
+.header>div>div {
+  min-width: max-content !important;
+}
+
+.card {
+  font-size: .875rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 0;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  border-radius: 6px;
+  color: #333;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.14);
+  height: inherit;
+}
+
+.card .card-header {
+  margin: 0 15px;
+  padding: 0;
+  position: relative;
+  color: #fff;
+}
+
+.card .card-header [class*=card-icon-] {
+  border-radius: 3px;
+  background-color: #999;
+  padding: 15px;
+  margin-top: -20px;
+  margin-right: 15px;
+  float: left;
+}
+
+.card .card-header .card-icon-profile {
+  background: linear-gradient($gradientDegree, $themeColor2-light, $themeColor2-dark);
+  box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px $themeColor2-light;
+
+}
+.card .card-header .card-icon-contact {
+  background: linear-gradient($gradientDegree, $themeColor4-light, $themeColor4-dark);
+  box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px $themeColor4-light;
+}
+.card .card-header .card-icon-stats {
+  background: linear-gradient($gradientDegree, $themeColor5-light, $themeColor5-dark);
+  box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px $themeColor5-light;
+}
+
+
+
+.card .card-header.card-header-icon i, 
+.card .card-header.card-header-text i {
+  width: 33px;
+  height: 33px;
+  text-align: center;
+  line-height: 33px;
+}
+
+.card .card-header.card-header-icon .card-title, 
+.card .card-header.card-header-text .card-title {
+  margin-top: 15px;
+  color: #3c4858;
+}
+
+.card .card-header .card-title {
+  margin-bottom: 3px;
+}
+
+.card .card-body {
+  padding: .9375rem 20px;
+  position: relative;
+  flex: 1 1 auto;
+}
+
+.card-body>p {
+  margin: 0 0 3px !important;
+}
+
+/* =================================== CARD COURSES ======================================= */
+
+.card-courses {
+  margin-top: 30px;
+}
+
+.card-product {
+  margin-top: 30px;
+}
+
+.card-product:hover [data-header-animation=true] {
+  -webkit-transform: translate3d(0,-20px,0);
+  transform: translate3d(0,-20px,0);
+}
+
+.card [data-header-animation=true] {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transition: all .3s cubic-bezier(.34,1.61,.7,1);
+  transition: all .3s cubic-bezier(.34,1.61,.7,1);
+}
+
+.card .card-header.card-header-image {
+  position: relative;
+  padding: 0;
+  z-index: 1;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: -30px;
+  border-radius: 6px;
+}
+
+.card .card-header.card-header-image.img {
+  background-size: cover; 
+  background-position: center; 
+  height: 220px;
+  box-shadow: 0 5px 15px -8px rgba(0,0,0,.24), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+
+.card .card-header.card-header-image img {
+  width: 100%;
+  border-radius: 6px;
+  pointer-events: none;
+  box-shadow: 0 5px 15px -8px rgba(0,0,0,.24), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+
+.card-description, 
+.description, 
+.footer-big p {
+  color: $descriptionTextColor;
+  line-height: 1.5em;
+  font-weight: 300;
+}
+
+.card-product .card-category, 
+.card-product .card-description, 
+.card-product .card-title {
+  text-align: center;
+}
+
+.card-product .card-title {
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: #3c4858;
+}
+
+.card .card-body+[class*=card-footer-] .stats .card-category, 
+.card [class*=card-footer-] .stats .card-category {
+  padding-top: 0;
+  padding-bottom: 7px;
+  margin: 0;
+}
+
+.card .card-body+[class*=card-footer-] .stats .material-icons, 
+.card [class*=card-footer-] .stats .material-icons {
+  position: relative;
+  top: 4px;
+}
+
+.card-courses>.card {
+  padding-top: 30px;
+  background: #eeeeee50;
+  box-shadow:  0px 3px 7px 1px #00000020;
+}
+
+.card .card-body+[class*=card-footer-], 
+.card [class*=card-footer-] {
+  margin: 0;
+  border-radius: 0 0 6px 6px;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.card-chart .card-body+[class*=card-footer-], 
+.card-product .card-body+[class*=card-footer-] {
+  border-top: 1px solid #eee;
+}
+
+.card .card-body+[class*=card-footer-] {
+  border-radius: 0 0 6px 6px;
+}
+
+.card [class*=card-footer-] {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  border: 0;
+  color: #fff;
+  padding: 8px 0;
+}
+
+.card .card-footer-green {
+  background: linear-gradient($gradientDegree, $themeColor1-light, $themeColor1-dark);
+}
+
+.card .card-footer-pink {
+  background: linear-gradient($gradientDegree, $themeColor2-light, $themeColor2-dark);
+}
+
+.card [class*=card-footer-] .stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card [class*=card-footer-]>div:first-child {
+  border-right: 1px solid #ffffff70;
+}
+
+app-fancy-card {
+  height: calc(100% - 30px);
+  margin-bottom: 0;
+}
+
+.mat-progress-bar {
+  border-bottom: 1px solid #ffffff70;
+}
+
+// .mat-progress-bar-fill::after {
+//   background: linear-gradient($gradientDegree, $themeColor1-light,$themeColor1-dark);
+// }
+
+.progress-green .mat-progress-bar-fill:after {
+  background: linear-gradient($gradientDegree, $themeColor1-light,$themeColor1-dark);
+}
+
+.progress-pink .mat-progress-bar-fill:after {
+  background: linear-gradient($gradientDegree, $themeColor2-light,$themeColor2-dark);
+}
+
+.details span {
+  font-size: 12px;
+}
+
+.details span:last-child {
+  color: $themeColor5-dark;
+}
+
+.details span:first-child {
+  color: #999;
+}
+
+.course-label {
+  display: flex;
+  justify-content: center;
+  padding: 5px 0 10px 0 ;
+}
+
+.course-label .label {
+  border-radius: 12px;
+  padding: 2px 8px;
+  text-transform: uppercase;
+  font-size: 10px;
+  margin: 0 2px;
+}
+
+.label-1 {
+  background: linear-gradient($gradientDegree, $themeColor1-light, $themeColor1-dark);
+  color: #fff;
+}
+
+.label-2 {
+  background: linear-gradient($gradientDegree, $themeColor2-light, $themeColor2-dark);
+  color: #fff;
+}
+
+.label-3 {
+  background: linear-gradient($gradientDegree, $themeColor4-light, $themeColor4-dark);
+  color: #fff;
+}
+
+.section-title {
+  font-size: 26px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}

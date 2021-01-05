@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from "@angular/common/http";
-import { Observable, of } from "rxjs";
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
-import { AuthService } from "../authentication/auth.service";
-import { LoadingMaskService } from "../loading-mask/loading-mask.service";
+import { AuthService } from '../authentication/auth.service';
+import { LoadingMaskService } from '../loading-mask/loading-mask.service';
 
 @Injectable({
     providedIn: 'root'
