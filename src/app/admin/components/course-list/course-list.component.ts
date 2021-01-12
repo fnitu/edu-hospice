@@ -4,10 +4,7 @@ import { GridPropertiesInterface } from "../../../shared/components/grid/grid-pr
 @Component({
     selector: 'app-course-list',
     templateUrl: './course-list.component.html',
-    styleUrls: [
-        './course-list.component.scss',
-        '../../../../../node_modules/ag-grid-community/dist/styles/ag-grid.css',
-        '../../../../../node_modules/ag-grid-community/dist/styles/ag-theme-balham.css'],
+    styleUrls: ['./course-list.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class CourseListComponent implements OnInit {

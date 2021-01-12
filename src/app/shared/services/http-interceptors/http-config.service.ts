@@ -25,7 +25,7 @@ export class HttpConfigService implements HttpInterceptor {
             });
         }
 
-        // display loading mask for requests except refresh ticker
+        // display loading mask for requests
         if (!request.headers.has('ignoreLoadingMask')) {
 
             this._inProgressCount++;
