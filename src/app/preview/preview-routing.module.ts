@@ -1,11 +1,11 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import {HomeComponent} from './components/home/home.component';
-import {PreviewComponent} from './preview.component';
-import {LoginComponent} from './components/login/login.component';
-import {RecoverPasswordEnterEmailComponent} from './components/recover-password-enter-email/recover-password-enter-email.component';
-import {RecoverOrChangePasswordComponent} from './components/recover-or-change-password/recover-or-change-password.component';
+import { HomeComponent } from './components/home/home.component';
+import { PreviewComponent } from './preview.component';
+import { LoginComponent } from './components/login/login.component';
+import { RecoverPasswordEnterEmailComponent } from './components/recover-password-enter-email/recover-password-enter-email.component';
+import { RecoverOrChangePasswordComponent } from './components/recover-or-change-password/recover-or-change-password.component';
 
 const routes: Routes = [
   {

@@ -1,7 +1,6 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as _ from "lodash";
-import tippy from 'tippy.js';
-import {hideAll} from 'tippy.js';
+import tippy, { hideAll } from 'tippy.js';
 
 @Injectable({
   providedIn: 'root'

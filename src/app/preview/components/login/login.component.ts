@@ -1,13 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { LoginService } from './login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import { User } from '../../../shared/interfaces/user';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../shared/services/authentication/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomTranslateService } from '../../../shared/services/custom-translate/custom-translate.service';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { FormlyTemplateOptions } from '@ngx-formly/core/lib/components/formly.field.config';
 
 
 @Component({

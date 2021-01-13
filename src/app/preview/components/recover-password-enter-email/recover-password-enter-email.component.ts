@@ -1,11 +1,11 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
-import {FormlyFieldConfig} from '@ngx-formly/core';
-import {CustomTranslateService} from '../../../shared/services/custom-translate/custom-translate.service';
-import {TooltipService} from '../../../shared/services/tooltip/tooltip.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {RecoverPasswordEnterEmailService} from './recover-password-enter-email.service';
-import {GLOBALS} from '../../../shared/core/globals';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
+import { FormlyFieldConfig } from '@ngx-formly/core';
+import { CustomTranslateService } from '../../../shared/services/custom-translate/custom-translate.service';
+import { TooltipService } from '../../../shared/services/tooltip/tooltip.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RecoverPasswordEnterEmailService } from './recover-password-enter-email.service';
+import { GLOBALS } from '../../../shared/core/globals';
 
 @Component({
   selector: 'app-recover-password-enter-email',

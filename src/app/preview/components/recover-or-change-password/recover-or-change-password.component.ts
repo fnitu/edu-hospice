@@ -1,12 +1,12 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormGroup, Validators} from '@angular/forms';
-import {FormlyFieldConfig} from '@ngx-formly/core';
-import {CustomTranslateService} from '../../../shared/services/custom-translate/custom-translate.service';
-import {TooltipService} from '../../../shared/services/tooltip/tooltip.service';
-import {LoginService} from '../login/login.service';
-import {AuthService} from '../../../shared/services/authentication/auth.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
+import { FormlyFieldConfig } from '@ngx-formly/core';
+import { CustomTranslateService } from '../../../shared/services/custom-translate/custom-translate.service';
+import { TooltipService } from '../../../shared/services/tooltip/tooltip.service';
+import { LoginService } from '../login/login.service';
+import { AuthService } from '../../../shared/services/authentication/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-recover-or-change-password',

@@ -1,6 +1,5 @@
 import { CustomTranslateService } from "../../services/custom-translate/custom-translate.service";
-import {FormControl, ValidationErrors} from '@angular/forms';
-
+import { FormControl, ValidationErrors } from '@angular/forms';
 
 
 export function formlyValidationConfig(customTranslateService: CustomTranslateService) {

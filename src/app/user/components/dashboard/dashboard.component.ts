@@ -3,7 +3,7 @@ import { User } from '../../../shared/interfaces/user';
 import { Router } from '@angular/router';
 import { Course } from '../../../shared/interfaces/course';
 import { DashboardService } from './dashboard.service';
-import {LoginService} from '../../../preview/components/login/login.service';
+import { LoginService } from '../../../preview/components/login/login.service';
 
 @Component({
     selector: 'app-dashboard',

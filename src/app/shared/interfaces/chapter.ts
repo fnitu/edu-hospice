@@ -1,5 +1,5 @@
-import {Resource} from './resource';
-import {SafeResourceUrl} from '@angular/platform-browser';
+import { Resource } from './resource';
+import { SafeResourceUrl } from '@angular/platform-browser';
 
 export interface Chapter {
 

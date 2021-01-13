@@ -5,6 +5,7 @@ import { AuthService } from "./shared/services/authentication/auth.service";
 import { TranslateService } from '@ngx-translate/core';
 import TranslationsJson from '../assets/translations.json';
 import { LoadingMaskService } from "./shared/services/loading-mask/loading-mask.service";
+import { AppService } from "./app.service";
 
 @Component({
     selector: 'app-root',
@@ -17,7 +18,9 @@ export class AppComponent implements OnInit {
                 private router: Router,
                 public authService: AuthService,
                 private translateService: TranslateService,
-                private loadingMaskService: LoadingMaskService) {
+                private loadingMaskService: LoadingMaskService,
+                private appService: AppService) {
+
         //init translations
         translateService.setTranslation("en", TranslationsJson);
         translateService.setDefaultLang("en");
@@ -40,11 +43,17 @@ export class AppComponent implements OnInit {
     }
 
     public logout() {
-        this.loginService.userDetails = null;
+        this.appService.executeLogout().subscribe(
+            (response) => {
+                if (response.success) {
+                    this.loginService.userDetails = null;
 
-        this.authService.accessToken = "";
+                    this.authService.accessToken = "";
 
-        this.router.navigate(['preview']);
+                    this.router.navigate(['preview']);
+                }
+            }
+        );
     }
 
     public getUserDetails() {
