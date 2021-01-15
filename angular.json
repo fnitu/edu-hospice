@@ -119,5 +119,8 @@
       }
     }
   },
-  "defaultProject": "edu-hospice"
+  "defaultProject": "edu-hospice",
+  "cli": {
+    "analytics": false
+  }
 }

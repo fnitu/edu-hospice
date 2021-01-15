@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Course } from '../../../shared/interfaces/course';
 import { DashboardService } from './dashboard.service';
 import { LoginService } from '../../../preview/components/login/login.service';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @Component({
     selector: 'app-dashboard',
