@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { GridService } from "./grid.service";
 import { GridPropertiesInterface } from "./grid-properties.interface";
+import { RowActionsCellRendererComponent } from "./row-actions-cell-renderer/row-actions-cell-renderer.component";
 
 @Component({
   selector: 'app-grid',
@@ -38,6 +39,8 @@ export class GridComponent implements OnInit {
         minWidth: 200
       },
 
+      rowHeight: 50,
+
       //columns
       suppressMovableColumns: true,
 
@@ -56,7 +59,13 @@ export class GridComponent implements OnInit {
       //filtering
       floatingFilter: false,
 
-      onGridReady: (params) => this.onGridReadyHandler(params)
+      onGridReady: (params) => this.onGridReadyHandler(params),
+
+      suppressCellSelection: true,
+
+      frameworkComponents: {
+        rowActionsCellRenderer: RowActionsCellRendererComponent
+      }
     }
   }
 

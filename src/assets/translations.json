@@ -6,7 +6,9 @@
     "siteName": "Edu Hospice",
     "pageNotFound": "Pagina nu a fost găsită!",
     "error404": "Eroare 404",
-    "next": "Next"
+    "next": "Next",
+    "approve": "Aprobă",
+    "reject": "Refuză"
   },
   "field": {
     "required": "Acest câmp este obligatoriu.",
@@ -56,7 +58,20 @@
     },
     "users": {
       "usersPendingAfterRegistration": "Cursanți în așteptare după înregistrare",
-      "usersPendingAfterPayment": "Cursanți în așteptare după plata cursului"
+      "usersPendingAfterPayment": "Cursanți în așteptare după plata cursului",
+      "userList": {
+        "columns": {
+          "actions": "Acțiuni",
+          "firstName": "Nume",
+          "lastName": "Prenume",
+          "courseRegistrationDate": "Data înregistrării la curs",
+          "courseRegistrationAcceptedDate": "Data acceptării la curs",
+          "coursePaymentDate": "Data plății cursului",
+          "coursePaymentVerificationDate": "Data verificării plății cursului",
+          "status": "Stare",
+          "courseName": "Numele cursului"
+        }
+      }
     }
   }
 }

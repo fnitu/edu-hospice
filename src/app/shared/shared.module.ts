@@ -34,14 +34,15 @@ import { formlyValidationConfig } from './components/formly/formly-validation-co
 import { CustomTranslateService } from './services/custom-translate/custom-translate.service';
 
 import * as $ from 'jquery';
-
+import { RowActionsCellRendererComponent } from './components/grid/row-actions-cell-renderer/row-actions-cell-renderer.component';
 
 @NgModule({
     declarations: [
         MaterialElevationDirective,
         CourseCardComponent,
         NotFoundComponent,
-        GridComponent
+        GridComponent,
+        RowActionsCellRendererComponent
     ],
     imports: [
         CommonModule,
@@ -63,7 +64,7 @@ import * as $ from 'jquery';
         MatListModule,
         MatSnackBarModule,
         TranslateModule,
-        AgGridModule.withComponents([]),
+        AgGridModule.withComponents([RowActionsCellRendererComponent]),
         FormlyModule.forRoot(),
         FormlyMaterialModule
     ],

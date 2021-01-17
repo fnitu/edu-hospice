@@ -1,0 +1,10 @@
+<div class="row-action-cell">
+    <button *ngFor="let action of actions" mat-icon-button
+            [title]="action.label"
+            (click)="action.handler()"
+            [ngClass]="action.cls">
+
+        <mat-icon>{{ action.icon }}</mat-icon>
+
+    </button>
+</div>

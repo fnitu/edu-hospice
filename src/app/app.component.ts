@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
     }
 
-  // tslint:disable-next-line:use-lifecycle-interface
     ngAfterViewInit() {
         this.loadingMaskService.init();
     }
