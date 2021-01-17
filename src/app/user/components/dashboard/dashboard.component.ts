@@ -13,7 +13,11 @@ import { LoginService } from '../../../preview/components/login/login.service';
 })
 export class DashboardComponent implements OnInit {
 
-    public user: User;
+    user = {
+      firstName: '',
+      lastName: '',
+      email: ''
+    } as User ;
 
     public courseList: Array<Course> = new Array<Course>();
 
@@ -23,8 +27,7 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.user = this.loginService.userDetails;
-
+        this.userDetails();
         this.initCourses();
     }
 
@@ -38,4 +41,9 @@ export class DashboardComponent implements OnInit {
         this.router.navigate(['user/course', 'course', course.id]);
     }
 
+    private userDetails() {
+      this.dashboardService.getUserDetails().subscribe((data: User) => {
+        this.user = data;
+      });
+    }
 }

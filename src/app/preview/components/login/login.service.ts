@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GLOBALS } from '../../../shared/core/globals';
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 import { User } from '../../../shared/interfaces/user';
 
 @Injectable({
@@ -12,10 +12,12 @@ export class LoginService {
     constructor(private http: HttpClient) {
     }
 
+    public user: User;
+
     public login(email, password): Observable<any> {
         const url = `${GLOBALS.BASE_URL}/auth/login`;
 
-        const formData = {'email': email, 'password': password};
+        const formData = {email, password};
 
         return this.http.post(url, formData);
     }
@@ -26,10 +28,10 @@ export class LoginService {
     }
 
     get userDetails(): User {
-      return JSON.parse(sessionStorage.getItem("user"));
+      return this.user;
     }
 
     set userDetails(value: User) {
-      sessionStorage.setItem("user", JSON.stringify(value));
+      this.user =  value;
     }
 }

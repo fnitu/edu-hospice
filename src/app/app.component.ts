@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LoginService } from './preview/components/login/login.service';
 import { Router } from '@angular/router';
-import { AuthService } from "./shared/services/authentication/auth.service";
+import { AuthService } from './shared/services/authentication/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 import TranslationsJson from '../assets/translations.json';
-import { LoadingMaskService } from "./shared/services/loading-mask/loading-mask.service";
-import { AppService } from "./app.service";
+import { LoadingMaskService } from './shared/services/loading-mask/loading-mask.service';
+import { AppService } from './app.service';
 
 @Component({
     selector: 'app-root',
@@ -21,14 +21,15 @@ export class AppComponent implements OnInit {
                 private loadingMaskService: LoadingMaskService,
                 private appService: AppService) {
 
-        //init translations
-        translateService.setTranslation("en", TranslationsJson);
-        translateService.setDefaultLang("en");
+        // init translations
+        translateService.setTranslation('en', TranslationsJson);
+        translateService.setDefaultLang('en');
     }
 
     ngOnInit(): void {
     }
 
+  // tslint:disable-next-line:use-lifecycle-interface
     ngAfterViewInit() {
         this.loadingMaskService.init();
     }
@@ -48,18 +49,11 @@ export class AppComponent implements OnInit {
                 if (response.success) {
                     this.loginService.userDetails = null;
 
-                    this.authService.accessToken = "";
+                    this.authService.accessToken = '';
 
                     this.router.navigate(['preview']);
                 }
             }
         );
     }
-
-    public getUserDetails() {
-        this.loginService.getUserDetails().subscribe(response => {
-            console.log(response);
-        });
-    }
-
 }
