@@ -5,10 +5,12 @@ import { AdminComponent } from './admin.component';
 import { SharedModule } from '../shared/shared.module';
 import { CourseListComponent } from './components/course-list/course-list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UsersComponent } from './components/users/users.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, CourseListComponent, DashboardComponent],
+  declarations: [AdminComponent, CourseListComponent, DashboardComponent, UserListComponent, UsersComponent],
     imports: [
         SharedModule,
         AdminRoutingModule

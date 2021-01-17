@@ -30,7 +30,7 @@
       "setPassword": "Set password",
       "password": "Parola",
       "passwordPlaceholder": "Introdu parola",
-      "passwordPlaceholderConfirmation": "Confirma parola",
+      "passwordPlaceholderConfirmation": "Confirmă parola",
       "length": "Length: min. 6 - max. 10",
       "numberOfNumericCharacters": "Number of numeric characters: min. 1 - max. 5",
       "numberOfSpecialCharacters": "Number of special characters: min. 1 - max. 5",
@@ -45,6 +45,18 @@
     "dashboard": {
       "totalCourses": "Cursuri totale",
       "totalHours": "Ore totale"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "coursesCardTitle": "Cursuri",
+      "numberOfCourses": "Număr cursuri",
+      "usersCardTitle": "Cursanți",
+      "numberOfUsers": "Număr cursanți"
+    },
+    "users": {
+      "usersPendingAfterRegistration": "Cursanți în așteptare după înregistrare",
+      "usersPendingAfterPayment": "Cursanți în așteptare după plata cursului"
     }
   }
 }
