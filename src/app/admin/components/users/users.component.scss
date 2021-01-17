@@ -1,0 +1,12 @@
+app-users {
+  height: 100%;
+  display: flex;
+
+  .mat-tab-group {
+    flex: 1;
+
+    .mat-tab-body-wrapper {
+      flex: 1;
+    }
+  }
+}
