@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Course } from '../../../shared/interfaces/course';
 import { DashboardService } from './dashboard.service';
 import { LoginService } from '../../../preview/components/login/login.service';
-import {MatTabsModule} from '@angular/material/tabs';
+
 
 @Component({
     selector: 'app-dashboard',
@@ -16,17 +16,22 @@ export class DashboardComponent implements OnInit {
 
     public user: User;
 
-    public courseList: Array<Course> = new Array<Course>();
+    public courseTabs;
 
+    public courseList: Array<Course> = new Array<Course>();
+    
     constructor(private dashboardService: DashboardService,
                 private router: Router,
-                private loginService: LoginService) {
+                private loginService: LoginService,
+                ) {
     }
 
     ngOnInit(): void {
         this.user = this.loginService.userDetails;
 
         this.initCourses();
+
+        this.fetchCourseTabs();
     }
 
     private initCourses() {
@@ -37,6 +42,10 @@ export class DashboardComponent implements OnInit {
 
     public goToCourse(course: Course) {
         this.router.navigate(['user/course', 'course', course.id]);
+    }
+
+    public fetchCourseTabs(){
+        this.courseTabs = this.dashboardService.fetchCourseTabs();
     }
 
 }

@@ -1,0 +1,19 @@
+[
+    {
+        "name": "ongoing",
+        "link": "/ongoingLink"
+    },
+    {
+        "name": "pending",
+        "link": "/pendingLink"
+    },
+    {
+        "name": "finalized",
+        "link": "/finalizedLink"
+    },
+    {
+        "name": "recomended",
+        "link": "/recomendedLink"
+    }
+
+]

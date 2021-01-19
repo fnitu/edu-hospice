@@ -44,8 +44,7 @@
     },
     "dashboard": {
       "totalCourses": "Cursuri totale",
-      "totalHours": "Ore totale",
-      "progress": "Progres"
+      "totalHours": "Ore totale"
     }
   }
 }

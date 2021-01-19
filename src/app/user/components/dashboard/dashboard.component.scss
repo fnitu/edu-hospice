@@ -12,25 +12,22 @@
   }
 }
 
-.user-course-tabs{
-  margin: 10px 60px;
-  padding: 10px;
-  background-color: $userTabsBackgroundColor;
-  border-radius: 5px;
+// .user-course-tabs{
+//   margin: 10px 60px;
+//   padding: 10px ;
+//   background-color: $nabBarBackgroundColor;
+//   border-radius: 5px;
+//   .course-tab{
+//     color: $navBarTextColor;
+//     font-size: 1rem;
+//     font-weight: 500;
+//     &:hover{
+//       color: $cardBackgroundColor;
+//     }
+//   }
+// }
+
+.example-stretched-tabs {
+  max-width: 800px;
 }
 
-.course-tab{
-  color:$userTabsTextColor;
-  font-size: 1rem;
-  font-weight: 500;
-  border-right: 1px solid $userTabsTextColor;
-}
-
-.course-tab:hover{
-  color: $userTabsHoverColor;
-}
-
-
-.course-tab:last-child{
-  border: none;
-}
