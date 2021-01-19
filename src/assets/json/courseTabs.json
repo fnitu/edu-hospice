@@ -1,0 +1,19 @@
+[
+    {
+        "name": "ongoing",
+        "link": "/assets/json/homeCourses.json"
+    },
+    {
+        "name": "pending",
+        "link": "/assets/json/homeCourses.json"
+    },
+    {
+        "name": "finalized",
+        "link": "/assets/json/homeCourses.json"
+    },
+    {
+        "name": "recomended",
+        "link": "/assets/json/homeCourses.json"
+    }
+
+]

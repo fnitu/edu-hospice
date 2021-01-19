@@ -5,6 +5,7 @@ import { Course } from '../../../shared/interfaces/course';
 import { DashboardService } from './dashboard.service';
 import { LoginService } from '../../../preview/components/login/login.service';
 
+
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
@@ -19,22 +20,17 @@ export class DashboardComponent implements OnInit {
       email: ''
     } as User ;
 
-    public courseList: Array<Course> = new Array<Course>();
+    public courseTabs
 
     constructor(private dashboardService: DashboardService,
                 private router: Router,
-                private loginService: LoginService) {
+                private loginService: LoginService,
+                ) {
     }
 
     ngOnInit(): void {
         this.userDetails();
-        this.initCourses();
-    }
-
-    private initCourses() {
-        this.dashboardService.getCourses().subscribe((dashboardResponse: Array<Course>) => {
-            this.courseList = dashboardResponse;
-        });
+        this.fetchCourseTabs();
     }
 
     public goToCourse(course: Course) {
@@ -46,4 +42,30 @@ export class DashboardComponent implements OnInit {
         this.user = data;
       });
     }
+
+    public fetchCourseTabs(){
+        this.dashboardService.fetchCourseTabs().subscribe(
+            (response) => {
+                this.courseTabs = response;
+            }
+        );
+    }
+
+    private getTabData(tab) {
+        this.dashboardService.fetchTabData(tab.link).subscribe(
+            (response: Array<Course>) => {
+                tab.courseList = response;
+            }
+        );
+    }
+
+    public selectedTabChange(tab) {
+        let  currentTab = this.courseTabs[tab.index];
+
+        // empty previous list
+        currentTab.courseList = [];
+
+        this.getTabData(currentTab);
+    }
+
 }
