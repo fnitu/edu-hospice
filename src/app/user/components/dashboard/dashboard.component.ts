@@ -23,9 +23,7 @@ export class DashboardComponent implements OnInit {
     public courseTabs
 
     constructor(private dashboardService: DashboardService,
-                private router: Router,
-                private loginService: LoginService,
-                ) {
+                private router: Router) {
     }
 
     ngOnInit(): void {
