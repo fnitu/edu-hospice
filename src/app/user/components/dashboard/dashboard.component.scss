@@ -12,6 +12,18 @@
   }
 }
 
+.tabsContainer {
+  margin: 0 60px;
+
+  .mat-tab-label {
+    background-color: $nabBarBackgroundColor;
+
+    &.mat-tab-label-active {
+      opacity: 1.2;
+    }
+  }
+}
+
 // .user-course-tabs{
 //   margin: 10px 60px;
 //   padding: 10px ;

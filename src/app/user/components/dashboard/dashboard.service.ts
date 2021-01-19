@@ -11,15 +11,13 @@ export class DashboardService {
     constructor(private http: HttpClient) {
     }
 
-    public getCourses(): Observable<any> {
-        const url = '/assets/json/homeCourses.json';
-
+    public fetchCourseTabs(): Observable<any>{
+        const url = '/assets/json/courseTabs.json'
+        
         return this.http.get(url);
     }
 
-    public fetchCourseTabs(): Observable<Object>{
-        const url = '/assets/json/courseTabs.json'
-        
-        return this.http.get(url)
+    public fetchTabData(url): Observable<any> {
+        return this.http.get(url);
     }
 }

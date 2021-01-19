@@ -16,9 +16,7 @@ export class DashboardComponent implements OnInit {
 
     public user: User;
 
-    public courseTabs;
-
-    public courseList: Array<Course> = new Array<Course>();
+    public courseTabs
     
     constructor(private dashboardService: DashboardService,
                 private router: Router,
@@ -29,15 +27,7 @@ export class DashboardComponent implements OnInit {
     ngOnInit(): void {
         this.user = this.loginService.userDetails;
 
-        this.initCourses();
-
         this.fetchCourseTabs();
-    }
-
-    private initCourses() {
-        this.dashboardService.getCourses().subscribe((dashboardResponse: Array<Course>) => {
-            this.courseList = dashboardResponse;
-        });
     }
 
     public goToCourse(course: Course) {
@@ -45,7 +35,28 @@ export class DashboardComponent implements OnInit {
     }
 
     public fetchCourseTabs(){
-        this.courseTabs = this.dashboardService.fetchCourseTabs();
+        this.dashboardService.fetchCourseTabs().subscribe(
+            (response) => {
+                this.courseTabs = response;
+            }
+        );
+    }
+
+    private getTabData(tab) {
+        this.dashboardService.fetchTabData(tab.link).subscribe(
+            (response: Array<Course>) => {
+                tab.courseList = response;
+            }
+        );
+    }
+
+    public selectedTabChange(tab) {
+        let  currentTab = this.courseTabs[tab.index];
+
+        // empty previous list
+        currentTab.courseList = [];
+
+        this.getTabData(currentTab);
     }
 
 }

@@ -1,19 +1,19 @@
 [
     {
         "name": "ongoing",
-        "link": "/ongoingLink"
+        "link": "/assets/json/homeCourses.json"
     },
     {
         "name": "pending",
-        "link": "/pendingLink"
+        "link": "/assets/json/homeCourses.json"
     },
     {
         "name": "finalized",
-        "link": "/finalizedLink"
+        "link": "/assets/json/homeCourses.json"
     },
     {
         "name": "recomended",
-        "link": "/recomendedLink"
+        "link": "/assets/json/homeCourses.json"
     }
 
 ]
