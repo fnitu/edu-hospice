@@ -78,6 +78,7 @@ export class UserListComponent implements OnInit {
   }
 
   private rejectRowActionHandler() {
+    //Confirm?
     console.log("Respins");
   }
 

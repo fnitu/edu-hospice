@@ -65,7 +65,6 @@
           "firstName": "Nume",
           "lastName": "Prenume",
           "courseRegistrationDate": "Data înregistrării la curs",
-          "courseRegistrationAcceptedDate": "Data acceptării la curs",
           "coursePaymentDate": "Data plății cursului",
           "coursePaymentVerificationDate": "Data verificării plății cursului",
           "status": "Stare",
