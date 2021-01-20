@@ -1,18 +1,18 @@
 [
     {
-        "name": "ongoing",
+        "name": "Cursuri incepute",
         "link": "/assets/json/homeCourses.json"
     },
     {
-        "name": "pending",
+        "name": "Cursuri in asteptare",
         "link": "/assets/json/homeCourses.json"
     },
     {
-        "name": "finalized",
+        "name": "Cursuri finalizate",
         "link": "/assets/json/homeCourses.json"
     },
     {
-        "name": "recomended",
+        "name": "Cursuri recomandate",
         "link": "/assets/json/homeCourses.json"
     }
 

@@ -12,17 +12,52 @@
   }
 }
 
-.tabsContainer {
+
+.tabsContainer{
   margin: 0 60px;
 
-  .mat-tab-label {
-    background-color: $navBarBackgroundColor;
+  &.mat-card{
+    padding: 0;
 
-    &.mat-tab-label-active {
-      opacity: 1.2;
+    .mat-tab-header{
+      border-bottom: none;
+
+        .mat-tab-labels{
+          background-color: #7DC242;
+          justify-content: space-evenly;
+          border-radius: 5px;
+            
+          .mat-tab-label {
+            background-color: $navBarBackgroundColor;
+                
+            &.mat-tab-label-active {
+              opacity: 1.2;
+                  
+              .mat-tab-label-content{
+                color: $navBarTextColor;
+                    
+                &:after {
+                  content: '';
+                  display: block;
+                  position: absolute;
+                  width: 100%;
+                  height: 2px;
+                  background: $navBarTextColor;
+                  right: 0;
+                  bottom: 0;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
-}
+    
+    .mat-ink-bar {
+      display: none !important;
+    }
+
 
 // .user-course-tabs{
 //   margin: 10px 60px;
