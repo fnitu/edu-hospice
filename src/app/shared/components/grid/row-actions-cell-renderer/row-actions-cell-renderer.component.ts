@@ -9,7 +9,7 @@ import { RowActionInterface } from "./row-action.interface";
     encapsulation: ViewEncapsulation.None
 })
 export class RowActionsCellRendererComponent implements ICellRendererAngularComp, OnDestroy {
-    private params: any;
+    public params: any;
     public actions: RowActionInterface[];
 
     agInit(params: any): void {

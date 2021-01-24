@@ -8,7 +8,10 @@
     "error404": "Eroare 404",
     "next": "Next",
     "approve": "Aprobă",
-    "reject": "Refuză"
+    "reject": "Refuză",
+    "close": "Închide",
+    "yes": "Da",
+    "no": "Nu"
   },
   "field": {
     "required": "Acest câmp este obligatoriu.",
@@ -69,7 +72,9 @@
           "coursePaymentVerificationDate": "Data verificării plății cursului",
           "status": "Stare",
           "courseName": "Numele cursului"
-        }
+        },
+        "approveMessage": "Ești sigur că vrei să aprobi această înregistrare.",
+        "rejectMessage": "Ești sigur că vrei să refuzi această înregistrare."
       }
     }
   }
