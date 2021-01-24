@@ -6,7 +6,6 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LoginService } from 'src/app/preview/components/login/login.service';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -16,19 +15,17 @@ export class AuthGuardService implements CanActivate {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private loginService: LoginService
   ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    // this.loginService.path = state.url;
     const authenticated = this.authService.isAuthenticated();
     if (authenticated) {
       return true;
     } else {
-      this.router.navigate(['preview', 'login']);
+      this.router.navigate([`preview/login/${encodeURIComponent(state.url)}`]);
       return false;
     }
   }

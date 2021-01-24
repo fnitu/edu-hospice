@@ -74,7 +74,10 @@ export class LoginComponent {
         if (response.role === 'ROLE_ADMIN') {
           this.router.navigate(['admin/dashboard']);
         } else {
-          this.router.navigate(['user/dashboard']);
+            const params =this.route.snapshot.params.redirect ?
+             decodeURIComponent(this.route.snapshot.params.redirect) : 
+             'user/dashboard';
+          this.router.navigate([params]);
         }
       }, error => {
         if (error.status === 401) {
