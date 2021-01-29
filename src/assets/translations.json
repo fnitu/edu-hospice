@@ -16,7 +16,7 @@
   "field": {
     "required": "Acest câmp este obligatoriu.",
     "email": "E-mail-ul nu are un format valid.",
-    "emailNotExist": "E-mail does not exist. Please enter a valid email."
+    "emailNotExist": "E-mailul nu exista. Va rugam sa introduceti un e-mail valid."
   },
   "preview": {
     "home": {
@@ -32,15 +32,16 @@
       "invalidEmailOrPassword": "E-mail sau parolă incorectă!"
     },
     "managePassword": {
-      "setPassword": "Set password",
+      "sendEmail": "Timeite email de recuperare",
+      "setPassword": "Seteaza parola",
       "password": "Parola",
       "passwordPlaceholder": "Introdu parola",
       "passwordPlaceholderConfirmation": "Confirmă parola",
-      "length": "Length: min. 6 - max. 10",
-      "numberOfNumericCharacters": "Number of numeric characters: min. 1 - max. 5",
-      "numberOfSpecialCharacters": "Number of special characters: min. 1 - max. 5",
-      "numberOfCapitalLetters": "Number of capital letters: min. 1",
-      "passwordsMatch": "Password does not match"
+      "length": "Numar de caractere: min. 6 - max. 10",
+      "numberOfNumericCharacters": "Numar de caractere numerice: min. 1 - max. 5",
+      "numberOfSpecialCharacters": "Numar de caractere speciale: min. 1 - max. 5",
+      "numberOfCapitalLetters": "Numar de litere mari: min. 1",
+      "passwordsMatch": "Parola nu se potriveste"
     }
   },
   "user": {
@@ -77,5 +78,11 @@
         "rejectMessage": "Ești sigur că vrei să refuzi această înregistrare."
       }
     }
+  },
+  "notification": {
+    "titleInfo": "Info:",
+    "titleWarning": "Warning:",
+    "titleError": "Attention:",
+    "labelMoreMessages": "Sunt mai multe mesaje decat cele care au fost afisate!"
   }
 }

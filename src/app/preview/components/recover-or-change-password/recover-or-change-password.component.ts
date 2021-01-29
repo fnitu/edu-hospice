@@ -7,6 +7,8 @@ import { LoginService } from '../login/login.service';
 import { AuthService } from '../../../shared/services/authentication/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {GLOBALS} from '../../../shared/core/globals';
+import {RecoverOrChangePasswordService} from './recover-or-change-password.service';
 
 @Component({
   selector: 'app-recover-or-change-password',
@@ -68,6 +70,7 @@ export class RecoverOrChangePasswordComponent implements OnInit {
   private capitalLettersRegex = /([A-Z])/g;
 
   private tippyInstancePasswordSet;
+  private token: string;
 
   constructor(private customTranslateService: CustomTranslateService,
               private tooltipService: TooltipService,
@@ -75,35 +78,39 @@ export class RecoverOrChangePasswordComponent implements OnInit {
               private authService: AuthService,
               private router: Router,
               private route: ActivatedRoute,
-              private matSnackBar: MatSnackBar,) {
+              private matSnackBar: MatSnackBar,
+              private recoverOrChangePasswordService: RecoverOrChangePasswordService) {
+    this.route.queryParams.subscribe(params => {
+      this.token = params['token'];
+    });
   }
 
   ngOnInit(): void {
-    console.log(history.state.data);
   }
 
   onSubmit() {
     if (this.form.valid) {
-      // FIXME replace this code to update password from the server when BE part is ready
-      const email = 'student.user@test.com';
-      const password = 'testpassword';
+      const password = this.form.get('password').value;
+      const url = GLOBALS.dataURL.resetPassword;
+      const bodyParams = {
+        password: password,
+        token: this.token
+      };
 
-      this.loginService.login(email, password).subscribe((response) => {
-        this.loginService.userDetails = {
-          firstName: response.firstName,
-          lastName: response.lastName,
-          email: response.email,
-          role: response.role
-        };
+      this.recoverOrChangePasswordService.resetPassword(url, bodyParams).subscribe((response) => {
+        let action = '';
 
-        this.authService.accessToken = response.accessToken;
-
-        this.router.navigate(['user/dashboard']);
-      }, error => {
-        if (error.status === 401) {
-          this.form.get('password').setValue('');
-          this.matSnackBar.open(this.customTranslateService.getTranslation('preview.login.invalidEmailOrPassword'));
+        if (response.success) {
+          action = GLOBALS.constants.NOTIFICATIONS.INFO;
+        } else {
+          action = GLOBALS.constants.NOTIFICATIONS.ERROR;
         }
+
+        this.matSnackBar.open(response.message, action, {
+          duration: GLOBALS.constants.NOTIFICATIONS.durationInSeconds * 1000,
+          verticalPosition: 'top'
+        });
+
       });
     }
   }
