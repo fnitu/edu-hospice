@@ -9,9 +9,9 @@ const routes: Routes = [
     redirectTo: 'preview',
     pathMatch: 'full'
   },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  { path: 'admin', canActivate:[AuthGuardService], data:{isAdmin:true}, loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: 'preview', loadChildren: () => import('./preview/preview.module').then(m => m.PreviewModule) },
-  { path: 'user' ,canActivate: [AuthGuardService], loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
+  { path: 'user' ,canActivate: [AuthGuardService], data:{isAdmin:false}, loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: '**', component: NotFoundComponent},
 ];
 

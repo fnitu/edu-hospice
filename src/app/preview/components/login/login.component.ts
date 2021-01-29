@@ -71,13 +71,12 @@ export class LoginComponent {
 
         this.authService.accessToken = response.accessToken;
 
+        const params = this.route.snapshot.params.redirect ? decodeURIComponent(this.route.snapshot.params.redirect) : null;
+
         if (response.role === 'ROLE_ADMIN') {
-          this.router.navigate(['admin/dashboard']);
+          this.router.navigate(params ? [params] : ['admin/dashboard']);
         } else {
-            const params =this.route.snapshot.params.redirect ?
-             decodeURIComponent(this.route.snapshot.params.redirect) : 
-             'user/dashboard';
-          this.router.navigate([params]);
+          this.router.navigate(params ? [params] : ['user/dashboard']);
         }
       }, error => {
         if (error.status === 401) {

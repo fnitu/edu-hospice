@@ -4,6 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
+ 
+    // FIXME 
+    //  replace with server call current user
+    role:string='ROLE_USER' ;
 
   get accessToken(): string {
     return sessionStorage.getItem("token");
@@ -16,5 +20,4 @@ export class AuthService {
   public isAuthenticated(): boolean {
     return !!this.accessToken;
   }
-
 }
