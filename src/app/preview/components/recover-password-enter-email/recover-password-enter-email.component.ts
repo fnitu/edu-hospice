@@ -6,6 +6,7 @@ import { TooltipService } from '../../../shared/services/tooltip/tooltip.service
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecoverPasswordEnterEmailService } from './recover-password-enter-email.service';
 import { GLOBALS } from '../../../shared/core/globals';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-recover-password-enter-email',
@@ -37,6 +38,7 @@ export class RecoverPasswordEnterEmailComponent implements OnInit {
               private tooltipService: TooltipService,
               private router: Router,
               private route: ActivatedRoute,
+              private matSnackBar: MatSnackBar,
               private recoverPasswordEnterEmailService: RecoverPasswordEnterEmailService) {
   }
 
@@ -45,22 +47,24 @@ export class RecoverPasswordEnterEmailComponent implements OnInit {
 
   public resetPassword() {
     const emailInput = this.form.get('email');
-    // FIXME use server request to see if email adres exist
-    const url = GLOBALS.dataURL.verifyEmail;
+    const url = GLOBALS.dataURL.sendEmailForRecoverPassword;
+    // const url = GLOBALS.dataURL.verifyEmail;
 
-    this.recoverPasswordEnterEmailService.verifyPassword(url, {email: emailInput.value}).subscribe((result) => {
-      if (result.payload.emailExist){
-        const extras = {
-          relativeTo: this.route.parent,
-          state: {
-            data: {
-              email: emailInput.value
-            }
-          }
-        };
-        this.router.navigate(['recover-or-change-password'], extras );
-      } else {
-        emailInput.setErrors({ emailDoesNotExist: { message: this.customTranslateService.getTranslation('field.emailNotExist') } });
+    const data = {
+      email: emailInput.value,
+      subject: 'Reset your Edu Hospice password',
+      body: 'Please follow this link to reset your password on our Edu Hospice platform:\nhttps://edu-hospice.herokuapp.com/preview/recover-or-change-password?token={token}'
+    };
+
+    this.recoverPasswordEnterEmailService.sendEmailForRecoverPassword(url, data).subscribe((result) => {
+      debugger;
+      if (result.success){
+
+        this.matSnackBar.open(result.message, GLOBALS.constants.NOTIFICATIONS.INFO, {
+          duration: GLOBALS.constants.NOTIFICATIONS.durationInSeconds * 1000,
+          verticalPosition: 'top'
+        });
+
       }
     });
   }
