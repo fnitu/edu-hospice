@@ -18,6 +18,9 @@
     "email": "E-mail-ul nu are un format valid.",
     "emailNotExist": "E-mailul nu exista. Va rugam sa introduceti un e-mail valid."
   },
+  "confirmationDialog": {
+    "commentBoxLabel": "Explicați motivul"
+  },
   "preview": {
     "home": {
       "title": "Cursuri de îngrijiri paliative"

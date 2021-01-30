@@ -5,7 +5,18 @@
 
     <div mat-dialog-content>
         {{ data?.message }}
+
+        <mat-form-field *ngIf="data?.hasCommentBox" class="comment-box">
+            <mat-label>{{ 'confirmationDialog.commentBoxLabel' | translate }}</mat-label>
+            <textarea matInput
+                      [(ngModel)]="commentBox"
+                      cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
     </div>
+
+
 
     <div mat-dialog-actions align="end">
         <span *ngFor="let button of data?.buttons">

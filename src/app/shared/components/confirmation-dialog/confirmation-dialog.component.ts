@@ -9,6 +9,7 @@ import { ConfirmationDialogDataInterface } from "./confirmation-dialog.interface
     encapsulation: ViewEncapsulation.None
 })
 export class ConfirmationDialogComponent implements OnInit {
+    public commentBox: string = "";
 
     constructor(@Inject(MAT_DIALOG_DATA) public data: ConfirmationDialogDataInterface) {
     }

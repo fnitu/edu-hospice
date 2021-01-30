@@ -5,6 +5,7 @@ export interface ConfirmationDialogInterface {
 export interface ConfirmationDialogDataInterface {
     title?: string;
     message: string;
+    hasCommentBox?: boolean;
     buttons?: {
         text: string;
         handler?(): any;

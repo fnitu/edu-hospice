@@ -101,11 +101,13 @@ export class UserListComponent implements OnInit {
         let dialogRef = this.confirmationDialogService.show({
             data: {
                 message: this.customTranslateService.getTranslation("admin.users.userList.rejectMessage"),
+                hasCommentBox: true,
                 buttons: [
                     {
                         text: this.customTranslateService.getTranslation("general.yes"),
                         handler: () => {
                             console.log("Refresh grid");
+                            console.log("Comment box text:", dialogRef.componentInstance.commentBox);
 
                             dialogRef.close();
                         }
