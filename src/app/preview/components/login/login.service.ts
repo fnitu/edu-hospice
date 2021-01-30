@@ -22,11 +22,6 @@ export class LoginService {
         return this.http.post(url, formData);
     }
 
-    public getUserDetails() {
-      const url = `${GLOBALS.BASE_URL}/users/currentUser`;
-      return this.http.get(url);
-    }
-
     get userDetails(): User {
       return this.user;
     }
