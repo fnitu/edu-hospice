@@ -2,15 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { AuthGuardService } from './shared/services/authentication/auth-guard.service';
+import { ROUTES } from "./shared/core/routes";
 
 const routes: Routes = [
     {
         path: '',
-        redirectTo: 'preview',
+        redirectTo: ROUTES.PREVIEW.MAIN_ROUTE,
         pathMatch: 'full'
     },
     {
-        path: 'admin',
+        path: ROUTES.ADMIN.MAIN_ROUTE,
         canActivate: [AuthGuardService],
         data: {
             isAdmin: true
@@ -18,17 +19,20 @@ const routes: Routes = [
         loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
     },
     {
-        path: 'preview',
+        path: ROUTES.PREVIEW.MAIN_ROUTE,
         loadChildren: () => import('./preview/preview.module').then(m => m.PreviewModule)},
     {
-        path: 'user',
+        path: ROUTES.USER.MAIN_ROUTE,
         canActivate: [AuthGuardService],
         data: {
             isAdmin: false
         },
         loadChildren: () => import('./user/user.module').then(m => m.UserModule)
     },
-    {path: '**', component: NotFoundComponent},
+    {
+        path: '**',
+        component: NotFoundComponent
+    }
 ];
 
 @NgModule({

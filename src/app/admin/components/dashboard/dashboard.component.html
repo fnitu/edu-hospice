@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <mat-card class="card" routerLink="/admin/course-list">
+  <mat-card class="card" routerLink="{{courseListRoute}}">
     <mat-card-header>
       <mat-card-title>{{ "admin.dashboard.coursesCardTitle" | translate }}</mat-card-title>
     </mat-card-header>
@@ -12,7 +12,7 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card class="card" routerLink="/admin/users">
+  <mat-card class="card" routerLink="{{usersRoute}}">
     <mat-card-header>
       <mat-card-title>{{ "admin.dashboard.usersCardTitle" | translate }}</mat-card-title>
     </mat-card-header>

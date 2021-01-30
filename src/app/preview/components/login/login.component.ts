@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../shared/services/authentication/auth.service';
 import { CustomTranslateService } from '../../../shared/services/custom-translate/custom-translate.service';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { ROUTES } from "../../../shared/core/routes";
 
 
 @Component({
@@ -72,9 +73,9 @@ export class LoginComponent {
                 const params = this.route.snapshot.params.redirect ? decodeURIComponent(this.route.snapshot.params.redirect) : null;
 
                 if (response.role === 'ROLE_ADMIN') {
-                    this.router.navigate(params ? [params] : ['admin/dashboard']);
+                    this.router.navigate(params ? [params] : [`${ROUTES.ADMIN.MAIN_ROUTE}/${ROUTES.ADMIN.DASHBOARD}`]);
                 } else {
-                    this.router.navigate(params ? [params] : ['user/dashboard']);
+                    this.router.navigate(params ? [params] : [`${ROUTES.USER.MAIN_ROUTE}/${ROUTES.USER.DASHBOARD}`]);
                 }
             }, error => {
                 // message notification is displayed by the http interceptor
@@ -86,7 +87,7 @@ export class LoginComponent {
     }
 
     public forgotPassword() {
-        this.router.navigate(['recover-password-enter-email'], {relativeTo: this.route.parent});
+        this.router.navigate([ROUTES.PREVIEW.RECOVER_PASSWORD_ENTER_EMAIL], {relativeTo: this.route.parent});
     }
 
 }

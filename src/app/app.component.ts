@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import TranslationsJson from '../assets/translations.json';
 import { LoadingMaskService } from './shared/services/loading-mask/loading-mask.service';
 import { AppService } from './app.service';
+import { ROUTES } from "./shared/core/routes";
 
 @Component({
     selector: 'app-root',
@@ -14,6 +15,9 @@ import { AppService } from './app.service';
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
+    public previewRoute = ROUTES.PREVIEW.MAIN_ROUTE;
+    public loginRoute = `${ROUTES.PREVIEW.MAIN_ROUTE}/${ROUTES.PREVIEW.LOGIN}`
+
     constructor(private loginService: LoginService,
                 private router: Router,
                 public authService: AuthService,
@@ -35,11 +39,11 @@ export class AppComponent implements OnInit {
 
 
     public goToHome() {
-        this.router.navigate(['preview']);
+        this.router.navigate([ROUTES.PREVIEW.MAIN_ROUTE]);
     }
 
     public goToDashboard() {
-        this.router.navigate(['user/dashboard']);
+        this.router.navigate([`${ROUTES.USER.MAIN_ROUTE}/${ROUTES.USER.DASHBOARD}`]);
     }
 
     public logout() {
@@ -50,7 +54,7 @@ export class AppComponent implements OnInit {
 
                     this.authService.accessToken = '';
 
-                    this.router.navigate(['preview']);
+                    this.router.navigate([ROUTES.PREVIEW.MAIN_ROUTE]);
                 }
             }
         );

@@ -3,7 +3,7 @@ import { User } from '../../../shared/interfaces/user';
 import { Router } from '@angular/router';
 import { Course } from '../../../shared/interfaces/course';
 import { DashboardService } from './dashboard.service';
-import { LoginService } from '../../../preview/components/login/login.service';
+import { ROUTES } from "../../../shared/core/routes";
 
 
 @Component({
@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
     }
 
     public goToCourse(course: Course) {
-        this.router.navigate(['user/course', 'course', course.id]);
+        this.router.navigate([`${ROUTES.USER.MAIN_ROUTE}/${ROUTES.USER.COURSE}`, course.id]);
     }
 
     private userDetails() {

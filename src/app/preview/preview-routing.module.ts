@@ -6,6 +6,7 @@ import { PreviewComponent } from './preview.component';
 import { LoginComponent } from './components/login/login.component';
 import { RecoverPasswordEnterEmailComponent } from './components/recover-password-enter-email/recover-password-enter-email.component';
 import { RecoverOrChangePasswordComponent } from './components/recover-or-change-password/recover-or-change-password.component';
+import { ROUTES } from "../shared/core/routes";
 
 const routes: Routes = [
   {
@@ -14,27 +15,27 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: ROUTES.PREVIEW.HOME,
         pathMatch: 'full'
       },
       {
-        path: 'home',
+        path: ROUTES.PREVIEW.HOME,
         component: HomeComponent,
       },
       {
-        path: 'login',
+        path: ROUTES.PREVIEW.LOGIN,
         component: LoginComponent,
       },
       {
-        path: 'login/:redirect',
+        path: `${ROUTES.PREVIEW.LOGIN}/:redirect`,
         component: LoginComponent,
       },
       {
-        path: 'recover-password-enter-email',
+        path: ROUTES.PREVIEW.RECOVER_PASSWORD_ENTER_EMAIL,
         component: RecoverPasswordEnterEmailComponent,
       },
       {
-        path: 'recover-or-change-password',
+        path: ROUTES.PREVIEW.RECOVER_OR_CHANGE_PASSWORD,
         component: RecoverOrChangePasswordComponent,
       }
     ]

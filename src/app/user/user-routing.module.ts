@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CourseComponent } from './components/course/course.component';
 import { UserComponent } from './user.component';
+import { ROUTES } from "../shared/core/routes";
 
 const routes: Routes = [
     {
@@ -12,15 +13,15 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'dashboard',
+                redirectTo: ROUTES.USER.DASHBOARD,
                 pathMatch: 'full'
             },
             {
-                path: 'dashboard',
+                path: ROUTES.USER.DASHBOARD,
                 component: DashboardComponent
             },
             {
-                path: 'course/course/:courseId',
+                path: `${ROUTES.USER.COURSE}/:courseId`,
                 component: CourseComponent
             },
         ]

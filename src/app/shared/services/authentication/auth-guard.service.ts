@@ -7,6 +7,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { ROUTES } from "../../core/routes";
 
 @Injectable({
     providedIn: 'root',
@@ -24,14 +25,14 @@ export class AuthGuardService implements CanActivate {
         const authenticated = this.authService.isAuthenticated();
 
         if (!authenticated) {
-            this.router.navigate([`preview/login/${encodeURIComponent(state.url)}`]);
+            this.router.navigate([`${ROUTES.PREVIEW.MAIN_ROUTE}/${ROUTES.PREVIEW.LOGIN}/${encodeURIComponent(state.url)}`]);
             return false;
         }
 
         const isAdmin = route.data.isAdmin;
         const role = this.authService.role;
         const canAccess = (role === "ROLE_ADMIN" && isAdmin) || (role === "ROLE_USER" && !isAdmin);
-        const defaultRoute = role === "ROLE_ADMIN" ? "admin" : "user";
+        const defaultRoute = role === "ROLE_ADMIN" ? ROUTES.ADMIN.MAIN_ROUTE : ROUTES.USER.MAIN_ROUTE;
 
         if (authenticated && !canAccess) {
             this.router.navigate([defaultRoute])

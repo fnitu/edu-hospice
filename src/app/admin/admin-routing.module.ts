@@ -5,6 +5,7 @@ import { AdminComponent } from './admin.component';
 import { CourseListComponent } from "./components/course-list/course-list.component";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from "./components/users/users.component";
+import { ROUTES } from "../shared/core/routes";
 
 const routes: Routes = [
   {
@@ -13,19 +14,19 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: ROUTES.ADMIN.DASHBOARD,
         pathMatch: 'full'
       },
       {
-        path: 'dashboard',
+        path: ROUTES.ADMIN.DASHBOARD,
         component: DashboardComponent,
       },
       {
-        path: 'course-list',
+        path: ROUTES.ADMIN.COURSE_LIST,
         component: CourseListComponent
       },
       {
-        path: 'users',
+        path: ROUTES.ADMIN.USERS,
         component: UsersComponent
       }
     ]
