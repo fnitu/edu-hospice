@@ -1,0 +1,10 @@
+<div class="snack-bar-container">
+    <div class="message-type" [ngSwitch]="data.type">
+        <mat-icon class="error" *ngSwitchCase="'ERROR'">error_outline</mat-icon>
+        <mat-icon class="info" *ngSwitchCase="'INFO'">info</mat-icon>
+        <mat-icon class="warning" *ngSwitchCase="'WARNING'">warning_amber</mat-icon>
+    </div>
+
+    <div *ngIf="data.contentAsHTML" [innerHTML]="data.contentAsHTML"></div>
+    <div *ngIf="data.content">{{ data.content }}</div>
+</div>

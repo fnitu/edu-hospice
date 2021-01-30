@@ -32,16 +32,16 @@
       "invalidEmailOrPassword": "E-mail sau parolă incorectă!"
     },
     "managePassword": {
-      "sendEmail": "Timeite email de recuperare",
-      "setPassword": "Seteaza parola",
+      "sendEmail": "Trimite email de recuperare",
+      "setPassword": "Setează parola",
       "password": "Parola",
       "passwordPlaceholder": "Introdu parola",
       "passwordPlaceholderConfirmation": "Confirmă parola",
-      "length": "Numar de caractere: min. 6 - max. 10",
-      "numberOfNumericCharacters": "Numar de caractere numerice: min. 1 - max. 5",
-      "numberOfSpecialCharacters": "Numar de caractere speciale: min. 1 - max. 5",
-      "numberOfCapitalLetters": "Numar de litere mari: min. 1",
-      "passwordsMatch": "Parola nu se potriveste"
+      "length": "Număr de caractere: min. 6 - max. 10",
+      "numberOfNumericCharacters": "Număr de caractere numerice: min. 1 - max. 5",
+      "numberOfSpecialCharacters": "Număr de caractere speciale: min. 1 - max. 5",
+      "numberOfCapitalLetters": "Număr de litere mari: min. 1",
+      "passwordsMatch": "Parola nu se potrivește."
     }
   },
   "user": {
@@ -78,11 +78,5 @@
         "rejectMessage": "Ești sigur că vrei să refuzi această înregistrare."
       }
     }
-  },
-  "notification": {
-    "titleInfo": "Info:",
-    "titleWarning": "Warning:",
-    "titleError": "Attention:",
-    "labelMoreMessages": "Sunt mai multe mesaje decat cele care au fost afisate!"
   }
 }

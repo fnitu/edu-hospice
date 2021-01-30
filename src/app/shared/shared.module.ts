@@ -38,6 +38,7 @@ import * as $ from 'jquery';
 import { RowActionsCellRendererComponent } from './components/grid/row-actions-cell-renderer/row-actions-cell-renderer.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { GlobalMatDialogConfig } from "./constants/global-mat-dialog-config";
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { GlobalMatDialogConfig } from "./constants/global-mat-dialog-config";
         NotFoundComponent,
         GridComponent,
         RowActionsCellRendererComponent,
-        ConfirmationDialogComponent
+        ConfirmationDialogComponent,
+        SnackBarComponent
     ],
     imports: [
         CommonModule,

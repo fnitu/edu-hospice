@@ -1,0 +1,22 @@
+@import "../../../../styles/scss/imports";
+
+.snack-bar-container {
+  display: flex;
+  align-items: center;
+
+  .message-type {
+    margin-right: 10px;
+
+    .info {
+      color: $infoColor;
+    }
+
+    .error {
+      color: $actionRed;
+    }
+
+    .warning {
+      color: $warningColor;
+    }
+  }
+}

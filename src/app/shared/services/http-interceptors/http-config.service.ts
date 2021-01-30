@@ -6,6 +6,7 @@ import { AuthService } from '../authentication/auth.service';
 import { LoadingMaskService } from '../loading-mask/loading-mask.service';
 import { GLOBALS } from '../../core/globals';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from "../../components/snack-bar/snack-bar.component";
 
 @Injectable({
     providedIn: 'root'
@@ -56,15 +57,19 @@ export class HttpConfigService implements HttpInterceptor {
 
 
     private handleError(error) {
+        const errorMessage = `<div>Error Code: ${error.status}</div>
+                              <div>Message: ${error.error.message}</div>`;
 
-        const errorMessage = `Error Code: ${error.error.status}\nMessage: ${error.error.message}`;
-
-        this.matSnackBar.open(errorMessage, GLOBALS.constants.NOTIFICATIONS.ERROR, {
+        this.matSnackBar.openFromComponent(SnackBarComponent, {
             duration: GLOBALS.constants.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
-            verticalPosition: 'top'
+            verticalPosition: 'top',
+            data: {
+                contentAsHTML: errorMessage,
+                type: GLOBALS.constants.NOTIFICATIONS.ERROR
+            }
         });
 
-        return throwError(errorMessage);
+        return throwError(error);
 
     }
 }
