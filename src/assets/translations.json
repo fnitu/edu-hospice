@@ -52,6 +52,12 @@
       "content": "Conținut"
     },
     "dashboard": {
+      "name": "Nume",
+      "member": "Membru din",
+      "profile": "Profil",
+      "contact": "Date de contact",
+      "statistics": "Statistici",
+      "phone": "Tel",
       "totalCourses": "Cursuri totale",
       "totalHours": "Ore totale"
     }

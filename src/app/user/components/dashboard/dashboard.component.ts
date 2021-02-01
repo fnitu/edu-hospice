@@ -3,67 +3,66 @@ import { User } from '../../../shared/interfaces/user';
 import { Router } from '@angular/router';
 import { Course } from '../../../shared/interfaces/course';
 import { DashboardService } from './dashboard.service';
-import { ROUTES } from "../../../shared/core/routes";
-
+import { ROUTES } from '../../../shared/core/routes';
 
 @Component({
-    selector: 'app-dashboard',
-    templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class DashboardComponent implements OnInit {
+  user = {
+    firstName: '',
+    lastName: '',
+    email: '',
+  } as User;
 
-    user = {
-      firstName: '',
-      lastName: '',
-      email: ''
-    } as User ;
+  public courseTabs;
 
-    public courseTabs
+  constructor(
+    private dashboardService: DashboardService,
+    private router: Router
+  ) {}
 
-    constructor(private dashboardService: DashboardService,
-                private router: Router) {
-    }
+  ngOnInit(): void {
+    this.userDetails();
+    this.fetchCourseTabs();
+  }
 
-    ngOnInit(): void {
-        this.userDetails();
-        this.fetchCourseTabs();
-    }
+  public goToCourse(course: Course) {
+    this.router.navigate([
+      `${ROUTES.USER.MAIN_ROUTE}/${ROUTES.USER.COURSE}`,
+      course.id,
+    ]);
+  }
 
-    public goToCourse(course: Course) {
-        this.router.navigate([`${ROUTES.USER.MAIN_ROUTE}/${ROUTES.USER.COURSE}`, course.id]);
-    }
+  private userDetails() {
+    this.dashboardService.getUserDetails().subscribe((data: User) => {
+      this.user = data;
+    });
+  }
 
-    private userDetails() {
-      this.dashboardService.getUserDetails().subscribe((data: User) => {
-        this.user = data;
+  public fetchCourseTabs() {
+    this.dashboardService.fetchCourseTabs().subscribe((response) => {
+      this.courseTabs = response;
+    });
+  }
+
+  private getTabData(tab) {
+    this.dashboardService
+      .fetchTabData(tab.link)
+      .subscribe((response: Array<Course>) => {
+        tab.courseList = response;
       });
-    }
+  }
 
-    public fetchCourseTabs(){
-        this.dashboardService.fetchCourseTabs().subscribe(
-            (response) => {
-                this.courseTabs = response;
-            }
-        );
-    }
+  public selectedTabChange(tab) {
+    let currentTab = this.courseTabs[tab.index];
 
-    private getTabData(tab) {
-        this.dashboardService.fetchTabData(tab.link).subscribe(
-            (response: Array<Course>) => {
-                tab.courseList = response;
-            }
-        );
-    }
+    // empty previous list
+    currentTab.courseList = [];
 
-    public selectedTabChange(tab) {
-        let  currentTab = this.courseTabs[tab.index];
-
-        // empty previous list
-        currentTab.courseList = [];
-
-        this.getTabData(currentTab);
-    }
-
+    this.getTabData(currentTab);
+  }
 }
