@@ -61,11 +61,11 @@ export class HttpConfigService implements HttpInterceptor {
                               <div>Message: ${error.error.message}</div>`;
 
         this.matSnackBar.openFromComponent(SnackBarComponent, {
-            duration: GLOBALS.constants.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
+            duration: GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
             verticalPosition: 'top',
             data: {
                 contentAsHTML: errorMessage,
-                type: GLOBALS.constants.NOTIFICATIONS.ERROR
+                type: GLOBALS.NOTIFICATIONS.ERROR
             }
         });
 

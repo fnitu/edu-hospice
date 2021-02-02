@@ -47,7 +47,7 @@ export class RecoverPasswordEnterEmailComponent implements OnInit {
 
     public resetPassword() {
         const emailInput = this.form.get('email');
-        const url = GLOBALS.dataURL.sendEmailForRecoverPassword;
+        const url = GLOBALS.DATA_URL.SEND_EMAIL_FOR_RECOVER_PASSWORD;
 
         const data = {
             email: emailInput.value,
@@ -58,8 +58,8 @@ export class RecoverPasswordEnterEmailComponent implements OnInit {
         this.recoverPasswordEnterEmailService.sendEmailForRecoverPassword(url, data).subscribe((result) => {
             if (result.success) {
 
-                this.matSnackBar.open(result.message, GLOBALS.constants.NOTIFICATIONS.INFO, {
-                    duration: GLOBALS.constants.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
+                this.matSnackBar.open(result.message, GLOBALS.NOTIFICATIONS.INFO, {
+                    duration: GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
                     verticalPosition: 'top'
                 });
 

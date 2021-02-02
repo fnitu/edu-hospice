@@ -23,7 +23,7 @@ export class DashboardService {
     }
 
     public getUserDetails() {
-      const url = `${GLOBALS.BASE_URL}/users/currentUser`;
+      const url = GLOBALS.DATA_URL.USER_DETAILS;
       return this.http.get(url);
     }
 }

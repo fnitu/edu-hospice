@@ -15,7 +15,7 @@ export class LoginService {
     public user: User;
 
     public login(email, password): Observable<any> {
-        const url = `${GLOBALS.BASE_URL}/auth/login`;
+        const url = GLOBALS.DATA_URL.LOGIN;
 
         const formData = {email, password};
 

@@ -11,7 +11,7 @@ export class AppService {
   constructor(private http: HttpClient) { }
 
   public executeLogout(): Observable<any> {
-    const url = `${GLOBALS.BASE_URL}/auth/logout`;
+    const url = GLOBALS.DATA_URL.LOGOUT;
 
     return this.http.post(url, null);
   }

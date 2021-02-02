@@ -91,7 +91,7 @@ export class RecoverOrChangePasswordComponent implements OnInit {
     onSubmit() {
         if (this.form.valid) {
             const password = this.form.get('password').value;
-            const url = GLOBALS.dataURL.resetPassword;
+            const url = GLOBALS.DATA_URL.RESET_PASSWORD;
             const bodyParams = {
                 password: password,
                 token: this.token
@@ -101,13 +101,13 @@ export class RecoverOrChangePasswordComponent implements OnInit {
                 let action = '';
 
                 if (response.success) {
-                    action = GLOBALS.constants.NOTIFICATIONS.INFO;
+                    action = GLOBALS.NOTIFICATIONS.INFO;
                 } else {
-                    action = GLOBALS.constants.NOTIFICATIONS.ERROR;
+                    action = GLOBALS.NOTIFICATIONS.ERROR;
                 }
 
                 this.matSnackBar.open(response.message, action, {
-                    duration: GLOBALS.constants.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
+                    duration: GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
                     verticalPosition: 'top'
                 });
 
