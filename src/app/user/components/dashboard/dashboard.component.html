@@ -36,7 +36,7 @@
               {{ user.lastName }}
             </p>
             <p>
-            <span class="mat-body-strong">{{ "user.dashboard.member" | translate }}: </span>20.12.2020
+              <span class="mat-body-strong">{{ "user.dashboard.member" | translate }}: </span>20.12.2020
             </p>
           </mat-card-content>
         </mat-card>
@@ -90,7 +90,7 @@
               {{ "user.dashboard.totalCourses" | translate }}: </span>5
             </p>
             <p>
-            <span class="mat-body-strong">{{ "user.dashboard.totalHours" | translate }}: </span>120
+              <span class="mat-body-strong">{{ "user.dashboard.totalHours" | translate }}: </span>120
             </p>
           </mat-card-content>
         </mat-card>
@@ -98,11 +98,12 @@
     </div>
   </div>
 
-  <mat-card class="tabs-container mat-elevation-z">
-    <mat-card-content>
-      <mat-tab-group (selectedTabChange)="selectedTabChange($event)">
-        <mat-tab *ngFor="let tab of courseTabs" label="{{ tab.name }}">
-          <ng-template matTabContent>
+
+  <mat-tab-group class="mat-tab-group" (selectedTabChange)="selectedTabChange($event)">
+    <mat-tab *ngFor="let tab of courseTabs" label="{{ tab.name }}">
+      <ng-template matTabContent>
+        <mat-card class="tabs-container usertabsContainer mat-elevation-z">
+          <mat-card-content>
             <div class="app-course-wrapper">
               <div class="card-box" *ngFor="let course of tab.courseList">
                 <app-course-card
@@ -114,9 +115,66 @@
                 ></app-course-card>
               </div>
             </div>
-          </ng-template>
-        </mat-tab>
-      </mat-tab-group>
-    </mat-card-content>
-  </mat-card>
+          </mat-card-content>
+        </mat-card>
+      </ng-template>
+
+    </mat-tab>
+  </mat-tab-group>
+
 </div>
+
+
+<!--  EU -->
+<!-- <mat-card class="userProfileCard">
+
+  <mat-card-content class="avatar">
+    <div class="dashboard-avatar" fxLayout="row" fxFlex fxLayoutAlign="space-around center" fxflex="100">
+    <a href="#">
+      <img class="img" src="https://www.w3schools.com/howto/img_avatar.png" width="100" height="100"/></a>
+    </div>
+  </mat-card-content>
+
+  <mat-card-content class="userStatsContainer" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
+
+      <mat-card-content class="col" fxLayout="column" fxflex="30" fxflex.lt-md="80" fxlayoutalign="space-evenly center">
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div class="card-icon-profile">
+            <i class="material-icons">account_circle</i>
+          </div>
+          <mat-card-title>Profil</mat-card-title>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start" style="display: block">
+          <mat-card-subtitle>Nume: {{user.firstName}} {{user.lastName}}</mat-card-subtitle>
+          <mat-card-subtitle>Membru din: user.signupDate </mat-card-subtitle>
+        </div>
+      </mat-card-content>
+
+      <mat-card-content class="col" fxLayout="column" fxflex="30" fxflex.lt-md="80" fxlayoutalign="center center">
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div class="card-icon-profile">
+            <i class="material-icons">account_circle</i>
+          </div>
+          <mat-card-title>Profil</mat-card-title>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start" style="display: block">
+          <mat-card-subtitle>Nume: {{user.firstName}} {{user.lastName}}</mat-card-subtitle>
+          <mat-card-subtitle>Membru din: user.signupDate </mat-card-subtitle>
+        </div>
+      </mat-card-content>
+
+      <mat-card-content class="col" fxLayout="column" fxflex="30" fxflex.lt-md="80" fxlayoutalign="center center">
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div class="card-icon-profile">
+            <i class="material-icons">account_circle</i>
+          </div>
+          <mat-card-title>Profil</mat-card-title>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start" style="display: block">
+          <mat-card-subtitle>Nume: {{user.firstName}} {{user.lastName}}</mat-card-subtitle>
+          <mat-card-subtitle>Membru din: user.signupDate </mat-card-subtitle>
+        </div>
+      </mat-card-content>
+
+  </mat-card-content>
+</mat-card> -->

@@ -134,62 +134,86 @@
   justify-content: center;
   align-items: center;
 
-  .tabs-container{
-    width: 80%;
-    min-height: 500px;
-    margin: 50px 0;
-    box-shadow: 0 5px 20px 5px rgba(0, 0, 0, 0.09);
 
-    .app-course-wrapper {
+  .mat-tab-group {
+    width: 100%;
+    min-height: 1000px;
+    margin-top: 50px;
+
+    .mat-tab-body-content {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      background: hsla(0,0%,93.3%,.31);
-      padding-top: 25px;
+      align-items: center;
+      background: hsla(0, 0%, 93.3%, .31);
 
+      .tabs-container.usertabsContainer {
+        width: 80%;
+        padding: 0;
+        margin: 50px 0;
+        box-shadow: 0 5px 20px 5px rgba(0, 0, 0, 0.09);
 
-      .card-box {
-        flex: 1 1 30%;
-        margin: 20px;
-        display: flex;
-
-        .app-course-card {
+        .app-course-wrapper {
           display: flex;
-          border-radius: 6px;
+          justify-content: center;
+          flex-wrap: wrap;
+          background: hsla(0, 0%, 93.3%, .31);
+          padding-top: 25px;
+
+
+          .card-box {
+            flex: 1 1 30%;
+            margin: 20px;
+            display: flex;
+
+            .app-course-card {
+              display: flex;
+              border-radius: 6px;
+            }
+          }
         }
       }
+
     }
 
-    &.mat-card{
-      padding: 0;
+    .mat-tab-header {
+      border-bottom: none;
+      text-align: center;
 
-      .mat-tab-header{
-        border-bottom: none;
+      .mat-tab-labels {
+        display: inline-block;
+        margin: 0 auto;
 
-        .mat-tab-labels{
-          background-color: $navBarBackgroundColor;
-          justify-content: space-evenly;
-          border-radius: 5px;
+        .mat-tab-label {
+          background-color: $cardBackgroundColor;
+          border-radius: 0.7rem 0.7rem 0 0;
+          border-style: inset;
+          border-width: 0 1px 0 0;
+          // border-color: $navBarBackgroundColor;
+          box-shadow: -2px 1px 1px 0px rgba(168, 168, 168, 0.404) inset;
 
-          .mat-tab-label {
+          @media only screen and (max-width: 768px) {
+            width: 100%;
+          }
+
+          &.mat-tab-label-active {
+            opacity: 1.2;
             background-color: $navBarBackgroundColor;
+            box-shadow: -2px 1px 1px 0px rgba(255, 255, 255, 0.507) inset;
+            border: none;
 
-            &.mat-tab-label-active {
-              opacity: 1.2;
+            .mat-tab-label-content {
+              color: $navBarTextColor;
+              font-size: 110%;
 
-              .mat-tab-label-content{
-                color: $navBarTextColor;
-
-                &:after {
-                  content: '';
-                  display: block;
-                  position: absolute;
-                  width: 100%;
-                  height: 2px;
-                  background: $navBarTextColor;
-                  right: 0;
-                  bottom: 0;
-                }
+              &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                background: $navBarTextColor;
+                right: 0;
+                bottom: 0;
               }
             }
           }
@@ -198,28 +222,12 @@
     }
   }
 }
-    
+
+
 .mat-ink-bar {
   display: none !important;
 }
 
-
-// .user-course-tabs{
-//   margin: 10px 60px;
-//   padding: 10px ;
-//   background-color: $nabBarBackgroundColor;
-//   border-radius: 5px;
-//   .course-tab{
-//     color: $navBarTextColor;
-//     font-size: 1rem;
-//     font-weight: 500;
-//     &:hover{
-//       color: $cardBackgroundColor;
-//     }
-//   }
-// }
-
 .example-stretched-tabs {
   max-width: 800px;
 }
-
