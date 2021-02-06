@@ -40,6 +40,7 @@ export class DashboardComponent implements OnInit {
   private userDetails() {
     this.dashboardService.getUserDetails().subscribe((data: User) => {
       this.user = data;
+      console.log(data);
     });
   }
 
