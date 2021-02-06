@@ -1,19 +1,19 @@
 @import "../../../../styles/scss/imports";
 
+
 .userProfileCard {
-  margin: 10px 60px;
+  margin: 60px 60px;
   justify-content: space-evenly;
   background-color: $cardBackgroundColor;
   .userStatsContainer {
-    text-align: center;
+    text-align: left;
     .userStats {
       font-weight: 600;
     }
   }
 }
 
-
-.tabsContainer{
+.usertabsContainer{
   margin: 0 60px;
 
   &.mat-card{
@@ -21,20 +21,33 @@
 
     .mat-tab-header{
       border-bottom: none;
+      text-align: center;
 
         .mat-tab-labels{
-          background-color: #7DC242;
-          justify-content: space-evenly;
-          border-radius: 5px;
+          display: inline-block;
+          margin: 0 auto;
             
           .mat-tab-label {
-            background-color: $navBarBackgroundColor;
+            background-color: $cardBackgroundColor;
+            border-radius: 0.7rem 0.7rem 0 0;
+            border-style: inset;
+            border-width: 0 1px 0 0;
+            // border-color: $navBarBackgroundColor;
+            box-shadow: -2px 1px 1px 0px rgba(168, 168, 168, 0.404) inset;
+
+            @media only screen and (max-width: 768px) {
+            width: 100%;
+            }
                 
             &.mat-tab-label-active {
               opacity: 1.2;
+              background-color: $navBarBackgroundColor;
+              box-shadow: -2px 1px 1px 0px rgba(255, 255, 255, 0.507) inset; 
+              border: none;
                   
               .mat-tab-label-content{
                 color: $navBarTextColor;
+                font-size: 110%;
                     
                 &:after {
                   content: '';
@@ -53,28 +66,11 @@
       }
     }
   }
-    
+
     .mat-ink-bar {
       display: none !important;
     }
 
-
-// .user-course-tabs{
-//   margin: 10px 60px;
-//   padding: 10px ;
-//   background-color: $nabBarBackgroundColor;
-//   border-radius: 5px;
-//   .course-tab{
-//     color: $navBarTextColor;
-//     font-size: 1rem;
-//     font-weight: 500;
-//     &:hover{
-//       color: $cardBackgroundColor;
-//     }
-//   }
-// }
-
 .example-stretched-tabs {
   max-width: 800px;
 }
-
