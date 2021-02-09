@@ -1,21 +1,30 @@
 <!-- Common content for course card -->
 <ng-template #cardContent>
-  <mat-card-header>
+  <mat-card-header >
+    <div data-header-animation="true" class="card-header-image img"
+         [ngStyle]="{'background-image': 'url(' + course.image + ')'}">
+    </div>
     <mat-card-title>{{course.name}}</mat-card-title>
   </mat-card-header>
-  <mat-chip-list>
-    <mat-chip color="primary" selected>{{course.courseType}}</mat-chip>
-    <mat-chip color="accent" selected>{{course.hours}} ore</mat-chip>
-  </mat-chip-list>
-  <div class="image-card" [ngStyle]="{'background-image': 'url(' + course.image + ')'}"></div>
   <mat-card-content>
-    <p class="course-description">
+    <div class="course-label">
+      <span class="label label-1" *ngIf="types.indexOf('active') > -1">In desfasurare</span>
+      <span class="label label-2" *ngIf="types.indexOf('recommended') > -1">Recomandat</span>
+      <span class="label label-3" *ngIf="types.indexOf('finished') > -1">Finalizat</span>
+    </div>
+    <div class="course-description">
       {{course.shortDescription}}
-    </p>
+    </div>
   </mat-card-content>
-  <div class="progress-bar" *ngIf="course.percentage !== undefined">
+  <div class="progress-bar" *ngIf="course.percentage !== undefined && !hideProgressbar">
+    <div class="percent">Progress: {{course.percentage}}%</div>
     <mat-progress-bar mode="determinate" value="{{course.percentage}}"></mat-progress-bar>
-    <div class="percent">{{course.percentage}}%</div>
+  </div>
+  <div class="card-footer-{{ course.courseType.includes('teoretic') ? 'green' : 'pink' }}">
+    <div class="stats">
+      <div class="card-category"><i class="material-icons">schedule</i></div>
+      <div>{{ course.hours }} ore</div>
+    </div>
   </div>
 </ng-template>
 

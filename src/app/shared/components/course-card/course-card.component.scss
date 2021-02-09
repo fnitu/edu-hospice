@@ -1,17 +1,25 @@
 @import "../../../../styles/scss/imports";
 
-.app-course-wrapper {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 30px;
-}
-
 .mat-card.course-card {
   max-width: 400px;
   cursor: pointer;
-  margin: 60px;
   border: 1px solid $cardBorderColor;
+  padding: 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+
+  &:hover [data-header-animation=true] {
+    -webkit-transform: translate3d(0,-20px,0);
+    transform: translate3d(0,-20px,0);
+  }
+
+  [data-header-animation=true] {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transition: all .3s cubic-bezier(.34,1.61,.7,1);
+    transition: all .3s cubic-bezier(.34,1.61,.7,1);
+  }
 
   &:not([class*=mat-elevation-z]) {
     box-shadow: none;
@@ -19,37 +27,30 @@
   }
 
   .mat-card-header {
+    flex-direction: column-reverse;
+
+    .card-header-image {
+      position: relative;
+      padding: 0;
+      z-index: 1;
+      margin: -30px 15px 0;
+      border-radius: 6px;
+      background-size: cover;
+      background-position: 50%;
+      height: 220px;
+      box-shadow: 0 5px 15px -8px rgba(0,0,0,.24), 0 8px 10px -5px rgba(0,0,0,.2);
+    }
+
     .mat-card-header-text {
-      margin: 0;
-      width: 100%;
-      text-align: left;
+      font-size: 1.125rem;
+      font-weight: 300;
+      color: #3c4858;
+      text-align: center;
+      letter-spacing: normal;
+      margin: 10px 0 10px;
 
       .mat-card-title {
         line-height: 1.2em;
-      }
-    }
-  }
-
-  .mat-chip-list {
-    .mat-chip-list-wrapper {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      margin: 0 0 6px 0;
-
-      .mat-chip {
-        border-radius: 6px;
-        padding: 6px;
-
-        &.mat-standard-chip.mat-chip-selected {
-          &.mat-primary {
-            background-color: $cardLabelCourseTypeColor;
-          }
-
-          &.mat-accent {
-            background-color: $cardLabelHourColor;
-          }
-        }
       }
     }
   }
@@ -61,21 +62,81 @@
   }
 
   .mat-card-content {
+    padding: 0 20px;
+    flex: 1 1 auto;
+
+    .course-label {
+      display: flex;
+      justify-content: center;
+      padding: 5px 0 10px 0 ;
+
+      .label {
+        border-radius: 12px;
+        padding: 2px 8px;
+        text-transform: uppercase;
+        font-size: 10px;
+        margin: 0 2px;
+      }
+
+      .label-1 {
+        background: linear-gradient($gradientDegree, $themeColor1-light, $themeColor1-dark);
+        color: #fff;
+      }
+
+      .label-2 {
+        background: linear-gradient($gradientDegree, $themeColor2-light, $themeColor2-dark);
+        color: #fff;
+      }
+
+      .label-3 {
+        background: linear-gradient($gradientDegree, $themeColor4-light, $themeColor4-dark);
+        color: #fff;
+      }
+    }
+
     .course-description {
-      min-height: 60px;
-      height: 60px;
-      overflow: hidden;
-      padding-top: 10px;
-      text-align: justify;
-      line-height: 1.1em;
+      text-align: left;
+      color: #999;
+      line-height: 1.5em;
+      font: 400 14px/20px Roboto,Helvetica Neue,sans-serif;
+      letter-spacing: normal;
+      flex: 1 1 auto;
     }
   }
 
   .progress-bar {
     display: flex;
+    flex-direction: column;
     align-items: center;
+
     .percent {
       margin-left: 6px;
     }
   }
+
+  [class*=card-footer-] {
+    margin: 0;
+    border-radius: 0 0 6px 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    color: #fff;
+    padding: 8px 0;
+
+    .stats {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .card-footer-green {
+    background: linear-gradient($gradientDegree, $themeColor1-light, $themeColor1-dark);
+  }
+
+  .card-footer-pink {
+    background: linear-gradient($gradientDegree, $themeColor2-light, $themeColor2-dark);
+  }
+
 }

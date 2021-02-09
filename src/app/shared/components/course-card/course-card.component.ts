@@ -10,6 +10,8 @@ import { Course } from '../../interfaces/course';
 export class CourseCardComponent implements OnInit {
   @Input() course: Course;
   @Input() hasAction: boolean = false;
+  @Input() types: string[] = [];
+  @Input() hideProgressbar: boolean;
 
   @Output() cardAction = new EventEmitter<any>();
 

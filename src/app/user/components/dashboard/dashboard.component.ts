@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   } as User;
 
   public courseTabs;
+  public types = ['recommended', 'finished'];
 
   constructor(
     private dashboardService: DashboardService,

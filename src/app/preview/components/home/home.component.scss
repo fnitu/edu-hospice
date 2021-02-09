@@ -1,1 +1,40 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
+  .mat-divider {
+    width: 100%;
+  }
+
+  .tabs-container{
+    width: 80%;
+    margin: 50px 0;
+    box-shadow: 0 5px 20px 5px rgba(0, 0, 0, 0.09);
+
+    .app-course-wrapper {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: hsla(0,0%,93.3%,.31);
+      padding-top: 25px;
+
+
+      .card-box {
+        flex: 1 1 30%;
+        margin: 20px;
+        display: flex;
+
+        .app-course-card {
+          display: flex;
+          border-radius: 6px;
+        }
+      }
+    }
+
+    &.mat-card{
+      padding: 0;
+    }
+  }
+}

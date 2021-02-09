@@ -2,153 +2,184 @@
 
 .header {
   justify-content: center;
-}
-
-.header > div {
-  margin-top: 60px;
-  flex-flow: row wrap;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
-  border-radius: 6px;
-  background-color: #eeeeee50;
-}
-
-.avatar {
-  max-width: 130px;
-  max-height: 130px;
-  margin: -50px auto 0;
-  border-radius: 50%;
-  overflow: hidden;
-  padding: 0;
-  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
-    0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-}
-
-.avatar img {
   width: 100%;
-  height: auto;
+
+  .container {
+    margin-top: 60px;
+    flex-flow: row wrap;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    border-radius: 6px;
+    background-color: #eeeeee50;
+
+    .avatar {
+      max-width: 130px;
+      max-height: 130px;
+      margin: -50px auto 0;
+      border-radius: 50%;
+      overflow: hidden;
+      padding: 0;
+      box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
+      0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .user-profile-card {
+      font-size: 0.875rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      border: 0;
+      margin-bottom: 30px;
+      margin-top: 30px;
+      padding: 0;
+      border-radius: 6px;
+      color: #333;
+      background: $cardBackgroundWhiteColor;
+      width: 100%;
+      box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+      height: inherit;
+
+      .card-header {
+        margin: 0 15px;
+        padding: 0;
+        position: relative;
+        color: #fff;
+
+        [class*="card-icon-"] {
+          border-radius: 3px;
+          background-color: #999;
+          padding: 15px;
+          float: left;
+          position: relative;
+          top: -20px;
+        }
+
+        .card-icon-profile {
+          background: linear-gradient(
+              $gradientDegree,
+              $themeColor2-light,
+              $themeColor2-dark
+          );
+          box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+          0 7px 10px -5px $themeColor2-light;
+        }
+
+        .card-icon-contact {
+          background: linear-gradient(
+              $gradientDegree,
+              $themeColor4-light,
+              $themeColor4-dark
+          );
+          box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+          0 7px 10px -5px $themeColor4-light;
+        }
+
+        .card-icon-stats {
+          background: linear-gradient(
+              $gradientDegree,
+              $themeColor5-light,
+              $themeColor5-dark
+          );
+          box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+          0 7px 10px -5px $themeColor5-light;
+        }
+
+        .card-icon-profile, .card-icon-contact, .card-icon-stats {
+          i {
+            width: 33px;
+            height: 33px;
+            text-align: center;
+            line-height: 33px;
+          }
+        }
+
+        &.card-header-icon, &.card-header-text {
+          .card-title {
+            margin-top: 15px;
+            color: #3c4858;
+          }
+        }
+
+        .card-title {
+          margin-bottom: 3px;
+        }
+      }
+
+      .mat-card-header-text {
+        order: 1;
+      }
+
+      .card-body {
+        padding: 0.9375rem 20px;
+        position: relative;
+        flex: 1 1 auto;
+      }
+
+      .card-body > p {
+        margin: 0 0 3px !important;
+      }
+    }
+  }
 }
 
-.header .userProfileCard {
-  font-size: 0.875rem;
-  position: relative;
+
+.dashboard {
   display: flex;
   flex-direction: column;
-  min-width: 0;
-  border: 0;
-  margin-bottom: 30px;
-  margin-top: 30px;
-  padding: 0;
-  border-radius: 6px;
-  color: #333;
-  background: $cardBackgroundWhiteColor;
-  width: 100%;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
-  height: inherit;
-}
+  justify-content: center;
+  align-items: center;
 
-.userProfileCard .card-header {
-  margin: 0 15px;
-  padding: 0;
-  position: relative;
-  color: #fff;
-}
+  .tabs-container{
+    width: 80%;
+    min-height: 500px;
+    margin: 50px 0;
+    box-shadow: 0 5px 20px 5px rgba(0, 0, 0, 0.09);
 
-.userProfileCard .card-header [class*="card-icon-"] {
-  border-radius: 3px;
-  background-color: #999;
-  padding: 15px;
-  float: left;
-  position: relative;
-  top: -20px;
-}
-
-.userProfileCard .card-header .card-icon-profile {
-  background: linear-gradient(
-    $gradientDegree,
-    $themeColor2-light,
-    $themeColor2-dark
-  );
-  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
-    0 7px 10px -5px $themeColor2-light;
-}
-
-.userProfileCard .card-header .card-icon-contact {
-  background: linear-gradient(
-    $gradientDegree,
-    $themeColor4-light,
-    $themeColor4-dark
-  );
-  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
-    0 7px 10px -5px $themeColor4-light;
-}
-
-.userProfileCard .card-header .card-icon-stats {
-  background: linear-gradient(
-    $gradientDegree,
-    $themeColor5-light,
-    $themeColor5-dark
-  );
-  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
-    0 7px 10px -5px $themeColor5-light;
-}
-
-.userProfileCard .card-header .card-icon-profile i,
-.userProfileCard .card-header .card-icon-contact i,
-.userProfileCard .card-header .card-icon-stats i {
-  width: 33px;
-  height: 33px;
-  text-align: center;
-  line-height: 33px;
-}
-
-.userProfileCard .card-header.card-header-icon .card-title,
-.userProfileCard .card-header.card-header-text .card-title {
-  margin-top: 15px;
-  color: #3c4858;
-}
-
-.userProfileCard .mat-card-header-text {
-  order: 1;
-}
-
-.userProfileCard .card-header .card-title {
-  margin-bottom: 3px;
-}
-
-.userProfileCard .card-body {
-  padding: 0.9375rem 20px;
-  position: relative;
-  flex: 1 1 auto;
-}
-
-.card-body > p {
-  margin: 0 0 3px !important;
-}
+    .app-course-wrapper {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: hsla(0,0%,93.3%,.31);
+      padding-top: 25px;
 
 
-.tabsContainer{
-  margin: 0 60px;
+      .card-box {
+        flex: 1 1 30%;
+        margin: 20px;
+        display: flex;
 
-  &.mat-card{
-    padding: 0;
+        .app-course-card {
+          display: flex;
+          border-radius: 6px;
+        }
+      }
+    }
 
-    .mat-tab-header{
-      border-bottom: none;
+    &.mat-card{
+      padding: 0;
+
+      .mat-tab-header{
+        border-bottom: none;
 
         .mat-tab-labels{
-          background-color: #7DC242;
+          background-color: $navBarBackgroundColor;
           justify-content: space-evenly;
           border-radius: 5px;
-            
+
           .mat-tab-label {
             background-color: $navBarBackgroundColor;
-                
+
             &.mat-tab-label-active {
               opacity: 1.2;
-                  
+
               .mat-tab-label-content{
                 color: $navBarTextColor;
-                    
+
                 &:after {
                   content: '';
                   display: block;
@@ -166,10 +197,11 @@
       }
     }
   }
+}
     
-    .mat-ink-bar {
-      display: none !important;
-    }
+.mat-ink-bar {
+  display: none !important;
+}
 
 
 // .user-course-tabs{
