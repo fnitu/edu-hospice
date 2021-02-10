@@ -1,13 +1,31 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { share } from 'rxjs/operators';
+import { GLOBALS } from '../../core/globals';
 
+import {User} from '../../interfaces/user'
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
+    
+    private _userDetails: Promise<User>;
 
-    // FIXME
-    //  replace with server call current user
-    role: string = 'ROLE_USER';
+    private _userDetailsResponse: Observable<User>;
+
+    constructor(private http:HttpClient){
+    }  
+
+    public get userDetails(){
+        debugger;
+        if (!this._userDetailsResponse){
+            this._userDetailsResponse = <Observable<User>> this.http.get(GLOBALS.DATA_URL.USER_DETAILS).pipe(share());
+        }
+
+        this._userDetails = <Promise<User>> this._userDetailsResponse.toPromise();
+        return this._userDetails;
+    }
 
     get accessToken(): string {
         return sessionStorage.getItem("token");
@@ -17,6 +35,7 @@ export class AuthService {
         sessionStorage.setItem("token", value);
     }
 
+    
     public isAuthenticated(): boolean {
         return !!this.accessToken;
     }
