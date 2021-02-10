@@ -53,13 +53,13 @@
     },
     "dashboard": {
       "name": "Nume",
-      "member": "Membru din",
+      "memberSince": "Membru din",
       "profile": "Profil",
       "contact": "Date de contact",
       "statistics": "Statistici",
       "phone": "Tel",
-      "totalCourses": "Cursuri totale",
-      "totalHours": "Ore totale"
+      "totalFinishedCourses": "Total cursuri finalizate",
+      "totalHoursFinishedCourses": "Total ore parcurse"
     }
   },
   "admin": {

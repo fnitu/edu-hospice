@@ -4,39 +4,37 @@ import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
 import { GLOBALS } from '../../core/globals';
 
-import {User} from '../../interfaces/user'
+import { User } from '../../interfaces/user';
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-    
-    private _userDetails: Promise<User>;
+  private _userDetails: Promise<User>;
 
-    private _userDetailsResponse: Observable<User>;
+  private _userDetailsResponse: Observable<User>;
 
-    constructor(private http:HttpClient){
-    }  
+  constructor(private http: HttpClient) {}
 
-    public get userDetails(){
-        debugger;
-        if (!this._userDetailsResponse){
-            this._userDetailsResponse = <Observable<User>> this.http.get(GLOBALS.DATA_URL.USER_DETAILS).pipe(share());
-        }
-
-        this._userDetails = <Promise<User>> this._userDetailsResponse.toPromise();
-        return this._userDetails;
+  public get userDetails() {
+    if (!this._userDetailsResponse) {
+      this._userDetailsResponse = <Observable<User>>(
+        this.http.get(GLOBALS.DATA_URL.USER_DETAILS).pipe(share())
+      );
     }
 
-    get accessToken(): string {
-        return sessionStorage.getItem("token");
-    }
+    this._userDetails = <Promise<User>>this._userDetailsResponse.toPromise();
+    return this._userDetails;
+  }
 
-    set accessToken(value: string) {
-        sessionStorage.setItem("token", value);
-    }
+  get accessToken(): string {
+    return sessionStorage.getItem('token');
+  }
 
-    
-    public isAuthenticated(): boolean {
-        return !!this.accessToken;
-    }
+  set accessToken(value: string) {
+    sessionStorage.setItem('token', value);
+  }
+
+  public isAuthenticated(): boolean {
+    return !!this.accessToken;
+  }
 }

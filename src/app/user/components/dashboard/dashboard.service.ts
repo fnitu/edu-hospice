@@ -4,26 +4,18 @@ import { Observable } from 'rxjs';
 import { GLOBALS } from '../../../shared/core/globals';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class DashboardService {
+  constructor(private http: HttpClient) {}
 
+  public fetchCourseTabs(): Observable<any> {
+    const url = '/assets/json/courseTabs.json';
 
-    constructor(private http: HttpClient) {
-    }
+    return this.http.get(url);
+  }
 
-    public fetchCourseTabs(): Observable<any>{
-        const url = '/assets/json/courseTabs.json'
-        
-        return this.http.get(url);
-    }
-
-    public fetchTabData(url): Observable<any> {
-        return this.http.get(url);
-    }
-
-    public getUserDetails() {
-      const url = GLOBALS.DATA_URL.USER_DETAILS;
-      return this.http.get(url);
-    }
+  public fetchTabData(url): Observable<any> {
+    return this.http.get(url);
+  }
 }

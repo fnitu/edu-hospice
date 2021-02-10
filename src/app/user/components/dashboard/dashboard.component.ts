@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Course } from '../../../shared/interfaces/course';
 import { DashboardService } from './dashboard.service';
 import { ROUTES } from '../../../shared/core/routes';
+import { AuthService } from 'src/app/shared/services/authentication/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +24,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private dashboardService: DashboardService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -39,9 +41,8 @@ export class DashboardComponent implements OnInit {
   }
 
   private userDetails() {
-    this.dashboardService.getUserDetails().subscribe((data: User) => {
+    this.authService.userDetails.then((data) => {
       this.user = data;
-      console.log(data);
     });
   }
 
