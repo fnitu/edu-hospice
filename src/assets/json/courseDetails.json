@@ -26,7 +26,7 @@
         }
       ],
       "type": "PDF",
-      "url": "/assets/Mobilizarea-pacientilor.pdf"
+      "url": "./assets/Mobilizarea-pacientilor.pdf"
     },
     {
       "id": 2,
@@ -100,7 +100,7 @@
         }
       ],
       "type": "PDF",
-      "url": "/assets/Mobilizarea-pacientilor.pdf"
+      "url": "./assets/Mobilizarea-pacientilor.pdf"
     },
     {
       "id": 6,
