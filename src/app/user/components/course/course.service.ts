@@ -10,7 +10,7 @@ export class CourseService {
   constructor(private http: HttpClient) { }
 
   public getCourseDetails(courseId): Observable<any> {
-    const url = '/assets/json/courseDetails.json';
+    const url = './assets/json/courseDetails.json';
 
     return this.http.get(url);
   }

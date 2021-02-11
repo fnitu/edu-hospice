@@ -31,7 +31,7 @@ export class CourseListComponent implements OnInit {
 
     private static getGridProperties(): GridPropertiesInterface {
         return {
-            url: '/assets/json/courseList.json'
+            url: './assets/json/courseList.json'
         }
     }
 }

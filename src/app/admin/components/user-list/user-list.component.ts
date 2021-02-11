@@ -72,7 +72,7 @@ export class UserListComponent implements OnInit {
 
     private static getGridProperties(): GridPropertiesInterface {
         return {
-            url: '/assets/json/userList.json'
+            url: './assets/json/userList.json'
         }
     }
 
