@@ -1,11 +1,17 @@
 <mat-tab-group>
     <mat-tab label="{{ 'admin.users.usersPendingAfterRegistration' | translate }}">
         <ng-template matTabContent>
-            <app-user-list></app-user-list>
+            <app-user-list [listType]="USER_LIST_TYPES.REGISTRATION"></app-user-list>
         </ng-template>
     </mat-tab>
 
     <mat-tab label="{{ 'admin.users.usersPendingAfterPayment' | translate }}">
+        <ng-template matTabContent>
+            <app-user-list [listType]="USER_LIST_TYPES.PAYMENT"></app-user-list>
+        </ng-template>
+    </mat-tab>
+
+    <mat-tab label="{{ 'admin.users.allUsers' | translate }}">
         <ng-template matTabContent>
             <app-user-list></app-user-list>
         </ng-template>

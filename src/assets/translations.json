@@ -72,6 +72,7 @@
     "users": {
       "usersPendingAfterRegistration": "Cursanți în așteptare după înregistrare",
       "usersPendingAfterPayment": "Cursanți în așteptare după plata cursului",
+      "allUsers": "Toți cursanții",
       "userList": {
         "columns": {
           "actions": "Acțiuni",
@@ -86,6 +87,16 @@
         "approveMessage": "Ești sigur că vrei să aprobi această înregistrare.",
         "rejectMessage": "Ești sigur că vrei să refuzi această înregistrare."
       }
+    }
+  },
+  "course": {
+    "status": {
+      "FINALIZED": "Finalizat",
+      "ONGOING": "Început",
+      "RECOMMENDED": "Recomandat",
+      "WAITING": "În așteptare",
+      "PAYMENT_PENDING": "În așteptare pentru confirmarea plății",
+      "REGISTRATION_PENDING": "În așteptare pentru confirmarea înregistrării"
     }
   }
 }
