@@ -13,12 +13,6 @@ import { AuthService } from 'src/app/shared/services/authentication/auth.service
   encapsulation: ViewEncapsulation.None,
 })
 export class DashboardComponent implements OnInit {
-  user = {
-    firstName: '',
-    lastName: '',
-    email: '',
-  } as User;
-
   public courseTabs;
   public types = ['recommended', 'finished'];
 
@@ -28,8 +22,17 @@ export class DashboardComponent implements OnInit {
     private authService: AuthService
   ) {}
 
+  user = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    memberSince: 0,
+    totalFinishedCourses: 0,
+    totalHoursFinishedCourses: 0,
+  } as User;
+
   ngOnInit(): void {
-    this.userDetails();
+    this.getCurrentUser();
     this.fetchCourseTabs();
   }
 
@@ -40,9 +43,11 @@ export class DashboardComponent implements OnInit {
     ]);
   }
 
-  private userDetails() {
-    this.authService.userDetails.then((data) => {
-      this.user = data;
+  private async getCurrentUser() {
+    await this.authService.userDetails.then((data: User) => {
+      this.dashboardService.userDetails(data.id).subscribe((data) => {
+        this.user = data;
+      });
     });
   }
 

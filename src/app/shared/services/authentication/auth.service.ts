@@ -18,7 +18,7 @@ export class AuthService {
   public get userDetails() {
     if (!this._userDetailsResponse) {
       this._userDetailsResponse = <Observable<User>>(
-        this.http.get(GLOBALS.DATA_URL.USER_DETAILS).pipe(share())
+        this.http.get(GLOBALS.DATA_URL.CURRENT_USER).pipe(share())
       );
     }
 
