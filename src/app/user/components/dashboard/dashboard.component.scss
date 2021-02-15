@@ -5,11 +5,23 @@
   width: 100%;
 
   .container {
+    margin: auto;
     margin-top: 60px;
     flex-flow: row wrap;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
     border-radius: 6px;
     background-color: #eeeeee50;
+    flex: 1 1 100%;
+    box-sizing: border-box;
+    place-content: center space-evenly;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    max-width: 80%;
+
+    .container-avatar {
+      flex: 1 1 100%;
+    }
 
     .avatar {
       max-width: 130px;
@@ -19,7 +31,7 @@
       overflow: hidden;
       padding: 0;
       box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
-      0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+        0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 
       img {
         width: 100%;
@@ -27,113 +39,124 @@
       }
     }
 
-    .user-profile-card {
-      font-size: 0.875rem;
-      position: relative;
-      display: flex;
+    .container-user {
       flex-direction: column;
-      min-width: 0;
-      border: 0;
-      margin-bottom: 30px;
-      margin-top: 30px;
-      padding: 0;
-      border-radius: 6px;
-      color: #333;
-      background: $cardBackgroundWhiteColor;
-      width: 100%;
-      box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
-      height: inherit;
+      box-sizing: border-box;
+      display: flex;
+      flex: 1 1 30%;
+      place-content: center;
+      align-items: center;
+      max-width: 30%;
 
-      .card-header {
-        margin: 0 15px;
-        padding: 0;
+      .user-profile-card {
+        font-size: 0.875rem;
         position: relative;
-        color: #fff;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        border: 0;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        padding: 0;
+        border-radius: 6px;
+        color: #333;
+        background: $cardBackgroundWhiteColor;
+        width: 100%;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+        height: inherit;
 
-        [class*="card-icon-"] {
-          border-radius: 3px;
-          background-color: #999;
-          padding: 15px;
-          float: left;
+        .card-header {
+          margin: 0 15px;
+          padding: 0;
           position: relative;
-          top: -20px;
-        }
+          color: #fff;
 
-        .card-icon-profile {
-          background: linear-gradient(
+          [class*="card-icon-"] {
+            border-radius: 3px;
+            background-color: #999;
+            padding: 15px;
+            float: left;
+            position: relative;
+            top: -20px;
+          }
+
+          .card-icon-profile {
+            background: linear-gradient(
               $gradientDegree,
               $themeColor2-light,
               $themeColor2-dark
-          );
-          box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
-          0 7px 10px -5px $themeColor2-light;
-        }
+            );
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+              0 7px 10px -5px $themeColor2-light;
+          }
 
-        .card-icon-contact {
-          background: linear-gradient(
+          .card-icon-contact {
+            background: linear-gradient(
               $gradientDegree,
               $themeColor4-light,
               $themeColor4-dark
-          );
-          box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
-          0 7px 10px -5px $themeColor4-light;
-        }
+            );
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+              0 7px 10px -5px $themeColor4-light;
+          }
 
-        .card-icon-stats {
-          background: linear-gradient(
+          .card-icon-stats {
+            background: linear-gradient(
               $gradientDegree,
               $themeColor5-light,
               $themeColor5-dark
-          );
-          box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
-          0 7px 10px -5px $themeColor5-light;
-        }
-
-        .card-icon-profile, .card-icon-contact, .card-icon-stats {
-          i {
-            width: 33px;
-            height: 33px;
-            text-align: center;
-            line-height: 33px;
+            );
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+              0 7px 10px -5px $themeColor5-light;
           }
-        }
 
-        &.card-header-icon, &.card-header-text {
+          .card-icon-profile,
+          .card-icon-contact,
+          .card-icon-stats {
+            i {
+              width: 33px;
+              height: 33px;
+              text-align: center;
+              line-height: 33px;
+            }
+          }
+
+          &.card-header-icon,
+          &.card-header-text {
+            .card-title {
+              margin-top: 15px;
+              color: #3c4858;
+            }
+          }
+
           .card-title {
-            margin-top: 15px;
-            color: #3c4858;
+            margin-bottom: 3px;
           }
         }
 
-        .card-title {
-          margin-bottom: 3px;
+        .mat-card-header-text {
+          order: 1;
         }
-      }
 
-      .mat-card-header-text {
-        order: 1;
-      }
+        .card-body {
+          padding: 0.9375rem 20px;
+          position: relative;
+          flex: 1 1 auto;
+        }
 
-      .card-body {
-        padding: 0.9375rem 20px;
-        position: relative;
-        flex: 1 1 auto;
-      }
-
-      .card-body > p {
-        margin: 0 0 3px !important;
+        .card-body > p {
+          margin: 0 0 3px !important;
+        }
       }
     }
   }
 }
-
 
 .dashboard {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 
   .mat-tab-group {
     width: 100%;
@@ -144,7 +167,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: hsla(0, 0%, 93.3%, .31);
+      background: hsla(0, 0%, 93.3%, 0.31);
 
       .tabs-container.usertabsContainer {
         width: 80%;
@@ -156,9 +179,8 @@
           display: flex;
           justify-content: center;
           flex-wrap: wrap;
-          background: hsla(0, 0%, 93.3%, .31);
+          background: hsla(0, 0%, 93.3%, 0.31);
           padding-top: 25px;
-
 
           .card-box {
             flex: 1 1 30%;
@@ -172,7 +194,6 @@
           }
         }
       }
-
     }
 
     .mat-tab-header {
@@ -206,7 +227,7 @@
               font-size: 110%;
 
               &:after {
-                content: '';
+                content: "";
                 display: block;
                 position: absolute;
                 width: 100%;
@@ -222,7 +243,6 @@
     }
   }
 }
-
 
 .mat-ink-bar {
   display: none !important;
