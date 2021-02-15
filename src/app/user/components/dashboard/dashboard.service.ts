@@ -18,7 +18,7 @@ export class DashboardService {
   ) {}
 
   public fetchCourseTabs(): Observable<any> {
-    const url = '/assets/json/courseTabs.json';
+    const url = './assets/json/courseTabs.json';
 
     return this.http.get(url);
   }

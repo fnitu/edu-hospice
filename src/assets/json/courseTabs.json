@@ -2,19 +2,19 @@
 
     {
         "name": "Începute",
-        "link": "/assets/json/homeCourses.json"
+        "link": "./assets/json/homeCourses.json"
     },
     {
         "name": "În așteptare",
-        "link": "/assets/json/homeCourses.json"
+        "link": "./assets/json/homeCourses.json"
     },
     {
         "name": "Finalizate",
-        "link": "/assets/json/homeCourses.json"
+        "link": "./assets/json/homeCourses.json"
     },
     {
         "name": "Recomandate",
-        "link": "/assets/json/homeCourses.json"
+        "link": "./assets/json/homeCourses.json"
     }
 
 ]

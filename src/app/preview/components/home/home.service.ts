@@ -11,7 +11,7 @@ export class HomeService {
   }
 
   public getCourses() {
-    const url = '/assets/json/homeCourses.json';
+    const url = './assets/json/homeCourses.json';
     return this.http.get(url);
   }
 }

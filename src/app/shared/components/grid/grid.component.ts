@@ -32,7 +32,7 @@ export class GridComponent implements OnInit {
     private getDefaultGridOptions() {
         return {
             defaultColDef: {
-                sortable: false, //disabled by default because not working properly
+                sortable: true,
                 filter: false,
                 suppressMenu: true,
                 unSortIcon: true,
@@ -49,7 +49,6 @@ export class GridComponent implements OnInit {
             suppressContextMenu: true,
             suppressMenuHide: true,
 
-            rowModelType: 'infinite',
             paginationPageSize: 20,
             cacheOverflowSize: 2,
             maxConcurrentDatasourceRequests: 1,
@@ -75,29 +74,8 @@ export class GridComponent implements OnInit {
      * @param params
      */
     public onGridReadyHandler(params) {
-        const dataSource = {
-            rowCount: null,
-            getRows: (getRowsParams) => this.getRowsHandler(getRowsParams)
-        }
-
-        this.gridOptions.api.setDatasource(dataSource);
-    }
-
-    /**
-     * Get rows handler that makes the http request
-     * @param params
-     */
-    private getRowsHandler(params) {
         this.gridService.getData(this.gridProperties.url).subscribe((response: []) => {
-            var rowsThisPage = response.slice(params.startRow, params.endRow);
-            // if on or after the last page, work out the last row.
-            var lastRow = -1;
-            if (response.length <= params.endRow) {
-                lastRow = response.length;
-            }
-            // call the success callback
-            params.successCallback(rowsThisPage, lastRow);
-
+            params.api.setRowData(response);
         });
     }
 

@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { GridPropertiesInterface } from "../../../shared/components/grid/grid-properties.interface";
 import { CustomTranslateService } from "../../../shared/services/custom-translate/custom-translate.service";
 import { ConfirmationDialogService } from "../../../shared/components/confirmation-dialog/confirmation-dialog.service";
+import { GLOBALS } from "../../../shared/core/globals";
 
 @Component({
     selector: 'app-user-list',
@@ -15,6 +16,11 @@ export class UserListComponent implements OnInit {
     public gridProperties: GridPropertiesInterface;
     public gridColumns: any[];
 
+    public readonly USER_LIST_TYPES = {
+        PAYMENT: "payment", // waiting after course payment
+        REGISTRATION: "registration" // waiting after course registration
+    };
+
     constructor(private customTranslateService: CustomTranslateService,
                 private confirmationDialogService: ConfirmationDialogService) {
     }
@@ -22,35 +28,42 @@ export class UserListComponent implements OnInit {
     ngOnInit(): void {
         this.gridColumns = this.getGridColumns();
 
-        this.gridProperties = UserListComponent.getGridProperties();
+        this.gridProperties = this.getGridProperties();
     }
 
     private getGridColumns() {
-        return [
-            {
-                headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.actions"),
-                field: "actions",
-                cellRenderer: "rowActionsCellRenderer",
-                maxWidth: 120,
-                minWidth: 120,
-                cellRendererParams: {
-                    actions: [
-                        {
-                            label: this.customTranslateService.getTranslation("general.approve"),
-                            icon: "verified",
-                            cls: "action-green",
-                            handler: (params) => this.approveRowActionHandler(params)
-                        },
-                        {
-                            label: this.customTranslateService.getTranslation("general.reject"),
-                            icon: "block",
-                            cls: "action-red",
-                            handler: (params) => this.rejectRowActionHandler(params)
-                        }
-                    ]
-                },
-                sortable: false
-            },
+        let gridColumns = [];
+
+        if (this.listType === this.USER_LIST_TYPES.REGISTRATION || this.listType === this.USER_LIST_TYPES.PAYMENT) {
+            gridColumns.push(
+                {
+                    headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.actions"),
+                    field: "actions",
+                    cellRenderer: "rowActionsCellRenderer",
+                    maxWidth: 120,
+                    minWidth: 120,
+                    cellRendererParams: {
+                        actions: [
+                            {
+                                label: this.customTranslateService.getTranslation("general.approve"),
+                                icon: "verified",
+                                cls: "action-green",
+                                handler: (params) => this.approveRowActionHandler(params)
+                            },
+                            {
+                                label: this.customTranslateService.getTranslation("general.reject"),
+                                icon: "block",
+                                cls: "action-red",
+                                handler: (params) => this.rejectRowActionHandler(params)
+                            }
+                        ]
+                    },
+                    sortable: false
+                }
+            );
+        }
+
+        gridColumns.push(
             {
                 headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.firstName"),
                 field: 'firstName'
@@ -65,15 +78,40 @@ export class UserListComponent implements OnInit {
             },
             {
                 headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.status"),
+                cellRenderer: (data) => {
+                    return this.customTranslateService.getTranslation(`course.status.${data.value}`)
+                },
+                width: 300,
                 field: 'status'
             }
-        ]
+        );
+
+
+        return gridColumns;
     }
 
-    private static getGridProperties(): GridPropertiesInterface {
+    private getGridProperties(): GridPropertiesInterface {
         return {
-            url: '/assets/json/userList.json'
+            url: this.getUrl()
+        };
+    }
+
+    private getUrl(): string {
+        let url = '';
+
+        switch (this.listType) {
+            case this.USER_LIST_TYPES.PAYMENT:
+                url = GLOBALS.DATA_URL.USER_LIST_WAITING_FOR_PAYMENT;
+                break;
+            case this.USER_LIST_TYPES.REGISTRATION:
+                url = GLOBALS.DATA_URL.USER_LIST_WAITING_FOR_REGISTRATION;
+                break;
+            default:
+                url = GLOBALS.DATA_URL.USER_LIST;
+                break;
         }
+
+        return url;
     }
 
     private approveRowActionHandler(params) {
