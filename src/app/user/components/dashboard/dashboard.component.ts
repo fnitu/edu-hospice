@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit {
 
   public fetchCourseTabs() {
     let url = GLOBALS.DATA_URL.COURSES_TABS;
-debugger;
+
     const params = {
       "{userId}": this.user.id
     };
