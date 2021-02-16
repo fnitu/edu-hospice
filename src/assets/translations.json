@@ -67,7 +67,13 @@
       "coursesCardTitle": "Cursuri",
       "numberOfCourses": "Număr cursuri",
       "usersCardTitle": "Cursanți",
-      "numberOfUsers": "Număr cursanți"
+      "numberOfUsers": "Număr cursanți",
+      "pendingUsersForRegistration": "Cereri de înscriere",
+      "paymentConfirmation": "Confirmări de plată",
+      "availableCoursesList": "Listă cursuri disponibile",
+      "listOfAllUsers": "Listă cu toti cursanții",
+      "validationAndPaymentRegistration": "Validare criterii cursant Înregistrare plată",
+      "courseAccessWithExpirationDateSpecified": "Acces la curs cu specificare dată expirare"
     },
     "users": {
       "usersPendingAfterRegistration": "Cursanți în așteptare după înregistrare",
