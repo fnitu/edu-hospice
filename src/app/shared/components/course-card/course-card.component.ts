@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Course } from '../../interfaces/course';
+import {GLOBALS} from '../../core/globals';
 
 @Component({
   selector: 'app-course-card',
@@ -17,6 +18,7 @@ export class CourseCardComponent implements OnInit {
 
   public defaultElevation: number = 2;
   public raisedElevation: number = 16;
+  public DEFAULT_COURSE_IMG: string = GLOBALS.DATA_URL.DEFAULT_COURSE_IMG;
 
 
   constructor() {

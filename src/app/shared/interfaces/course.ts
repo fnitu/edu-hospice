@@ -8,7 +8,7 @@ export interface Course {
   'name': string;
   'shortDescription': string;
   'startDate': string;
-  'percentage': number;
+  'progress': number;
   'chapters': Array<Chapter>;
   'courseType': string;
 }

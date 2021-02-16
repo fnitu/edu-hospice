@@ -5,6 +5,8 @@ import { Course } from '../../../shared/interfaces/course';
 import { DashboardService } from './dashboard.service';
 import { ROUTES } from '../../../shared/core/routes';
 import { AuthService } from 'src/app/shared/services/authentication/auth.service';
+import {BASE_URL, GLOBALS} from '../../../shared/core/globals';
+import {PlaceholderFormatService} from '../../../shared/services/format/placeholder-format.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,11 +18,10 @@ export class DashboardComponent implements OnInit {
   public courseTabs;
   public types = ['recommended', 'finished'];
 
-  constructor(
-    private dashboardService: DashboardService,
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  constructor(private dashboardService: DashboardService,
+              private router: Router,
+              private authService: AuthService,
+              private placeholderFormat: PlaceholderFormatService) {}
 
   user = {
     firstName: '',
@@ -33,7 +34,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurrentUser();
-    this.fetchCourseTabs();
   }
 
   public goToCourse(course: Course) {
@@ -45,31 +45,52 @@ export class DashboardComponent implements OnInit {
 
   private async getCurrentUser() {
     await this.authService.userDetails.then((data: User) => {
-      this.dashboardService.userDetails(data.id).subscribe((data) => {
-        this.user = data;
+      let url = GLOBALS.DATA_URL.USER_DETAILS_URL;
+
+      const params = {
+        "{id}": data.id
+      };
+
+      url = this.placeholderFormat.stringFormat(url, params);
+
+      this.dashboardService.userDetails(url).subscribe((user) => {
+        this.user = user;
+
+        this.fetchCourseTabs();
       });
     });
   }
 
   public fetchCourseTabs() {
-    this.dashboardService.fetchCourseTabs().subscribe((response) => {
+    let url = GLOBALS.DATA_URL.COURSES_TABS;
+debugger;
+    const params = {
+      "{userId}": this.user.id
+    };
+
+    url = this.placeholderFormat.stringFormat(url, params);
+    // url = './assets/json/courseTabs.json';
+
+    this.dashboardService.fetchCourseTabs(url).subscribe((response) => {
       this.courseTabs = response;
     });
   }
 
   private getTabData(tab) {
-    this.dashboardService
-      .fetchTabData(tab.link)
-      .subscribe((response: Array<Course>) => {
-        tab.courseList = response;
-      });
+    if (!tab.courseList){
+      const url = BASE_URL + tab.link;
+      // const url = tab.link;
+
+      this.dashboardService
+        .fetchTabData(url)
+        .subscribe((response: Array<Course>) => {
+          tab.courseList = response;
+        });
+    }
   }
 
   public selectedTabChange(tab) {
-    let currentTab = this.courseTabs[tab.index];
-
-    // empty previous list
-    currentTab.courseList = [];
+    const currentTab = this.courseTabs[tab.index];
 
     this.getTabData(currentTab);
   }

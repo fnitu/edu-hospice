@@ -1,7 +1,7 @@
 @import "../../../../styles/scss/imports";
 
 .mat-card.course-card {
-  max-width: 400px;
+  width: 100%;
   cursor: pointer;
   border: 1px solid $cardBorderColor;
   padding: 16px 0 0;
@@ -28,6 +28,7 @@
 
   .mat-card-header {
     flex-direction: column-reverse;
+    padding: 0 16px;
 
     .card-header-image {
       position: relative;

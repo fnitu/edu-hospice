@@ -12,7 +12,7 @@
     "startDate": "04.05.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
     "updatedBy": 0,
-    "percentage": 15,
+    "progress": 15,
     "courseType": "Curs teoretic"
   },
   {
@@ -28,7 +28,7 @@
     "startDate": "08.05.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
     "updatedBy": 0,
-    "percentage": 20,
+    "progress": 20,
     "courseType": "Curs teoretic"
   },
   {
@@ -44,7 +44,7 @@
     "startDate": "21.03.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
     "updatedBy": 0,
-    "percentage": 0,
+    "progress": 0,
     "courseType": "Curs teoretic"
   },
   {
@@ -60,7 +60,7 @@
     "startDate": "01.02.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
     "updatedBy": 0,
-    "percentage": 90,
+    "progress": 90,
     "courseType": "Curs interactiv"
   },
   {
@@ -76,7 +76,7 @@
     "startDate": "01.02.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
     "updatedBy": 0,
-    "percentage": 0,
+    "progress": 0,
     "courseType": "Curs interactiv"
   },
   {
@@ -92,7 +92,7 @@
     "startDate": "01.02.2020",
     "updatedAt": "2020-05-09T22:04:44.370Z",
     "updatedBy": 0,
-    "percentage": 0,
+    "progress": 0,
     "courseType": "Curs interactiv"
   }
   ]
