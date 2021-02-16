@@ -22,7 +22,7 @@
     }
   }
 
-  margin-bottom: 15px;
+  
 }
 
 .courseContentCard {
@@ -55,3 +55,78 @@
     }
   }
 }
+
+
+// .container{
+//   display: flex;
+//   justify-content:space-evenly;
+//   flex-wrap: wrap;
+//   position: relative;
+//   margin: 10px;
+
+//   .small-card{
+//     width: 210px;
+//     height: 90px;
+//     cursor: pointer;
+//     margin: 5px;
+//     border: 1px solid $cardBorderColor;
+    
+//     .mat-button{
+//       background-color: $navBarBackgroundColor;
+//       color: white;
+//       margin: 0;
+//       position: absolute;
+//       top: 80%;
+//       left: 8%;
+//       transform: translateY(-50%);
+      
+//     }
+//   }
+// }
+
+// .mat-icon.material-icons{
+//   font-size: 45px;
+// }
+
+mat-sidenav-container{
+  height:100%
+}
+
+mat-sidenav{
+  width: 350px;
+}
+
+mat-sidenav, mat-sidenav-content{
+  padding: 16px;
+}
+
+.menu-side.material-icons{
+  font-size: 35px;
+  padding-top: 7px;
+  color: white;
+}
+
+.mat-list-base .mat-list-item{
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+.hidden{
+  display: none;
+}
+
+.example-tree-invisible {
+  display: none;
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+.content-toolbar{
+  width: 350px;
+}
+

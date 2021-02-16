@@ -1,0 +1,45 @@
+[{
+        "id": 1,
+        "hours": 12,
+        "image": "https://studiipaliative.odoo.com/web/image/slide.channel/9/image_1024?unique=6912cb7",
+        "name": "Introducere în îngrijiri paliative",
+        "shortDescription": "Foarte probabil că majoritatea dintre noi am fost confruntaţi, în practica clinică sau în viaţa de familie, cu nevoia de a îngriji un pacient suferind de o boală incurabilă avansată.",
+        "section":[
+            {
+                "id": 1,
+                "name": "Prezentare",
+                "expanded": false,
+                "disabled": false,
+                "type": "PDF",
+                "url": "/assets/Mobilizarea-pacientilor.pdf",
+                "resources":[
+                    {
+                      "id":1,
+                      "name": "Resursa suplimentara",
+                      "url": "https://www.google.com"
+                    }
+                ]
+            }, {
+                "id": 2,
+                "name": "Resurse suplimentare",
+                "expanded": false,
+                "disabled": false,
+                "type": "LINK",
+                "url": "",
+                "resources": [
+                    {
+                      "id": 1,
+                      "name": "Resursa suplimentara 1",
+                      "url": "https://www.google.com"
+                    },
+                    {
+                      "id": 1,
+                      "name": "Resursa suplimentara 1",
+                      "url": "https://www.google.com"
+                    }
+                ]
+            }
+        ]
+}]
+
+

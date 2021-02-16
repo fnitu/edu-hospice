@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSidenavModule} from '@angular/material/sidenav';
+import {MatTreeModule} from '@angular/material/tree';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from "@angular/material/dialog";
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -70,6 +72,8 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
         MatExpansionModule,
         MatListModule,
         MatSnackBarModule,
+        MatSidenavModule,
+        MatTreeModule,
         TranslateModule,
         AgGridModule.withComponents([RowActionsCellRendererComponent]),
         FormlyModule.forRoot(),
@@ -98,6 +102,8 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
         MatExpansionModule,
         MatListModule,
         MatSnackBarModule,
+        MatSidenavModule,
+        MatTreeModule,
         CourseCardComponent,
         TranslateModule,
         GridComponent,
