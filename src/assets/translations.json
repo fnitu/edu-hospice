@@ -59,7 +59,13 @@
       "statistics": "Statistici",
       "phone": "Tel",
       "totalFinishedCourses": "Total cursuri finalizate",
-      "totalHoursFinishedCourses": "Total ore parcurse"
+      "totalHoursFinishedCourses": "Total ore parcurse",
+      "tabs": {
+        "pending": "În așteptare",
+        "ongoing": "Începute",
+        "finalized": "Finalizate",
+        "recommended": "Recomandate"
+      }
     }
   },
   "admin": {
