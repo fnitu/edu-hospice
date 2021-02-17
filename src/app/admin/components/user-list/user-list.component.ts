@@ -3,6 +3,7 @@ import { GridPropertiesInterface } from "../../../shared/components/grid/grid-pr
 import { CustomTranslateService } from "../../../shared/services/custom-translate/custom-translate.service";
 import { ConfirmationDialogService } from "../../../shared/components/confirmation-dialog/confirmation-dialog.service";
 import { GLOBALS } from "../../../shared/core/globals";
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'app-user-list',
@@ -12,6 +13,7 @@ import { GLOBALS } from "../../../shared/core/globals";
 })
 export class UserListComponent implements OnInit {
     @Input() listType: string;
+    public userListType:string;
 
     public gridProperties: GridPropertiesInterface;
     public gridColumns: any[];
@@ -22,10 +24,17 @@ export class UserListComponent implements OnInit {
     };
 
     constructor(private customTranslateService: CustomTranslateService,
-                private confirmationDialogService: ConfirmationDialogService) {
+                private confirmationDialogService: ConfirmationDialogService,
+                private route:ActivatedRoute) {
     }
 
     ngOnInit(): void {
+        this.userListType = this.route.snapshot.params.listType;
+        this.route.params.subscribe(
+            (params:Params) => {
+                this.userListType = params.listType;
+            }
+        );
         this.gridColumns = this.getGridColumns();
 
         this.gridProperties = this.getGridProperties();

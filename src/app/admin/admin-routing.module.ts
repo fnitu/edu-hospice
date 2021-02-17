@@ -28,6 +28,10 @@ const routes: Routes = [
       {
         path: ROUTES.ADMIN.USERS,
         component: UsersComponent
+      },
+      {
+        path: `${ROUTES.ADMIN.USERS}/:listType`,
+        component: UsersComponent
       }
     ]
   }
