@@ -21,7 +21,7 @@ export class CourseComponent implements OnInit {
     public courseDetails: Course = <Course>{};
     private courseIdTudor: string;
     public courseStructure: CourseTudor = <CourseTudor>{};
-    treeControl = new NestedTreeControl<CourseTudor>(node => node.section);
+    // treeControl = new NestedTreeControl<CourseTudor>(node => node.section);
     dataSource = new MatTreeNestedDataSource<CourseTudor>();
     
     TREE_DATA: CourseTudor[];
