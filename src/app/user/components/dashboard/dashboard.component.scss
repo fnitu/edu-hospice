@@ -169,7 +169,7 @@
       align-items: center;
       background: hsla(0, 0%, 93.3%, 0.31);
 
-      .tabs-container.usertabsContainer {
+      .tabs-container.user-tabs-container {
         width: 80%;
         padding: 0;
         margin: 50px 0;
@@ -177,19 +177,19 @@
 
         .app-course-wrapper {
           display: flex;
-          justify-content: center;
           flex-wrap: wrap;
           background: hsla(0, 0%, 93.3%, 0.31);
           padding-top: 25px;
 
           .card-box {
-            flex: 1 1 30%;
+            width: 30%;
             margin: 20px;
             display: flex;
 
             .app-course-card {
               display: flex;
               border-radius: 6px;
+              width: 100%;
             }
           }
         }

@@ -92,11 +92,10 @@
 
   <mat-tab-group
     class="mat-tab-group"
-    (selectedTabChange)="selectedTabChange($event)"
-  >
+    (selectedTabChange)="selectedTabChange($event)">
     <mat-tab *ngFor="let tab of courseTabs" label="{{ tab.name }}">
       <ng-template matTabContent>
-        <mat-card class="tabs-container usertabsContainer mat-elevation-z">
+        <mat-card class="tabs-container user-tabs-container mat-elevation-z">
           <mat-card-content>
             <div class="app-course-wrapper">
               <div class="card-box" *ngFor="let course of tab.courseList">

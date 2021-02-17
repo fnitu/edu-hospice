@@ -2,7 +2,7 @@
 <ng-template #cardContent>
   <mat-card-header >
     <div data-header-animation="true" class="card-header-image img"
-         [ngStyle]="{'background-image': 'url(' + course.image + ')'}">
+         [ngStyle]="{'background-image': 'url(' + (course.image? course.image: DEFAULT_COURSE_IMG) + ')'}">
     </div>
     <mat-card-title>{{course.name}}</mat-card-title>
   </mat-card-header>
@@ -13,14 +13,14 @@
       <span class="label label-3" *ngIf="types.indexOf('finished') > -1">Finalizat</span>
     </div>
     <div class="course-description">
-      {{course.shortDescription}}
+      {{course.description}}
     </div>
   </mat-card-content>
-  <div class="progress-bar" *ngIf="course.percentage !== undefined && !hideProgressbar">
-    <div class="percent">Progress: {{course.percentage}}%</div>
-    <mat-progress-bar mode="determinate" value="{{course.percentage}}"></mat-progress-bar>
+  <div class="progress-bar" *ngIf="course.progress !== undefined && !hideProgressbar">
+    <div class="percent">Progress: {{course.progress}}%</div>
+    <mat-progress-bar mode="determinate" value="{{course.progress}}"></mat-progress-bar>
   </div>
-  <div class="card-footer-{{ course.courseType.includes('teoretic') ? 'green' : 'pink' }}">
+  <div class="card-footer-{{ course.courseType?.includes('teoretic') ? 'green' : 'pink' }}">
     <div class="stats">
       <div class="card-category"><i class="material-icons">schedule</i></div>
       <div>{{ course.hours }} ore</div>

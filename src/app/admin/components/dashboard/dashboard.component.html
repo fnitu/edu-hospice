@@ -1,27 +1,63 @@
-<div class="wrapper">
-  <mat-card class="card" routerLink="{{courseListRoute}}">
-    <mat-card-header>
-      <mat-card-title>{{ "admin.dashboard.coursesCardTitle" | translate }}</mat-card-title>
-    </mat-card-header>
-    <mat-chip-list>
-      <mat-chip color="primary" selected>{{ "admin.dashboard.numberOfCourses" | translate }}</mat-chip>
-      <mat-chip color="accent" selected>{{courseHours}}</mat-chip>
-    </mat-chip-list>
-    <mat-card-content>
-      <mat-icon>folder_open</mat-icon>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="card" routerLink="{{usersRoute}}">
-    <mat-card-header>
-      <mat-card-title>{{ "admin.dashboard.usersCardTitle" | translate }}</mat-card-title>
-    </mat-card-header>
-    <mat-chip-list>
-      <mat-chip color="primary" selected>{{ "admin.dashboard.numberOfUsers" | translate }}</mat-chip>
-      <mat-chip color="accent" selected>{{studentsNumber}}</mat-chip>
-    </mat-chip-list>
-    <mat-card-content>
-      <mat-icon>perm_identity</mat-icon>
-    </mat-card-content>
-  </mat-card>
+<div class="container">
+  <div class="wrapper">
+    <mat-card class="card" routerLink="{{ usersRoute }}">
+      <div class="icon">
+        <mat-icon>menu_book </mat-icon>
+      </div>
+      <div class="text">
+        <mat-card-title>{{
+          "admin.dashboard.coursesCardTitle" | translate
+        }}</mat-card-title>
+        <mat-card-subtitle>
+          {{ "admin.dashboard.availableCoursesList" | translate }}
+        </mat-card-subtitle>
+        <mat-card-content> </mat-card-content>
+      </div>
+    </mat-card>
+    <mat-card class="card" routerLink="{{ usersRoute }}">
+      <div class="icon">
+        <mat-icon class="mat-icon-rounded">account_box</mat-icon>
+      </div>
+      <div class="text">
+        <mat-card-title>
+          {{ "admin.dashboard.usersCardTitle" | translate }}
+        </mat-card-title>
+        <mat-card-subtitle>
+          {{ "admin.dashboard.listOfAllUsers" | translate }}
+        </mat-card-subtitle>
+        <mat-card-content> </mat-card-content>
+      </div>
+    </mat-card>
+    <mat-card class="card" routerLink="{{ usersRoute }}">
+      <div class="icon">
+        <mat-icon>format_list_bulleted</mat-icon>
+      </div>
+      <div class="text">
+        <mat-card-title>{{
+          "admin.dashboard.pendingUsersForRegistration" | translate
+        }}</mat-card-title>
+        <mat-card-subtitle>
+          {{ "admin.dashboard.validationAndPaymentRegistration" | translate }}
+        </mat-card-subtitle>
+        <mat-card-content> 5 cereri noi </mat-card-content>
+      </div>
+    </mat-card>
+    <mat-card class="card" routerLink="{{ usersRoute }}">
+      <div class="icon">
+        <mat-icon>playlist_add_check</mat-icon>
+      </div>
+      <div class="text">
+        <mat-card-title>{{
+          "admin.dashboard.paymentConfirmation" | translate
+        }}</mat-card-title>
+        <mat-card-subtitle>
+          {{
+            "admin.dashboard.courseAccessWithExpirationDateSpecified"
+              | translate
+          }}
+        </mat-card-subtitle>
+        <mat-card-content> 2 confirmari noi </mat-card-content>
+      </div>
+    </mat-card>
+  </div>
 </div>

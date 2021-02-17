@@ -1,69 +1,58 @@
 @import "../../../../styles/scss/imports";
 
-.wrapper {
+.container {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  .card {
-    width: 200px;
-    height: 260px;
-    cursor: pointer;
-    margin: 60px;
-    border: 1px solid $cardBorderColor;
+  .wrapper {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 
-    .mat-card-header {
-      .mat-card-header-text {
-        margin: 0;
-        width: 100%;
-        text-align: left;
-
-        .mat-card-title {
-          line-height: 1.2em;
-          text-align: center;
-        }
-      }
-    }
-
-    .mat-chip-list {
-      .mat-chip-list-wrapper {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        margin: 0 0 6px 0;
-
-        .mat-chip {
-          border-radius: 6px;
-          padding: 6px;
-          cursor: pointer;
-
-          &.mat-standard-chip.mat-chip-selected {
-            &.mat-primary {
-              background-color: $cardLabelCourseTypeColor;
-            }
-
-            &.mat-accent {
-              background-color: $cardLabelHourColor;
-            }
-          }
-        }
-      }
-    }
-
-    .mat-card-content {
-      height: 100px;
+    .card {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      color: $loginButtonColor;
-      user-select: none;
+      width: 300px;
+      height: 100px;
+      cursor: pointer;
+      margin: 20px;
+      border: 1px solid $cardBorderColor;
+      border-radius: 5px;
+      background-color: $cardBackgroundColor;
 
-      .mat-icon {
-        font-size: 230px;
-        width: 230px;
-        height: 150px;
+      .icon {
+        user-select: none;
+        flex: 1;
+        .mat-icon {
+          margin-right: 10px;
+          font-size: 90px;
+          width: 100%;
+          height: 100%;
+          color: grey;
+        }
+      }
+      .text {
+        flex: 3;
+        width: 80%;
+        .mat-card-title {
+          text-align: left;
+          line-height: 1em;
+          font-size: 18px;
+          margin-bottom: 15px;
+        }
+        .mat-card-subtitle {
+          text-align: left;
+        }
+        .mat-card-content {
+          width: 80%;
+          height: 20px;
+          color: $actionGreen;
+          text-align: right;
+          font-weight: bold;
+        }
       }
     }
   }
