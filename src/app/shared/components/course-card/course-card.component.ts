@@ -18,7 +18,7 @@ export class CourseCardComponent implements OnInit {
 
   public defaultElevation: number = 2;
   public raisedElevation: number = 16;
-  public DEFAULT_COURSE_IMG: string = GLOBALS.DATA_URL.DEFAULT_COURSE_IMG;
+  public DEFAULT_COURSE_IMG: string = GLOBALS.DEFAULT_COURSE_IMG;
 
 
   constructor() {

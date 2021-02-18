@@ -5,7 +5,8 @@ import { Course } from '../../../shared/interfaces/course';
 import { DashboardService } from './dashboard.service';
 import { ROUTES } from '../../../shared/core/routes';
 import { AuthService } from 'src/app/shared/services/authentication/auth.service';
-import {BASE_URL, GLOBALS} from '../../../shared/core/globals';
+import { GLOBALS} from '../../../shared/core/globals';
+import { environment } from "../../../../environments/environment";
 import {PlaceholderFormatService} from '../../../shared/services/format/placeholder-format.service';
 
 @Component({
@@ -69,7 +70,6 @@ export class DashboardComponent implements OnInit {
     };
 
     url = this.placeholderFormat.stringFormat(url, params);
-    // url = './assets/json/courseTabs.json';
 
     this.dashboardService.fetchCourseTabs(url).subscribe((response) => {
       this.courseTabs = response;
@@ -78,8 +78,7 @@ export class DashboardComponent implements OnInit {
 
   private getTabData(tab) {
     if (!tab.courseList){
-      const url = BASE_URL + tab.link;
-      // const url = tab.link;
+      const url = environment.BASE_URL + tab.link;
 
       this.dashboardService
         .fetchTabData(url)

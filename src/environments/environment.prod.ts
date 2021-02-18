@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  BASE_URL: 'http://86.121.249.150/edu-hospice'
 };
