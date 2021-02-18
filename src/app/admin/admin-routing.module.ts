@@ -26,10 +26,6 @@ const routes: Routes = [
         component: CourseListComponent
       },
       {
-        path: ROUTES.ADMIN.USERS,
-        component: UsersComponent
-      },
-      {
         path: `${ROUTES.ADMIN.USERS}/:listType`,
         component: UsersComponent
       }

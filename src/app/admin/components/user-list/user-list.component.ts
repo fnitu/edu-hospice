@@ -3,7 +3,7 @@ import { GridPropertiesInterface } from "../../../shared/components/grid/grid-pr
 import { CustomTranslateService } from "../../../shared/services/custom-translate/custom-translate.service";
 import { ConfirmationDialogService } from "../../../shared/components/confirmation-dialog/confirmation-dialog.service";
 import { GLOBALS } from "../../../shared/core/globals";
-import { ActivatedRoute, Params } from '@angular/router';
+import { UserListService } from "./user-list.service";
 
 @Component({
     selector: 'app-user-list',
@@ -13,28 +13,16 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class UserListComponent implements OnInit {
     @Input() listType: string;
-    public userListType:string;
 
     public gridProperties: GridPropertiesInterface;
     public gridColumns: any[];
 
-    public readonly USER_LIST_TYPES = {
-        PAYMENT: "payment", // waiting after course payment
-        REGISTRATION: "registration" // waiting after course registration
-    };
-
     constructor(private customTranslateService: CustomTranslateService,
                 private confirmationDialogService: ConfirmationDialogService,
-                private route:ActivatedRoute) {
+                private userListService: UserListService) {
     }
 
     ngOnInit(): void {
-        this.userListType = this.route.snapshot.params.listType;
-        this.route.params.subscribe(
-            (params:Params) => {
-                this.userListType = params.listType;
-            }
-        );
         this.gridColumns = this.getGridColumns();
 
         this.gridProperties = this.getGridProperties();
@@ -43,7 +31,7 @@ export class UserListComponent implements OnInit {
     private getGridColumns() {
         let gridColumns = [];
 
-        if (this.listType === this.USER_LIST_TYPES.REGISTRATION || this.listType === this.USER_LIST_TYPES.PAYMENT) {
+        if (this.listType === this.userListService.USER_LIST_TYPES.REGISTRATION || this.listType === this.userListService.USER_LIST_TYPES.PAYMENT) {
             gridColumns.push(
                 {
                     headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.actions"),
@@ -109,10 +97,10 @@ export class UserListComponent implements OnInit {
         let url = '';
 
         switch (this.listType) {
-            case this.USER_LIST_TYPES.PAYMENT:
+            case this.userListService.USER_LIST_TYPES.PAYMENT:
                 url = GLOBALS.DATA_URL.USER_LIST_WAITING_FOR_PAYMENT;
                 break;
-            case this.USER_LIST_TYPES.REGISTRATION:
+            case this.userListService.USER_LIST_TYPES.REGISTRATION:
                 url = GLOBALS.DATA_URL.USER_LIST_WAITING_FOR_REGISTRATION;
                 break;
             default:
