@@ -70,16 +70,16 @@
   },
   "admin": {
     "dashboard": {
-      "coursesCardTitle": "Cursuri",
+      "titleCourses": "Cursuri",
       "numberOfCourses": "Număr cursuri",
-      "usersCardTitle": "Cursanți",
+      "titleUsers": "Cursanți",
       "numberOfUsers": "Număr cursanți",
-      "pendingUsersForRegistration": "Cereri de înscriere",
-      "paymentConfirmation": "Confirmări de plată",
-      "availableCoursesList": "Listă cursuri disponibile",
-      "listOfAllUsers": "Listă cu toti cursanții",
-      "validationAndPaymentRegistration": "Validare criterii cursant Înregistrare plată",
-      "courseAccessWithExpirationDateSpecified": "Acces la curs cu specificare dată expirare"
+      "titleRegistration": "Cereri de înscriere",
+      "titlePayment": "Confirmări de plată",
+      "subtitleCoursesList": "Listă cursuri disponibile",
+      "subtitleUsers": "Listă cu toti cursanții",
+      "subtitlePayments": " Validare plată curs",
+      "subtitleRegistration": "Validare criterii cursant"
     },
     "users": {
       "usersPendingAfterRegistration": "Cursanți în așteptare după înregistrare",
