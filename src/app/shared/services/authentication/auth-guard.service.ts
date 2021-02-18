@@ -30,7 +30,7 @@ export class AuthGuardService implements CanActivate {
                 this.router.navigate([`${ROUTES.PREVIEW.MAIN_ROUTE}/${ROUTES.PREVIEW.LOGIN}/${encodeURIComponent(state.url)}`]);
                 resolve(false);
             }
-            this.authService.userDetails.then((data) => this.checkRole(route, data.role, authenticated, resolve));
+            this.authService.currentUserResponse.subscribe((data) => this.checkRole(route, data.role, authenticated, resolve));
         });        
       
         return canActivatePromise;

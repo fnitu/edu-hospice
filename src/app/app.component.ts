@@ -51,6 +51,7 @@ export class AppComponent implements OnInit {
             (response) => {
                 if (response.success) {
                     this.loginService.userDetails = null;
+                    this.authService.currentUserResponse = null;
 
                     this.authService.accessToken = '';
 

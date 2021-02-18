@@ -43,8 +43,9 @@ export class DashboardComponent implements OnInit {
     ]);
   }
 
-  private async getCurrentUser() {
-    await this.authService.userDetails.then((data: User) => {
+  private getCurrentUser() {
+    //   debugger;
+    this.authService.currentUserResponse.subscribe((data: User) => {
       let url = GLOBALS.DATA_URL.USER_DETAILS_URL;
 
       const params = {

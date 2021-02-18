@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { share } from 'rxjs/operators';
+import { ConnectableObservable } from 'rxjs';
+import { publishReplay, share } from 'rxjs/operators';
 import { GLOBALS } from '../../core/globals';
 
 import { User } from '../../interfaces/user';
@@ -9,22 +9,39 @@ import { User } from '../../interfaces/user';
   providedIn: 'root',
 })
 export class AuthService {
-  private _userDetails: Promise<User>;
+  private _currentUser: Promise<User>;
 
-  private _userDetailsResponse: Observable<User>;
+  private _currentUserResponse: ConnectableObservable<User>;
 
   constructor(private http: HttpClient) {}
 
-  public get userDetails() {
-    if (!this._userDetailsResponse) {
-      this._userDetailsResponse = <Observable<User>>(
+  public get currentUser() {
+    if (!this._currentUserResponse) {
+      this._currentUserResponse = <ConnectableObservable<User>>(
         this.http.get(GLOBALS.DATA_URL.CURRENT_USER).pipe(share())
       );
     }
 
-    this._userDetails = <Promise<User>>this._userDetailsResponse.toPromise();
-    return this._userDetails;
+    this._currentUser = <Promise<User>>this._currentUserResponse.toPromise();
+    return this._currentUser;
   }
+
+  public get currentUserResponse() {
+
+    if (!this._currentUserResponse) {
+
+    this._currentUserResponse = <ConnectableObservable<User>>(
+      this.http.get(GLOBALS.DATA_URL.CURRENT_USER).pipe(publishReplay())
+    );
+    this._currentUserResponse.connect();
+  }
+
+  return this._currentUserResponse;
+}
+
+public set currentUserResponse(currentUserResponse) {
+    this._currentUserResponse = currentUserResponse;
+}
 
   get accessToken(): string {
     return sessionStorage.getItem('token');
