@@ -93,7 +93,7 @@
   <mat-tab-group
     class="mat-tab-group"
     (selectedTabChange)="selectedTabChange($event)">
-    <mat-tab *ngFor="let tab of courseTabs" label="{{'user.dashboard.tabs.' + tab.name | translate}}">
+    <mat-tab *ngFor="let tab of courseTabs" label="{{tab.name | translate}}">
       <ng-template matTabContent>
         <mat-card class="tabs-container user-tabs-container mat-elevation-z">
           <mat-card-content>
