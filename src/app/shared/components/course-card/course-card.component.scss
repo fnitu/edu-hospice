@@ -95,13 +95,17 @@
       }
     }
 
-    .course-description {
+    .course-description, .course-short-description {
       text-align: left;
       color: #999;
       line-height: 1.5em;
       font: 400 14px/20px Roboto,Helvetica Neue,sans-serif;
       letter-spacing: normal;
       flex: 1 1 auto;
+    }
+
+    .course-short-description {
+      font-weight: bold;
     }
   }
 

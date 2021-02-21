@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HomeService } from './home.service';
 import { Course } from '../../../shared/interfaces/course';
+import {GLOBALS} from '../../../shared/core/globals';
 
 @Component({
     selector: 'app-home',
@@ -16,7 +17,10 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.homeService.getCourses().subscribe((response: Array<Course>) => {
+        // const url = './assets/json/homeCourses.json';
+        const url =  GLOBALS.DATA_URL.COURSES;
+
+        this.homeService.getCourses(url).subscribe((response: Array<Course>) => {
             this.courseList = response;
         });
     }

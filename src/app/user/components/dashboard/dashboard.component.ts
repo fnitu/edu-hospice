@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
 
   private getCurrentUser() {
     this.authService.currentUserResponse.subscribe((data: User) => {
-      let url = GLOBALS.DATA_URL.USER_DETAILS_URL;
+      let url = GLOBALS.DATA_URL.USER_DETAILS;
 
       const params = {
         "{id}": data.id

@@ -11,7 +11,8 @@ export const GLOBALS = {
         USER_LIST_WAITING_FOR_PAYMENT: `${environment.BASE_URL}/api/admin/users/courses/payment-pending`,
         USER_LIST: `${environment.BASE_URL}/api/admin/users/courses`,
         COURSES_TABS: `${environment.BASE_URL}/api/users/{userId}/courses/tabs`,
-        USER_DETAILS_URL: `${environment.BASE_URL}/api/users/{id}/details`
+        USER_DETAILS: `${environment.BASE_URL}/api/users/{id}/details`,
+        COURSES: `${environment.BASE_URL}/api/courses`
     },
     DEFAULT_COURSE_IMG: `https://www.hospice.ro/wp-content/themes/hospice/img/social-default.jpg`,
     NOTIFICATIONS: {

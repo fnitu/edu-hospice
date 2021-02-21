@@ -12,6 +12,9 @@
       <span class="label label-2" *ngIf="types.indexOf('recommended') > -1">Recomandat</span>
       <span class="label label-3" *ngIf="types.indexOf('finished') > -1">Finalizat</span>
     </div>
+    <div class="course-short-description">
+      {{course.shortDescription}}
+    </div>
     <div class="course-description">
       {{course.description}}
     </div>

@@ -10,8 +10,7 @@ export class HomeService {
   constructor(private http: HttpClient) {
   }
 
-  public getCourses() {
-    const url = './assets/json/homeCourses.json';
+  public getCourses(url) {
     return this.http.get(url);
   }
 }
