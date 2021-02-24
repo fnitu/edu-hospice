@@ -13,7 +13,7 @@
 
     <mat-tab label="{{ 'admin.users.allUsers' | translate }}">
         <ng-template matTabContent>
-            <app-user-list></app-user-list>
+            <app-user-list [listType]="userListService.USER_LIST_TYPES.ALL"></app-user-list>
         </ng-template>
     </mat-tab>
 </mat-tab-group>

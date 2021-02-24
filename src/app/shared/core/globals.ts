@@ -9,7 +9,7 @@ export const GLOBALS = {
         RESET_PASSWORD: `${environment.BASE_URL}/api/auth/reset-password`,
         USER_LIST_WAITING_FOR_REGISTRATION: `${environment.BASE_URL}/api/admin/users/courses/registration-pending`,
         USER_LIST_WAITING_FOR_PAYMENT: `${environment.BASE_URL}/api/admin/users/courses/payment-pending`,
-        USER_LIST: `${environment.BASE_URL}/api/admin/users/courses`,
+        USER_LIST: `${environment.BASE_URL}/api/admin/users/courses/stats`,
         COURSES_TABS: `${environment.BASE_URL}/api/users/{userId}/courses/tabs`,
         USER_DETAILS: `${environment.BASE_URL}/api/users/{id}/details`,
         COURSES: `${environment.BASE_URL}/api/courses`

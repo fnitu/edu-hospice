@@ -5,6 +5,12 @@ app-users {
   .mat-tab-group {
     flex: 1;
 
+    .mat-tab-header {
+      .mat-tab-label-active {
+        opacity: 1;
+      }
+    }
+
     .mat-tab-body-wrapper {
       flex: 1;
     }

@@ -31,7 +31,9 @@ export class UserListComponent implements OnInit {
     private getGridColumns() {
         let gridColumns = [];
 
-        if (this.listType === this.userListService.USER_LIST_TYPES.REGISTRATION || this.listType === this.userListService.USER_LIST_TYPES.PAYMENT) {
+        const allList = this.listType === this.userListService.USER_LIST_TYPES.ALL;
+
+        if (!allList) {
             gridColumns.push(
                 {
                     headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.actions"),
@@ -68,20 +70,37 @@ export class UserListComponent implements OnInit {
             {
                 headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.lastName"),
                 field: 'lastName'
-            },
-            {
-                headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.courseName"),
-                field: 'courseName'
-            },
-            {
-                headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.status"),
-                cellRenderer: (data) => {
-                    return this.customTranslateService.getTranslation(`course.status.${data.value}`)
-                },
-                width: 300,
-                field: 'status'
             }
         );
+
+        if (!allList) {
+            gridColumns.push(
+                {
+                    headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.courseName"),
+                    field: 'courseName'
+                },
+                {
+                    headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.status"),
+                    cellRenderer: (data) => {
+                        return this.customTranslateService.getTranslation(`course.status.${data.value}`)
+                    },
+                    width: 300,
+                    field: 'status'
+                }
+            );
+        } else {
+            gridColumns.push(
+                {
+                    field: 'ongoingCourses'
+                },
+                {
+                    field: 'pendingCourses'
+                },
+                {
+                    field: 'finalizedCourses'
+                }
+            );
+        }
 
 
         return gridColumns;
