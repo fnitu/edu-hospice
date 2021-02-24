@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // const url = './assets/json/homeCourses.json';
         const url =  GLOBALS.DATA_URL.COURSES;
 
         this.homeService.getCourses(url).subscribe((response: Array<Course>) => {

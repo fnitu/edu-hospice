@@ -1,4 +1,4 @@
-<mat-tab-group [selectedIndex]="selectedIndex">
+<mat-tab-group [selectedIndex]="selectedIndex" (selectedTabChange)="onTabChanged($event)">
     <mat-tab label="{{ 'admin.users.usersPendingAfterRegistration' | translate }}">
         <ng-template matTabContent>
             <app-user-list [listType]="userListService.USER_LIST_TYPES.REGISTRATION"></app-user-list>
