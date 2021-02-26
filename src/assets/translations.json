@@ -79,7 +79,12 @@
       "subtitleCoursesList": "Listă cursuri disponibile",
       "subtitleUsers": "Listă cu toti cursanții",
       "subtitlePayments": " Validare plată curs",
-      "subtitleRegistration": "Validare criterii cursant"
+      "subtitleRegistration": "Validare criterii cursant",
+      "statsAwaits": "în așteptare",
+      "statsRequest": "cerere",
+      "statsRequests": "cereri",
+      "statsPaymentConfirmation": "confirmare",
+      "statsPaymentConfirmations": "confirmări"
     },
     "users": {
       "usersPendingAfterRegistration": "Cursanți în așteptare după înregistrare",

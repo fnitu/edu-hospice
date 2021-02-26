@@ -41,9 +41,13 @@
         </mat-card-subtitle>
         <mat-card-content *ngIf="registrationPending">
           {{ registrationPending }}
-          <span *ngIf="registrationPending === 1">cerere</span>
-          <span *ngIf="registrationPending > 1">cereri</span>
-          în așteptare</mat-card-content
+          <span *ngIf="registrationPending === 1">{{
+            "admin.dashboard.statsRequest" | translate
+          }}</span>
+          <span *ngIf="registrationPending > 1">{{
+            "admin.dashboard.statsRequests" | translate
+          }}</span>
+          {{ "admin.dashboard.statsAwaits" | translate }}</mat-card-content
         >
       </div>
     </mat-card>
@@ -60,9 +64,13 @@
         </mat-card-subtitle>
         <mat-card-content *ngIf="paymentPending">
           {{ paymentPending }}
-          <span *ngIf="paymentPending === 1">confirmare</span>
-          <span *ngIf="paymentPending > 1">confirmări</span>
-          în așteptare
+          <span *ngIf="paymentPending === 1">{{
+            "admin.dashboard.statsPaymentConfirmation" | translate
+          }}</span>
+          <span *ngIf="paymentPending > 1">{{
+            "admin.dashboard.statsPaymentConfirmations" | translate
+          }}</span>
+          {{ "admin.dashboard.statsAwaits" | translate }}
         </mat-card-content>
       </div>
     </mat-card>

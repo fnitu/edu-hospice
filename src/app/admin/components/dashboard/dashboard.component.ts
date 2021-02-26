@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { DashboardService } from 'src/app/admin/components/dashboard/dashboard.service';
 import { UserListService } from '../user-list/user-list.service';
 import { ROUTES } from '../../../shared/core/routes';
 
@@ -19,13 +18,10 @@ export class DashboardComponent implements OnInit {
   public registrationPending: number;
   public paymentPending: number;
 
-  constructor(
-    private adminService: UserListService,
-    private dashboardService: DashboardService
-  ) {}
+  constructor(private adminService: UserListService) {}
 
   ngOnInit(): void {
-    this.dashboardService.getStatusInfo().subscribe((data) => {
+    this.adminService.getStatusInfo().subscribe((data) => {
       this.paymentPending = data.paymentPending;
       this.registrationPending = data.registrationPending;
     });
