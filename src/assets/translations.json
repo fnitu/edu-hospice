@@ -72,14 +72,14 @@
     "dashboard": {
       "titleCourses": "Cursuri",
       "numberOfCourses": "Număr cursuri",
-      "titleUsers": "Cursanți",
-      "numberOfUsers": "Număr cursanți",
+      "titleUsers": "Utilizatori",
+      "numberOfUsers": "Număr utilizatori",
       "titleRegistration": "Cereri de înscriere",
       "titlePayment": "Confirmări de plată",
       "subtitleCoursesList": "Listă cursuri disponibile",
-      "subtitleUsers": "Listă cu toti cursanții",
+      "subtitleUsers": "Listă cu toți utilizatorii",
       "subtitlePayments": " Validare plată curs",
-      "subtitleRegistration": "Validare criterii cursant",
+      "subtitleRegistration": "Validare criterii utilizator",
       "statsAwaits": "în așteptare",
       "statsRequest": "cerere",
       "statsRequests": "cereri",
@@ -87,9 +87,9 @@
       "statsPaymentConfirmations": "confirmări"
     },
     "users": {
-      "usersPendingAfterRegistration": "Cursanți în așteptare după înregistrare",
-      "usersPendingAfterPayment": "Cursanți în așteptare după plata cursului",
-      "allUsers": "Toți cursanții",
+      "usersPendingAfterRegistration": "Utilizatori în așteptare după înregistrare",
+      "usersPendingAfterPayment": "Utilizatori în așteptare după plata cursului",
+      "allUsers": "Toți utilizatorii",
       "userList": {
         "columns": {
           "actions": "Acțiuni",
