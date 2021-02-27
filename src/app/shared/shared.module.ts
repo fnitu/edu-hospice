@@ -42,7 +42,8 @@ import { RowActionsCellRendererComponent } from './components/grid/row-actions-c
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { GlobalMatDialogConfig } from "./constants/global-mat-dialog-config";
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
-// import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
+import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -53,7 +54,7 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
         RowActionsCellRendererComponent,
         ConfirmationDialogComponent,
         SnackBarComponent,
-        // TopToolbarComponent
+        TopToolbarComponent
     ],
     imports: [
         CommonModule,
@@ -82,8 +83,7 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
         FormlyModule.forRoot(),
         FormlyMaterialModule,
         MatTooltipModule,
-        // TopToolbarComponent,
-        
+        RouterModule
     ],
     exports: [
         CommonModule,
@@ -114,7 +114,8 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
         TranslateModule,
         GridComponent,
         FormlyModule,
-        FormlyMaterialModule
+        FormlyMaterialModule,
+        TopToolbarComponent
     ],
     providers: [
         {
