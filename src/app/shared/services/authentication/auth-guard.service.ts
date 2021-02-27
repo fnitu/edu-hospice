@@ -8,6 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { ROUTES } from "../../core/routes";
+import { GLOBALS } from '../../core/globals';
 
 @Injectable({
     providedIn: 'root',
@@ -39,8 +40,8 @@ export class AuthGuardService implements CanActivate {
 
     checkRole(route, role, authenticated, resolve) {
         const isAdmin = route.data.isAdmin;
-        const canAccess = (role === "ROLE_ADMIN" && isAdmin) || (role === "ROLE_USER" && !isAdmin);
-        const defaultRoute = role === "ROLE_ADMIN" ? ROUTES.ADMIN.MAIN_ROUTE : ROUTES.USER.MAIN_ROUTE;
+        const canAccess = (role === GLOBALS.ROLES.ADMIN && isAdmin) || (role === GLOBALS.ROLES.USER && !isAdmin);
+        const defaultRoute = role === GLOBALS.ROLES.ADMIN ? ROUTES.ADMIN.MAIN_ROUTE : ROUTES.USER.MAIN_ROUTE;
         if (authenticated && !canAccess) {
             this.router.navigate([defaultRoute])
             resolve(false);

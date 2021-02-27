@@ -22,4 +22,8 @@ export const GLOBALS = {
     INFO: 'INFO',
     DURATION_IN_SECONDS: 10,
   },
-};
+  ROLES: {
+    ADMIN:"ROLE_ADMIN",
+    USER: "ROLE_USER"
+  }
+}

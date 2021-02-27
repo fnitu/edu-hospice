@@ -35,12 +35,14 @@ import { FORMLY_CONFIG, FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { formlyValidationConfig } from './components/formly/formly-validation-config';
 import { CustomTranslateService } from './services/custom-translate/custom-translate.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import * as $ from 'jquery';
 import { RowActionsCellRendererComponent } from './components/grid/row-actions-cell-renderer/row-actions-cell-renderer.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { GlobalMatDialogConfig } from "./constants/global-mat-dialog-config";
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
+// import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +52,8 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
         GridComponent,
         RowActionsCellRendererComponent,
         ConfirmationDialogComponent,
-        SnackBarComponent
+        SnackBarComponent,
+        // TopToolbarComponent
     ],
     imports: [
         CommonModule,
@@ -77,7 +80,10 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
         TranslateModule,
         AgGridModule.withComponents([RowActionsCellRendererComponent]),
         FormlyModule.forRoot(),
-        FormlyMaterialModule
+        FormlyMaterialModule,
+        MatTooltipModule,
+        // TopToolbarComponent,
+        
     ],
     exports: [
         CommonModule,
