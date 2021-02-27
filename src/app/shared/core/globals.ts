@@ -19,5 +19,9 @@ export const GLOBALS = {
         ERROR: 'ERROR',
         INFO: 'INFO',
         DURATION_IN_SECONDS: 10
+    },
+    ROLES: {
+        ADMIN:"ROLE_ADMIN",
+        USER: "ROLE_USER"
     }
 };

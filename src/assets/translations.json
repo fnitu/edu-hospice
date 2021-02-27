@@ -110,5 +110,12 @@
       "PAYMENT_PENDING": "În așteptare pentru confirmarea plății",
       "REGISTRATION_PENDING": "În așteptare pentru confirmarea înregistrării"
     }
+  },
+  "topToolbar": {
+    "tooltips": {
+      "userDashboard": "Profil",
+      "adminDashboard": "Panou principal",
+      "logout": "Închidere sesiune"
+    }
   }
 }

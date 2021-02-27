@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+// import { Component, ViewEncapsulation } from '@angular/core';
 import { LoginService } from './preview/components/login/login.service';
 import { Router } from '@angular/router';
 import { AuthService } from './shared/services/authentication/auth.service';
@@ -7,6 +8,10 @@ import TranslationsJson from '../assets/translations.json';
 import { LoadingMaskService } from './shared/services/loading-mask/loading-mask.service';
 import { AppService } from './app.service';
 import { ROUTES } from "./shared/core/routes";
+import { GLOBALS } from './shared/core/globals';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+// import { TopToolbarComponent } from './shared/components/top-toolbar/top-toolbar.component';
 
 @Component({
     selector: 'app-root',
@@ -16,7 +21,8 @@ import { ROUTES } from "./shared/core/routes";
 })
 export class AppComponent implements OnInit {
     public previewRoute = ROUTES.PREVIEW.MAIN_ROUTE;
-    public loginRoute = `${ROUTES.PREVIEW.MAIN_ROUTE}/${ROUTES.PREVIEW.LOGIN}`
+    public loginRoute = `${ROUTES.PREVIEW.MAIN_ROUTE}/${ROUTES.PREVIEW.LOGIN}`;
+    public readonly GLOBALS = GLOBALS;
 
     constructor(private loginService: LoginService,
                 private router: Router,
@@ -31,6 +37,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
+       
     }
 
     ngAfterViewInit() {
@@ -60,4 +67,14 @@ export class AppComponent implements OnInit {
             }
         );
     }
+
+    public checkUserRole(userRole: string):  Observable<any>{
+        let checkUser$: Observable<any>;
+        checkUser$ = this.authService.currentUserResponse.pipe(map((data => { return data.role === userRole })));
+        return checkUser$;
+    }
+
 }
+// export class AppComponent {
+
+// }

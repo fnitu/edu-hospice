@@ -23,8 +23,20 @@ export class CourseListComponent implements OnInit {
     private static getGridColumns() {
         return [
             {
-                headerName: 'Course name',
+                headerName: 'Denumire curs',
                 field: 'name'
+            },
+            {
+                headerName: 'Data inceput',
+                field: 'start-date'
+            },
+            {
+                headerName: 'Status curs',
+                field: 'status'
+            },
+            {
+                headerName: 'Nr. înscrieri',
+                field: 'subscriptions'
             }
         ]
     }

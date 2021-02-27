@@ -1,6 +1,4 @@
-<div class="app">
-  <!-- <app-top-toolbar></app-top-toolbar> -->
-  <mat-toolbar class="mat-toolbar">
+<!-- <mat-toolbar class="mat-toolbar">
     <mat-toolbar-row>
       <h2 class="logo-title" (click)="goToHome()">{{ 'general.siteName' | translate }}</h2>
       <span class="example-spacer"></span>
@@ -10,6 +8,7 @@
           <li><a mat-button routerLink="{{loginRoute}}" routerLinkActive="active" *ngIf="!authService.isAuthenticated()">{{ 'general.login' | translate }}</a></li>
        </ul>
       </nav>
+
       <div class="userIcons" *ngIf="authService.isAuthenticated()">
         <div>
           <mat-icon 
@@ -33,21 +32,8 @@
             matTooltip="{{ 'topToolbar.tooltips.logout' | translate }}" 
             matTooltipClass="icon-tooltip">exit_to_app
           </mat-icon>
-        </div>
-        
+        </div>     
       </div>
-
+      
     </mat-toolbar-row>
-  </mat-toolbar>
-  
-  <ng-progress [spinner]="false"></ng-progress>
-
-
-  <!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
-  <!-- The routed views render in the <router-outlet>-->
-  <div class="main-container">
-    <router-outlet></router-outlet>
-  </div>
-</div>
-
-
+  </mat-toolbar> -->
