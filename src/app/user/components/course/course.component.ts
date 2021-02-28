@@ -4,23 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree'
-
-interface CourseTreeNode {
-    name: string;
-    children?: CourseTreeNode[]
-    
-  }
-  interface Course{
-    'description': string;
-    'hours': number;
-    'id': number;
-    'image': string;
-    'name': string;
-    'shortDescription': string;
-    'startDate': string;
-    'progress': number;
-    'courseType': string;
-  }
+import { CourseInterface, CourseTreeNodeInterface } from "./course.interface";
+import * as _ from "lodash";
+import { User } from "../../../shared/interfaces/user";
+import { AuthService } from "../../../shared/services/authentication/auth.service";
 
 @Component({
     selector: 'app-course',
@@ -29,74 +16,69 @@ interface CourseTreeNode {
     encapsulation: ViewEncapsulation.None
 })
 
-
 export class CourseComponent implements OnInit {
-    noCourseUrl = false;
     public selectedCourse;
-    public course;
-    public courseId: string;
-    public courseDetails: Course = <Course>{}
-    public courseData;
-    public courseTreeData: CourseTreeNode[] = [];
-    public treeControl = new NestedTreeControl<CourseTreeNode>(node =>node.children);
-    public dataSource = new MatTreeNestedDataSource<CourseTreeNode>();
-    
-    constructor( private courseService: CourseService, private route: ActivatedRoute, private sanitizer: DomSanitizer){}
-    
-    ngOnInit(){
-        this.courseId = this.route.snapshot.paramMap.get('courseId');
-        
-        this.courseService.getTreeJsonData(this.courseId).subscribe( response => {
-            this.courseData = response;
-                this.courseData.sections.forEach(section => {
-                    //create section contents
 
-                    const contentNodeList = [];
-                        section.contents.forEach(content => {
-                        
-                            const contentNode = {
-                                id: content.id,
-                                name: content.name,
-                                url: content.url
-                            };
+    public courseDetails: CourseInterface = <CourseInterface>{}
 
-                    contentNodeList.push(contentNode);
-                    });
-                
-                    const sectionNode = {
-                        name: section.name,
-                        //    id: section.id
-                        children: contentNodeList
-                    };
-                
-                        this.courseTreeData.push(sectionNode);
-                
-                });
-            this.dataSource.data = this.courseTreeData;
-            
-        });
-        
-        this.courseService.getTreeJsonData(this.courseId).subscribe(res => {
-            this.courseDetails = res;
-        });      
-                    
+    public treeControl = new NestedTreeControl<CourseTreeNodeInterface>(node => node.children);
+    public dataSource = new MatTreeNestedDataSource<CourseTreeNodeInterface>();
+
+    constructor(private courseService: CourseService,
+                private route: ActivatedRoute,
+                private sanitizer: DomSanitizer,
+                private authService: AuthService) {
     }
-                
-    displayUrl(course){
 
+    ngOnInit() {
+        this.authService.currentUserResponse.subscribe((data: User) => {
+            this.getTreeData(data.id, this.route.snapshot.paramMap.get('courseId'));
+        });
+    }
+
+    private getTreeData(userId, courseId) {
+        this.courseService.getTreeJsonData(userId, courseId).subscribe(response => {
+            this.courseDetails = response;
+
+            this.dataSource.data = this.generateNodesModel(this.courseDetails.sections);
+        });
+    }
+
+    private generateNodesModel(nodes): any[] {
+        let treeNodes: any[] = [];
+
+        _.each(nodes, (value) => {
+            treeNodes.push({
+                id: value.id,
+                name: value.name,
+                children: this.getNodeChildren(value)
+            });
+        });
+
+        return treeNodes;
+    }
+
+    private getNodeChildren(node): any[] {
+        let children: any[] = [];
+
+        _.each(node.contents, (value) => {
+            children.push({
+                id: value.id,
+                name: value.name,
+                url: value.url
+            });
+        });
+
+        return children;
+    }
+
+    displayUrl(course) {
         this.selectedCourse = course;
 
-            this.selectedCourse.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(course.url);
-
-                if(course.url === '' || course.url === undefined){
-                    this.noCourseUrl = true;
-                } else{
-                    this.noCourseUrl = false;
-                }
-                        
+        this.selectedCourse.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(course.url);
     }
-                
-        hasChild = (_: number, node: CourseTreeNode) => !!node.children && node.children.length > 0;
+
+    hasChild = (_: number, node: CourseTreeNodeInterface) => !!node.children && node.children.length > 0;
 }
             
             

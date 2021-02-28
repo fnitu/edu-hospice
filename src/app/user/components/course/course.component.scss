@@ -1,60 +1,62 @@
 @import "../../../../styles/scss/imports";
 
-.courseDescriptionCard {
-  .mat-card-content {
-    display: flex;
-    padding-left: 10px;
-    align-items: center;
-    max-height: 30vh;
-    width: 70vw;
-    overflow: hidden;
-    border-left:1em solid transparent;
-    border-right:1em solid transparent;
-    text-overflow: ellipsis;
-    word-wrap: break-word;
-    .courseDescriptionText {
-      display: flex;
-      flex-direction: column;
-      margin-top: 10px;
-      padding: 10px 30px;
-      line-height: 1.2em;
-    }
-    .courseBgImg img {
-      transform: scale(0.4);
-    }
-  }
-
-}
-
-.containerTree{
+app-course {
   display: flex;
-  height: 95vh;
-  mat-sidenav-container{
-    mat-sidenav{
-      width: 400px;
-      .content-toolbar{
-        width: 400px;
-      }
-      .example-tree ul,
-      .example-tree li {
-        margin-top: 0;
-        margin-bottom: 0;
-        list-style-type: none;
-      }
-      .example-tree-invisible {
-        display: none;
-      }
-      .mat-tree-node .mat-button-wrapper{
-        color: $themeColor1-dark;
-      }
-    }
-    height:100%
-  }
-  .course-information{
-    width: 100%;
-    .iframe {
+  flex-direction: column;
+  height: 100%;
+
+  .containerTree {
+    display: flex;
+    flex: 1;
+
+    mat-sidenav-container {
       width: 100%;
-      height: 100%;
+
+      mat-sidenav {
+        width: 300px;
+
+        .course-title {
+          height: 70px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 10px 20px;
+          border-bottom: 1px solid $border;
+          font-size: 18px;
+          font-weight: 500;
+        }
+
+        .mat-tree {
+          margin-top: 10px;
+
+          .tree-node-list, .tree-node {
+            margin-top: 0;
+            margin-bottom: 0;
+            list-style-type: none;
+          }
+
+          .hidden-node {
+            display: none;
+          }
+
+          .tree-node .mat-button-wrapper {
+            color: $themeColor1-dark;
+          }
+        }
+      }
+
+      .mat-sidenav-content {
+        display: flex;
+
+        .course-information {
+          flex: 1;
+
+          .iframe {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
     }
   }
 }

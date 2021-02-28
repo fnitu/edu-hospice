@@ -1,57 +1,50 @@
-<mat-card class="courseDescriptionCard">
-  <mat-card-content>
-    <div class="courseBgImg">
-      <img alt="" [src]="courseDetails.image">
-    </div>
-    <div class="courseDescriptionText">
-      <h1>{{courseDetails.name}}</h1>
-      <p>{{courseDetails.description}}</p>
-    </div>
-  </mat-card-content>
-</mat-card>
-
-
 <div class="containerTree">
-  <mat-sidenav-container>
-    <mat-sidenav mode='side' opened [disableClose]="true">
-      <mat-toolbar id="content-section-toolbar" class="content-toolbar" >
-        Resurse de invatare
-      </mat-toolbar>
-      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
-        
-  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-    <li>
-      <div class="mat-tree-node">
-        <button mat-icon-button matTreeNodeToggle
-        [attr.aria-label]="'Toggle ' + node.name"
-        >
-        <mat-icon class="mat-icon-rtl-mirror">
-          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-        </mat-icon>
-      </button>
-        <button mat-button [disabled] = 'node.url === undefined' (click)="displayUrl(node)">
-          {{node.name}}
-        </button>
-      </div>
-      <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
-        <ng-container matTreeNodeOutlet></ng-container>
-      </ul>
-    </li>
-  </mat-nested-tree-node>
-</mat-tree>
-</mat-sidenav>
-<mat-sidenav-content>
-</mat-sidenav-content>
-</mat-sidenav-container>
+    <mat-sidenav-container>
+        <mat-sidenav mode='side' opened [disableClose]="true">
+            <div class="course-title">{{this.courseDetails.name}}</div>
 
-<mat-card class="course-information" >
-<iframe *ngIf="selectedCourse && !noCourseUrl" 
-        class="iframe" 
-        frameborder="0" 
-        [src]="selectedCourse.safeUrl"
-        type="application/pdf" ></iframe>
-<div *ngIf='noCourseUrl'>
-  <p>No Data</p>
-</div>
-</mat-card>
+            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+
+                <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+                    <li class="tree-node">
+                        <button mat-button [disabled]='node.url === undefined' (click)="displayUrl(node)">
+                            {{node.name}}
+                        </button>
+                    </li>
+                </mat-tree-node>
+
+                <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+                    <li class="tree-node">
+                        <button mat-button matTreeNodeToggle>
+                            <mat-icon class="mat-icon-rtl-mirror">
+                                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                            </mat-icon>
+
+                            {{node.name}}
+                        </button>
+                        <ul [ngClass]="{'hidden-node': !treeControl.isExpanded(node)}" class="tree-node-list">
+                            <ng-container matTreeNodeOutlet></ng-container>
+                        </ul>
+                    </li>
+                </mat-nested-tree-node>
+            </mat-tree>
+
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <mat-card class="course-information">
+                <iframe *ngIf="selectedCourse && selectedCourse?.url"
+                        class="iframe"
+                        frameborder="0"
+                        [src]="selectedCourse.safeUrl"
+                        type="application/pdf"></iframe>
+
+                <div *ngIf='selectedCourse && !selectedCourse?.url'>
+                    <p>No Data</p>
+                </div>
+
+            </mat-card>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
 </div>
