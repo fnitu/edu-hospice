@@ -3,130 +3,61 @@
 .courseDescriptionCard {
   .mat-card-content {
     display: flex;
-    padding-left: 60px;
+    padding-left: 10px;
     align-items: center;
+    max-height: 30vh;
+    width: 70vw;
+    overflow: hidden;
+    border-left:1em solid transparent;
+    border-right:1em solid transparent;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
     .courseDescriptionText {
       display: flex;
       flex-direction: column;
+      margin-top: 10px;
       padding: 10px 30px;
       line-height: 1.2em;
     }
     .courseBgImg img {
-      transform: scale(0.8);
-    }
-    .mat-chip {
-      width: 60px;
-      padding: 4px;
-      text-align: center;
-      border-radius: 20px;
+      transform: scale(0.4);
     }
   }
 
-  
 }
 
-.courseContentCard {
-  .mat-expansion-panel {
-
-    .mat-expansion-panel-header-title {
-      .mat-icon {
-        margin-right: 5px;
+.containerTree{
+  display: flex;
+  height: 95vh;
+  mat-sidenav-container{
+    mat-sidenav{
+      width: 400px;
+      .content-toolbar{
+        width: 400px;
       }
-
-      .title {
-        line-height: 24px;
+      .example-tree ul,
+      .example-tree li {
+        margin-top: 0;
+        margin-bottom: 0;
+        list-style-type: none;
+      }
+      .example-tree-invisible {
+        display: none;
+      }
+      .mat-tree-node .mat-button-wrapper{
+        color: $themeColor1-dark;
       }
     }
-
-    .mat-expansion-panel-content {
-      .externalLinks {
-        .mat-icon {
-          margin-right: 5px;
-        }
-
-        a {
-          color: $textColor;
-        }
-      }
-      .iframe {
-        width: 100%;
-        height: 40vh;
-      }
+    height:100%
+  }
+  .course-information{
+    width: 100%;
+    .iframe {
+      width: 100%;
+      height: 100%;
     }
   }
 }
 
 
-// .container{
-//   display: flex;
-//   justify-content:space-evenly;
-//   flex-wrap: wrap;
-//   position: relative;
-//   margin: 10px;
-
-//   .small-card{
-//     width: 210px;
-//     height: 90px;
-//     cursor: pointer;
-//     margin: 5px;
-//     border: 1px solid $cardBorderColor;
-    
-//     .mat-button{
-//       background-color: $navBarBackgroundColor;
-//       color: white;
-//       margin: 0;
-//       position: absolute;
-//       top: 80%;
-//       left: 8%;
-//       transform: translateY(-50%);
-      
-//     }
-//   }
-// }
-
-// .mat-icon.material-icons{
-//   font-size: 45px;
-// }
-
-mat-sidenav-container{
-  height:100%
-}
-
-mat-sidenav{
-  width: 350px;
-}
-
-mat-sidenav, mat-sidenav-content{
-  padding: 16px;
-}
-
-.menu-side.material-icons{
-  font-size: 35px;
-  padding-top: 7px;
-  color: white;
-}
-
-.mat-list-base .mat-list-item{
-  color: white;
-  border-bottom: 1px solid white;
-}
-
-.hidden{
-  display: none;
-}
-
-.example-tree-invisible {
-  display: none;
-}
-
-.example-tree ul,
-.example-tree li {
-  margin-top: 0;
-  margin-bottom: 0;
-  list-style-type: none;
-}
-
-.content-toolbar{
-  width: 350px;
-}
 

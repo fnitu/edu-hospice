@@ -10,16 +10,11 @@ export class CourseService {
 
   constructor(private http: HttpClient) { }
 
-  public getCourseDetails(courseId): Observable<any> {
-    const url = './assets/json/courseDetails.json';
+
+  public getTreeJsonData(courseId): Observable<any>{
+    const url = './assets/json/treeJSON.json'
 
     return this.http.get(url);
   }
-
-  public fetchCourseStructure(courseIdTudor): Observable<any>{
-    const url = '/assets/json/courseStructureTudor.json'
-    
-    return this.http.get(url);
-}
 }
 
