@@ -91,13 +91,19 @@ export class UserListComponent implements OnInit {
         } else {
             gridColumns.push(
                 {
-                    field: 'ongoingCourses'
+                    headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.numberOfOnGoingCourses"),
+                    field: 'ongoingCourses',
+                    width: 300
                 },
                 {
-                    field: 'pendingCourses'
+                    headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.numberOfPendingCourses"),
+                    field: 'pendingCourses',
+                    width: 300
                 },
                 {
-                    field: 'finalizedCourses'
+                    headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.numberOfFinalizedCourses"),
+                    field: 'finalizedCourses',
+                    width: 300
                 }
             );
         }

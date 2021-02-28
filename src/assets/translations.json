@@ -99,7 +99,10 @@
           "coursePaymentDate": "Data plății cursului",
           "coursePaymentVerificationDate": "Data verificării plății cursului",
           "status": "Stare",
-          "courseName": "Numele cursului"
+          "courseName": "Numele cursului",
+          "numberOfFinalizedCourses": "Număr de cursuri finalizate",
+          "numberOfPendingCourses": "Număr de cursuri în așteptare",
+          "numberOfOnGoingCourses": "Număr de cursuri începute"
         },
         "approveMessage": "Ești sigur că vrei să aprobi această înregistrare.",
         "rejectMessage": "Ești sigur că vrei să refuzi această înregistrare."
