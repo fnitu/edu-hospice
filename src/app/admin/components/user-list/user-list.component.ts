@@ -4,6 +4,8 @@ import { CustomTranslateService } from "../../../shared/services/custom-translat
 import { ConfirmationDialogService } from "../../../shared/components/confirmation-dialog/confirmation-dialog.service";
 import { GLOBALS } from "../../../shared/core/globals";
 import { UserListService } from "./user-list.service";
+import {PlaceholderFormatService} from '../../../shared/services/format/placeholder-format.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-user-list',
@@ -19,7 +21,9 @@ export class UserListComponent implements OnInit {
 
     constructor(private customTranslateService: CustomTranslateService,
                 private confirmationDialogService: ConfirmationDialogService,
-                private userListService: UserListService) {
+                private userListService: UserListService,
+                private placeholderFormat: PlaceholderFormatService,
+                private matSnackBar: MatSnackBar) {
     }
 
     ngOnInit(): void {
@@ -144,9 +148,26 @@ export class UserListComponent implements OnInit {
                     {
                         text: this.customTranslateService.getTranslation("general.yes"),
                         handler: () => {
-                            console.log("Refresh grid");
+                            let url = GLOBALS.DATA_URL.APPROVE_COURSE;
+                            const urlParams = {
+                              "{userId}": params.data.userId,
+                              "{courseId}": params.data.courseId,
+                            };
 
-                            dialogRef.close();
+                            url = this.placeholderFormat.stringFormat(url, urlParams);
+
+                            this.userListService.approveRowAction(url, {}).subscribe((result) => {
+                              if (result.success) {
+
+                                this.matSnackBar.open(result.message, GLOBALS.NOTIFICATIONS.INFO, {
+                                  duration: GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
+                                  verticalPosition: 'top'
+                                });
+
+                              }
+
+                              dialogRef.close();
+                            });
                         }
                     },
                     {
@@ -166,10 +187,26 @@ export class UserListComponent implements OnInit {
                     {
                         text: this.customTranslateService.getTranslation("general.yes"),
                         handler: () => {
-                            console.log("Refresh grid");
-                            console.log("Comment box text:", dialogRef.componentInstance.commentBox);
+                          let url = GLOBALS.DATA_URL.REJECT_COURSE;
+                          const urlParams = {
+                            "{userId}": params.data.userId,
+                            "{courseId}": params.data.courseId,
+                          };
+
+                          url = this.placeholderFormat.stringFormat(url, urlParams);
+
+                          this.userListService.rejectRowAction(url, {}).subscribe((result) => {
+                            if (result.success) {
+
+                              this.matSnackBar.open(result.message, GLOBALS.NOTIFICATIONS.INFO, {
+                                duration: GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
+                                verticalPosition: 'top'
+                              });
+
+                            }
 
                             dialogRef.close();
+                          });
                         }
                     },
                     {

@@ -14,7 +14,9 @@ export const GLOBALS = {
     USER_DETAILS: `${environment.BASE_URL}/api/users/{id}/details`,
     COURSES: `${environment.BASE_URL}/api/courses`,
     ADMIN_DASHBOARD_STATS: `${environment.BASE_URL}/api/admin/dashboard/stats`,
-    COURSE_DETAILS: `${environment.BASE_URL}/api/users/{userId}/courses/{courseId}`
+    COURSE_DETAILS: `${environment.BASE_URL}/api/users/{userId}/courses/{courseId}`,
+    APPROVE_COURSE: `${environment.BASE_URL}/api/admin/users/{userId}/courses/{courseId}/approve`,
+    REJECT_COURSE: `${environment.BASE_URL}/api/admin/users/{userId}/courses/{courseId}/reject`
   },
   DEFAULT_COURSE_IMG: `https://www.hospice.ro/wp-content/themes/hospice/img/social-default.jpg`,
   NOTIFICATIONS: {
