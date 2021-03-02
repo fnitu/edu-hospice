@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { CourseService } from './course.service';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -17,6 +17,7 @@ import { AuthService } from "../../../shared/services/authentication/auth.servic
 })
 
 export class CourseComponent implements OnInit {
+    @ViewChild("tree") tree;
     public selectedCourse;
 
     public courseDetails: CourseInterface = <CourseInterface>{}
@@ -40,7 +41,14 @@ export class CourseComponent implements OnInit {
         this.courseService.getTreeJsonData(userId, courseId).subscribe(response => {
             this.courseDetails = response;
 
-            this.dataSource.data = this.generateNodesModel(this.courseDetails.sections);
+            const nodes = this.generateNodesModel(this.courseDetails.sectionSummary);
+
+            this.dataSource.data = nodes;
+
+            // https://stackoverflow.com/a/52899556
+            this.tree.treeControl.dataNodes = nodes;
+
+            this.tree.treeControl.expandAll();
         });
     }
 
@@ -61,10 +69,12 @@ export class CourseComponent implements OnInit {
     private getNodeChildren(node): any[] {
         let children: any[] = [];
 
-        _.each(node.contents, (value) => {
+        _.each(node.contentSummary, (value) => {
             children.push({
                 id: value.id,
                 name: value.name,
+                contentType: value.contentType,
+                resourceSummary: value.resourceSummary,
                 url: value.url
             });
         });

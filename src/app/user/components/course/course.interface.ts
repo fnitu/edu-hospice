@@ -1,14 +1,8 @@
 export interface CourseInterface {
-    'description': string;
-    'hours': number;
     'id': number;
-    'image': string;
     'name': string;
-    'shortDescription': string;
-    'startDate': string;
     'progress': number;
-    'courseType': string;
-    'sections': any[]
+    'sectionSummary': any[]
 }
 
 export interface CourseTreeNodeInterface {

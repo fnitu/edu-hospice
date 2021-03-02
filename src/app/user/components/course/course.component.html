@@ -3,29 +3,34 @@
         <mat-sidenav mode='side' opened [disableClose]="true">
             <div class="course-title">{{this.courseDetails.name}}</div>
 
-            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+            <mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl">
 
                 <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-                    <li class="tree-node">
-                        <button mat-button [disabled]='node.url === undefined' (click)="displayUrl(node)">
-                            {{node.name}}
-                        </button>
-                    </li>
+                    <div class="tree-node" (click)="displayUrl(node)">
+                        <div [ngSwitch]="node.contentType" class="node-icon">
+                            <mat-icon *ngSwitchCase="'PDF'">text_snippet</mat-icon>
+                            <mat-icon *ngSwitchCase="'VIDEO'">play_circle_filled</mat-icon>
+                            <mat-icon *ngSwitchCase="'ZOOM'">cast</mat-icon>
+                            <mat-icon *ngSwitchCase="'QUIZ'">quiz</mat-icon>
+                        </div>
+
+                        {{node.name}}
+                    </div>
                 </mat-tree-node>
 
                 <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-                    <li class="tree-node">
-                        <button mat-button matTreeNodeToggle>
-                            <mat-icon class="mat-icon-rtl-mirror">
+                    <div class="tree-node-with-children">
+                        <div class="tree-node" matTreeNodeToggle>
+                            <mat-icon class="expand-collapse">
                                 {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                             </mat-icon>
 
                             {{node.name}}
-                        </button>
-                        <ul [ngClass]="{'hidden-node': !treeControl.isExpanded(node)}" class="tree-node-list">
+                        </div>
+                        <div [ngClass]="{'hidden-node': !treeControl.isExpanded(node)}" class="tree-node-list">
                             <ng-container matTreeNodeOutlet></ng-container>
-                        </ul>
-                    </li>
+                        </div>
+                    </div>
                 </mat-nested-tree-node>
             </mat-tree>
 

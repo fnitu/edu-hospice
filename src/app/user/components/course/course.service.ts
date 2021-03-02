@@ -14,12 +14,10 @@ export class CourseService {
 
 
   public getTreeJsonData(userId, courseId): Observable<any>{
-    // const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.COURSE_DETAILS, {
-    //   '{userId}': userId,
-    //   '{courseId}': courseId
-    // });
-
-    const url = './assets/json/treeJSON.json';
+    const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.COURSE_DETAILS, {
+      '{userId}': userId,
+      '{courseId}': 1
+    });
 
     return this.http.get(url);
   }
