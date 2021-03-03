@@ -1,16 +1,30 @@
 <div class="containerTree">
-    <mat-sidenav-container>
-        <mat-sidenav mode='side' opened [disableClose]="true">
-            <div class="course-title">{{this.courseDetails.name}}</div>
+    <mat-sidenav-container autosize>
+        <mat-sidenav #sidenav mode='side' opened [disableClose]="true">
+            <div class="sidenav-toolbar"
+                 [ngClass]="{'opened' : sidenav.opened}"
+                 *ngIf="sidenav.opened"
+                 (click)="sidenav.toggle()">
+                <mat-icon>chevron_left</mat-icon>
+            </div>
 
-            <mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl">
+            <div *ngIf="sidenav.opened" class="course-header">
+                <div class="title">{{this.courseDetails.name}}</div>
+                <mat-progress-bar mode="determinate" value="{{this.courseDetails.progress}}"></mat-progress-bar>
+            </div>
+
+            <mat-tree *ngIf="sidenav.opened" #tree
+                      [dataSource]="dataSource"
+                      [treeControl]="treeControl">
 
                 <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-                    <div class="tree-node" (click)="displayUrl(node)">
+                    <div class="tree-node"
+                         (click)="openNode(node)"
+                         [ngClass]="{'active': nodesMap.get(node.id).active}">
                         <div [ngSwitch]="node.contentType" class="node-icon">
                             <mat-icon *ngSwitchCase="'PDF'">text_snippet</mat-icon>
                             <mat-icon *ngSwitchCase="'VIDEO'">play_circle_filled</mat-icon>
-                            <mat-icon *ngSwitchCase="'ZOOM'">cast</mat-icon>
+                            <mat-icon *ngSwitchCase="'ZOOM'">video_camera_front</mat-icon>
                             <mat-icon *ngSwitchCase="'QUIZ'">quiz</mat-icon>
                         </div>
 
@@ -37,16 +51,16 @@
         </mat-sidenav>
 
         <mat-sidenav-content>
+            <div class="sidenav-toolbar" *ngIf="!sidenav.opened" (click)="sidenav.toggle()">
+                <mat-icon>chevron_right</mat-icon>
+            </div>
+
             <mat-card class="course-information">
                 <iframe *ngIf="selectedCourse && selectedCourse?.url"
                         class="iframe"
                         frameborder="0"
-                        [src]="selectedCourse.safeUrl"
+                        [src]="selectedCourse.url"
                         type="application/pdf"></iframe>
-
-                <div *ngIf='selectedCourse && !selectedCourse?.url'>
-                    <p>No Data</p>
-                </div>
 
             </mat-card>
         </mat-sidenav-content>

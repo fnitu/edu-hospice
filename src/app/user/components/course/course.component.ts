@@ -20,6 +20,11 @@ export class CourseComponent implements OnInit {
     @ViewChild("tree") tree;
     public selectedCourse;
 
+    private readonly SECTION: string = "section";
+    private readonly CONTENT: string = "content";
+
+    public nodesMap = new Map();
+
     public courseDetails: CourseInterface = <CourseInterface>{}
 
     public treeControl = new NestedTreeControl<CourseTreeNodeInterface>(node => node.children);
@@ -56,8 +61,15 @@ export class CourseComponent implements OnInit {
         let treeNodes: any[] = [];
 
         _.each(nodes, (value) => {
+            const key = `${this.SECTION}_${value.id}`;
+
+            this.populateNodesMap(key, {
+                name: value.name,
+                parent: true
+            });
+
             treeNodes.push({
-                id: value.id,
+                id: key,
                 name: value.name,
                 children: this.getNodeChildren(value)
             });
@@ -70,22 +82,53 @@ export class CourseComponent implements OnInit {
         let children: any[] = [];
 
         _.each(node.contentSummary, (value) => {
+            const safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(value.url);
+
+            const key = `${this.SECTION}_${value.id}_${this.CONTENT}_${value.id}`;
+
+            this.populateNodesMap(key, {
+                name: value.name,
+                parent: false,
+                url: safeUrl
+            });
+
             children.push({
-                id: value.id,
+                id: key,
                 name: value.name,
                 contentType: value.contentType,
                 resourceSummary: value.resourceSummary,
-                url: value.url
+                url: safeUrl
             });
         });
 
         return children;
     }
 
-    displayUrl(course) {
-        this.selectedCourse = course;
+    openNode(node) {
+        this.selectedCourse = node;
 
-        this.selectedCourse.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(course.url);
+        this.inactivateChildrenNodes();
+
+        this.nodesMap.get(node.id).active = true;
+    }
+
+    /**
+     * Reset the active state of children nodes to have only one node active at a time
+     * @private
+     */
+    private inactivateChildrenNodes() {
+        for (let value of this.nodesMap.values()) {
+            if (!value.parent) {
+                value.active = false;
+            }
+        }
+    }
+
+    private populateNodesMap(key, value) {
+        this.nodesMap.set(key, {
+            active: false,
+            ...value
+        });
     }
 
     hasChild = (_: number, node: CourseTreeNodeInterface) => !!node.children && node.children.length > 0;
