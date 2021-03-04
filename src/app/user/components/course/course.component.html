@@ -20,7 +20,7 @@
 
                 <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
                     <div class="tree-node"
-                         (click)="openNode(node)"
+                         (click)="openNode(node.id)"
                          [ngClass]="{'active': nodesMap.get(node.id).active}">
                         <div [ngSwitch]="node.contentType" class="node-icon">
                             <mat-icon *ngSwitchCase="'PDF'">library_books</mat-icon>
@@ -58,24 +58,37 @@
                 <mat-icon>chevron_right</mat-icon>
             </div>
 
-            <mat-card class="course-information">
-                <iframe *ngIf="selectedNode?.url"
-                        class="iframe"
-                        frameborder="0"
-                        [src]="selectedNode.url"
-                        type="application/pdf"></iframe>
+            <div class="course-information-container" *ngIf="selectedNode">
+                <div class="course-toolbar">
+                    <button class="prev" mat-button (click)="navigateToNextNode(false)">
+                        <mat-icon>navigate_before</mat-icon>
+                    </button>
 
-                <div class="external-resources" *ngIf="selectedNode?.resourceSummary.length">
-                    <div class="header">{{ "user.course.externalResources" | translate }}</div>
-
-                    <ul class="content">
-                        <li class="resource" *ngFor="let resource of selectedNode.resourceSummary">
-                            <a class="link" target="_blank" [href]="resource.url">{{ resource.name }}</a>
-                        </li>
-                    </ul>
+                    <button class="next" mat-button (click)="navigateToNextNode(true)">
+                        <mat-icon>navigate_next</mat-icon>
+                    </button>
                 </div>
 
-            </mat-card>
+                <mat-card class="course-information">
+                    <iframe *ngIf="selectedNode?.url"
+                            class="iframe"
+                            frameborder="0"
+                            [src]="selectedNode.url"
+                            type="application/pdf"></iframe>
+
+                    <div class="external-resources" *ngIf="selectedNode?.resourceSummary.length">
+                        <div class="header">{{ "user.course.externalResources" | translate }}</div>
+
+                        <ul class="content">
+                            <li class="resource" *ngFor="let resource of selectedNode.resourceSummary">
+                                <a class="link" target="_blank" [href]="resource.url">{{ resource.name }}</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </mat-card>
+            </div>
+
         </mat-sidenav-content>
 
     </mat-sidenav-container>

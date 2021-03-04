@@ -19,11 +19,13 @@ import { AuthService } from "../../../shared/services/authentication/auth.servic
 export class CourseComponent implements OnInit {
     @ViewChild("tree") tree;
     public selectedNode;
+    private selectedNodeId;
 
     private readonly SECTION: string = "section";
     private readonly CONTENT: string = "content";
 
     public nodesMap = new Map();
+    private nodeIds = [];
 
     public courseDetails: CourseInterface = <CourseInterface>{}
 
@@ -54,6 +56,8 @@ export class CourseComponent implements OnInit {
             this.tree.treeControl.dataNodes = nodes;
 
             this.tree.treeControl.expandAll();
+
+            this.activateFirstLeaf();
         });
     }
 
@@ -84,12 +88,14 @@ export class CourseComponent implements OnInit {
         _.each(node.contentSummary, (value) => {
             const safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(value.url);
 
-            const key = `${this.SECTION}_${value.id}_${this.CONTENT}_${value.id}`;
+            const key = `${this.SECTION}_${node.id}_${this.CONTENT}_${value.id}`;
 
             this.populateNodesMap(key, {
                 name: value.name,
                 parent: false,
-                url: safeUrl
+                url: safeUrl,
+                active: false,
+                resourceSummary: value.resourceSummary
             });
 
             children.push({
@@ -104,12 +110,24 @@ export class CourseComponent implements OnInit {
         return children;
     }
 
-    openNode(node) {
-        this.selectedNode = node;
+    private activateFirstLeaf() {
+        for (let [key, value] of this.nodesMap) {
+            if (!value.parent) {
+                this.openNode(key);
+
+                break;
+            }
+        }
+    }
+
+    public openNode(nodeId) {
+        this.selectedNode = this.nodesMap.get(nodeId);
+
+        this.selectedNodeId = nodeId;
 
         this.inactivateChildrenNodes();
 
-        this.nodesMap.get(node.id).active = true;
+        this.nodesMap.get(nodeId).active = true;
     }
 
     /**
@@ -125,13 +143,47 @@ export class CourseComponent implements OnInit {
     }
 
     private populateNodesMap(key, value) {
-        this.nodesMap.set(key, {
-            active: false,
-            ...value
-        });
+        this.nodesMap.set(key, value);
+
+        this.nodeIds.push(key);
     }
 
-    hasChild = (_: number, node: CourseTreeNodeInterface) => !!node.children && node.children.length > 0;
+    public navigateToNextNode(isForward) {
+        const navigationIndex = isForward ? 1 : -1;
+
+        // get the index of the current selected node
+        let startIndex = this.nodeIds.indexOf(this.selectedNodeId);
+
+        while (true) {
+            // get the next node id
+            const nodeId = this.nodeIds[startIndex + navigationIndex];
+
+            // check if the node id still exists in array
+            if (nodeId) {
+                // get node in order to check if is parent or not
+                const node = this.nodesMap.get(nodeId);
+
+                // if is not parent, open node
+                if (!node.parent) {
+                    this.openNode(nodeId);
+
+                    break;
+                } else {
+                    // otherwise expand parent node
+                    const dataNode = _.find(this.treeControl.dataNodes, ['id', nodeId]);
+
+                    this.treeControl.expand(dataNode);
+
+                    // check the next position
+                    startIndex = startIndex + navigationIndex;
+                }
+            } else {
+                break;
+            }
+        }
+    }
+
+    public hasChild = (_: number, node: CourseTreeNodeInterface) => !!node.children && node.children.length > 0;
 }
             
             
