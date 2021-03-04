@@ -86,6 +86,11 @@
       "statsPaymentConfirmation": "confirmare",
       "statsPaymentConfirmations": "confirmări"
     },
+    "courses": {
+      "courseName": "Numele cursului",
+      "startDate": "Data începerii cursului",
+      "totalRegisteredUsers": "Total utilizatori înscriși"
+    },
     "users": {
       "usersPendingAfterRegistration": "Utilizatori în așteptare după înregistrare",
       "usersPendingAfterPayment": "Utilizatori în așteptare după plata cursului",
