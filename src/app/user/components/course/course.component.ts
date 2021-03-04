@@ -18,7 +18,7 @@ import { AuthService } from "../../../shared/services/authentication/auth.servic
 
 export class CourseComponent implements OnInit {
     @ViewChild("tree") tree;
-    public selectedCourse;
+    public selectedNode;
 
     private readonly SECTION: string = "section";
     private readonly CONTENT: string = "content";
@@ -105,7 +105,7 @@ export class CourseComponent implements OnInit {
     }
 
     openNode(node) {
-        this.selectedCourse = node;
+        this.selectedNode = node;
 
         this.inactivateChildrenNodes();
 

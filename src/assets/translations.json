@@ -11,7 +11,9 @@
     "reject": "Refuză",
     "close": "Închide",
     "yes": "Da",
-    "no": "Nu"
+    "no": "Nu",
+    "expand": "Extinde",
+    "collapse": "Restrănge"
   },
   "field": {
     "required": "Acest câmp este obligatoriu.",
@@ -49,7 +51,8 @@
   },
   "user": {
     "course": {
-      "content": "Conținut"
+      "content": "Conținut",
+      "externalResources": "Resurse suplimentare"
     },
     "dashboard": {
       "name": "Nume",

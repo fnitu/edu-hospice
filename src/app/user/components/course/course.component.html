@@ -4,7 +4,8 @@
             <div class="sidenav-toolbar"
                  [ngClass]="{'opened' : sidenav.opened}"
                  *ngIf="sidenav.opened"
-                 (click)="sidenav.toggle()">
+                 (click)="sidenav.toggle()"
+                 title="{{ 'general.collapse' | translate }}">
                 <mat-icon>chevron_left</mat-icon>
             </div>
 
@@ -22,7 +23,7 @@
                          (click)="openNode(node)"
                          [ngClass]="{'active': nodesMap.get(node.id).active}">
                         <div [ngSwitch]="node.contentType" class="node-icon">
-                            <mat-icon *ngSwitchCase="'PDF'">text_snippet</mat-icon>
+                            <mat-icon *ngSwitchCase="'PDF'">library_books</mat-icon>
                             <mat-icon *ngSwitchCase="'VIDEO'">play_circle_filled</mat-icon>
                             <mat-icon *ngSwitchCase="'ZOOM'">video_camera_front</mat-icon>
                             <mat-icon *ngSwitchCase="'QUIZ'">quiz</mat-icon>
@@ -51,16 +52,28 @@
         </mat-sidenav>
 
         <mat-sidenav-content>
-            <div class="sidenav-toolbar" *ngIf="!sidenav.opened" (click)="sidenav.toggle()">
+            <div class="sidenav-toolbar" *ngIf="!sidenav.opened"
+                 (click)="sidenav.toggle()"
+                 title="{{ 'general.expand' | translate }}">
                 <mat-icon>chevron_right</mat-icon>
             </div>
 
             <mat-card class="course-information">
-                <iframe *ngIf="selectedCourse && selectedCourse?.url"
+                <iframe *ngIf="selectedNode?.url"
                         class="iframe"
                         frameborder="0"
-                        [src]="selectedCourse.url"
+                        [src]="selectedNode.url"
                         type="application/pdf"></iframe>
+
+                <div class="external-resources" *ngIf="selectedNode?.resourceSummary.length">
+                    <div class="header">{{ "user.course.externalResources" | translate }}</div>
+
+                    <ul class="content">
+                        <li class="resource" *ngFor="let resource of selectedNode.resourceSummary">
+                            <a class="link" target="_blank" [href]="resource.url">{{ resource.name }}</a>
+                        </li>
+                    </ul>
+                </div>
 
             </mat-card>
         </mat-sidenav-content>
