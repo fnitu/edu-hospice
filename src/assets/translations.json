@@ -11,7 +11,9 @@
     "reject": "Refuză",
     "close": "Închide",
     "yes": "Da",
-    "no": "Nu"
+    "no": "Nu",
+    "expand": "Extinde",
+    "collapse": "Restrănge"
   },
   "field": {
     "required": "Acest câmp este obligatoriu.",
@@ -49,7 +51,8 @@
   },
   "user": {
     "course": {
-      "content": "Conținut"
+      "content": "Conținut",
+      "externalResources": "Resurse suplimentare"
     },
     "dashboard": {
       "name": "Nume",
@@ -86,6 +89,11 @@
       "statsPaymentConfirmation": "confirmare",
       "statsPaymentConfirmations": "confirmări"
     },
+    "courses": {
+      "courseName": "Numele cursului",
+      "startDate": "Data începerii cursului",
+      "totalRegisteredUsers": "Total utilizatori înscriși"
+    },
     "users": {
       "usersPendingAfterRegistration": "Utilizatori în așteptare după înregistrare",
       "usersPendingAfterPayment": "Utilizatori în așteptare după plata cursului",
@@ -99,7 +107,10 @@
           "coursePaymentDate": "Data plății cursului",
           "coursePaymentVerificationDate": "Data verificării plății cursului",
           "status": "Stare",
-          "courseName": "Numele cursului"
+          "courseName": "Numele cursului",
+          "numberOfFinalizedCourses": "Număr de cursuri finalizate",
+          "numberOfPendingCourses": "Număr de cursuri în așteptare",
+          "numberOfOnGoingCourses": "Număr de cursuri începute"
         },
         "approveMessage": "Ești sigur că vrei să aprobi această înregistrare.",
         "rejectMessage": "Ești sigur că vrei să refuzi această înregistrare."

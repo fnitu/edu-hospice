@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GLOBALS } from 'src/app/shared/core/globals';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -17,5 +17,23 @@ export class UserListService {
 
   public getStatusInfo(): Observable<any> {
     return this.http.get(GLOBALS.DATA_URL.ADMIN_DASHBOARD_STATS);
+  }
+
+  public approveRowAction(url, data): Observable<any> {
+    const bodyParams = data ? JSON.stringify(data) : null;
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+
+    return this.http.put(url, bodyParams, httpOptions);
+  }
+
+  public rejectRowAction(url, data): Observable<any> {
+    const bodyParams = data ? JSON.stringify(data) : null;
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+
+    return this.http.put(url, bodyParams, httpOptions);
   }
 }
