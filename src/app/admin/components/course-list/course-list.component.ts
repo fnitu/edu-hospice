@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { GLOBALS } from 'src/app/shared/core/globals';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
@@ -13,7 +14,10 @@ export class CourseListComponent implements OnInit {
   public gridProperties: GridPropertiesInterface;
   public gridColumns;
 
-  constructor(private customTranslateService: CustomTranslateService) {}
+  constructor(
+    private customTranslateService: CustomTranslateService,
+    private datePipe: DatePipe
+  ) {}
 
   ngOnInit(): void {
     this.gridColumns = this.getGridColumns();
@@ -34,6 +38,11 @@ export class CourseListComponent implements OnInit {
           'admin.courses.startDate'
         ),
         field: 'startDate',
+        cellRenderer: (data) => {
+          return data.value
+            ? this.datePipe.transform(new Date(data.value), 'dd/MM/yyyy')
+            : '-';
+        },
       },
       {
         headerName: this.customTranslateService.getTranslation(
