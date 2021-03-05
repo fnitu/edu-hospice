@@ -52,7 +52,9 @@
   "user": {
     "course": {
       "content": "Conținut",
-      "externalResources": "Resurse suplimentare"
+      "externalResources": "Resurse suplimentare",
+      "next": "Următorul",
+      "prev": "Anteriorul"
     },
     "dashboard": {
       "name": "Nume",
