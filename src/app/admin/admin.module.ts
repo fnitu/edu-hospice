@@ -7,13 +7,17 @@ import { CourseListComponent } from './components/course-list/course-list.compon
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UsersComponent } from './components/users/users.component';
-
+import { DatePipe } from '@angular/common';
 
 @NgModule({
-  declarations: [AdminComponent, CourseListComponent, DashboardComponent, UserListComponent, UsersComponent],
-    imports: [
-        SharedModule,
-        AdminRoutingModule
-    ]
+  declarations: [
+    AdminComponent,
+    CourseListComponent,
+    DashboardComponent,
+    UserListComponent,
+    UsersComponent,
+  ],
+  imports: [SharedModule, AdminRoutingModule],
+  providers: [DatePipe],
 })
-export class AdminModule { }
+export class AdminModule {}

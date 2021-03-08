@@ -4,8 +4,9 @@
             <div class="sidenav-toolbar"
                  [ngClass]="{'opened' : sidenav.opened}"
                  *ngIf="sidenav.opened"
-                 (click)="sidenav.toggle()">
-                <mat-icon>chevron_left</mat-icon>
+                 (click)="sidenav.toggle()"
+                 title="{{ 'general.collapse' | translate }}">
+                <mat-icon>menu_open</mat-icon>
             </div>
 
             <div *ngIf="sidenav.opened" class="course-header">
@@ -19,10 +20,10 @@
 
                 <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
                     <div class="tree-node"
-                         (click)="openNode(node)"
+                         (click)="openNode(node.id)"
                          [ngClass]="{'active': nodesMap.get(node.id).active}">
                         <div [ngSwitch]="node.contentType" class="node-icon">
-                            <mat-icon *ngSwitchCase="'PDF'">text_snippet</mat-icon>
+                            <mat-icon *ngSwitchCase="'PDF'">library_books</mat-icon>
                             <mat-icon *ngSwitchCase="'VIDEO'">play_circle_filled</mat-icon>
                             <mat-icon *ngSwitchCase="'ZOOM'">video_camera_front</mat-icon>
                             <mat-icon *ngSwitchCase="'QUIZ'">quiz</mat-icon>
@@ -51,18 +52,49 @@
         </mat-sidenav>
 
         <mat-sidenav-content>
-            <div class="sidenav-toolbar" *ngIf="!sidenav.opened" (click)="sidenav.toggle()">
-                <mat-icon>chevron_right</mat-icon>
+            <div class="sidenav-toolbar" *ngIf="!sidenav.opened"
+                 (click)="sidenav.toggle()"
+                 title="{{ 'general.expand' | translate }}">
+                <mat-icon>menu</mat-icon>
             </div>
 
-            <mat-card class="course-information">
-                <iframe *ngIf="selectedCourse && selectedCourse?.url"
-                        class="iframe"
-                        frameborder="0"
-                        [src]="selectedCourse.url"
-                        type="application/pdf"></iframe>
+            <div class="course-information-container" *ngIf="selectedNode">
+                <div class="course-toolbar">
+                    <button class="prev"
+                            mat-button
+                            title="{{ 'user.course.prev' | translate }}"
+                            (click)="navigateToNextNode(false)">
+                        <mat-icon>navigate_before</mat-icon>
+                    </button>
 
-            </mat-card>
+                    <button class="next"
+                            mat-button
+                            title="{{ 'user.course.next' | translate }}"
+                            (click)="navigateToNextNode(true)">
+                        <mat-icon>navigate_next</mat-icon>
+                    </button>
+                </div>
+
+                <mat-card class="course-information">
+                    <iframe *ngIf="selectedNode?.url"
+                            class="iframe"
+                            frameborder="0"
+                            [src]="selectedNode.url"
+                            type="application/pdf"></iframe>
+
+                    <div class="external-resources" *ngIf="selectedNode?.resourceSummary.length">
+                        <div class="header">{{ "user.course.externalResources" | translate }}</div>
+
+                        <ul class="content">
+                            <li class="resource" *ngFor="let resource of selectedNode.resourceSummary">
+                                <a class="link" target="_blank" [href]="resource.url">{{ resource.name }}</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </mat-card>
+            </div>
+
         </mat-sidenav-content>
 
     </mat-sidenav-container>

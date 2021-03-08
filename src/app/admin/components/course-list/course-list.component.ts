@@ -1,37 +1,61 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { GridPropertiesInterface } from "../../../shared/components/grid/grid-properties.interface";
+import { GLOBALS } from 'src/app/shared/core/globals';
+import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
+import { GridPropertiesInterface } from '../../../shared/components/grid/grid-properties.interface';
 
 @Component({
-    selector: 'app-course-list',
-    templateUrl: './course-list.component.html',
-    styleUrls: ['./course-list.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-course-list',
+  templateUrl: './course-list.component.html',
+  styleUrls: ['./course-list.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class CourseListComponent implements OnInit {
-    public gridProperties: GridPropertiesInterface;
-    public gridColumns;
+  public gridProperties: GridPropertiesInterface;
+  public gridColumns;
 
-    constructor() {
-    }
+  constructor(
+    private customTranslateService: CustomTranslateService,
+    private datePipe: DatePipe
+  ) {}
 
-    ngOnInit(): void {
-        this.gridColumns = CourseListComponent.getGridColumns();
+  ngOnInit(): void {
+    this.gridColumns = this.getGridColumns();
 
-        this.gridProperties = CourseListComponent.getGridProperties();
-    }
+    this.gridProperties = this.getGridProperties();
+  }
 
-    private static getGridColumns() {
-        return [
-            {
-                headerName: 'Course name',
-                field: 'name'
-            }
-        ]
-    }
+  private getGridColumns() {
+    return [
+      {
+        headerName: this.customTranslateService.getTranslation(
+          'admin.courses.courseName'
+        ),
+        field: 'name',
+      },
+      {
+        headerName: this.customTranslateService.getTranslation(
+          'admin.courses.startDate'
+        ),
+        field: 'startDate',
+        cellRenderer: (data) => {
+          return data.value
+            ? this.datePipe.transform(new Date(data.value), 'dd/MM/yyyy')
+            : '-';
+        },
+      },
+      {
+        headerName: this.customTranslateService.getTranslation(
+          'admin.courses.totalRegisteredUsers'
+        ),
+        field: 'totalRegisteredUsers',
+      },
+    ];
+  }
 
-    private static getGridProperties(): GridPropertiesInterface {
-        return {
-            url: './assets/json/courseList.json'
-        }
-    }
+  private getGridProperties(): GridPropertiesInterface {
+    return {
+      url: GLOBALS.DATA_URL.ADMIN_COURSES,
+    };
+  }
 }

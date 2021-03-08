@@ -21,14 +21,14 @@ app-course {
           font-size: 30px;
           height: 30px;
           width: 30px;
-          background-color: $sideNavArrowBackground;
-          border-radius: 50%;
+          color: $navBarTextColor;
         }
       }
 
       mat-sidenav {
         width: 350px;
         background-color: $sideNavBackground;
+        border-right: 2px solid $border;
 
         .sidenav-toolbar {
           height: 50px;
@@ -136,18 +136,81 @@ app-course {
           width: 50px;
           height: 100%;
           justify-content: center;
+          border-right: 2px solid $border;
 
           .mat-icon {
             margin-top: 10px;
           }
         }
 
-        .course-information {
+        .course-information-container {
+          display: flex;
+          flex-direction: column;
           flex: 1;
 
-          .iframe {
-            width: 100%;
-            height: 100%;
+          .course-toolbar {
+            height: 50px;
+            display: flex;
+
+            .mat-button {
+              flex: 1;
+              border-radius: 0;
+
+              .mat-icon {
+                font-size: 40px;
+                height: 40px;
+                width: 40px;
+              }
+
+              &.prev {
+                background-color: $sideNavToolbar;
+              }
+
+              &.next {
+                background-color: $nodeActive;
+              }
+            }
+          }
+
+          .course-information {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+
+            .iframe {
+              width: 100%;
+              flex: 1;
+            }
+
+            .external-resources {
+              margin-top: 30px;
+
+              .header {
+                font-size: 20px;
+                color: $textColor;
+                font-weight: bold;
+              }
+
+              .content {
+                list-style: none;
+                padding-left: 20px;
+
+                .resource {
+                  list-style: none;
+                  &:not(:last-child) {
+                    margin-bottom: 5px;
+                  }
+
+                  .link {
+                    color: $loginLinkTextColor;
+                    text-decoration: none;
+                    font-weight: 500;
+                    font-size: 14px;
+                  }
+                }
+              }
+
+            }
           }
         }
       }
