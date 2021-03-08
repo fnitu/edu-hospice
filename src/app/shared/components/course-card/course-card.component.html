@@ -31,7 +31,7 @@
     </div>
   </mat-card-content>
 
-  <div *ngIf="tab.type === 'RECOMMENDED'">
+  <div *ngIf="tab?.type === 'RECOMMENDED'">
     <div class="register" (click)="registerClick(course.id, $event)">
       {{ "card.register" | translate }}
     </div>
