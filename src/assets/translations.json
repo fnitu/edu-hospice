@@ -118,5 +118,13 @@
       "PAYMENT_PENDING": "În așteptare pentru confirmarea plății",
       "REGISTRATION_PENDING": "În așteptare pentru confirmarea înregistrării"
     }
+  },
+  "card": {
+    "register": "Înregistrează-te!",
+    "progress": "Progres",
+    "hours": "Ore",
+    "recommended": "Recomandat",
+    "inProgress": "In desfasurare",
+    "finalized": "Finalizat"
   }
 }

@@ -31,7 +31,7 @@
             <p>
               <span class="mat-body-strong"
                 >{{ "user.dashboard.memberSince" | translate }}: </span
-              >{{ user.memberSince | date: "dd-MM-yyyy" }}
+              >{{ user.memberSince | date: "dd.MM.yyyy" }}
             </p>
           </mat-card-content>
         </mat-card>
@@ -92,8 +92,9 @@
 
   <mat-tab-group
     class="mat-tab-group"
-    (selectedTabChange)="selectedTabChange($event)">
-    <mat-tab *ngFor="let tab of courseTabs" label="{{tab.name | translate}}">
+    (selectedTabChange)="selectedTabChange($event)"
+  >
+    <mat-tab *ngFor="let tab of courseTabs" label="{{ tab.name | translate }}">
       <ng-template matTabContent>
         <mat-card class="tabs-container user-tabs-container mat-elevation-z">
           <mat-card-content>
@@ -104,6 +105,7 @@
                   [course]="course"
                   [types]="types"
                   [hasAction]="true"
+                  [tab]="tab"
                   (cardAction)="goToCourse(course)"
                 ></app-course-card>
               </div>

@@ -16,13 +16,14 @@ export const GLOBALS = {
     ADMIN_DASHBOARD_STATS: `${environment.BASE_URL}/api/admin/dashboard/stats`,
     COURSE_DETAILS: `${environment.BASE_URL}/api/users/{userId}/courses/{courseId}`,
     APPROVE_COURSE: `${environment.BASE_URL}/api/admin/users/{userId}/courses/{courseId}/approve`,
-    REJECT_COURSE: `${environment.BASE_URL}/api/admin/users/{userId}/courses/{courseId}/reject`
+    REJECT_COURSE: `${environment.BASE_URL}/api/admin/users/{userId}/courses/{courseId}/reject`,
+    REGISTER_COURSES: `${environment.BASE_URL}/api/users/{userId}/courses/{courseId}/register`,
   },
   DEFAULT_COURSE_IMG: `https://www.hospice.ro/wp-content/themes/hospice/img/social-default.jpg`,
   NOTIFICATIONS: {
     WARNING: 'WARNING',
     ERROR: 'ERROR',
     INFO: 'INFO',
-    DURATION_IN_SECONDS: 10
-  }
+    DURATION_IN_SECONDS: 10,
+  },
 };

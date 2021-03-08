@@ -1,49 +1,85 @@
 <!-- Common content for course card -->
 <ng-template #cardContent>
-  <mat-card-header >
-    <div data-header-animation="true" class="card-header-image img"
-         [ngStyle]="{'background-image': 'url(' + (course.image? course.image: DEFAULT_COURSE_IMG) + ')'}">
-    </div>
-    <mat-card-title>{{course.name}}</mat-card-title>
+  <mat-card-header>
+    <div
+      data-header-animation="true"
+      class="card-header-image img"
+      [ngStyle]="{
+        'background-image':
+          'url(' + (course.image ? course.image : DEFAULT_COURSE_IMG) + ')'
+      }"
+    ></div>
+    <mat-card-title>{{ course.name }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <div class="course-label">
-      <span class="label label-1" *ngIf="types.indexOf('active') > -1">In desfasurare</span>
-      <span class="label label-2" *ngIf="types.indexOf('recommended') > -1">Recomandat</span>
-      <span class="label label-3" *ngIf="types.indexOf('finished') > -1">Finalizat</span>
+      <span class="label label-1" *ngIf="types.indexOf('active') > -1">{{
+        "card.inProgress" | translate
+      }}</span>
+      <span class="label label-2" *ngIf="types.indexOf('recommended') > -1">{{
+        "card.recommended" | translate
+      }}</span>
+      <span class="label label-3" *ngIf="types.indexOf('finished') > -1">{{
+        "card.finalized" | translate
+      }}</span>
     </div>
     <div class="course-short-description">
-      {{course.shortDescription}}
+      {{ course.shortDescription }}
     </div>
     <div class="course-description">
-      {{course.description}}
+      {{ course.description }}
     </div>
   </mat-card-content>
-  <div class="progress-bar" *ngIf="course.progress !== undefined && !hideProgressbar">
-    <div class="percent">Progress: {{course.progress}}%</div>
-    <mat-progress-bar mode="determinate" value="{{course.progress}}"></mat-progress-bar>
+
+  <div *ngIf="tab.type === 'RECOMMENDED'">
+    <div class="register" (click)="registerClick(course.id, $event)">
+      {{ "card.register" | translate }}
+    </div>
   </div>
-  <div class="card-footer-{{ course.courseType?.includes('teoretic') ? 'green' : 'pink' }}">
+
+  <div
+    class="progress-bar"
+    *ngIf="course.progress !== undefined && !hideProgressbar"
+  >
+    <div class="percent">
+      {{ "card.progress" | translate }}: {{ course.progress }}%
+    </div>
+    <mat-progress-bar
+      mode="determinate"
+      value="{{ course.progress }}"
+    ></mat-progress-bar>
+  </div>
+  <div
+    class="card-footer-{{
+      course.courseType?.includes('teoretic') ? 'green' : 'pink'
+    }}"
+  >
     <div class="stats">
       <div class="card-category"><i class="material-icons">schedule</i></div>
-      <div>{{ course.hours }} ore</div>
+      <div>{{ course.hours }} {{ "card.hours" | translate }}</div>
     </div>
   </div>
 </ng-template>
 
 <!-- Card without action -->
-<mat-card class="course-card"
-          *ngIf="!hasAction" appMaterialElevation
-          [defaultElevation]="defaultElevation"
-          [raisedElevation]="raisedElevation">
+<mat-card
+  class="course-card"
+  *ngIf="!hasAction"
+  appMaterialElevation
+  [defaultElevation]="defaultElevation"
+  [raisedElevation]="raisedElevation"
+>
   <ng-container [ngTemplateOutlet]="cardContent"></ng-container>
 </mat-card>
 
 <!-- Card with action -->
-<mat-card class="course-card"
-          *ngIf="hasAction" appMaterialElevation
-          [defaultElevation]="defaultElevation"
-          [raisedElevation]="raisedElevation"
-          (click)="triggerCardAction()">
+<mat-card
+  class="course-card"
+  *ngIf="hasAction"
+  appMaterialElevation
+  [defaultElevation]="defaultElevation"
+  [raisedElevation]="raisedElevation"
+  (click)="triggerCardAction()"
+>
   <ng-container [ngTemplateOutlet]="cardContent"></ng-container>
 </mat-card>

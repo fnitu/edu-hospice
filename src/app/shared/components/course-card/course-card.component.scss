@@ -9,19 +9,19 @@
   flex-direction: column;
   border-radius: 6px;
 
-  &:hover [data-header-animation=true] {
-    -webkit-transform: translate3d(0,-20px,0);
-    transform: translate3d(0,-20px,0);
+  &:hover [data-header-animation="true"] {
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
   }
 
-  [data-header-animation=true] {
+  [data-header-animation="true"] {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
-    -webkit-transition: all .3s cubic-bezier(.34,1.61,.7,1);
-    transition: all .3s cubic-bezier(.34,1.61,.7,1);
+    -webkit-transition: all 0.3s cubic-bezier(0.34, 1.61, 0.7, 1);
+    transition: all 0.3s cubic-bezier(0.34, 1.61, 0.7, 1);
   }
 
-  &:not([class*=mat-elevation-z]) {
+  &:not([class*="mat-elevation-z"]) {
     box-shadow: none;
     border-radius: 20px;
   }
@@ -39,7 +39,8 @@
       background-size: cover;
       background-position: 50%;
       height: 220px;
-      box-shadow: 0 5px 15px -8px rgba(0,0,0,.24), 0 8px 10px -5px rgba(0,0,0,.2);
+      box-shadow: 0 5px 15px -8px rgba(0, 0, 0, 0.24),
+        0 8px 10px -5px rgba(0, 0, 0, 0.2);
     }
 
     .mat-card-header-text {
@@ -69,7 +70,7 @@
     .course-label {
       display: flex;
       justify-content: center;
-      padding: 5px 0 10px 0 ;
+      padding: 5px 0 10px 0;
 
       .label {
         border-radius: 12px;
@@ -80,26 +81,39 @@
       }
 
       .label-1 {
-        background: linear-gradient($gradientDegree, $themeColor1-light, $themeColor1-dark);
+        background: linear-gradient(
+          $gradientDegree,
+          $themeColor1-light,
+          $themeColor1-dark
+        );
         color: #fff;
       }
 
       .label-2 {
-        background: linear-gradient($gradientDegree, $themeColor2-light, $themeColor2-dark);
+        background: linear-gradient(
+          $gradientDegree,
+          $themeColor2-light,
+          $themeColor2-dark
+        );
         color: #fff;
       }
 
       .label-3 {
-        background: linear-gradient($gradientDegree, $themeColor4-light, $themeColor4-dark);
+        background: linear-gradient(
+          $gradientDegree,
+          $themeColor4-light,
+          $themeColor4-dark
+        );
         color: #fff;
       }
     }
 
-    .course-description, .course-short-description {
+    .course-description,
+    .course-short-description {
       text-align: left;
       color: #999;
       line-height: 1.5em;
-      font: 400 14px/20px Roboto,Helvetica Neue,sans-serif;
+      font: 400 14px/20px Roboto, Helvetica Neue, sans-serif;
       letter-spacing: normal;
       flex: 1 1 auto;
     }
@@ -107,6 +121,12 @@
     .course-short-description {
       font-weight: bold;
     }
+  }
+
+  .register {
+    display: block;
+    background-color: lawngreen;
+    text-align: center;
   }
 
   .progress-bar {
@@ -119,7 +139,7 @@
     }
   }
 
-  [class*=card-footer-] {
+  [class*="card-footer-"] {
     margin: 0;
     border-radius: 0 0 6px 6px;
     display: flex;
@@ -137,11 +157,18 @@
   }
 
   .card-footer-green {
-    background: linear-gradient($gradientDegree, $themeColor1-light, $themeColor1-dark);
+    background: linear-gradient(
+      $gradientDegree,
+      $themeColor1-light,
+      $themeColor1-dark
+    );
   }
 
   .card-footer-pink {
-    background: linear-gradient($gradientDegree, $themeColor2-light, $themeColor2-dark);
+    background: linear-gradient(
+      $gradientDegree,
+      $themeColor2-light,
+      $themeColor2-dark
+    );
   }
-
 }
