@@ -17,7 +17,6 @@ export class CourseListComponent implements OnInit {
 
   ngOnInit(): void {
     this.gridColumns = this.getGridColumns();
-
     this.gridProperties = this.getGridProperties();
   }
 

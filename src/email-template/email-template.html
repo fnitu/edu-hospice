@@ -9,53 +9,140 @@
        body{
            font-family: Arial, Helvetica, sans-serif;
        }
+       .container{
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            width: 600px;
+       }
+       .header-data{
+            padding: 50px 30px 50px 30px;
+       }
+       .header-table{
+            border-collapse: collapse;
+            width: 100%;
+       }
+       .header-title{
+            margin: 0;
+            text-align: left; 
+            font-size: 24px; 
+            color: #7DC242;
+       }
+       .header-logo-data{
+            width: 300px;
+            height: 150px; 
+       }
+       .header-logo{
+            float: right;
+            width: 100%;
+       }
+
+       .body-data{
+            padding: 0px 30px 40px;
+       }
+       .body-table{
+            border-collapse: collapse;
+            width:100%;
+       }
+       .body-h2{
+            margin: 0; 
+            padding-bottom: 30px; 
+            font-size: 18px; 
+            font-weight: 700; 
+            text-align: start; 
+            color: #7DC242;
+       }
+       .body-table p{
+            margin: 0; 
+            font-size: 16px; 
+            line-height: 22px;
+       }
+
+       .data-footer{
+            padding: 0px 30px;
+            background-color: #414141;
+       }
+       .table-footer{
+            width: 100%; 
+            border-collapse: collapse;
+       }
+       .anmcs-data{
+            width: 100px; 
+            height: 100px;
+       }
+       .anmcs-data img{
+            margin: 0; 
+            width: 70%; 
+            object-fit: cover;
+       }
+       .footer-logo-data{
+            width: 200px; 
+            height: 100px;
+       }
+       .footer-logo-data img{
+            margin: 0; 
+            width: 100%; 
+            object-fit: cover;
+       }
+       .footer-hospice-info{
+            width: 200px; 
+            height: 100px;
+       }
+       .footer-hospice-info p{
+            margin: 0; 
+            font-size: 9px; 
+            text-align: justify; 
+            padding-right: 5px; 
+            color: grey;
+       }
     </style>
 </head>
 <body>
-    <table align='center' cellpadding='0' cellspacing='0' width='600' style='border-collapse: collapse;'>
+    <table class="container" cellpadding='0' cellspacing='0'>
         <tr>
-            <td style="padding: 50px 30px 50px 30px">
-                <table cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+            <td class="header-data">
+                <table class="header-table" cellpadding="0" cellspacing="0">
                     <tr>
                         <td>
-                            <h1 style="margin: 0; text-align: left; font-size: 24px; color: #7DC242;">Edu Hospice</h1>
+                            <h1 class='header-title'>Edu Hospice</h1>
                         </td>
-                        <td style="width: 300px; height: 15
-                        0px;">
-                            <img src="logo-hospice.png" alt="hospice logo" style="float: right; width: 100%; ">
+                        <td class="header-logo-data">
+                            <img src="logo-hospice.png" alt="hospice logo" class="header-logo">
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr>
-            <td style="padding: 0px 30px 40px 30px;">
-                <table  cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+            <td class="body-data">
+                <table class="body-table" cellpadding="0" cellspacing="0">
                     <tr>
                         <td>
-                            <h2 style="margin: 0; padding-bottom: 30px; font-size: 18px; font-weight: 700; text-align: start; color: #7DC242 ;">Felicitari, inscrierea dumneavostra a fost acceptata ! </h2>
+                            <h2 class='body-h2'>
+                                Felicitari, inscrierea dumneavostra a fost acceptata ! 
+                            </h2>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <p style="margin: 0; font-size: 16px; line-height: 22px;">Prenume Nume candidatura dvs la cursul X de pe platforma Edu Hospice a fost acceptata. Urmatorul pas va fi efectuarea platii accesand linkul de plata ...sau folosind detaliile contului nostru bancar:</p>
+                            <p>Prenume Nume candidatura dvs la cursul X de pe platforma Edu Hospice a fost acceptata. Urmatorul pas va fi efectuarea platii accesand linkul de plata ...sau folosind detaliile contului nostru bancar:</p>
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
         <tr>
-            <td style="padding: 0px 30px 0px 30px; background-color: #414141;">
-                <table  cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse; ">
+            <td class="data-footer">
+                <table class="table-footer" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td style="width: 100px; height: 100px;">
-                            <img src="hcs-logo-anmcs2.png" style="margin: 0; width: 70%; object-fit: cover;">
+                        <td class="anmcs-data">
+                            <img src="hcs-logo-anmcs2.png" alt="anmcs logo">
                         </td>
-                        <td style="width: 200px; height: 100px;">
-                            <img src="logo-hospice-white.png" style="margin: 0; width: 100%; object-fit: cover; ">
+                        <td class="footer-logo-data">
+                            <img src="logo-hospice-white.png" alt="hospice white logo">
                         </td>
-                        <td style="width: 200px; height: 100px;">
-                            <p style="margin: 0; font-size: 9px; text-align: justify; padding-right: 5px; color: grey;">HOSPICE Casa Sperantei is registered as an operator with the National Register of Personal Data Handlers of ANSPDCP under license number 16381/09.05.2012 (in accordance with Law 677/2001)
+                        <td class='footer-hospice-info'>
+                            <p>HOSPICE Casa Sperantei is registered as an operator with the National Register of Personal Data Handlers of ANSPDCP under license number 16381/09.05.2012 (in accordance with Law 677/2001)
                                 Fundația HOSPICE Casa Speranței’s Equivalency Determination certification is valid through December 31, 2019.</p>
                         </td>
                     </tr>
