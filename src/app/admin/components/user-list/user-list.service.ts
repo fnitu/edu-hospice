@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GLOBALS } from 'src/app/shared/core/globals';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,7 @@ export class UserListService {
   public approveRowAction(url, data): Observable<any> {
     const bodyParams = data ? JSON.stringify(data) : null;
     const httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'})
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
 
     return this.http.put(url, bodyParams, httpOptions);
@@ -31,9 +31,13 @@ export class UserListService {
   public rejectRowAction(url, data): Observable<any> {
     const bodyParams = data ? JSON.stringify(data) : null;
     const httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'})
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
 
     return this.http.put(url, bodyParams, httpOptions);
+  }
+
+  public register(url): Observable<any> {
+    return this.http.post(url, {});
   }
 }

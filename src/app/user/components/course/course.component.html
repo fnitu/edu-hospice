@@ -6,7 +6,7 @@
                  *ngIf="sidenav.opened"
                  (click)="sidenav.toggle()"
                  title="{{ 'general.collapse' | translate }}">
-                <mat-icon>chevron_left</mat-icon>
+                <mat-icon>menu_open</mat-icon>
             </div>
 
             <div *ngIf="sidenav.opened" class="course-header">
@@ -55,16 +55,22 @@
             <div class="sidenav-toolbar" *ngIf="!sidenav.opened"
                  (click)="sidenav.toggle()"
                  title="{{ 'general.expand' | translate }}">
-                <mat-icon>chevron_right</mat-icon>
+                <mat-icon>menu</mat-icon>
             </div>
 
             <div class="course-information-container" *ngIf="selectedNode">
                 <div class="course-toolbar">
-                    <button class="prev" mat-button (click)="navigateToNextNode(false)">
+                    <button class="prev"
+                            mat-button
+                            title="{{ 'user.course.prev' | translate }}"
+                            (click)="navigateToNextNode(false)">
                         <mat-icon>navigate_before</mat-icon>
                     </button>
 
-                    <button class="next" mat-button (click)="navigateToNextNode(true)">
+                    <button class="next"
+                            mat-button
+                            title="{{ 'user.course.next' | translate }}"
+                            (click)="navigateToNextNode(true)">
                         <mat-icon>navigate_next</mat-icon>
                     </button>
                 </div>
