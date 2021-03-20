@@ -51,8 +51,6 @@ export class RecoverPasswordEnterEmailComponent implements OnInit {
 
         const data = {
             email: emailInput.value,
-            subject: 'Reset your Edu Hospice password',
-            body: 'Please follow this link to reset your password on our Edu Hospice platform:\nhttps://edu-hospice.herokuapp.com/preview/recover-or-change-password?token={token}'
         };
 
         this.recoverPasswordEnterEmailService.sendEmailForRecoverPassword(url, data).subscribe((result) => {
