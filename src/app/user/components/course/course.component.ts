@@ -27,7 +27,7 @@ export class CourseComponent implements OnInit {
     public nodesMap = new Map();
     private nodeIds = [];
 
-    public courseDetails: CourseInterface = <CourseInterface>{}
+    public courseDetails: CourseInterface = <CourseInterface>{};
 
     public treeControl = new NestedTreeControl<CourseTreeNodeInterface>(node => node.children);
     public dataSource = new MatTreeNestedDataSource<CourseTreeNodeInterface>();
@@ -185,6 +185,3 @@ export class CourseComponent implements OnInit {
 
     public hasChild = (_: number, node: CourseTreeNodeInterface) => !!node.children && node.children.length > 0;
 }
-            
-            
-            

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import { GridPropertiesInterface } from "../../../shared/components/grid/grid-properties.interface";
 import { CustomTranslateService } from "../../../shared/services/custom-translate/custom-translate.service";
 import { ConfirmationDialogService } from "../../../shared/components/confirmation-dialog/confirmation-dialog.service";
@@ -14,6 +14,9 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     encapsulation: ViewEncapsulation.None
 })
 export class UserListComponent implements OnInit {
+
+    @ViewChild('gridComponent') gridComponent;
+
     @Input() listType: string;
 
     public gridProperties: GridPropertiesInterface;
@@ -86,7 +89,7 @@ export class UserListComponent implements OnInit {
                 {
                     headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.status"),
                     cellRenderer: (data) => {
-                        return this.customTranslateService.getTranslation(`course.status.${data.value}`)
+                        return this.customTranslateService.getTranslation(`course.status.${data.value}`);
                     },
                     width: 300,
                     field: 'status'
@@ -141,7 +144,7 @@ export class UserListComponent implements OnInit {
     }
 
     private approveRowActionHandler(params) {
-        let dialogRef = this.confirmationDialogService.show({
+        const dialogRef = this.confirmationDialogService.show({
             data: {
                 message: this.customTranslateService.getTranslation("admin.users.userList.approveMessage"),
                 buttons: [
@@ -166,6 +169,8 @@ export class UserListComponent implements OnInit {
 
                               }
 
+                              this.gridComponent.refreshGrid();
+
                               dialogRef.close();
                             });
                         }
@@ -179,7 +184,7 @@ export class UserListComponent implements OnInit {
     }
 
     private rejectRowActionHandler(params) {
-        let dialogRef = this.confirmationDialogService.show({
+        const dialogRef = this.confirmationDialogService.show({
             data: {
                 message: this.customTranslateService.getTranslation("admin.users.userList.rejectMessage"),
                 hasCommentBox: true,
@@ -193,9 +198,13 @@ export class UserListComponent implements OnInit {
                             "{courseId}": params.data.courseId,
                           };
 
+                          const data = {
+                            message: dialogRef.componentInstance.commentBox
+                          };
+
                           url = this.placeholderFormat.stringFormat(url, urlParams);
 
-                          this.userListService.rejectRowAction(url, {}).subscribe((result) => {
+                          this.userListService.rejectRowAction(url, data).subscribe((result) => {
                             if (result.success) {
 
                               this.matSnackBar.open(result.message, GLOBALS.NOTIFICATIONS.INFO, {
@@ -204,6 +213,8 @@ export class UserListComponent implements OnInit {
                               });
 
                             }
+
+                            this.gridComponent.refreshGrid();
 
                             dialogRef.close();
                           });
