@@ -8,6 +8,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UsersComponent } from './components/users/users.component';
 import { DatePipe } from '@angular/common';
+import { NewQuizComponent } from './components/new-quiz/new-quiz.component';
+import { QuizSettingsComponent } from './components/new-quiz/quiz-settings/quiz-settings.component';
+import { QuizQuestionsComponent } from './components/new-quiz/quiz-questions/quiz-questions.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +19,9 @@ import { DatePipe } from '@angular/common';
     DashboardComponent,
     UserListComponent,
     UsersComponent,
+    NewQuizComponent,
+    QuizSettingsComponent,
+    QuizQuestionsComponent,
   ],
   imports: [SharedModule, AdminRoutingModule],
   providers: [DatePipe],

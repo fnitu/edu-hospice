@@ -33,6 +33,7 @@ import { GridComponent } from './components/grid/grid.component';
 import { AgGridModule } from "ag-grid-angular";
 import { FORMLY_CONFIG, FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
+import { FormlyMatToggleModule } from "@ngx-formly/material/toggle";
 import { formlyValidationConfig } from './components/formly/formly-validation-config';
 import { CustomTranslateService } from './services/custom-translate/custom-translate.service';
 
@@ -108,7 +109,8 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
         TranslateModule,
         GridComponent,
         FormlyModule,
-        FormlyMaterialModule
+        FormlyMaterialModule,
+        FormlyMatToggleModule
     ],
     providers: [
         {

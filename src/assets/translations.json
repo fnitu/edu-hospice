@@ -13,7 +13,8 @@
     "yes": "Da",
     "no": "Nu",
     "expand": "Extinde",
-    "collapse": "Restrănge"
+    "collapse": "Restrănge",
+    "minutes": "minute"
   },
   "field": {
     "required": "Acest câmp este obligatoriu.",
@@ -116,6 +117,19 @@
         },
         "approveMessage": "Ești sigur că vrei să aprobi această înregistrare.",
         "rejectMessage": "Ești sigur că vrei să refuzi această înregistrare."
+      }
+    },
+    "quiz": {
+      "settings": {
+        "titleLabel": "Titlu test",
+        "titlePlaceholder": "Introduceți titlul testului",
+        "minimumScoreLabel": "Punctajul minim pentru a trece testul",
+        "minimumScorePlaceholder": "Selectați punctajul minim pentru a trece testul",
+        "shuffleQuestionsLabel": "Amestecă întrebările",
+        "retryAttemptsLabel": "Numărul de încercări posibile",
+        "retryAttemptsPlaceholder": "Selectați numărul de încercări posibile",
+        "timeLimitLabel": "Timpul limit pentru a termina testul",
+        "timeLimitPlaceholder": "Selectați timpul limit pentru a termina testul"
       }
     }
   },

@@ -6,6 +6,7 @@ import { CourseListComponent } from "./components/course-list/course-list.compon
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from "./components/users/users.component";
 import { ROUTES } from "../shared/core/routes";
+import { NewQuizComponent } from "./components/new-quiz/new-quiz.component";
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: `${ROUTES.ADMIN.USERS}/:listType`,
         component: UsersComponent
+      },
+      {
+        path: `${ROUTES.ADMIN.QUIZ.NEW}/:id`,
+        component: NewQuizComponent
       }
     ]
   }
