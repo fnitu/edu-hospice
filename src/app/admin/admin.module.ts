@@ -11,6 +11,7 @@ import { DatePipe } from '@angular/common';
 import { NewQuizComponent } from './components/new-quiz/new-quiz.component';
 import { QuizSettingsComponent } from './components/new-quiz/quiz-settings/quiz-settings.component';
 import { QuizQuestionsComponent } from './components/new-quiz/quiz-questions/quiz-questions.component';
+import { QuizListComponent } from './components/quiz-list/quiz-list.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { QuizQuestionsComponent } from './components/new-quiz/quiz-questions/qui
     NewQuizComponent,
     QuizSettingsComponent,
     QuizQuestionsComponent,
+    QuizListComponent,
   ],
   imports: [SharedModule, AdminRoutingModule],
   providers: [DatePipe],

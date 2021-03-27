@@ -74,5 +74,19 @@
         </mat-card-content>
       </div>
     </mat-card>
+    <mat-card class="card" routerLink="{{ quizListRoute }}">
+      <div class="icon">
+        <mat-icon>quiz</mat-icon>
+      </div>
+      <div class="text">
+        <mat-card-title>{{
+          "admin.dashboard.titleQuiz" | translate
+        }}</mat-card-title>
+        <mat-card-subtitle>
+          {{ "admin.dashboard.subtitleQuiz" | translate }}
+        </mat-card-subtitle>
+        <mat-card-content></mat-card-content>
+      </div>
+    </mat-card>
   </div>
 </div>

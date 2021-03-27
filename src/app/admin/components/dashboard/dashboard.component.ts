@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
   public paymentRoute = `/${ROUTES.ADMIN.MAIN_ROUTE}/${ROUTES.ADMIN.USERS}/${this.adminService.USER_LIST_TYPES.PAYMENT}`;
   public registrationRoute = `/${ROUTES.ADMIN.MAIN_ROUTE}/${ROUTES.ADMIN.USERS}/${this.adminService.USER_LIST_TYPES.REGISTRATION}`;
 
+  public quizListRoute = `/${ROUTES.ADMIN.MAIN_ROUTE}/${ROUTES.ADMIN.QUIZ.LIST}`;
+
   public registrationPending: number;
   public paymentPending: number;
 
