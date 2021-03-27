@@ -1,0 +1,13 @@
+<div class="pageToolbar" [ngClass]="{hideToolbar: hideToolbar}">
+  <ul class="toolbarList" #pageToolbarActionList>
+    <li *ngFor="let item of pageActions">
+      <button
+        mat-button
+        mat-raised-button
+        class="grayAction"
+        (click)="item.handler(item)"
+        [disabled]="item.disabled">{{item.text}}
+      </button>
+    </li>
+  </ul>
+</div>

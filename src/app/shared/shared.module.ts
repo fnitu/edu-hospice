@@ -42,6 +42,7 @@ import { RowActionsCellRendererComponent } from './components/grid/row-actions-c
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { GlobalMatDialogConfig } from "./constants/global-mat-dialog-config";
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
+import { GridTopToolbarComponent } from './components/grid/grid-top-toolbar/grid-top-toolbar.component';
 
 @NgModule({
     declarations: [
@@ -51,7 +52,8 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
         GridComponent,
         RowActionsCellRendererComponent,
         ConfirmationDialogComponent,
-        SnackBarComponent
+        SnackBarComponent,
+        GridTopToolbarComponent
     ],
     imports: [
         CommonModule,

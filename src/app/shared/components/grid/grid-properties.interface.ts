@@ -1,3 +1,5 @@
 export interface GridPropertiesInterface {
-    url: string
+    url: string;
+    actionsUrl?: string;
+    actions?: object;
 }

@@ -34,6 +34,7 @@
     "jquery": "3.5.1",
     "lodash": "4.17.20",
     "ngx-progressbar": "6.0.2",
+    "resize-observer": "^1.0.0",
     "rxjs": "6.5.5",
     "tippy.js": "5.1.4",
     "tslib": "1.10.0",

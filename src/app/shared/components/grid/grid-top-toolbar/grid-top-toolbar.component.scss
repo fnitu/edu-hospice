@@ -1,0 +1,100 @@
+@import "../../../../../styles/scss/imports";
+
+.gridComponent {
+  .pageToolbar, .multipleToolbar {
+    &.hideToolbar {
+      display: none;
+    }
+
+    height: 45px;
+
+    .toolbarList {
+      height: 46px;
+      margin: 0;
+      list-style: none;
+      padding: 4px 10px 6px;
+      box-sizing: border-box;
+
+      .mat-button[mat-button] {
+        border-radius: 2px;
+      }
+
+      li {
+        display: inline-block;
+        position: relative;
+
+        &.flexMenu-viewMore {
+          position: absolute;
+
+          a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+
+            &:hover {
+              background-color: $darkBorder;
+
+              &:after {
+                color: $textWithBackground;
+              }
+            }
+
+            &:after {
+
+              font-family: action_icons;
+              content: "\E910";
+              font-size: 15px;
+              line-height: 30px;
+              font-weight: 400;
+              color: $darkBorder;
+            }
+          }
+
+          .flexMenu-popup {
+            right: 0;
+            top: 40px;
+            background-color: $cardBackground;
+            padding: 5px 0;
+            @include shadowLevel-1;
+
+            li {
+              display: flex;
+              flex-direction: column;
+
+              .mat-button[mat-button] {
+                background-color: $cardBackground;
+                color: $generalTextColor;
+                padding: 10px 20px;
+                height: 40px;
+                border-radius: 0;
+                box-shadow: none;
+                margin: 0;
+                text-align: left;
+
+                &:hover {
+                  background-color: $hoverAndSelectedBackground;
+                }
+
+                &:disabled {
+                  color: $lightBorder;
+                  cursor: default;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .mat-button:disabled {
+      box-shadow: none;
+      background-color: $disabledPageToolbarButtonBackgroundColor;
+      color: $disabledPageToolbarButtonColor;
+    }
+  }
+}

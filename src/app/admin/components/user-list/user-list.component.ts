@@ -121,7 +121,18 @@ export class UserListComponent implements OnInit {
 
     private getGridProperties(): GridPropertiesInterface {
         return {
-            url: this.getUrl()
+            url: this.getUrl(),
+            actionsUrl: this.getActionsUrl(),
+            actions: {
+              page: {
+                doSomething: {
+                  handler: (button) => {
+                    console.log("acesta e un buton de page");
+                    debugger;
+                  }
+                }
+              }
+            }
         };
     }
 
@@ -141,6 +152,25 @@ export class UserListComponent implements OnInit {
         }
 
         return url;
+    }
+
+    private getActionsUrl(): string {
+      let url = '';
+
+      // FIXME add url for actions
+      switch (this.listType) {
+        case this.userListService.USER_LIST_TYPES.PAYMENT:
+          url = 'GLOBALS.DATA_URL.USER_LIST_WAITING_FOR_PAYMENT';
+          break;
+        case this.userListService.USER_LIST_TYPES.REGISTRATION:
+          url = 'GLOBALS.DATA_URL.USER_LIST_WAITING_FOR_REGISTRATION';
+          break;
+        default:
+          url = 'GLOBALS.DATA_URL.USER_LIST';
+          break;
+      }
+
+      return url;
     }
 
     private approveRowActionHandler(params) {

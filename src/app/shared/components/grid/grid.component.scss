@@ -1,16 +1,24 @@
 @import '~ag-grid-community/dist/styles/ag-grid';
 @import 'node_modules/ag-grid-community/dist/styles/ag-theme-balham';
 
+
 app-grid {
   display: flex;
   flex: 1;
 
-  .ag-grid-component {
-    flex: 1;
+  .gridComponent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 
-    .ag-cell {
-      display: flex;
-      align-items: center;
+    .ag-grid-component {
+      flex: 1;
+
+      .ag-cell {
+        display: flex;
+        align-items: center;
+      }
     }
   }
 }
+

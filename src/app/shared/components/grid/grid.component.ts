@@ -2,6 +2,7 @@ import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {GridService} from './grid.service';
 import {GridPropertiesInterface} from './grid-properties.interface';
 import {RowActionsCellRendererComponent} from './row-actions-cell-renderer/row-actions-cell-renderer.component';
+import {GridActionsInterface} from './grid-actions.interface';
 
 @Component({
   selector: 'app-grid',
@@ -14,6 +15,7 @@ export class GridComponent implements OnInit {
   @Input() gridProperties: GridPropertiesInterface;
 
   public gridOptions;
+  public actions: GridActionsInterface;
 
   constructor(private gridService: GridService) {
   }
@@ -24,6 +26,7 @@ export class GridComponent implements OnInit {
       ...this.getDefaultGridOptions()
     };
 
+    this.getActions();
   }
 
   /**
@@ -80,9 +83,37 @@ export class GridComponent implements OnInit {
   }
 
   public refreshGrid() {
-    // this.gridOptions.api.ensureIndexVisible(0);
-    // this.gridOptions.api.refreshServerSideStore({ purge: true });
-    // this.gridOptions.api.refreshInfiniteCache();
+    // this.gridOptions.api.getModel().rootNode.childrenCache.setVirtualRowCount(0);
+    this.gridOptions.api.purgeServerSideCache([this.gridProperties.url]);
+  }
+
+  public getActions() {
+
+    // FIXME uncomment when url for actions are available
+    // this.gridService.getActions(this.gridProperties.actionsUrl).subscribe((response) => {
+    //   this.actions = this.gridService.mergeActionsConfig(response.actions, this.gridProperties.actions);
+    // });
+
+    // FIXME to be removed when dynamic data is loading
+    const actions = {
+      page: [
+        {
+          itemId: 782,
+          type: "button",
+          text: "Do Something",
+          tooltip: null,
+          glyph: "",
+          cls: null,
+          action: "doSomething",
+          apiActionUrl: "",
+          breadcrumbId: 0,
+          disabled: false,
+          menu: null
+        }
+      ]
+    };
+
+    this.actions = this.gridService.mergeActionsConfig(actions, this.gridProperties.actions);
   }
 
 }

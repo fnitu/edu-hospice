@@ -55,6 +55,8 @@ export class CourseListComponent implements OnInit {
   private getGridProperties(): GridPropertiesInterface {
     return {
       url: GLOBALS.DATA_URL.ADMIN_COURSES,
+      actionsUrl: '',
+      actions: {}
     };
   }
 }
