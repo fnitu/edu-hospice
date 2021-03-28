@@ -1,0 +1,32 @@
+{
+  "actions": {
+    "page": [
+      {
+        "itemId": 782,
+        "type": "button",
+        "text": "Payment Do Something",
+        "tooltip": null,
+        "glyph": "",
+        "cls": null,
+        "action": "paymentDoSomething",
+        "apiActionUrl": "",
+        "breadcrumbId": 0,
+        "disabled": false,
+        "menu": null
+      },
+      {
+        "itemId": 782,
+        "type": "button",
+        "text": "Payment Action Two",
+        "tooltip": null,
+        "glyph": "",
+        "cls": null,
+        "action": "paymentActionTwo",
+        "apiActionUrl": "",
+        "breadcrumbId": 0,
+        "disabled": false,
+        "menu": null
+      }
+    ]
+  }
+}

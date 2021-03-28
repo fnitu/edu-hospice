@@ -88,32 +88,10 @@ export class GridComponent implements OnInit {
   }
 
   public getActions() {
-
-    // FIXME uncomment when url for actions are available
-    // this.gridService.getActions(this.gridProperties.actionsUrl).subscribe((response) => {
-    //   this.actions = this.gridService.mergeActionsConfig(response.actions, this.gridProperties.actions);
-    // });
-
-    // FIXME to be removed when dynamic data is loading
-    const actions = {
-      page: [
-        {
-          itemId: 782,
-          type: "button",
-          text: "Do Something",
-          tooltip: null,
-          glyph: "",
-          cls: null,
-          action: "doSomething",
-          apiActionUrl: "",
-          breadcrumbId: 0,
-          disabled: false,
-          menu: null
-        }
-      ]
-    };
-
-    this.actions = this.gridService.mergeActionsConfig(actions, this.gridProperties.actions);
+    this.gridService.getActions(this.gridProperties.actionsUrl).subscribe((response) => {
+      const actions = response?.actions ? response.actions : [];
+      this.actions = this.gridService.mergeActionsConfig(actions, this.gridProperties.actions);
+    });
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="gridComponent">
-  <app-grid-top-toolbar [pageActions]="actions.page"></app-grid-top-toolbar>
+  <app-grid-top-toolbar [pageActions]="actions?.page" [hideToolbar]="!actions"></app-grid-top-toolbar>
 
   <ag-grid-angular
     class="ag-theme-balham ag-grid-component"

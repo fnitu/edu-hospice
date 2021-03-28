@@ -127,7 +127,25 @@ export class UserListComponent implements OnInit {
               page: {
                 doSomething: {
                   handler: (button) => {
-                    console.log("acesta e un buton de page");
+                    console.log("doSomething");
+                    debugger;
+                  }
+                },
+                registrationActionTwo: {
+                  handler: (button) => {
+                    console.log('registrationActionTwo');
+                    debugger;
+                  }
+                },
+                paymentDoSomething: {
+                  handler: (button) => {
+                    console.log('paymentDoSomething');
+                    debugger;
+                  }
+                },
+                paymentActionTwo: {
+                  handler: (button) => {
+                    console.log('paymentActionTwo');
                     debugger;
                   }
                 }
@@ -160,10 +178,10 @@ export class UserListComponent implements OnInit {
       // FIXME add url for actions
       switch (this.listType) {
         case this.userListService.USER_LIST_TYPES.PAYMENT:
-          url = 'GLOBALS.DATA_URL.USER_LIST_WAITING_FOR_PAYMENT';
+          url = GLOBALS.DATA_URL.ACTION_LIST_WAITING_FOR_PAYMENT;
           break;
         case this.userListService.USER_LIST_TYPES.REGISTRATION:
-          url = 'GLOBALS.DATA_URL.USER_LIST_WAITING_FOR_REGISTRATION';
+          url = GLOBALS.DATA_URL.ACTION_LIST_WAITING_FOR_REGISTRATION;
           break;
         default:
           url = 'GLOBALS.DATA_URL.USER_LIST';
