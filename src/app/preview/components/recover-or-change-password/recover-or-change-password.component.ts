@@ -29,7 +29,8 @@ export class RecoverOrChangePasswordComponent implements OnInit {
             templateOptions: {
                 type: 'password',
                 label: this.customTranslateService.getTranslation('preview.managePassword.password'),
-                placeholder: this.customTranslateService.getTranslation('preview.managePassword.passwordPlaceholder')
+                placeholder: this.customTranslateService.getTranslation('preview.managePassword.passwordPlaceholder'),
+                appearance: "outline"
             },
             validators: {
                 validation: [Validators.required],
@@ -45,7 +46,8 @@ export class RecoverOrChangePasswordComponent implements OnInit {
             templateOptions: {
                 type: 'password',
                 label: this.customTranslateService.getTranslation('preview.managePassword.password'),
-                placeholder: this.customTranslateService.getTranslation('preview.managePassword.passwordPlaceholderConfirmation')
+                placeholder: this.customTranslateService.getTranslation('preview.managePassword.passwordPlaceholderConfirmation'),
+                appearance: "outline"
             },
             validators: {
                 validation: [Validators.required],

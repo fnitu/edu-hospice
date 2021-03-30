@@ -28,6 +28,7 @@ export class LoginComponent {
         placeholder: this.customTranslateService.getTranslation(
           'preview.login.loginPlaceholder'
         ),
+        appearance: "outline"
       },
       validators: {
         validation: [Validators.required, 'email'],
@@ -44,6 +45,7 @@ export class LoginComponent {
         placeholder: this.customTranslateService.getTranslation(
           'preview.login.passwordPlaceholder'
         ),
+        appearance: "outline"
       },
       validators: {
         validation: [Validators.required],

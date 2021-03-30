@@ -27,6 +27,7 @@ export class RecoverPasswordEnterEmailComponent implements OnInit {
             templateOptions: {
                 label: this.customTranslateService.getTranslation('general.email'),
                 placeholder: this.customTranslateService.getTranslation('preview.login.loginPlaceholder'),
+                appearance: "outline"
             },
             validators: {
                 validation: [Validators.required, 'email']
