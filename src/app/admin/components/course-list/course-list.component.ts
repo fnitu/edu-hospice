@@ -1,8 +1,9 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { GLOBALS } from 'src/app/shared/core/globals';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
 import { GridPropertiesInterface } from '../../../shared/components/grid/grid-properties.interface';
+import { ROUTES } from '../../../shared/core/routes';
 
 @Component({
   selector: 'app-course-list',
@@ -13,6 +14,8 @@ import { GridPropertiesInterface } from '../../../shared/components/grid/grid-pr
 export class CourseListComponent implements OnInit {
   public gridProperties: GridPropertiesInterface;
   public gridColumns;
+
+  public createCourseRoute = `/${ROUTES.ADMIN.MAIN_ROUTE}/${ROUTES.ADMIN.COURSE.CREATE}`;
 
   constructor(
     private customTranslateService: CustomTranslateService,
@@ -56,7 +59,7 @@ export class CourseListComponent implements OnInit {
     return {
       url: GLOBALS.DATA_URL.ADMIN_COURSES,
       actionsUrl: '',
-      actions: {}
+      actions: {},
     };
   }
 }

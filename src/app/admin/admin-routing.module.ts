@@ -8,6 +8,7 @@ import { UsersComponent } from './components/users/users.component';
 import { ROUTES } from '../shared/core/routes';
 import { NewQuizComponent } from './components/new-quiz/new-quiz.component';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
+import { CreateCourseComponent } from './components/create-course/create-course.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: ROUTES.ADMIN.COURSE_LIST,
         component: CourseListComponent,
+      },
+      {
+        path: ROUTES.ADMIN.COURSE.CREATE,
+        component: CreateCourseComponent,
       },
       {
         path: `${ROUTES.ADMIN.USERS}/:listType`,

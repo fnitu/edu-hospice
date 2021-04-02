@@ -15,6 +15,10 @@ export const ROUTES = {
     MAIN_ROUTE: 'admin',
     DASHBOARD: 'dashboard',
     COURSE_LIST: 'course-list',
+    COURSE: {
+      CREATE: 'course-list/new',
+      LIST: 'course-list',
+    },
     USERS: 'users',
     QUIZ: {
       NEW: 'new-quiz',
