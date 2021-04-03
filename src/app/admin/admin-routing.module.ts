@@ -41,6 +41,10 @@ const routes: Routes = [
         component: QuizListComponent,
       },
       {
+        path: ROUTES.ADMIN.QUIZ.NEW,
+        component: NewQuizComponent,
+      },
+      {
         path: `${ROUTES.ADMIN.QUIZ.NEW}/:id`,
         component: NewQuizComponent,
       },

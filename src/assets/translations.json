@@ -132,6 +132,13 @@
         "retryAttemptsPlaceholder": "Selectați numărul de încercări posibile",
         "timeLimitLabel": "Timpul limit pentru a termina testul",
         "timeLimitPlaceholder": "Selectați timpul limit pentru a termina testul"
+      },
+      "list": {
+        "quizName": "Nume Chestionar",
+        "quizStatus": "Status",
+        "numberOfQuestions": "Număr de întrebări",
+        "creationDate": "Data creării",
+        "lastUpdate": "Ultima actualizare"
       }
     }
   },

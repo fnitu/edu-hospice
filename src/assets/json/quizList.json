@@ -1,0 +1,42 @@
+[
+  {
+    "id": "0",
+    "quizName": "quiz test 1",
+    "quizStatus": "status test 1",
+    "numberOfAssignedQuestions": "10",
+    "creationDate": "2020-02-01T00:00:00+02:00",
+    "lastUpdate": "2020-02-01T00:00:00+02:00"
+  },
+  {
+    "id": "1",
+    "quizName": "quiz test 2",
+    "quizStatus": "status test 2",
+    "numberOfAssignedQuestions": "15",
+    "creationDate": "2020-02-01T00:00:00+02:00",
+    "lastUpdate": "2020-02-01T00:00:00+02:00"
+  },
+  {
+    "id": "2",
+    "quizName": "quiz test 3",
+    "quizStatus": "status test 3",
+    "numberOfAssignedQuestions": "10",
+    "creationDate": "2020-02-01T00:00:00+02:00",
+    "lastUpdate": "2020-02-01T00:00:00+02:00"
+  },
+  {
+    "id": "3",
+    "quizName": "quiz test 4",
+    "quizStatus": "status test 4",
+    "numberOfAssignedQuestions": "20",
+    "creationDate": "2020-02-01T00:00:00+02:00",
+    "lastUpdate": "2020-02-01T00:00:00+02:00"
+  },
+  {
+    "id": "4",
+    "quizName": "quiz test 5",
+    "quizStatus": "status test 5",
+    "numberOfAssignedQuestions": "10",
+    "creationDate": "2020-02-01T00:00:00+02:00",
+    "lastUpdate": "2020-02-01T00:00:00+02:00"
+  }
+]

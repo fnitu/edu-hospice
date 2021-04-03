@@ -9,11 +9,17 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTreeModule } from '@angular/material/tree';
-import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from "@angular/material/dialog";
+import {
+  MAT_DIALOG_DEFAULT_OPTIONS,
+  MatDialogModule,
+} from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
+import {
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
+  MatFormFieldModule,
+} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -26,125 +32,132 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgProgressModule } from 'ngx-progressbar';
 import { NgProgressHttpModule } from 'ngx-progressbar/http';
 import { GlobalMatFormFieldConfig } from './constants/global-mat-form-field-config';
-import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
+import {
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+  MatSnackBarModule,
+} from '@angular/material/snack-bar';
 import { GlobalMatSnackBarConfig } from './constants/global-mat-snack-bar-config';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { GridComponent } from './components/grid/grid.component';
-import { AgGridModule } from "ag-grid-angular";
+import { AgGridModule } from 'ag-grid-angular';
 import { FORMLY_CONFIG, FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
-import { FormlyMatToggleModule } from "@ngx-formly/material/toggle";
+import { FormlyMatToggleModule } from '@ngx-formly/material/toggle';
 import { formlyValidationConfig } from './components/formly/formly-validation-config';
 import { CustomTranslateService } from './services/custom-translate/custom-translate.service';
 
 import * as $ from 'jquery';
 import { RowActionsCellRendererComponent } from './components/grid/row-actions-cell-renderer/row-actions-cell-renderer.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
-import { GlobalMatDialogConfig } from "./constants/global-mat-dialog-config";
+import { GlobalMatDialogConfig } from './constants/global-mat-dialog-config';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { GridTopToolbarComponent } from './components/grid/grid-top-toolbar/grid-top-toolbar.component';
+import { BtnCellRenderer } from './components/grid/button-cell-render/btn-cell-render.component';
 
 @NgModule({
-    declarations: [
-        MaterialElevationDirective,
-        CourseCardComponent,
-        NotFoundComponent,
-        GridComponent,
-        RowActionsCellRendererComponent,
-        ConfirmationDialogComponent,
-        SnackBarComponent,
-        GridTopToolbarComponent
-    ],
-    imports: [
-        CommonModule,
-        MatCardModule,
-        FormsModule,
-        ReactiveFormsModule,
-        FlexLayoutModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatMenuModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatTabsModule,
-        MatDividerModule,
-        MatChipsModule,
-        MatDialogModule,
-        MatProgressBarModule,
-        MatExpansionModule,
-        MatListModule,
-        MatSnackBarModule,
-        MatSidenavModule,
-        MatTreeModule,
-        TranslateModule,
-        AgGridModule.withComponents([RowActionsCellRendererComponent]),
-        FormlyModule.forRoot(),
-        FormlyMaterialModule
-    ],
-    exports: [
-        CommonModule,
-        HttpClientModule,
-        NgProgressModule,
-        NgProgressHttpModule,
-        MatCardModule,
-        FormsModule,
-        ReactiveFormsModule,
-        FlexLayoutModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatMenuModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatTabsModule,
-        MatDividerModule,
-        MatChipsModule,
-        MatDialogModule,
-        MatProgressBarModule,
-        MatExpansionModule,
-        MatListModule,
-        MatSnackBarModule,
-        MatSidenavModule,
-        MatTreeModule,
-        CourseCardComponent,
-        TranslateModule,
-        GridComponent,
-        FormlyModule,
-        FormlyMaterialModule,
-        FormlyMatToggleModule
-    ],
-    providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: HttpConfigService,
-            multi: true
-        },
-        {
-            provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-            useValue: GlobalMatFormFieldConfig
-        },
-        {
-            provide: FORMLY_CONFIG,
-            multi: true,
-            useFactory: formlyValidationConfig,
-            deps: [CustomTranslateService]
-        },
-        {
-            provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
-            useValue: GlobalMatSnackBarConfig
-        },
-        {
-            provide: MAT_DIALOG_DEFAULT_OPTIONS,
-            useValue: GlobalMatDialogConfig
-        }
-
-    ]
+  declarations: [
+    MaterialElevationDirective,
+    CourseCardComponent,
+    NotFoundComponent,
+    GridComponent,
+    RowActionsCellRendererComponent,
+    ConfirmationDialogComponent,
+    SnackBarComponent,
+    GridTopToolbarComponent,
+    BtnCellRenderer,
+  ],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatTabsModule,
+    MatDividerModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatProgressBarModule,
+    MatExpansionModule,
+    MatListModule,
+    MatSnackBarModule,
+    MatSidenavModule,
+    MatTreeModule,
+    TranslateModule,
+    AgGridModule.withComponents([
+      RowActionsCellRendererComponent,
+      BtnCellRenderer,
+    ]),
+    FormlyModule.forRoot(),
+    FormlyMaterialModule,
+  ],
+  exports: [
+    CommonModule,
+    HttpClientModule,
+    NgProgressModule,
+    NgProgressHttpModule,
+    MatCardModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatTabsModule,
+    MatDividerModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatProgressBarModule,
+    MatExpansionModule,
+    MatListModule,
+    MatSnackBarModule,
+    MatSidenavModule,
+    MatTreeModule,
+    CourseCardComponent,
+    TranslateModule,
+    GridComponent,
+    FormlyModule,
+    FormlyMaterialModule,
+    FormlyMatToggleModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpConfigService,
+      multi: true,
+    },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: GlobalMatFormFieldConfig,
+    },
+    {
+      provide: FORMLY_CONFIG,
+      multi: true,
+      useFactory: formlyValidationConfig,
+      deps: [CustomTranslateService],
+    },
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: GlobalMatSnackBarConfig,
+    },
+    {
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
+      useValue: GlobalMatDialogConfig,
+    },
+  ],
 })
 export class SharedModule {
-    static forRoot(): ModuleWithProviders<SharedModule> {
-        return {
-            ngModule: SharedModule
-        };
-    }
+  static forRoot(): ModuleWithProviders<SharedModule> {
+    return {
+      ngModule: SharedModule,
+    };
+  }
 }

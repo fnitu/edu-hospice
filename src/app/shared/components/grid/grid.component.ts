@@ -1,14 +1,15 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {GridService} from './grid.service';
-import {GridPropertiesInterface} from './grid-properties.interface';
-import {RowActionsCellRendererComponent} from './row-actions-cell-renderer/row-actions-cell-renderer.component';
-import {GridActionsInterface} from './grid-actions.interface';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { GridService } from './grid.service';
+import { GridPropertiesInterface } from './grid-properties.interface';
+import { RowActionsCellRendererComponent } from './row-actions-cell-renderer/row-actions-cell-renderer.component';
+import { GridActionsInterface } from './grid-actions.interface';
+import { BtnCellRenderer } from './button-cell-render/btn-cell-render.component';
 
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class GridComponent implements OnInit {
   @Input() gridColumns;
@@ -17,13 +18,12 @@ export class GridComponent implements OnInit {
   public gridOptions;
   public actions: GridActionsInterface;
 
-  constructor(private gridService: GridService) {
-  }
+  constructor(private gridService: GridService) {}
 
   ngOnInit(): void {
     this.gridOptions = {
       columnDefs: this.gridColumns,
-      ...this.getDefaultGridOptions()
+      ...this.getDefaultGridOptions(),
     };
 
     this.getActions();
@@ -40,7 +40,7 @@ export class GridComponent implements OnInit {
         suppressMenu: true,
         unSortIcon: true,
         menuTabs: [],
-        minWidth: 200
+        minWidth: 200,
       },
 
       rowHeight: 50,
@@ -67,8 +67,9 @@ export class GridComponent implements OnInit {
       suppressCellSelection: true,
 
       frameworkComponents: {
-        rowActionsCellRenderer: RowActionsCellRendererComponent
-      }
+        rowActionsCellRenderer: RowActionsCellRendererComponent,
+        btnCellRenderer: BtnCellRenderer,
+      },
     };
   }
 
@@ -77,9 +78,11 @@ export class GridComponent implements OnInit {
    * @param params
    */
   public onGridReadyHandler(params) {
-    this.gridService.getData(this.gridProperties.url).subscribe((response: []) => {
-      params.api.setRowData(response);
-    });
+    this.gridService
+      .getData(this.gridProperties.url)
+      .subscribe((response: []) => {
+        params.api.setRowData(response);
+      });
   }
 
   public refreshGrid() {
@@ -88,10 +91,14 @@ export class GridComponent implements OnInit {
   }
 
   public getActions() {
-    this.gridService.getActions(this.gridProperties.actionsUrl).subscribe((response) => {
-      const actions = response?.actions ? response.actions : [];
-      this.actions = this.gridService.mergeActionsConfig(actions, this.gridProperties.actions);
-    });
+    // this.gridService
+    //   .getActions(this.gridProperties.actionsUrl)
+    //   .subscribe((response) => {
+    //     const actions = response?.actions ? response.actions : [];
+    //     this.actions = this.gridService.mergeActionsConfig(
+    //       actions,
+    //       this.gridProperties.actions
+    //     );
+    //   });
   }
-
 }
