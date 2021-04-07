@@ -25,8 +25,6 @@ export class GridComponent implements OnInit {
       columnDefs: this.gridColumns,
       ...this.getDefaultGridOptions(),
     };
-
-    this.getActions();
   }
 
   /**
@@ -90,15 +88,4 @@ export class GridComponent implements OnInit {
     this.gridOptions.api.purgeServerSideCache([this.gridProperties.url]);
   }
 
-  public getActions() {
-    // this.gridService
-    //   .getActions(this.gridProperties.actionsUrl)
-    //   .subscribe((response) => {
-    //     const actions = response?.actions ? response.actions : [];
-    //     this.actions = this.gridService.mergeActionsConfig(
-    //       actions,
-    //       this.gridProperties.actions
-    //     );
-    //   });
-  }
 }

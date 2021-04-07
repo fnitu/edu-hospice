@@ -86,8 +86,16 @@ export class QuizListComponent implements OnInit {
   private getGridProperties(): GridPropertiesInterface {
     return {
       url: 'assets/json/quizList.json',
-      actionsUrl: '',
-      actions: {},
+      actions: {
+        page: [
+          {
+            label: 'New Quiz',
+            handler: (button) => {
+              this.onNewQuiz();
+            }
+          }
+        ]
+      },
     };
   }
 

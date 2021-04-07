@@ -1,14 +1,6 @@
 <div class="course-list-container">
-  <div class="create-course">
-    <button mat-raised-button routerLink="{{ createCourseRoute }}">
-      Create Course
-    </button>
-  </div>
-
   <app-grid
-    #gridComponent
     [gridColumns]="gridColumns"
     [gridProperties]="gridProperties"
-  >
-  </app-grid>
+  ></app-grid>
 </div>

@@ -5,6 +5,7 @@ import {
   ViewChild, ElementRef, OnDestroy, AfterViewInit
 } from '@angular/core';
 import { ResizeObserver } from 'resize-observer';
+import {GridTopToolbarPageActionsInterface} from './grid-top-toolbar-page-actions.interface';
 
 @Component({
   selector: 'app-grid-top-toolbar',
@@ -15,7 +16,7 @@ import { ResizeObserver } from 'resize-observer';
 export class GridTopToolbarComponent implements AfterViewInit, OnDestroy {
   @ViewChild('pageToolbarActionList') pageToolbarActionList;
 
-  @Input() pageActions;
+  @Input() pageActions: GridTopToolbarPageActionsInterface[];
   @Input() multipleActions;
   @Input() hideToolbar: boolean = false;
 

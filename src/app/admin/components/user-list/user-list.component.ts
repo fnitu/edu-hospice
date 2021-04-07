@@ -122,35 +122,7 @@ export class UserListComponent implements OnInit {
     private getGridProperties(): GridPropertiesInterface {
         return {
             url: this.getUrl(),
-            actionsUrl: this.getActionsUrl(),
-            actions: {
-              page: {
-                doSomething: {
-                  handler: (button) => {
-                    console.log("doSomething");
-                    debugger;
-                  }
-                },
-                registrationActionTwo: {
-                  handler: (button) => {
-                    console.log('registrationActionTwo');
-                    debugger;
-                  }
-                },
-                paymentDoSomething: {
-                  handler: (button) => {
-                    console.log('paymentDoSomething');
-                    debugger;
-                  }
-                },
-                paymentActionTwo: {
-                  handler: (button) => {
-                    console.log('paymentActionTwo');
-                    debugger;
-                  }
-                }
-              }
-            }
+            actions : {}
         };
     }
 
@@ -170,25 +142,6 @@ export class UserListComponent implements OnInit {
         }
 
         return url;
-    }
-
-    private getActionsUrl(): string {
-      let url = '';
-
-      // FIXME add url for actions
-      switch (this.listType) {
-        case this.userListService.USER_LIST_TYPES.PAYMENT:
-          url = GLOBALS.DATA_URL.ACTION_LIST_WAITING_FOR_PAYMENT;
-          break;
-        case this.userListService.USER_LIST_TYPES.REGISTRATION:
-          url = GLOBALS.DATA_URL.ACTION_LIST_WAITING_FOR_REGISTRATION;
-          break;
-        default:
-          url = 'GLOBALS.DATA_URL.USER_LIST';
-          break;
-      }
-
-      return url;
     }
 
     private approveRowActionHandler(params) {
