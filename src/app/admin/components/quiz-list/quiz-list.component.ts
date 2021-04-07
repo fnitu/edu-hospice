@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { GridPropertiesInterface } from 'src/app/shared/components/grid/grid-properties.interface';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
+import {ROUTES} from '../../../shared/core/routes';
 
 @Component({
   selector: 'app-quiz-list',
@@ -17,6 +18,7 @@ export class QuizListComponent implements OnInit {
   constructor(
     private datePipe: DatePipe,
     private router: Router,
+    private route: ActivatedRoute,
     private customTranslateService: CustomTranslateService
   ) {}
 
@@ -91,15 +93,11 @@ export class QuizListComponent implements OnInit {
           {
             label: 'New Quiz',
             handler: (button) => {
-              this.onNewQuiz();
+              this.router.navigate([ROUTES.ADMIN.QUIZ.NEW], { relativeTo: this.route.parent });
             }
           }
         ]
       },
     };
-  }
-
-  public onNewQuiz() {
-    this.router.navigate(['admin', 'new-quiz']);
   }
 }
