@@ -6,4 +6,8 @@
                          [model]="settingsFormModel"></formly-form>
         </form>
     </mat-card-content>
+
+    <mat-card-actions align="end">
+        <button [disabled]="settingsForm.invalid" mat-raised-button color="primary" (click)="saveQuizSettings()">{{ "general.save" | translate }}</button>
+    </mat-card-actions>
 </mat-card>

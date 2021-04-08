@@ -15,7 +15,7 @@ export class QuizSettingsComponent implements OnInit {
     public settingsFormFields: FormlyFieldConfig[];
 
     public settingsFormModel = {
-        status: "active"
+        status: this.customTranslateService.getTranslation("admin.quiz.settings.statusInactiveValue")
     };
 
     constructor(private customTranslateService: CustomTranslateService) {
@@ -111,14 +111,17 @@ export class QuizSettingsComponent implements OnInit {
                         key: 'status',
                         type: 'input',
                         templateOptions: {
-                            label: "Status",
+                            label: this.customTranslateService.getTranslation("admin.quiz.settings.statusLabel"),
                             readonly: true
                         }
                     }
                 ]
             }
         ]
+    }
 
+    public saveQuizSettings() {
+        console.log(this.settingsForm);
     }
 
 }

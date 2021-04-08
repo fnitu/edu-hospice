@@ -14,7 +14,8 @@
     "no": "Nu",
     "expand": "Extinde",
     "collapse": "Restrănge",
-    "minutes": "minute"
+    "minutes": "minute",
+    "save": "Salvează"
   },
   "field": {
     "required": "Acest câmp este obligatoriu.",
@@ -131,7 +132,10 @@
         "retryAttemptsLabel": "Numărul de încercări posibile",
         "retryAttemptsPlaceholder": "Selectați numărul de încercări posibile",
         "timeLimitLabel": "Timpul limit pentru a termina testul",
-        "timeLimitPlaceholder": "Selectați timpul limit pentru a termina testul"
+        "timeLimitPlaceholder": "Selectați timpul limit pentru a termina testul",
+        "statusLabel": "Stare chestionar",
+        "statusInactiveValue": "Inactiv",
+        "statusActiveValue": "Activ"
       },
       "list": {
         "quizName": "Nume Chestionar",
