@@ -163,5 +163,12 @@
     "recommended": "Recomandat",
     "inProgress": "In desfasurare",
     "finalized": "Finalizat"
+  },
+  "topToolbar": {
+    "tooltips": {
+      "userDashboard": "Profil",
+      "adminDashboard": "Panou principal",
+      "logout": "Închidere sesiune"
+    }
   }
 }

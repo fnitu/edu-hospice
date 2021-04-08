@@ -53,6 +53,9 @@ import { GlobalMatDialogConfig } from './constants/global-mat-dialog-config';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { GridTopToolbarComponent } from './components/grid/grid-top-toolbar/grid-top-toolbar.component';
 import { BtnCellRenderer } from './components/grid/button-cell-render/btn-cell-render.component';
+import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
+import {RouterModule} from '@angular/router';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,7 @@ import { BtnCellRenderer } from './components/grid/button-cell-render/btn-cell-r
     SnackBarComponent,
     GridTopToolbarComponent,
     BtnCellRenderer,
+    TopToolbarComponent,
   ],
   imports: [
     CommonModule,
@@ -95,6 +99,8 @@ import { BtnCellRenderer } from './components/grid/button-cell-render/btn-cell-r
     ]),
     FormlyModule.forRoot(),
     FormlyMaterialModule,
+    RouterModule,
+    MatTooltipModule
   ],
   exports: [
     CommonModule,
@@ -127,6 +133,7 @@ import { BtnCellRenderer } from './components/grid/button-cell-render/btn-cell-r
     FormlyModule,
     FormlyMaterialModule,
     FormlyMatToggleModule,
+    TopToolbarComponent,
   ],
   providers: [
     {

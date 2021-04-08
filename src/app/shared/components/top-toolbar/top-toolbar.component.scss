@@ -1,0 +1,43 @@
+@import "../../../../styles/scss/imports";
+
+.mat-toolbar {
+  background-color: $navBarBackgroundColor;
+  color: $navBarTextColor;
+
+  .mat-toolbar-row {
+    color: $navBarTextColor;
+
+    .logo-title {
+      cursor: pointer;
+      margin-left: 15px;
+    }
+
+    .example-icon {
+      padding: 0 14px;
+    }
+
+    .example-spacer {
+      flex: 1 1 auto;
+    }
+
+    .navigation {
+      ul {
+        display: flex;
+        justify-content: flex-end;
+        list-style-type: none;
+      }
+    }
+
+    .userIcons {
+      display: flex;
+
+      .mat-icon {
+        margin-left: 15px;
+        margin-top: 7px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
