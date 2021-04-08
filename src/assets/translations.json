@@ -134,8 +134,8 @@
         "timeLimitLabel": "Timpul limit pentru a termina testul",
         "timeLimitPlaceholder": "Selectați timpul limit pentru a termina testul",
         "statusLabel": "Stare chestionar",
-        "statusInactiveValue": "Inactiv",
-        "statusActiveValue": "Activ"
+        "statusInactiveValue": "INACTIVE",
+        "statusActiveValue": "ACTIVE"
       },
       "list": {
         "quizName": "Nume Chestionar",

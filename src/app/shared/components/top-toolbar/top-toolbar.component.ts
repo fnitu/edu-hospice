@@ -66,7 +66,7 @@ export class TopToolbarComponent implements OnInit {
 
   public checkUserRole(userRole: string): Observable<any>{
     let checkUser$: Observable<any>;
-    checkUser$ = this.authService.currentUserResponse.pipe(map((data => { console.log(data.role); return data.role === userRole})));
+    checkUser$ = this.authService.currentUserResponse.pipe(map((data => { return data.role === userRole})));
     return checkUser$;
   }
 }

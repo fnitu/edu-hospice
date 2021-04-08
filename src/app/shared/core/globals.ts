@@ -19,6 +19,7 @@ export const GLOBALS = {
     APPROVE_COURSE: `${environment.BASE_URL}/api/admin/users/{userId}/courses/{courseId}/approve`,
     REJECT_COURSE: `${environment.BASE_URL}/api/admin/users/{userId}/courses/{courseId}/reject`,
     REGISTER_COURSES: `${environment.BASE_URL}/api/users/{userId}/courses/{courseId}/register`,
+    SAVE_QUIZ_SETTINGS: `${environment.BASE_URL}/api/admin/quizzes`,
     ACTION_LIST_WAITING_FOR_REGISTRATION: `./assets/json/registration.json`,
     ACTION_LIST_WAITING_FOR_PAYMENT: `./assets/json/payment.json`
   },

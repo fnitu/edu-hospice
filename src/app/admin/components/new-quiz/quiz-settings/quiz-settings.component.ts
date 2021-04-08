@@ -2,6 +2,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, Validators } from "@angular/forms";
 import { FormlyFieldConfig } from "@ngx-formly/core";
 import { CustomTranslateService } from "../../../../shared/services/custom-translate/custom-translate.service";
+import { QuizSettingsService } from "./quiz-settings.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { SnackBarComponent } from "../../../../shared/components/snack-bar/snack-bar.component";
+import { GLOBALS } from "../../../../shared/core/globals";
 
 @Component({
     selector: 'app-quiz-settings',
@@ -15,10 +19,13 @@ export class QuizSettingsComponent implements OnInit {
     public settingsFormFields: FormlyFieldConfig[];
 
     public settingsFormModel = {
+        shuffle: false,
         status: this.customTranslateService.getTranslation("admin.quiz.settings.statusInactiveValue")
     };
 
-    constructor(private customTranslateService: CustomTranslateService) {
+    constructor(private customTranslateService: CustomTranslateService,
+                private quizSettingsService: QuizSettingsService,
+                private matSnackBar: MatSnackBar) {
     }
 
     ngOnInit(): void {
@@ -28,7 +35,7 @@ export class QuizSettingsComponent implements OnInit {
     private defineSettingFormFields(): FormlyFieldConfig[] {
         return [
             {
-                key: "title",
+                key: "name",
                 type: "input",
                 templateOptions: {
                     label: this.customTranslateService.getTranslation("admin.quiz.settings.titleLabel"),
@@ -43,7 +50,7 @@ export class QuizSettingsComponent implements OnInit {
                 fieldGroupClassName: "row-layout",
                 fieldGroup: [
                     {
-                        key: 'minimumScoreToPass',
+                        key: 'minScore',
                         type: 'select',
                         templateOptions: {
                             label: this.customTranslateService.getTranslation("admin.quiz.settings.minimumScoreLabel"),
@@ -101,7 +108,7 @@ export class QuizSettingsComponent implements OnInit {
                 fieldGroupClassName: "row-layout",
                 fieldGroup: [
                     {
-                        key: 'shuffleQuestions',
+                        key: 'shuffle',
                         type: 'toggle',
                         templateOptions: {
                             label: this.customTranslateService.getTranslation("admin.quiz.settings.shuffleQuestionsLabel")
@@ -121,7 +128,19 @@ export class QuizSettingsComponent implements OnInit {
     }
 
     public saveQuizSettings() {
-        console.log(this.settingsForm);
+        this.quizSettingsService.saveQuizSettings(this.settingsForm.value).subscribe(
+            (response) => {
+                if (response.success) {
+                    this.matSnackBar.openFromComponent(SnackBarComponent, {
+                        verticalPosition: 'top',
+                        data: {
+                            content: response.message,
+                            type: GLOBALS.NOTIFICATIONS.INFO
+                        }
+                    });
+                }
+            }
+        );
     }
 
 }
