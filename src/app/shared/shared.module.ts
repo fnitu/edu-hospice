@@ -52,10 +52,9 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { GlobalMatDialogConfig } from './constants/global-mat-dialog-config';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { GridTopToolbarComponent } from './components/grid/grid-top-toolbar/grid-top-toolbar.component';
-import { BtnCellRenderer } from './components/grid/button-cell-render/btn-cell-render.component';
 import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
-import {RouterModule} from '@angular/router';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { RouterModule } from '@angular/router';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -67,7 +66,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     ConfirmationDialogComponent,
     SnackBarComponent,
     GridTopToolbarComponent,
-    BtnCellRenderer,
     TopToolbarComponent,
   ],
   imports: [
@@ -93,14 +91,11 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatSidenavModule,
     MatTreeModule,
     TranslateModule,
-    AgGridModule.withComponents([
-      RowActionsCellRendererComponent,
-      BtnCellRenderer,
-    ]),
+    AgGridModule.withComponents([RowActionsCellRendererComponent]),
     FormlyModule.forRoot(),
     FormlyMaterialModule,
     RouterModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   exports: [
     CommonModule,

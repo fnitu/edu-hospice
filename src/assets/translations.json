@@ -142,7 +142,8 @@
         "quizStatus": "Status",
         "numberOfQuestions": "Număr de întrebări",
         "creationDate": "Data creării",
-        "lastUpdate": "Ultima actualizare"
+        "lastUpdate": "Ultima actualizare",
+        "edit": "Editare"
       }
     }
   },

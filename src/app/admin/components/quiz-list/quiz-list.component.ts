@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GridPropertiesInterface } from 'src/app/shared/components/grid/grid-properties.interface';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
-import {ROUTES} from '../../../shared/core/routes';
+import { ROUTES } from '../../../shared/core/routes';
 
 @Component({
   selector: 'app-quiz-list',
@@ -71,18 +71,32 @@ export class QuizListComponent implements OnInit {
         },
       },
       {
-        headerName: '',
-        cellRenderer: 'btnCellRenderer',
+        headerName: this.customTranslateService.getTranslation(
+          'admin.users.userList.columns.actions'
+        ),
+        field: 'actions',
+        cellRenderer: 'rowActionsCellRenderer',
+        maxWidth: 90,
+        minWidth: 90,
         cellRendererParams: {
-          onClick: this.onBtnClick.bind(this),
-          label: 'Edit',
+          actions: [
+            {
+              label: this.customTranslateService.getTranslation(
+                'admin.quiz.list.edit'
+              ),
+              icon: 'edit',
+              handler: (params) => this.onBtnClick(params),
+            },
+          ],
         },
       },
     ];
   }
 
-  onBtnClick(e) {
-    this.router.navigate(['admin', 'new-quiz', `${e.rowData['id']}`]);
+  onBtnClick(params) {
+    this.router.navigate([ROUTES.ADMIN.QUIZ.NEW + '/' + params.data['id']], {
+      relativeTo: this.route.parent,
+    });
   }
 
   private getGridProperties(): GridPropertiesInterface {
@@ -93,10 +107,12 @@ export class QuizListComponent implements OnInit {
           {
             label: 'New Quiz',
             handler: (button) => {
-              this.router.navigate([ROUTES.ADMIN.QUIZ.NEW], { relativeTo: this.route.parent });
-            }
-          }
-        ]
+              this.router.navigate([ROUTES.ADMIN.QUIZ.NEW], {
+                relativeTo: this.route.parent,
+              });
+            },
+          },
+        ],
       },
     };
   }

@@ -3,7 +3,6 @@ import { GridService } from './grid.service';
 import { GridPropertiesInterface } from './grid-properties.interface';
 import { RowActionsCellRendererComponent } from './row-actions-cell-renderer/row-actions-cell-renderer.component';
 import { GridActionsInterface } from './grid-actions.interface';
-import { BtnCellRenderer } from './button-cell-render/btn-cell-render.component';
 
 @Component({
   selector: 'app-grid',
@@ -66,7 +65,6 @@ export class GridComponent implements OnInit {
 
       frameworkComponents: {
         rowActionsCellRenderer: RowActionsCellRendererComponent,
-        btnCellRenderer: BtnCellRenderer,
       },
     };
   }
@@ -87,5 +85,4 @@ export class GridComponent implements OnInit {
     // this.gridOptions.api.getModel().rootNode.childrenCache.setVirtualRowCount(0);
     this.gridOptions.api.purgeServerSideCache([this.gridProperties.url]);
   }
-
 }
