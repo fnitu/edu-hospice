@@ -19,8 +19,7 @@ export class QuizSettingsComponent implements OnInit {
     public settingsFormFields: FormlyFieldConfig[];
 
     public settingsFormModel = {
-        shuffle: false,
-        status: this.customTranslateService.getTranslation("admin.quiz.settings.statusInactiveValue")
+        shuffle: false
     };
 
     constructor(private customTranslateService: CustomTranslateService,
@@ -101,28 +100,15 @@ export class QuizSettingsComponent implements OnInit {
                         validators: {
                             validation: [Validators.required],
                         }
-                    },
+                    }
                 ]
             },
             {
-                fieldGroupClassName: "row-layout",
-                fieldGroup: [
-                    {
-                        key: 'shuffle',
-                        type: 'toggle',
-                        templateOptions: {
-                            label: this.customTranslateService.getTranslation("admin.quiz.settings.shuffleQuestionsLabel")
-                        }
-                    },
-                    {
-                        key: 'status',
-                        type: 'input',
-                        templateOptions: {
-                            label: this.customTranslateService.getTranslation("admin.quiz.settings.statusLabel"),
-                            readonly: true
-                        }
-                    }
-                ]
+                key: 'shuffle',
+                type: 'toggle',
+                templateOptions: {
+                    label: this.customTranslateService.getTranslation("admin.quiz.settings.shuffleQuestionsLabel")
+                }
             }
         ]
     }
