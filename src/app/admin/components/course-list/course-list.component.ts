@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { GLOBALS } from 'src/app/shared/core/globals';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
 import { GridPropertiesInterface } from '../../../shared/components/grid/grid-properties.interface';
@@ -62,12 +62,16 @@ export class CourseListComponent implements OnInit {
       actions: {
         page: [
           {
-            label: 'Create Course',
-            handler: (button) => {
-              this.router.navigate([ROUTES.ADMIN.COURSE.CREATE], { relativeTo: this.route.parent });
-            }
-          }
-        ]
+            label: this.customTranslateService.getTranslation(
+              'admin.createCourse.addNewCourse'
+            ),
+            handler: () => {
+              this.router.navigate([ROUTES.ADMIN.COURSE.CREATE], {
+                relativeTo: this.route.parent,
+              });
+            },
+          },
+        ],
       },
     };
   }

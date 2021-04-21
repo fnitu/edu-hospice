@@ -46,7 +46,6 @@ import { FormlyMatToggleModule } from '@ngx-formly/material/toggle';
 import { formlyValidationConfig } from './components/formly/formly-validation-config';
 import { CustomTranslateService } from './services/custom-translate/custom-translate.service';
 
-import * as $ from 'jquery';
 import { RowActionsCellRendererComponent } from './components/grid/row-actions-cell-renderer/row-actions-cell-renderer.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { GlobalMatDialogConfig } from './constants/global-mat-dialog-config';
@@ -55,6 +54,8 @@ import { GridTopToolbarComponent } from './components/grid/grid-top-toolbar/grid
 import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
 import { RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     FormlyMaterialModule,
     RouterModule,
     MatTooltipModule,
+    MatNativeDateModule,
+    FormlyMatDatepickerModule,
   ],
   exports: [
     CommonModule,
@@ -129,6 +132,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     FormlyMaterialModule,
     FormlyMatToggleModule,
     TopToolbarComponent,
+    MatNativeDateModule,
+    FormlyMatDatepickerModule,
   ],
   providers: [
     {
