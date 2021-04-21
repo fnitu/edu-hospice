@@ -46,6 +46,7 @@ import { FormlyMatToggleModule } from '@ngx-formly/material/toggle';
 import { formlyValidationConfig } from './components/formly/formly-validation-config';
 import { CustomTranslateService } from './services/custom-translate/custom-translate.service';
 
+import * as $ from 'jquery';
 import { RowActionsCellRendererComponent } from './components/grid/row-actions-cell-renderer/row-actions-cell-renderer.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { GlobalMatDialogConfig } from './constants/global-mat-dialog-config';

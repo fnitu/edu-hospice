@@ -6,7 +6,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
 import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
 import { GLOBALS } from 'src/app/shared/core/globals';
-import { CreateCourse } from 'src/app/shared/interfaces/createCourse';
+import {
+  CourseRole,
+  CourseState,
+  CourseType,
+  CreateCourse,
+  Currency,
+} from 'src/app/shared/interfaces/createCourse';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
 import { CreateCourseService } from '../create-course/create-course.service';
 
@@ -134,13 +140,13 @@ export class CreateCourseComponent implements OnInit {
             ),
             options: [
               {
-                value: 'EUR',
+                value: Currency.EUR,
                 label: this.customTranslateService.getTranslation(
                   'admin.createCourse.eur'
                 ),
               },
               {
-                value: 'RON',
+                value: Currency.RON,
                 label: this.customTranslateService.getTranslation(
                   'admin.createCourse.ron'
                 ),
@@ -166,13 +172,13 @@ export class CreateCourseComponent implements OnInit {
             ),
             options: [
               {
-                value: 'MEDICAL',
+                value: CourseRole.MEDICAL,
                 label: this.customTranslateService.getTranslation(
                   'admin.createCourse.medicalPersonnel'
                 ),
               },
               {
-                value: 'MULTI_DISCIPLINARY',
+                value: CourseRole.MULTI_DISCIPLINARY,
                 label: this.customTranslateService.getTranslation(
                   'admin.createCourse.multiDisciplinaryPersonnel'
                 ),
@@ -194,13 +200,13 @@ export class CreateCourseComponent implements OnInit {
             ),
             options: [
               {
-                value: 'ALWAYS_ON',
+                value: CourseType.ALWAYS_ON,
                 label: this.customTranslateService.getTranslation(
                   'admin.createCourse.alwaysOn'
                 ),
               },
               {
-                value: 'WITH_LIVE_SESSIONS',
+                value: CourseType.WITH_LIVE_SESSIONS,
                 label: this.customTranslateService.getTranslation(
                   'admin.createCourse.liveSessions'
                 ),
@@ -259,19 +265,19 @@ export class CreateCourseComponent implements OnInit {
             ),
             options: [
               {
-                value: 'UNPUBLISHED',
+                value: CourseState.UNPUBLISHED,
                 label: this.customTranslateService.getTranslation(
                   'admin.createCourse.unpublished'
                 ),
               },
               {
-                value: 'PUBLISHED',
+                value: CourseState.PUBLISHED,
                 label: this.customTranslateService.getTranslation(
                   'admin.createCourse.published'
                 ),
               },
               {
-                value: 'CLOSED',
+                value: CourseState.CLOSED,
                 label: this.customTranslateService.getTranslation(
                   'admin.createCourse.closed'
                 ),
