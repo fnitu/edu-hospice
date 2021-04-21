@@ -48,7 +48,7 @@ export class QuizQuestionsComponent implements OnInit {
       type: "select",
       options: [
         {
-          option: "Optiunea 1",
+          option: this.customTranslateService.getTranslation("admin.quiz.question.newOption"),
           valid: true
         }
       ]
