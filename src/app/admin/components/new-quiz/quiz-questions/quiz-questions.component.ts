@@ -1,5 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import * as _ from "lodash";
+import { SnackBarComponent } from "../../../../shared/components/snack-bar/snack-bar.component";
+import { GLOBALS } from "../../../../shared/core/globals";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { CustomTranslateService } from "../../../../shared/services/custom-translate/custom-translate.service";
 
 @Component({
   selector: 'app-quiz-questions',
@@ -17,7 +22,9 @@ export class QuizQuestionsComponent implements OnInit {
     }[]
   }[] = [];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+              private matSnackBar: MatSnackBar,
+              private customTranslateService: CustomTranslateService) { }
 
   ngOnInit(): void {
     const quizId = this.route.snapshot.params.id;
@@ -41,11 +48,46 @@ export class QuizQuestionsComponent implements OnInit {
       type: "select",
       options: [
         {
-          option: "Option 1",
+          option: "Optiunea 1",
           valid: true
         }
       ]
     });
+  }
+
+  public addOption(question, option) {
+    const currentOptionIndex = question.options.indexOf(option);
+
+    const newOption = {
+      option: this.customTranslateService.getTranslation("admin.quiz.question.newOption"),
+      valid: true
+    }
+
+    question.options.splice(currentOptionIndex + 1, 0, newOption);
+  }
+
+  public removeOption(question, option) {
+    if (question.options.length > 1) {
+      _.remove(question.options, function(item) {
+        return item === option;
+      });
+    } else {
+      this.matSnackBar.openFromComponent(SnackBarComponent, {
+        verticalPosition: 'top',
+        data: {
+          content: this.customTranslateService.getTranslation("admin.quiz.question.deleteLastOptionMessage"),
+          type: GLOBALS.NOTIFICATIONS.ERROR
+        }
+      });
+    }
+  }
+
+  public addQuestion() {
+
+  }
+
+  public removeQuestion() {
+
   }
 
 }

@@ -174,7 +174,10 @@
         "deleteOption": "Șterge opțiune",
         "checkboxesType": "Selecție multiplă",
         "radioType": "Selecție singulară",
-        "selectType": "Dropdown"
+        "selectType": "Dropdown",
+        "deleteLastQuestionMessage": "Ultima întrebare nu se poate șterge. Chestionarul trebuie sa aibă cel puțin o întrebare.",
+        "deleteLastOptionMessage": "Ultima opțiune nu se poate șterge. Întrebarea trebuie sa aibă cel puțin o opțiune.",
+        "newOption": "Opțiune nouă"
 
       },
       "list": {
