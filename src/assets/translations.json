@@ -101,11 +101,11 @@
       "totalRegisteredUsers": "Total utilizatori înscriși"
     },
     "createCourse":{
-      "addNewCourse": "Creeaza Curs",    
+      "addNewCourse": "Creeaza Curs",
       "name": "Nume",
-      "shortDescription": "Scurta Descriere", 
+      "shortDescription": "Scurta Descriere",
       "description": "Descriere",
-      "author": "Autor", 
+      "author": "Autor",
       "image": "Imagine",
       "url": "URL",
       "price": "Pret",
@@ -171,7 +171,8 @@
         "numberOfQuestions": "Număr de întrebări",
         "creationDate": "Data creării",
         "lastUpdate": "Ultima actualizare",
-        "edit": "Editare"
+        "edit": "Editare",
+        "addQuizButton": "New Quiz"
       }
     }
   },

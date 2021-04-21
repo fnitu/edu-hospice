@@ -107,7 +107,7 @@ export class QuizListComponent implements OnInit {
             actions: {
                 page: [
                     {
-                        label: 'New Quiz',
+                        label: this.customTranslateService.getTranslation('admin.quiz.list.addQuizButton'),
                         handler: (button) => {
                             this.router.navigate([ROUTES.ADMIN.QUIZ.NEW], {
                                 relativeTo: this.route.parent,
