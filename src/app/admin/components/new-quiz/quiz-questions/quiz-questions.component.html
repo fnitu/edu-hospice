@@ -31,11 +31,13 @@
 
                 <div class="option-actions">
                     <button mat-icon-button
+                            color="primary"
                             title="{{ 'admin.quiz.question.addOption' | translate }}"
                             (click)="addOption(question, option)">
                         <mat-icon class="add material-icons-outlined">add_box</mat-icon>
                     </button>
                     <button mat-icon-button
+                            color="warn"
                             title="{{ 'admin.quiz.question.deleteOption' | translate }}"
                             (click)="removeOption(question, option)">
                         <mat-icon class="delete">delete_forever</mat-icon>
@@ -46,7 +48,7 @@
     </mat-card-content>
 
     <mat-card-actions align="end">
-        <button mat-button (click)="addQuestion()">{{ 'admin.quiz.question.addQuestion' | translate }}</button>
-        <button mat-button (click)="removeQuestion()">{{ 'admin.quiz.question.deleteQuestion' | translate }}</button>
+        <button mat-button mat-raised-button color="primary" (click)="addQuestion()">{{ 'admin.quiz.question.addQuestion' | translate }}</button>
+        <button mat-button mat-raised-button color="warn" (click)="removeQuestion()">{{ 'admin.quiz.question.deleteQuestion' | translate }}</button>
     </mat-card-actions>
 </mat-card>
