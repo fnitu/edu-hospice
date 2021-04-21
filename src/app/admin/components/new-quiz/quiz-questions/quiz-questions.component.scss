@@ -1,0 +1,49 @@
+@import "./src/styles/scss/imports";
+
+.question-card {
+
+  .question-content-top {
+    display: flex;
+    justify-content: space-between;
+
+    .question-name {
+      margin-right: 10px;
+      width: 30%;
+    }
+
+    .question-type-dropdown {
+      width: 50%;
+    }
+  }
+
+  .options-container {
+    display: flex;
+    align-items: center;
+
+    .question-type-icon {
+      color: $lightBorder;
+      margin-right: 5px;
+    }
+
+    .option {
+      flex: 1;
+    }
+
+    .option-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-left: 10px;
+
+      .add {
+        color: $infoColor;
+      }
+
+      .delete {
+        color: $actionRed;
+      }
+    }
+  }
+
+}

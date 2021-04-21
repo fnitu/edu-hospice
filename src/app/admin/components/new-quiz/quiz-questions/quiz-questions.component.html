@@ -1,1 +1,45 @@
-<p>quiz-questions works!</p>
+<mat-card *ngFor="let question of questions" class="question-card">
+    <mat-card-content>
+        <div class="question-content-top">
+            <mat-form-field [floatLabel]="'auto'"
+                            class="question-name">
+                <mat-label>{{ 'admin.quiz.question.name' | translate }}</mat-label>
+                <input matInput [(ngModel)]="question.name">
+            </mat-form-field>
+
+            <mat-form-field class="question-type-dropdown">
+                <mat-label>{{ 'admin.quiz.question.type' | translate }}</mat-label>
+                <mat-select [(value)]="question.type">
+                    <mat-option value="radio">{{ 'admin.quiz.question.radioType' | translate }}</mat-option>
+                    <mat-option value="select">{{ 'admin.quiz.question.selectType' | translate }}</mat-option>
+                    <mat-option value="checkboxes">{{ 'admin.quiz.question.checkboxesType' | translate }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="options-container">
+            <mat-icon class="material-icons-outlined question-type-icon" *ngIf="question.type === 'radio'">circle</mat-icon>
+            <mat-icon class="material-icons-outlined question-type-icon" *ngIf="question.type === 'checkboxes'">crop_square</mat-icon>
+<!--            <mat-icon class="material-icons-outlined" *ngIf="question.type === 'select'">circle</mat-icon>-->
+
+            <mat-form-field class="option"
+                            *ngFor="let option of question.options">
+                <input matInput [(ngModel)]="option.option">
+            </mat-form-field>
+
+            <div class="option-actions">
+                <button mat-icon-button title="{{ 'admin.quiz.question.addOption' | translate }}">
+                    <mat-icon class="add material-icons-outlined">add_box</mat-icon>
+                </button>
+                <button mat-icon-button title="{{ 'admin.quiz.question.deleteOption' | translate }}">
+                    <mat-icon class="delete">delete_forever</mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+        <button mat-button>{{ 'admin.quiz.question.addQuestion' | translate }}</button>
+        <button mat-button>{{ 'admin.quiz.question.deleteQuestion' | translate }}</button>
+    </mat-card-actions>
+</mat-card>

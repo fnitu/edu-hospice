@@ -165,6 +165,18 @@
         "statusInactiveValue": "INACTIVE",
         "statusActiveValue": "ACTIVE"
       },
+      "question": {
+        "name": "Întrebare",
+        "type": "Tip",
+        "addQuestion": "Adaugă întrebare",
+        "deleteQuestion": "Șterge întrebare",
+        "addOption": "Adaugă opțiune",
+        "deleteOption": "Șterge opțiune",
+        "checkboxesType": "Selecție multiplă",
+        "radioType": "Selecție singulară",
+        "selectType": "Dropdown"
+
+      },
       "list": {
         "quizName": "Nume Chestionar",
         "quizStatus": "Status",

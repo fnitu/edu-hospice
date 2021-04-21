@@ -55,6 +55,7 @@ import { GridTopToolbarComponent } from './components/grid/grid-top-toolbar/grid
 import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
 import { RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from "@angular/material/select";
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
 
@@ -99,7 +100,7 @@ import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
     RouterModule,
     MatTooltipModule,
     MatNativeDateModule,
-    FormlyMatDatepickerModule,
+    FormlyMatDatepickerModule
   ],
   exports: [
     CommonModule,
@@ -133,6 +134,7 @@ import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
     FormlyMaterialModule,
     FormlyMatToggleModule,
     TopToolbarComponent,
+    MatSelectModule,
     MatNativeDateModule,
     FormlyMatDatepickerModule,
   ],
