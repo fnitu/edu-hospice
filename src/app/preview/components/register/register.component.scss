@@ -1,0 +1,48 @@
+.registerFormContainer {
+  width: 50vw;
+  min-width: 400px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .registerCard {
+    formly-form {
+      .card {
+        margin-top: 20px;
+        margin-bottom: 30px;
+        padding: 20px;
+        border-left: 1px solid grey;
+        .card-header {
+          font-weight: bolder;
+        }
+      }
+      formly-field {
+        &:not(:last-child) {
+          .mat-form-field {
+            margin-bottom: 10px;
+          }
+        }
+      }
+      formly-field-mat-multicheckbox {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-gap: 10px;
+        padding: 10px;
+      }
+
+      .row-layout {
+        display: flex;
+
+        formly-field {
+          flex: 1;
+
+          &:not(:last-child) {
+            margin-right: 10px;
+          }
+        }
+      }
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+  }
+}

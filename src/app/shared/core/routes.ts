@@ -8,6 +8,7 @@ export const ROUTES = {
     MAIN_ROUTE: 'preview',
     HOME: 'home',
     LOGIN: 'login',
+    REGISTER: 'register',
     RECOVER_PASSWORD_ENTER_EMAIL: 'recover-password-enter-email',
     RECOVER_OR_CHANGE_PASSWORD: 'recover-or-change-password',
   },

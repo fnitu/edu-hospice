@@ -58,6 +58,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from "@angular/material/select";
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
+import { PanelWrapperComponent } from './components/formly/formly-wrapper-panel.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,9 @@ import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
     MatTreeModule,
     TranslateModule,
     AgGridModule.withComponents([RowActionsCellRendererComponent]),
-    FormlyModule.forRoot(),
+    FormlyModule.forRoot({
+      wrappers: [{ name: 'panel', component: PanelWrapperComponent }],
+    }),
     FormlyMaterialModule,
     RouterModule,
     MatTooltipModule,

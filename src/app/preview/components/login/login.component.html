@@ -1,12 +1,27 @@
 <mat-card class="loginCard">
   <mat-card-content>
     <form [formGroup]="form" class="loginForm">
-      <h2>{{ 'general.login' | translate }}</h2>
-      <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+      <h2>{{ "general.login" | translate }}</h2>
+      <formly-form
+        [form]="form"
+        [fields]="fields"
+        [model]="model"
+      ></formly-form>
 
-      <button mat-raised-button (click)="onSubmit()" [disabled]="form.invalid">{{ 'general.login' | translate }}</button>
-      <p class="register">{{ 'preview.login.forgotPassword' | translate }}<a (click)="forgotPassword()"> {{ 'preview.login.clickHere' | translate }}</a></p>
-      <p class="register"><a href="/">{{ 'preview.login.register' | translate }}</a></p>
+      <button mat-raised-button (click)="onSubmit()" [disabled]="form.invalid">
+        {{ "general.login" | translate }}
+      </button>
+      <p class="register">
+        {{ "preview.login.forgotPassword" | translate
+        }}<a (click)="forgotPassword()">
+          {{ "preview.login.clickHere" | translate }}</a
+        >
+      </p>
+      <p class="register">
+        <a routerLink="../register">{{
+          "preview.login.register" | translate
+        }}</a>
+      </p>
     </form>
   </mat-card-content>
 </mat-card>
