@@ -5,6 +5,8 @@ import { SnackBarComponent } from "../../../../shared/components/snack-bar/snack
 import { GLOBALS } from "../../../../shared/core/globals";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { CustomTranslateService } from "../../../../shared/services/custom-translate/custom-translate.service";
+import { QuestionInterface } from "./question.interface";
+import { QuestionOptionInterface } from "./question-option.interface";
 
 @Component({
   selector: 'app-quiz-questions',
@@ -13,14 +15,7 @@ import { CustomTranslateService } from "../../../../shared/services/custom-trans
   encapsulation: ViewEncapsulation.None
 })
 export class QuizQuestionsComponent implements OnInit {
-  public questions: {
-    name: string;
-    type: "radio" | "select" | "checkboxes";
-    options: {
-      option: string;
-      valid: boolean;
-    }[]
-  }[] = [];
+  public questions: QuestionInterface[] = [];
 
   constructor(private route: ActivatedRoute,
               private matSnackBar: MatSnackBar,
@@ -58,10 +53,10 @@ export class QuizQuestionsComponent implements OnInit {
   public addOption(question, option) {
     const currentOptionIndex = question.options.indexOf(option);
 
-    const newOption = {
+    const newOption: QuestionOptionInterface = {
       option: this.customTranslateService.getTranslation("admin.quiz.question.newOption"),
       valid: true
-    }
+    };
 
     question.options.splice(currentOptionIndex + 1, 0, newOption);
   }
@@ -82,12 +77,37 @@ export class QuizQuestionsComponent implements OnInit {
     }
   }
 
-  public addQuestion() {
+  public addQuestion(question) {
+      const currentQuestionIndex = this.questions.indexOf(question);
 
+      const newQuestion: QuestionInterface = {
+          name: "",
+          type: "select",
+          options: [
+              {
+                  option: this.customTranslateService.getTranslation("admin.quiz.question.newOption"),
+                  valid: true
+              }
+          ]
+      };
+
+      this.questions.splice(currentQuestionIndex + 1, 0, newQuestion);
   }
 
-  public removeQuestion() {
-
+  public removeQuestion(question) {
+    if (this.questions.length > 1) {
+      _.remove(this.questions, function(item) {
+        return item === question;
+      });
+    } else {
+      this.matSnackBar.openFromComponent(SnackBarComponent, {
+        verticalPosition: 'top',
+        data: {
+          content: this.customTranslateService.getTranslation("admin.quiz.question.deleteLastQuestionMessage"),
+          type: GLOBALS.NOTIFICATIONS.ERROR
+        }
+      });
+    }
   }
 
 }
