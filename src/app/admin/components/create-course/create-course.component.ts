@@ -15,6 +15,8 @@ import {
 } from 'src/app/shared/interfaces/createCourse';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
 import { CreateCourseService } from '../create-course/create-course.service';
+import {ROUTES} from '../../../shared/core/routes';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-course',
@@ -27,7 +29,9 @@ export class CreateCourseComponent implements OnInit {
     private customTranslateService: CustomTranslateService,
     private createCourseService: CreateCourseService,
     private matSnackBar: MatSnackBar,
-    private location: Location
+    private location: Location,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {}
@@ -355,5 +359,12 @@ export class CreateCourseComponent implements OnInit {
     setTimeout(() => {
       this.location.back();
     }, 5000);
+  }
+
+
+  public editCourse() {
+    const courseId = 11111;
+
+    this.router.navigate([ROUTES.ADMIN.COURSE.CREATE_CONTENT, courseId], {relativeTo: this.route.parent});
   }
 }

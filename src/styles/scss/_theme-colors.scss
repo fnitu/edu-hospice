@@ -58,6 +58,10 @@ $disabledPageToolbarButtonBackgroundColor: #e9e9e9;
 $disabledPageToolbarButtonColor: #bfbfbf;
 $shadowColor: #000000;
 
+// Create course
+
+$sectionColour: #EFEFEF;
+
 @mixin shadowLevel-1($left: 0, $top: 1px, $blur: 4px, $color: rgba($shadowColor, 0.30)) {
   box-shadow: $left $top $blur $color;
 }

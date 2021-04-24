@@ -18,6 +18,7 @@ export const ROUTES = {
     COURSE_LIST: 'course-list',
     COURSE: {
       CREATE: 'course-list/new',
+      CREATE_CONTENT: 'course-list/new-course-content',
       LIST: 'course-list',
     },
     USERS: 'users',

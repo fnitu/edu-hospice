@@ -1,0 +1,43 @@
+<div class="create-course-content-container">
+  <div class="beak-to-course-list-container">
+    <div class="beak-to-course-list" (click)="beakToCourseListHandler()" ><</div>
+  </div>
+  <div class="course-title">
+    {{course.title}}
+  </div>
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="addSecton()" >
+      Adauga sectiune
+    </button>
+  </div>
+  <div class="sections-container">
+
+    <div class="section" *ngFor="let section of course.sectionList">
+      <div class="section-title">
+        <div class="title">{{section.title}}</div>
+        <div class="edit"></div>
+      </div>
+
+      <div class="content-container">
+        <div class="content" *ngFor="let content of section.contentList">
+          <div class="title">{{content.title}}</div>
+          <div class="edit"></div>
+          <div class="resource" *ngIf="content.resource?.length">({{content.resource?.length}} resurse)</div>
+          <div class="button-container">
+            <button mat-raised-button color="primary" (click)="editContent(section, content)">
+              Editare continut
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button mat-raised-button color="primary" (click)="addContent(section)" >
+          Adauga continut
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
