@@ -76,7 +76,10 @@ export class QuizListComponent implements OnInit {
         field: 'updatedAt',
         cellRenderer: (data) => {
           return data.value
-            ? this.datePipe.transform(new Date(data.value), 'dd/MM/yyyy')
+            ? this.datePipe.transform(
+                new Date(data.value),
+                'dd/MM/yyyy; h:mm a'
+              )
             : '-';
         },
       },
