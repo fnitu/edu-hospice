@@ -15,6 +15,8 @@ export class ConfirmationDialogComponent implements OnInit {
     }
 
     ngOnInit(): void {
+      console.log(this.data);
+      debugger
     }
 
 }

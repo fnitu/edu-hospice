@@ -12,8 +12,8 @@
       border-radius: 50%;
       background-color: $sectionColour;
       font-size: 20px;
-      width: 25px;
-      height: 25px;
+      width: 35px;
+      height: 35px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -36,26 +36,61 @@
   .sections-container {
     .section {
       .section-title {
+        display: flex;
+        align-items: center;
         background-color: $sectionColour;
         border: 1px solid $lightBorder;
-        padding: 15px;
+        padding: 0 15px;
         font-size: 16px;
         margin-bottom: 10px;
         border-radius: 5px;
+        height: 54px;
+
+        .edit {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 50px;
+          color: $editPenColour;
+          cursor: pointer;
+        }
+
+        .input {
+          padding: 10px;
+        }
+
+        .title {
+          font-weight: bold;
+        }
       }
 
       .content-container {
         .content {
           display: flex;
+          align-items: center;
           background-color: $sectionColour;
           border: 1px solid $lightBorder;
           padding: 0 15px;
           font-size: 14px;
           margin-bottom: 10px;
           border-radius: 5px;
+          height: 54px;
 
           .title {
             margin: 15px 0
+          }
+
+          .input {
+            padding: 10px;
+          }
+
+          .edit {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            color: $editPenColour;
+            cursor: pointer;
           }
 
           .button-container {

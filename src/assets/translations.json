@@ -160,6 +160,17 @@
       "startDate": "Data inceput",
       "endDate": "Data sfarsit"
     },
+    "createCourseContent": {
+      "editCourseContentDialog": {
+        "cancel": "Anuleaza",
+        "presentation": "Prezentare",
+        "video": "Video",
+        "conference": "Conferinta zoom",
+        "quiz": "Quiz",
+        "choseContentType": "Alege tip content",
+        "resource": "Resursa"
+      }
+    },
     "users": {
       "usersPendingAfterRegistration": "Utilizatori în așteptare după înregistrare",
       "usersPendingAfterPayment": "Utilizatori în așteptare după plata cursului",

@@ -14,6 +14,7 @@ import { QuizQuestionsComponent } from './components/new-quiz/quiz-questions/qui
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
 import { CreateCourseComponent } from './components/create-course/create-course.component';
 import { CreateCourseContentComponent } from './components/create-course-content/create-course-content.component';
+import { EditCourseContentDialogComponent } from './components/create-course-content/edit-course-content-dialog/edit-course-content-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CreateCourseContentComponent } from './components/create-course-content
     QuizListComponent,
     CreateCourseComponent,
     CreateCourseContentComponent,
+    EditCourseContentDialogComponent,
   ],
   imports: [SharedModule, AdminRoutingModule],
   providers: [DatePipe],

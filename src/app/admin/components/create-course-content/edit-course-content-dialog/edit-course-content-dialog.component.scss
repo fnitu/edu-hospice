@@ -1,0 +1,86 @@
+@import "../../../../../styles/scss/imports";
+
+.editContentPanel {
+  .mat-dialog-container {
+    app-edit-course-content-dialog {
+      display: flex;
+      flex-direction: column;
+
+      .mat-dialog-content {
+        flex: 1;
+
+        .mat-tab-group {
+          height: 300px;
+
+          .mat-tab-header {
+            .mat-tab-labels {
+              justify-content: center;
+            }
+          }
+
+          .addContentContainer {
+            display: flex;
+            padding-top: 50px;
+
+            .choseContentType {
+              font-size: 16px;
+              padding: 10px;
+            }
+
+            .contentType {
+              flex: 1;
+
+              .item {
+                font-size: 16px;
+                padding: 10px;
+                border: 1px solid $darkBorder;
+
+                &.selected {
+                  background-color: $sideNavArrowBackground;
+                }
+              }
+            }
+          }
+
+          .addResourcesContainer {
+            overflow: auto;
+
+            .showResourceContainer {
+              padding: 10px 0 15px;
+
+              .resourceItem {
+                padding: 20px;
+                margin: 0 0 10px;
+                font-size: 12px;
+                border: 1px solid $darkBorder;
+              }
+            }
+
+            .editResourceContainer {
+              padding: 15px 0;
+
+              .resourceName, .input {
+                padding: 10px 20px;
+                border: 1px solid $darkBorder;
+                margin-bottom: 10px;
+                width: 90%;
+              }
+
+              &.hide {
+                display: none;
+              }
+            }
+
+            .mat-raised-button {
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+
+      .mat-dialog-actions {
+        justify-content: flex-end;
+      }
+    }
+  }
+}

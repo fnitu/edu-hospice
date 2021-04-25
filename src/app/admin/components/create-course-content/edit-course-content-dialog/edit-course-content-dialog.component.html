@@ -1,0 +1,46 @@
+
+<div mat-dialog-content>
+  <mat-tab-group>
+    <mat-tab *ngFor="let tab of tabs">
+      <ng-template mat-tab-label>{{tab.label}}</ng-template>
+
+      <div class="addContentContainer" *ngIf="tab.content === 'addContentContainer'">
+        <div class="choseContentType">
+          {{'admin.createCourseContent.editCourseContentDialog.choseContentType' | translate}}
+        </div>
+        <div class="contentType">
+          <div class="item" [ngClass]="{'selected' : type.type === data.contentType}"
+               *ngFor="let type of tab.contentTypes"
+               (click)="setContentType(type.type)" >{{type.label}}</div>
+        </div>
+      </div>
+
+      <div class="addResourcesContainer" *ngIf="tab.content === 'addResourcesContainer'">
+
+        <div class="showResourceContainer" *ngIf="data.resources?.length">
+          <div class="resourceItem" *ngFor="let resourceItem of data.resources, let i = index">{{'admin.createCourseContent.editCourseContentDialog.resource' | translate}} {{i + 1}}</div>
+        </div>
+
+        <div class="editResourceContainer" [ngClass]="{'hide' : !tab.editResource}">
+          <div class="resourceName" >{{'admin.createCourseContent.editCourseContentDialog.resource' | translate}} {{data.resources.length + 1}}</div>
+          <input class="input" matInput #resourceInput [placeholder]="'Introdu un url'" >
+        </div>
+
+        <button mat-raised-button color="primary" class="button" (click)="addResource(tab)" >
+          Adauga resursa
+        </button>
+
+        <button mat-raised-button color="primary" class="button"
+                *ngIf="tab.editResource" (click)="saveResource(resourceInput, tab)" >
+          Salveaza resursa
+        </button>
+      </div>
+
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<div mat-dialog-actions >
+  <button mat-button mat-flat-button [mat-dialog-close]="true">{{ 'admin.createCourseContent.editCourseContentDialog.cancel' | translate }}</button>
+  <button mat-button mat-flat-button >{{ 'general.save' | translate }}</button>
+</div>

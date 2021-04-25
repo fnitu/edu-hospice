@@ -1,6 +1,8 @@
 <div class="create-course-content-container">
   <div class="beak-to-course-list-container">
-    <div class="beak-to-course-list" (click)="beakToCourseListHandler()" ><</div>
+    <div class="beak-to-course-list" (click)="beakToCourseListHandler()" >
+      <span class="material-icons-outlined">arrow_back_ios</span>
+    </div>
   </div>
   <div class="course-title">
     {{course.title}}
@@ -13,18 +15,38 @@
   <div class="sections-container">
 
     <div class="section" *ngFor="let section of course.sectionList">
-      <div class="section-title">
-        <div class="title">{{section.title}}</div>
-        <div class="edit"></div>
+      <div class="section-title" >
+        <div class="title" *ngIf="!section.editSection">{{section.title}}</div>
+
+        <input class="input" matInput
+               value="{{section.title}}"
+               *ngIf="section.editSection"
+               (keypress)="setSectionTitle($event, section)"
+               (focusout)="setSectionTitle($event, section)" >
+
+        <div class="edit" (click)="editSectonTitle(section)" *ngIf="!section.editSection">
+          <span class="material-icons-outlined">mode_edit</span>
+        </div>
       </div>
 
       <div class="content-container">
-        <div class="content" *ngFor="let content of section.contentList">
-          <div class="title">{{content.title}}</div>
-          <div class="edit"></div>
+        <div class="content" *ngFor="let content of section.contentList, let i = index">
+          <div class="title" *ngIf="!content.editContent">{{section.number}}.{{i + 1}} {{content.title}}</div>
+
+          <input class="input" matInput
+                 value="{{content.title}}"
+                 *ngIf="content.editContent"
+                 (keypress)="setContentTitle($event, content)"
+                 (focusout)="setContentTitle($event, content)" >
+
+          <div class="edit" (click)="editContentTitle(content)" *ngIf="!content.editContent">
+            <span class="material-icons-outlined">mode_edit</span>
+          </div>
+
           <div class="resource" *ngIf="content.resource?.length">({{content.resource?.length}} resurse)</div>
+
           <div class="button-container">
-            <button mat-raised-button color="primary" (click)="editContent(section, content)">
+            <button mat-raised-button color="primary" (click)="editContent(content)">
               Editare continut
             </button>
           </div>
