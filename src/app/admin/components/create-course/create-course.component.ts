@@ -15,8 +15,8 @@ import {
 } from 'src/app/shared/interfaces/createCourse';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
 import { CreateCourseService } from '../create-course/create-course.service';
-import {ROUTES} from '../../../shared/core/routes';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ROUTES } from '../../../shared/core/routes';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-course',
@@ -31,7 +31,7 @@ export class CreateCourseComponent implements OnInit {
     private matSnackBar: MatSnackBar,
     private location: Location,
     private router: Router,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {}
@@ -46,7 +46,7 @@ export class CreateCourseComponent implements OnInit {
   fields: FormlyFieldConfig[] = [
     {
       key: 'name',
-      type: 'input',
+      type: 'textarea',
       templateOptions: {
         label: this.customTranslateService.getTranslation(
           'admin.createCourse.name'
@@ -54,6 +54,8 @@ export class CreateCourseComponent implements OnInit {
         placeholder: this.customTranslateService.getTranslation(
           'admin.createCourse.name'
         ),
+        rows: 2,
+        maxLength: 150,
         required: true,
       },
     },
@@ -67,6 +69,8 @@ export class CreateCourseComponent implements OnInit {
         placeholder: this.customTranslateService.getTranslation(
           'admin.createCourse.shortDescription'
         ),
+        rows: 3,
+        maxLength: 500,
         required: true,
       },
     },
@@ -80,25 +84,28 @@ export class CreateCourseComponent implements OnInit {
         placeholder: this.customTranslateService.getTranslation(
           'admin.createCourse.description'
         ),
+        rows: 5,
+        maxLength: 2000,
         required: true,
+      },
+    },
+    {
+      key: 'authors',
+      type: 'textarea',
+      templateOptions: {
+        label: this.customTranslateService.getTranslation(
+          'admin.createCourse.author'
+        ),
+        placeholder: this.customTranslateService.getTranslation(
+          'admin.createCourse.author'
+        ),
+        rows: 3,
+        maxLength: 500,
       },
     },
     {
       fieldGroupClassName: 'display-flex',
       fieldGroup: [
-        {
-          className: 'flex-1',
-          key: 'authors',
-          type: 'input',
-          templateOptions: {
-            label: this.customTranslateService.getTranslation(
-              'admin.createCourse.author'
-            ),
-            placeholder: this.customTranslateService.getTranslation(
-              'admin.createCourse.author'
-            ),
-          },
-        },
         {
           className: 'flex-1',
           key: 'image',
@@ -123,6 +130,8 @@ export class CreateCourseComponent implements OnInit {
           key: 'price',
           type: 'input',
           templateOptions: {
+            type: 'number',
+            min: 0,
             label: this.customTranslateService.getTranslation(
               'admin.createCourse.price'
             ),
@@ -295,6 +304,9 @@ export class CreateCourseComponent implements OnInit {
           key: 'hours',
           type: 'input',
           templateOptions: {
+            type: 'number',
+            min: 0,
+            max: 1000,
             label: this.customTranslateService.getTranslation(
               'admin.createCourse.hours'
             ),
@@ -314,6 +326,8 @@ export class CreateCourseComponent implements OnInit {
           key: 'accessDays',
           type: 'input',
           templateOptions: {
+            type: 'number',
+            min: 0,
             label: this.customTranslateService.getTranslation(
               'admin.createCourse.accessDays'
             ),
@@ -327,6 +341,8 @@ export class CreateCourseComponent implements OnInit {
           key: 'credits',
           type: 'input',
           templateOptions: {
+            type: 'number',
+            min: 0,
             label: this.customTranslateService.getTranslation(
               'admin.createCourse.credits'
             ),
@@ -361,10 +377,11 @@ export class CreateCourseComponent implements OnInit {
     }, 5000);
   }
 
-
   public editCourse() {
     const courseId = 11111;
 
-    this.router.navigate([ROUTES.ADMIN.COURSE.CREATE_CONTENT, courseId], {relativeTo: this.route.parent});
+    this.router.navigate([ROUTES.ADMIN.COURSE.CREATE_CONTENT, courseId], {
+      relativeTo: this.route.parent,
+    });
   }
 }
