@@ -376,12 +376,4 @@ export class CreateCourseComponent implements OnInit {
       this.location.back();
     }, 5000);
   }
-
-  public editCourse() {
-    const courseId = 11111;
-
-    this.router.navigate([ROUTES.ADMIN.COURSE.CREATE_CONTENT, courseId], {
-      relativeTo: this.route.parent,
-    });
-  }
 }

@@ -8,27 +8,11 @@
         [form]="form"
       ></formly-form>
       <div class="button-row">
-        <button 
-          type="submit" 
-          mat-raised-button color="primary"
-          [disabled]="!form.valid">
-          Submit
+        <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">
+          {{'general.save' | translate}}
         </button>
-        <button  
-          mat-raised-button
-          [disabled]="!form.valid"
-          (click)="options.resetModel()"
-        >
-          Reset
-        </button>
-
-<!-- TODO remove this button when submit button works-->
-
-        <button
-          type="button"
-          mat-raised-button color="primary"
-          (click)="editCourse()" >
-          Edit Course
+        <button mat-raised-button [disabled]="form.pristine" (click)="options.resetModel()">
+          {{'general.reset' | translate}}
         </button>
       </div>
     </form>

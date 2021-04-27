@@ -18,7 +18,9 @@
       <div class="addResourcesContainer" *ngIf="tab.content === 'addResourcesContainer'">
 
         <div class="showResourceContainer" *ngIf="data.resources?.length">
-          <div class="resourceItem" *ngFor="let resourceItem of data.resources, let i = index">{{'admin.createCourseContent.editCourseContentDialog.resource' | translate}} {{i + 1}}</div>
+          <div class="resourceItem" *ngFor="let resourceItem of data.resources, let i = index">
+            {{'admin.createCourseContent.editCourseContentDialog.resource' | translate}} {{i + 1}}
+          </div>
         </div>
 
         <div class="editResourceContainer" [ngClass]="{'hide' : !tab.editResource}">
@@ -41,6 +43,6 @@
 </div>
 
 <div mat-dialog-actions >
-  <button mat-button mat-flat-button [mat-dialog-close]="true">{{ 'admin.createCourseContent.editCourseContentDialog.cancel' | translate }}</button>
+  <button mat-button mat-flat-button [mat-dialog-close]="true">{{ 'general.cancel' | translate }}</button>
   <button mat-button mat-flat-button >{{ 'general.save' | translate }}</button>
 </div>

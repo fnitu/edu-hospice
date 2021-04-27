@@ -10,17 +10,21 @@
     "approve": "Aprobă",
     "reject": "Refuză",
     "close": "Închide",
+    "cancel": "Anulează",
     "yes": "Da",
     "no": "Nu",
     "expand": "Extinde",
-    "collapse": "Restrănge",
+    "collapse": "Restrânge",
     "minutes": "minute",
-    "save": "Salvează"
+    "save": "Salvează",
+    "actions": "Acțiuni",
+    "edit": "Editează",
+    "reset": "Resetează"
   },
   "field": {
     "required": "Acest câmp este obligatoriu.",
     "email": "E-mail-ul nu are un format valid.",
-    "emailNotExist": "E-mailul nu exista. Va rugam sa introduceti un e-mail valid."
+    "emailNotExist": "E-mailul nu există. Vă rugăm să introduceți un e-mail valid."
   },
   "confirmationDialog": {
     "commentBoxLabel": "Explicați motivul"
@@ -115,12 +119,12 @@
       "numberOfUsers": "Număr utilizatori",
       "titleRegistration": "Cereri de înscriere",
       "titlePayment": "Confirmări de plată",
-      "titleQuiz": "Quiz",
+      "titleQuiz": "Chestionare",
       "subtitleCoursesList": "Listă cursuri disponibile",
       "subtitleUsers": "Listă cu toți utilizatorii",
       "subtitlePayments": " Validare plată curs",
       "subtitleRegistration": "Validare criterii utilizator",
-      "subtitleQuiz": "Listă Chestionare",
+      "subtitleQuiz": "Listă cu toate chestionarele",
       "statsAwaits": "în așteptare",
       "statsRequest": "cerere",
       "statsRequests": "cereri",
@@ -133,15 +137,15 @@
       "totalRegisteredUsers": "Total utilizatori înscriși"
     },
     "createCourse":{
-      "addNewCourse": "Creeaza Curs",
+      "addNewCourse": "Creează curs",
       "name": "Nume",
-      "shortDescription": "Scurta Descriere",
+      "shortDescription": "Scurtă descriere",
       "description": "Descriere",
       "author": "Autor",
       "image": "Imagine",
       "url": "URL",
-      "price": "Pret",
-      "currency": "Moneda",
+      "price": "Preț",
+      "currency": "Monedă",
       "eur": "EUR",
       "ron": "RON",
       "role": "Rol",
@@ -153,22 +157,21 @@
       "status": "Status",
       "unpublished": "Nepublicat",
       "published": "Publicat",
-      "closed": "Inchis",
+      "closed": "Închis",
       "hours": "Ore",
       "accessDays": "Zile Acces",
       "credits": "Credite",
-      "startDate": "Data inceput",
-      "endDate": "Data sfarsit"
+      "startDate": "Data început",
+      "endDate": "Data sfârșit"
     },
     "createCourseContent": {
       "editCourseContentDialog": {
-        "cancel": "Anuleaza",
         "presentation": "Prezentare",
         "video": "Video",
-        "conference": "Conferinta zoom",
-        "quiz": "Quiz",
-        "choseContentType": "Alege tip content",
-        "resource": "Resursa"
+        "conference": "Conferință Zoom",
+        "quiz": "Chestionar",
+        "choseContentType": "Alege tip conținut",
+        "resource": "Resursă"
       }
     },
     "users": {
@@ -177,7 +180,6 @@
       "allUsers": "Toți utilizatorii",
       "userList": {
         "columns": {
-          "actions": "Acțiuni",
           "firstName": "Nume",
           "lastName": "Prenume",
           "courseRegistrationDate": "Data înregistrării la curs",
@@ -189,21 +191,21 @@
           "numberOfPendingCourses": "Număr de cursuri în așteptare",
           "numberOfOnGoingCourses": "Număr de cursuri începute"
         },
-        "approveMessage": "Ești sigur că vrei să aprobi această înregistrare.",
-        "rejectMessage": "Ești sigur că vrei să refuzi această înregistrare."
+        "approveMessage": "Ești sigur că vrei să aprobi această înregistrare?",
+        "rejectMessage": "Ești sigur că vrei să refuzi această înregistrare?"
       }
     },
     "quiz": {
       "settings": {
-        "titleLabel": "Titlu test",
-        "titlePlaceholder": "Introduceți titlul testului",
-        "minimumScoreLabel": "Punctajul minim pentru a trece testul",
-        "minimumScorePlaceholder": "Selectați punctajul minim pentru a trece testul",
+        "titleLabel": "Titlu chestionar",
+        "titlePlaceholder": "Introduceți titlul chestionar",
+        "minimumScoreLabel": "Punctajul minim pentru a trece chestionarul",
+        "minimumScorePlaceholder": "Selectați punctajul minim pentru a trece chestionarul",
         "shuffleQuestionsLabel": "Amestecă întrebările",
         "retryAttemptsLabel": "Numărul de încercări posibile",
         "retryAttemptsPlaceholder": "Selectați numărul de încercări posibile",
-        "timeLimitLabel": "Timpul limit pentru a termina testul",
-        "timeLimitPlaceholder": "Selectați timpul limit pentru a termina testul",
+        "timeLimitLabel": "Timpul limită pentru a termina chestionarul",
+        "timeLimitPlaceholder": "Selectați timpul limită pentru a termina chestionarul",
         "statusLabel": "Stare chestionar",
         "statusInactiveValue": "INACTIVE",
         "statusActiveValue": "ACTIVE"
@@ -217,20 +219,19 @@
         "deleteOption": "Șterge opțiune",
         "checkboxesType": "Selecție multiplă",
         "radioType": "Selecție singulară",
-        "selectType": "Dropdown",
-        "deleteLastQuestionMessage": "Ultima întrebare nu se poate șterge. Chestionarul trebuie sa aibă cel puțin o întrebare.",
-        "deleteLastOptionMessage": "Ultima opțiune nu se poate șterge. Întrebarea trebuie sa aibă cel puțin o opțiune.",
+        "selectType": "Listă drop-down",
+        "deleteLastQuestionMessage": "Ultima întrebare nu se poate șterge. Chestionarul trebuie să aibă cel puțin o întrebare.",
+        "deleteLastOptionMessage": "Ultima opțiune nu se poate șterge. Întrebarea trebuie să aibă cel puțin o opțiune.",
         "newOption": "Opțiune nouă"
 
       },
       "list": {
-        "quizName": "Nume Chestionar",
+        "quizName": "Nume chestionar",
         "quizStatus": "Status",
         "numberOfQuestions": "Număr de întrebări",
         "creationDate": "Data creării",
         "lastUpdate": "Ultima actualizare",
-        "edit": "Editare",
-        "addQuizButton": "New Quiz"
+        "addQuizButton": "Chestionar nou"
       }
     }
   },

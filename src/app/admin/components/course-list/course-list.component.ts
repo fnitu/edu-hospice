@@ -32,6 +32,27 @@ export class CourseListComponent implements OnInit {
     return [
       {
         headerName: this.customTranslateService.getTranslation(
+          'general.actions'
+        ),
+        field: 'actions',
+        cellRenderer: 'rowActionsCellRenderer',
+        maxWidth: 90,
+        minWidth: 90,
+        cellRendererParams: {
+          actions: [
+            {
+              label: this.customTranslateService.getTranslation(
+                'general.edit'
+              ),
+              icon: 'edit',
+              handler: (params) => this.onBtnClick(params),
+            },
+          ],
+        },
+        sortable: false,
+      },
+      {
+        headerName: this.customTranslateService.getTranslation(
           'admin.courses.courseName'
         ),
         field: 'name',
@@ -75,4 +96,13 @@ export class CourseListComponent implements OnInit {
       },
     };
   }
+
+  onBtnClick(params) {
+      const courseId = 11111;
+      this.router.navigate([ROUTES.ADMIN.COURSE.CREATE_CONTENT, courseId], {
+        relativeTo: this.route.parent,
+      });
+  }
+
+
 }

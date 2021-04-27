@@ -43,7 +43,7 @@ export class UserListComponent implements OnInit {
         if (!allList) {
             gridColumns.push(
                 {
-                    headerName: this.customTranslateService.getTranslation("admin.users.userList.columns.actions"),
+                    headerName: this.customTranslateService.getTranslation("general.actions"),
                     field: "actions",
                     cellRenderer: "rowActionsCellRenderer",
                     maxWidth: 120,

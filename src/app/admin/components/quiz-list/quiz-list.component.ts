@@ -32,7 +32,7 @@ export class QuizListComponent implements OnInit {
     return [
       {
         headerName: this.customTranslateService.getTranslation(
-          'admin.users.userList.columns.actions'
+          'general.actions'
         ),
         field: 'actions',
         cellRenderer: 'rowActionsCellRenderer',
@@ -42,7 +42,7 @@ export class QuizListComponent implements OnInit {
           actions: [
             {
               label: this.customTranslateService.getTranslation(
-                'admin.quiz.list.edit'
+                'general.edit'
               ),
               icon: 'edit',
               handler: (params) => this.onBtnClick(params),
