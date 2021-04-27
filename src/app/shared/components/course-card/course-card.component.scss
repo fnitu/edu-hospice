@@ -120,8 +120,10 @@
 
   .register {
     display: block;
-    background-color: lawngreen;
+    background-color: $themeColor1-light;
+    color: $textWithBackground;
     text-align: center;
+    padding: 5px;
   }
 
   .progress-bar {
