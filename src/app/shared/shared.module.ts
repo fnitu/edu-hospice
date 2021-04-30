@@ -55,10 +55,12 @@ import { GridTopToolbarComponent } from './components/grid/grid-top-toolbar/grid
 import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
 import { RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatSelectModule } from "@angular/material/select";
+import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
-import { PanelWrapperComponent } from './components/formly/formly-wrapper-panel.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -96,15 +98,14 @@ import { PanelWrapperComponent } from './components/formly/formly-wrapper-panel.
     MatTreeModule,
     TranslateModule,
     AgGridModule.withComponents([RowActionsCellRendererComponent]),
-    FormlyModule.forRoot({
-      wrappers: [{ name: 'panel', component: PanelWrapperComponent }],
-    }),
+    FormlyModule.forRoot(),
     FormlyMaterialModule,
     RouterModule,
     MatTooltipModule,
     MatNativeDateModule,
-    FormlyMatDatepickerModule
+    FormlyMatDatepickerModule,
   ],
+
   exports: [
     CommonModule,
     HttpClientModule,
@@ -130,6 +131,7 @@ import { PanelWrapperComponent } from './components/formly/formly-wrapper-panel.
     MatSnackBarModule,
     MatSidenavModule,
     MatTreeModule,
+    MatCheckboxModule,
     CourseCardComponent,
     TranslateModule,
     GridComponent,
@@ -140,6 +142,8 @@ import { PanelWrapperComponent } from './components/formly/formly-wrapper-panel.
     MatSelectModule,
     MatNativeDateModule,
     FormlyMatDatepickerModule,
+    CdkStepperModule,
+    MatStepperModule,
   ],
   providers: [
     {

@@ -19,6 +19,10 @@ export function formlyValidationConfig(
         message: customTranslateService.getTranslation('field.required'),
       },
       {
+        name: 'checkboxDependency',
+        message: customTranslateService.getTranslation('field.profession'),
+      },
+      {
         name: 'email',
         message: customTranslateService.getTranslation('field.email'),
       },
@@ -38,6 +42,10 @@ export function MultiRequiredValidator(control: FormControl): ValidationErrors {
     if (control.value[key] === true) {
       validation = true;
     }
+  }
+  if (control.value['other'] && !control.value['profession']) {
+    validation = false;
+    return { checkboxDependency: true };
   }
   return validation ? null : { status: 'INVALID' };
 }

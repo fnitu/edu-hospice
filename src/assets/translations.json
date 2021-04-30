@@ -24,7 +24,8 @@
   "field": {
     "required": "Acest câmp este obligatoriu.",
     "email": "E-mail-ul nu are un format valid.",
-    "emailNotExist": "E-mailul nu există. Vă rugăm să introduceți un e-mail valid."
+    "emailNotExist": "E-mailul nu există. Va rugam sa introduceti un e-mail valid.",
+    "profession": "Profesia trebuie specificată"
   },
   "confirmationDialog": {
     "commentBoxLabel": "Explicați motivul"
@@ -75,16 +76,24 @@
       "employerCountryPlaceholder": "Introdu țara angajatorului",
       "comunication": "Comunicarea informațiilor se va face prin: ",
       "phone": "Telefon (preferabil mobil) ",
-      "agreement": "Sunt de acord cu termenii și condițiile!",
-      "presonalData": "Date personale: ",
+      "readAgreement": "Citiți termenii si condițiile",
+      "agreement": "Am citit și sunt de acord cu termenii și condițiile!",
+      "gdprRead": "Citiți politica de prelucrare a datelor personale",
+      "gdpr": "Am citit și sunt de acord cu prelucrarea datelor personale",
+      "personalData": "Date personale",
       "register": "Înregistrează-te!",
       "career": "Carieră",
-      "contact": "Doresc să fiu contactat prin:",
+      "contact": "Contact",
+      "contactMe": "Doresc să fiu contactat de HOSPICE prin:",
       "medicalAssistant": "Asistent medical",
       "nurse": "Infirmieră",
       "caretaker": "Îngrijitor",
       "other": "Altele",
-      "employer": "Informații despre angajator"
+      "employer": "Informații despre angajator",
+      "finalization": "Finalizare",
+      "next": "Următorul",
+      "previous": "Înapoi",
+      "submit": "Trimiteți"
     }
   },
   "user": {
@@ -136,8 +145,8 @@
       "startDate": "Data începerii cursului",
       "totalRegisteredUsers": "Total utilizatori înscriși"
     },
-    "createCourse":{
-      "addNewCourse": "Creează curs",
+    "createCourse": {
+      "addNewCourse": "Creeaza Curs",
       "name": "Nume",
       "shortDescription": "Scurtă descriere",
       "description": "Descriere",
@@ -223,7 +232,6 @@
         "deleteLastQuestionMessage": "Ultima întrebare nu se poate șterge. Chestionarul trebuie să aibă cel puțin o întrebare.",
         "deleteLastOptionMessage": "Ultima opțiune nu se poate șterge. Întrebarea trebuie să aibă cel puțin o opțiune.",
         "newOption": "Opțiune nouă"
-
       },
       "list": {
         "quizName": "Nume chestionar",
