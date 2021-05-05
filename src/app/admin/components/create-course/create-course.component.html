@@ -1,20 +1,25 @@
 <div class="app-course-wrapper">
-  <mat-card class="create-course">
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <formly-form
-        [model]="model"
-        [fields]="fields"
-        [options]="options"
-        [form]="form"
-      ></formly-form>
-      <div class="button-row">
-        <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">
-          {{'general.save' | translate}}
-        </button>
-        <button mat-raised-button [disabled]="form.pristine" (click)="options.resetModel()">
-          {{'general.reset' | translate}}
-        </button>
-      </div>
-    </form>
-  </mat-card>
+  <mat-tab-group>
+    <mat-tab label="{{ 'admin.createCourse.courseDetails' | translate }}">
+      <mat-card class="create-course">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          <formly-form
+            [model]="model"
+            [fields]="fields"
+            [options]="options"
+            [form]="form"
+          ></formly-form>
+          <div class="button-row">
+            <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">
+              {{'general.save' | translate}}
+            </button>
+            <button mat-raised-button [disabled]="form.pristine" (click)="options.resetModel()">
+              {{'general.reset' | translate}}
+            </button>
+          </div>
+        </form>
+      </mat-card>
+    </mat-tab>
+    <mat-tab label="{{ 'admin.createCourse.courseContent' | translate }}"> <app-create-course-content></app-create-course-content> </mat-tab>   
+  </mat-tab-group>
 </div>

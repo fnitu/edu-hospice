@@ -21,7 +21,7 @@ export const GLOBALS = {
     REGISTER_COURSES: `${environment.BASE_URL}/api/users/{userId}/courses/{courseId}/register`,
     SAVE_QUIZ_SETTINGS: `${environment.BASE_URL}/api/admin/quizzes`,
     ACTION_LIST_WAITING_FOR_REGISTRATION: `./assets/json/registration.json`,
-    ACTION_LIST_WAITING_FOR_PAYMENT: `./assets/json/payment.json`
+    ACTION_LIST_WAITING_FOR_PAYMENT: `./assets/json/payment.json`,
   },
   DEFAULT_COURSE_IMG: `https://www.hospice.ro/wp-content/themes/hospice/img/social-default.jpg`,
   NOTIFICATIONS: {
@@ -31,7 +31,11 @@ export const GLOBALS = {
     DURATION_IN_SECONDS: 10,
   },
   ROLES: {
-    ADMIN:"ROLE_ADMIN",
-    USER: "ROLE_USER"
-  }
+    ADMIN: 'ROLE_ADMIN',
+    USER: 'ROLE_USER',
+  },
+  TEXTAREA: {
+    MAX_ROWS: 5,
+    MIN_ROWS: 2,
+  },
 };

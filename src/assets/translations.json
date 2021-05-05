@@ -147,6 +147,8 @@
     },
     "createCourse": {
       "addNewCourse": "Creeaza Curs",
+      "courseDetails": "Detaliile Cursului",
+      "courseContent": "Continutul Cursului",
       "name": "Nume",
       "shortDescription": "Scurtă descriere",
       "description": "Descriere",

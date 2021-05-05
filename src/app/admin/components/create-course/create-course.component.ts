@@ -46,7 +46,7 @@ export class CreateCourseComponent implements OnInit {
   fields: FormlyFieldConfig[] = [
     {
       key: 'name',
-      type: 'textarea',
+      type: 'textareafield',
       templateOptions: {
         label: this.customTranslateService.getTranslation(
           'admin.createCourse.name'
@@ -61,7 +61,7 @@ export class CreateCourseComponent implements OnInit {
     },
     {
       key: 'shortDescription',
-      type: 'textarea',
+      type: 'textareafield',
       templateOptions: {
         label: this.customTranslateService.getTranslation(
           'admin.createCourse.shortDescription'
@@ -76,7 +76,7 @@ export class CreateCourseComponent implements OnInit {
     },
     {
       key: 'description',
-      type: 'textarea',
+      type: 'textareafield',
       templateOptions: {
         label: this.customTranslateService.getTranslation(
           'admin.createCourse.description'
@@ -91,7 +91,7 @@ export class CreateCourseComponent implements OnInit {
     },
     {
       key: 'authors',
-      type: 'textarea',
+      type: 'textareafield',
       templateOptions: {
         label: this.customTranslateService.getTranslation(
           'admin.createCourse.author'

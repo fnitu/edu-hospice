@@ -61,6 +61,7 @@ import { CdkStepperModule } from '@angular/cdk/stepper';
 import { MatStepperModule } from '@angular/material/stepper';
 import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { textareaFormlyFieldExtension } from '../admin/components/create-course/textarea-formly-field.extension';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatTreeModule,
     TranslateModule,
     AgGridModule.withComponents([RowActionsCellRendererComponent]),
-    FormlyModule.forRoot(),
+    FormlyModule.forRoot({
+      types: [textareaFormlyFieldExtension],
+    }),
     FormlyMaterialModule,
     RouterModule,
     MatTooltipModule,
