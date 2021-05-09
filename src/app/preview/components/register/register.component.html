@@ -15,8 +15,8 @@
           <button
             mat-raised-button
             matStepperNext
-            color="primary"
             [disabled]="personalDataForm.invalid"
+            color="primary"
           >
             {{ "preview.register.next" | translate }}
           </button>
@@ -32,32 +32,24 @@
       <mat-card-content>
         <form [formGroup]="professionForm">
           <div class="checkboxGroup">
-            <mat-checkbox
-              id="medicalAsistant"
-              name="medicalAsistant"
-              formControlName="medicalAsistant"
-              >{{
-                "preview.register.medicalAssistant" | translate
-              }}</mat-checkbox
-            >
-            <mat-checkbox id="nurse" name="nurse" formControlName="nurse">{{
+            <mat-checkbox formControlName="NURSE">{{
               "preview.register.nurse" | translate
             }}</mat-checkbox>
-            <mat-checkbox
-              id="caretaker"
-              name="caretaker"
-              formControlName="caretaker"
-              >{{ "preview.register.caretaker" | translate }}</mat-checkbox
-            >
-            <mat-checkbox id="other" name="other" formControlName="other">{{
+            <mat-checkbox formControlName="CARE_ASSISTANT">{{
+              "preview.register.care_asistant" | translate
+            }}</mat-checkbox>
+            <mat-checkbox formControlName="CARETAKER">{{
+              "preview.register.caretaker" | translate
+            }}</mat-checkbox>
+            <mat-checkbox formControlName="OTHER">{{
               "preview.register.other" | translate
             }}</mat-checkbox>
           </div>
-          <mat-form-field *ngIf="professionForm.value.other">
+          <mat-form-field *ngIf="professionForm.value.OTHER">
             <input
               matInput
               placeholder="Profession"
-              formControlName="profession"
+              formControlName="other_profession"
             />
           </mat-form-field>
         </form>
@@ -87,7 +79,7 @@
       </mat-card-footer>
     </mat-card>
   </mat-step>
-  <mat-step label="{{ 'preview.register.contact' | translate }}">
+  <mat-step label="{{ 'preview.register.finalization' | translate }}">
     <mat-card class="registerFormContainer">
       <mat-card-title>{{
         "preview.register.contactMe" | translate
@@ -100,24 +92,7 @@
           ></formly-form>
         </form>
       </div>
-      <mat-card-footer>
-        <div class="navigation-panel">
-          <button mat-button matStepperPrevious>
-            {{ "preview.register.previous" | translate }}
-          </button>
-          <button
-            mat-raised-button
-            color="primary"
-            matStepperNext
-            [disabled]="contactForm.invalid"
-          >
-            {{ "preview.register.next" | translate }}
-          </button>
-        </div>
-      </mat-card-footer>
     </mat-card>
-  </mat-step>
-  <mat-step label="{{ 'preview.register.finalization' | translate }}">
     <mat-card class="registerFormContainer">
       <form [formGroup]="finalizationForm">
         <h3>
@@ -151,7 +126,7 @@
           <button
             mat-raised-button
             color="primary"
-            [disabled]="finalizationForm.invalid"
+            [disabled]="finalizationForm.invalid || contactForm.invalid"
           >
             {{ "preview.register.submit" | translate }}
           </button>

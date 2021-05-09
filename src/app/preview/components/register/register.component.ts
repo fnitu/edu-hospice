@@ -1,4 +1,9 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { MultiRequiredValidator } from 'src/app/shared/components/formly/formly-validation-config';
@@ -11,7 +16,7 @@ import { TooltipService } from 'src/app/shared/services/tooltip/tooltip.service'
   styleUrls: ['./register.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class RegisterComponent {
+export class RegisterComponent implements AfterContentInit {
   private passwordRules = {
     textPassMinLength: 6,
     textPassMaxLength: 10,
@@ -33,11 +38,11 @@ export class RegisterComponent {
 
   professionForm = new FormGroup(
     {
-      medicalAsistant: new FormControl(false),
-      nurse: new FormControl(false),
-      caretaker: new FormControl(false),
-      other: new FormControl(false),
-      profession: new FormControl(null),
+      NURSE: new FormControl(false),
+      CARE_ASSISTANT: new FormControl(false),
+      CARETAKER: new FormControl(false),
+      OTHER: new FormControl(false),
+      other_profession: new FormControl(null),
     },
     MultiRequiredValidator
   );
@@ -144,7 +149,7 @@ export class RegisterComponent {
       key: 'phone',
       type: 'input',
       templateOptions: {
-        type: 'number',
+        type: 'text',
         label: this.customTranslateService.getTranslation(
           'preview.register.phoneNumber'
         ),
@@ -220,6 +225,7 @@ export class RegisterComponent {
           type: 'checkbox',
           templateOptions: {
             label: this.customTranslateService.getTranslation('general.email'),
+            indeterminate: false,
           },
         },
         {
@@ -229,6 +235,7 @@ export class RegisterComponent {
             label: this.customTranslateService.getTranslation(
               'preview.register.phone'
             ),
+            indeterminate: false,
           },
         },
       ],
@@ -242,6 +249,58 @@ export class RegisterComponent {
     private tooltipService: TooltipService,
     private customTranslateService: CustomTranslateService
   ) {}
+
+  ngAfterContentInit() {
+    // this.enable();
+  }
+
+  //   enable() {
+  //     let steps = document.querySelectorAll('.mat-step-header');
+  //     console.log(steps);
+
+  //     let stepperToActivate = this.checkForms();
+
+  //     steps.forEach((item) => {
+  //       if (item['ariaPosInSet'] > stepperToActivate) {
+  //         item.setAttribute('style', 'pointer-events: none');
+  //         console.log(item['ariaPosInSet']);
+  //       }
+  //     });
+  //   }
+
+  //   checkForms() {
+  //     let personalDataFormCheck = this.personalDataForm.valid;
+  //     let careerFormCheck = this.careerForm.valid && this.professionForm.valid;
+  //     let finalizationFormCheck = this.contactForm && this.finalizationForm.valid;
+
+  //     if (!personalDataFormCheck && !careerFormCheck && !finalizationFormCheck) {
+  //       return 1;
+  //     } else if (personalDataFormCheck) {
+  //       return 2;
+  //     } else if (personalDataFormCheck && careerFormCheck) {
+  //       return 3;
+  //     }
+  //   }
+  getProfessionChoise(f) {
+    let exceptions = ['OTHER', 'other_profession'];
+    let profession: string[] = [];
+
+    for (let choise in f['controls']) {
+      if (
+        f['controls'][choise]['value'] &&
+        !exceptions.some((item) => item === choise)
+      ) {
+        profession.push(choise);
+        console.log(f['controls'][choise]);
+      }
+    }
+    return profession;
+  }
+
+  getOtherProfessionChoise(f) {
+    let checkValue = f['controls']['other_profession']['value'];
+    return checkValue ? checkValue : '';
+  }
 
   validateInputPasswordSet(control) {
     let valid = true;
@@ -325,4 +384,7 @@ export class RegisterComponent {
       });
     }
   }
+}
+function enamble(arg0: number) {
+  throw new Error('Function not implemented.');
 }
