@@ -224,6 +224,7 @@
         "name": "Întrebare",
         "type": "Tip",
         "addQuestion": "Adaugă întrebare",
+        "saveQuestion": "Salvează întrebarea",
         "deleteQuestion": "Șterge întrebare",
         "addOption": "Adaugă opțiune",
         "deleteOption": "Șterge opțiune",

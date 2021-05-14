@@ -21,4 +21,12 @@ export class QuizQuestionsService {
 
     return this.http.post(url, bodyParams);
   }
+
+  public saveQuestion(quizId, questionConfig):Observable<any> {
+    const url = "";
+
+    const bodyParams = JSON.stringify(questionConfig);
+
+    return this.http.put(url, bodyParams);
+  }
 }
