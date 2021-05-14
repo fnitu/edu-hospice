@@ -1,6 +1,6 @@
 <div class="new-quiz-container">
-    <app-quiz-settings></app-quiz-settings>
+    <app-quiz-settings (quizSettingsSavedEvent)="quizSettingsSavedEventHandler()"></app-quiz-settings>
 
-    <app-quiz-questions></app-quiz-questions>
+    <app-quiz-questions [quizSettingSaved]="quizSettingSaved"></app-quiz-questions>
 </div>
 

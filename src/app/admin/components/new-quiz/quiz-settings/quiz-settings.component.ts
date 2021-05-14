@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnInit, ViewEncapsulation, Output } from '@angular/core';
 import { FormGroup, Validators } from "@angular/forms";
 import { FormlyFieldConfig } from "@ngx-formly/core";
 import { CustomTranslateService } from "../../../../shared/services/custom-translate/custom-translate.service";
@@ -6,6 +6,8 @@ import { QuizSettingsService } from "./quiz-settings.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { SnackBarComponent } from "../../../../shared/components/snack-bar/snack-bar.component";
 import { GLOBALS } from "../../../../shared/core/globals";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Location } from '@angular/common'
 
 @Component({
     selector: 'app-quiz-settings',
@@ -14,7 +16,11 @@ import { GLOBALS } from "../../../../shared/core/globals";
     encapsulation: ViewEncapsulation.None
 })
 export class QuizSettingsComponent implements OnInit {
+    @Output() quizSettingsSavedEvent = new EventEmitter();
+
     public settingsForm = new FormGroup({});
+
+    private quizId = null;
 
     public settingsFormFields: FormlyFieldConfig[];
 
@@ -24,11 +30,25 @@ export class QuizSettingsComponent implements OnInit {
 
     constructor(private customTranslateService: CustomTranslateService,
                 private quizSettingsService: QuizSettingsService,
-                private matSnackBar: MatSnackBar) {
+                private matSnackBar: MatSnackBar,
+                private router: Router,
+                private route: ActivatedRoute,
+                private location: Location) {
     }
 
     ngOnInit(): void {
+        this.quizId = this.route.snapshot.params.id;
+
+        if (this.quizId) {
+            this.getQuizSettings();
+        }
+
         this.settingsFormFields = this.defineSettingFormFields();
+    }
+
+    private getQuizSettings() {
+        //TODO is quiz id is provided, make server request in order to get data
+        // populate form with info
     }
 
     private defineSettingFormFields(): FormlyFieldConfig[] {
@@ -91,10 +111,22 @@ export class QuizSettingsComponent implements OnInit {
                             placeholder: this.customTranslateService.getTranslation("admin.quiz.settings.timeLimitPlaceholder"),
                             required: true,
                             options: [
-                                {value: 30, label: `30 ${this.customTranslateService.getTranslation("general.minutes")}`},
-                                {value: 40, label: `40 ${this.customTranslateService.getTranslation("general.minutes")}`},
-                                {value: 50, label: `50 ${this.customTranslateService.getTranslation("general.minutes")}`},
-                                {value: 60, label: `60 ${this.customTranslateService.getTranslation("general.minutes")}`},
+                                {
+                                    value: 30,
+                                    label: `30 ${this.customTranslateService.getTranslation("general.minutes")}`
+                                },
+                                {
+                                    value: 40,
+                                    label: `40 ${this.customTranslateService.getTranslation("general.minutes")}`
+                                },
+                                {
+                                    value: 50,
+                                    label: `50 ${this.customTranslateService.getTranslation("general.minutes")}`
+                                },
+                                {
+                                    value: 60,
+                                    label: `60 ${this.customTranslateService.getTranslation("general.minutes")}`
+                                },
                             ]
                         },
                         validators: {
@@ -116,17 +148,29 @@ export class QuizSettingsComponent implements OnInit {
     public saveQuizSettings() {
         this.quizSettingsService.saveQuizSettings(this.settingsForm.value).subscribe(
             (response) => {
-                if (response.success) {
-                    this.matSnackBar.openFromComponent(SnackBarComponent, {
-                        verticalPosition: 'top',
-                        data: {
-                            content: response.message,
-                            type: GLOBALS.NOTIFICATIONS.INFO
-                        }
-                    });
-                }
+                this.quizSettingsSavedEvent.emit();
+
+                this.matSnackBar.openFromComponent(SnackBarComponent, {
+                    verticalPosition: 'top',
+                    data: {
+                        content: this.customTranslateService.getTranslation("admin.quiz.settings.quizCreatedSuccessMessage"),
+                        type: GLOBALS.NOTIFICATIONS.INFO
+                    }
+                });
+
+                this.updateRouteUrl(response.id);
             }
         );
     }
 
+    private updateRouteUrl(id) {
+        let url = this.router.url;
+
+        const regex = /\/new-quiz.*$/;
+
+        url = url.replace(regex, `/new-quiz/${id}`);
+
+        // https://stackoverflow.com/questions/35618463/change-route-params-without-reloading-in-angular-2
+        this.location.go(url);
+    }
 }

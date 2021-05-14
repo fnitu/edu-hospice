@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import * as _ from "lodash";
 import { SnackBarComponent } from "../../../../shared/components/snack-bar/snack-bar.component";
@@ -7,6 +7,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { CustomTranslateService } from "../../../../shared/services/custom-translate/custom-translate.service";
 import { QuestionInterface } from "./question.interface";
 import { QuestionOptionInterface } from "./question-option.interface";
+import { QuizQuestionsService } from "./quiz-questions.service";
 
 @Component({
   selector: 'app-quiz-questions',
@@ -17,19 +18,21 @@ import { QuestionOptionInterface } from "./question-option.interface";
 export class QuizQuestionsComponent implements OnInit {
   public questions: QuestionInterface[] = [];
 
+  public quizId = null;
+
+  @Input() quizSettingSaved: boolean = false;
+
   constructor(private route: ActivatedRoute,
               private matSnackBar: MatSnackBar,
-              private customTranslateService: CustomTranslateService) { }
+              private customTranslateService: CustomTranslateService,
+              private quizQuestionsService: QuizQuestionsService) { }
 
   ngOnInit(): void {
-    const quizId = this.route.snapshot.params.id;
+    this.quizId = this.route.snapshot.params.id;
 
-    if (quizId) {
+    if (this.quizId) {
       this.getQuestions();
-    } else {
-      this.initFirstQuestion();
     }
-
 
   }
 
@@ -37,8 +40,8 @@ export class QuizQuestionsComponent implements OnInit {
   //TODO implementation of GET questions request
   }
 
-  private initFirstQuestion() {
-    this.questions.push({
+  public addFirstQuestion() {
+    let newQuestion: any = {
       name: "",
       type: "select",
       options: [
@@ -47,7 +50,15 @@ export class QuizQuestionsComponent implements OnInit {
           valid: true
         }
       ]
-    });
+    };
+
+    this.quizQuestionsService.addQuestion(this.quizId, newQuestion).subscribe(
+        (response) => {
+          newQuestion.id = response.id;
+
+          this.questions.push(newQuestion);
+        }
+    );
   }
 
   public addOption(question, option) {
@@ -91,7 +102,13 @@ export class QuizQuestionsComponent implements OnInit {
           ]
       };
 
-      this.questions.splice(currentQuestionIndex + 1, 0, newQuestion);
+    this.quizQuestionsService.addQuestion(this.quizId, newQuestion).subscribe(
+        (response) => {
+          newQuestion.id = response.id;
+
+          this.questions.splice(currentQuestionIndex + 1, 0, newQuestion);
+        }
+    );
   }
 
   public removeQuestion(question) {
