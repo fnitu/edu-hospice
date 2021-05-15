@@ -62,6 +62,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { textareaFormlyFieldExtension } from '../admin/components/create-course/textarea-formly-field.extension';
+import { inputFormlyFieldExtension } from '../admin/components/create-course/input-formly-field.extension';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,7 @@ import { textareaFormlyFieldExtension } from '../admin/components/create-course/
     TranslateModule,
     AgGridModule.withComponents([RowActionsCellRendererComponent]),
     FormlyModule.forRoot({
-      types: [textareaFormlyFieldExtension],
+      types: [textareaFormlyFieldExtension, inputFormlyFieldExtension],
     }),
     FormlyMaterialModule,
     RouterModule,

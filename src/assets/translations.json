@@ -25,7 +25,9 @@
     "required": "Acest câmp este obligatoriu.",
     "email": "E-mail-ul nu are un format valid.",
     "emailNotExist": "E-mailul nu există. Va rugam sa introduceti un e-mail valid.",
-    "profession": "Profesia trebuie specificată"
+    "profession": "Profesia trebuie specificată",
+    "min": "Această valoare ar trebui să fie mai mare de",
+    "max": "Această valoare ar trebui să fie mai mica de"
   },
   "confirmationDialog": {
     "commentBoxLabel": "Explicați motivul"

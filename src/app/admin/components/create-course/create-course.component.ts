@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
 
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
 import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
@@ -36,6 +36,12 @@ export class CreateCourseComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  public selected = new FormControl(0);
+
+  public tabChange() {
+    this.selected.setValue(this.selected.value + 1);
+  }
+
   form = new FormGroup({});
   model: CreateCourse = {} as CreateCourse;
   options: FormlyFormOptions = {
@@ -46,7 +52,7 @@ export class CreateCourseComponent implements OnInit {
   fields: FormlyFieldConfig[] = [
     {
       key: 'name',
-      type: 'textareafield',
+      type: 'inputField',
       templateOptions: {
         label: this.customTranslateService.getTranslation(
           'admin.createCourse.name'
@@ -54,7 +60,6 @@ export class CreateCourseComponent implements OnInit {
         placeholder: this.customTranslateService.getTranslation(
           'admin.createCourse.name'
         ),
-        rows: 2,
         maxLength: 150,
         required: true,
       },
@@ -132,6 +137,7 @@ export class CreateCourseComponent implements OnInit {
           templateOptions: {
             type: 'number',
             min: 0,
+            step: 0.01,
             label: this.customTranslateService.getTranslation(
               'admin.createCourse.price'
             ),
@@ -343,6 +349,7 @@ export class CreateCourseComponent implements OnInit {
           templateOptions: {
             type: 'number',
             min: 0,
+            max: 100,
             label: this.customTranslateService.getTranslation(
               'admin.createCourse.credits'
             ),
@@ -372,8 +379,6 @@ export class CreateCourseComponent implements OnInit {
         }
       });
     this.options.resetModel();
-    setTimeout(() => {
-      this.location.back();
-    }, 5000);
+    setTimeout(() => this.tabChange(), 2000);
   }
 }

@@ -26,6 +26,22 @@ export function formlyValidationConfig(
         name: 'email',
         message: customTranslateService.getTranslation('field.email'),
       },
+      {
+        name: 'min',
+        message: (err, field) => {
+          return `${customTranslateService.getTranslation('field.min')} ${
+            field.templateOptions.min
+          }`;
+        },
+      },
+      {
+        name: 'max',
+        message: (err, field) => {
+          return `${customTranslateService.getTranslation('field.max')} ${
+            field.templateOptions.max
+          }`;
+        },
+      },
     ],
   };
 }
