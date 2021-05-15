@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { PlaceholderFormatService } from "../../../../shared/services/format/placeholder-format.service";
 import { GLOBALS } from "../../../../shared/core/globals";
 
@@ -17,9 +17,13 @@ export class QuizQuestionsService {
       "{quizId}": quizId
     });
 
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+
     const bodyParams = JSON.stringify(questionConfig);
 
-    return this.http.post(url, bodyParams);
+    return this.http.post(url, bodyParams, httpOptions);
   }
 
   public saveQuestion(quizId, questionConfig):Observable<any> {

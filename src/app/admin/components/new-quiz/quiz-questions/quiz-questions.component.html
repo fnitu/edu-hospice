@@ -1,4 +1,4 @@
-<mat-card *ngIf="!questions.length && (quizSettingSaved || quizId)" class="add-question-card">
+<mat-card *ngIf="!questions.length && (quizSettingSaved || quizSettingsService.quizId)" class="add-question-card">
     <div class="no-questions-label">{{ 'admin.quiz.question.noQuestionsLabel' | translate }}</div>
 
     <button mat-fab
@@ -21,9 +21,9 @@
             <mat-form-field class="question-type-dropdown">
                 <mat-label>{{ 'admin.quiz.question.type' | translate }}</mat-label>
                 <mat-select [(value)]="question.type">
-                    <mat-option value="radio">{{ 'admin.quiz.question.radioType' | translate }}</mat-option>
-                    <mat-option value="select">{{ 'admin.quiz.question.selectType' | translate }}</mat-option>
-                    <mat-option value="checkboxes">{{ 'admin.quiz.question.checkboxesType' | translate }}</mat-option>
+                    <mat-option value="RADIO">{{ 'admin.quiz.question.radioType' | translate }}</mat-option>
+                    <mat-option value="SELECT">{{ 'admin.quiz.question.selectType' | translate }}</mat-option>
+                    <mat-option value="CHECKBOXES">{{ 'admin.quiz.question.checkboxesType' | translate }}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -31,10 +31,10 @@
         <div class="options-container">
             <div class="option-wrapper" *ngFor="let option of question.options">
                 <mat-icon class="material-icons-outlined question-type-icon"
-                          *ngIf="question.type === 'radio'">circle</mat-icon>
+                          *ngIf="question.type === 'RADIO'">circle</mat-icon>
 
                 <mat-icon class="material-icons-outlined question-type-icon"
-                          *ngIf="question.type === 'checkboxes'">crop_square</mat-icon>
+                          *ngIf="question.type === 'CHECKBOXES'">crop_square</mat-icon>
 
                 <mat-form-field class="option-field">
                     <input matInput [(ngModel)]="option.option">

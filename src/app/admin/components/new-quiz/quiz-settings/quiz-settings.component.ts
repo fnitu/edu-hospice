@@ -37,9 +37,9 @@ export class QuizSettingsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.quizId = this.route.snapshot.params.id;
+        this.quizSettingsService.quizId = this.route.snapshot.params.id;
 
-        if (this.quizId) {
+        if (this.quizSettingsService.quizId) {
             this.getQuizSettings();
         }
 
@@ -157,6 +157,8 @@ export class QuizSettingsComponent implements OnInit {
                         type: GLOBALS.NOTIFICATIONS.INFO
                     }
                 });
+
+                this.quizSettingsService.quizId = response.id;
 
                 this.updateRouteUrl(response.id);
             }

@@ -8,6 +8,7 @@ import { CustomTranslateService } from "../../../../shared/services/custom-trans
 import { QuestionInterface } from "./question.interface";
 import { QuestionOptionInterface } from "./question-option.interface";
 import { QuizQuestionsService } from "./quiz-questions.service";
+import { QuizSettingsService } from "../quiz-settings/quiz-settings.service";
 
 @Component({
     selector: 'app-quiz-questions',
@@ -18,23 +19,19 @@ import { QuizQuestionsService } from "./quiz-questions.service";
 export class QuizQuestionsComponent implements OnInit {
     public questions: QuestionInterface[] = [];
 
-    public quizId = null;
-
     @Input() quizSettingSaved: boolean = false;
 
     constructor(private route: ActivatedRoute,
                 private matSnackBar: MatSnackBar,
                 private customTranslateService: CustomTranslateService,
-                private quizQuestionsService: QuizQuestionsService) {
+                private quizQuestionsService: QuizQuestionsService,
+                public quizSettingsService: QuizSettingsService) {
     }
 
     ngOnInit(): void {
-        this.quizId = this.route.snapshot.params.id;
-
-        if (this.quizId) {
+        if (this.quizSettingsService.quizId) {
             this.getQuestions();
         }
-
     }
 
     private getQuestions() {
@@ -44,7 +41,7 @@ export class QuizQuestionsComponent implements OnInit {
     public addFirstQuestion() {
         let newQuestion: any = {
             name: "",
-            type: "select",
+            type: "SELECT",
             options: [
                 {
                     option: this.customTranslateService.getTranslation("admin.quiz.question.newOption"),
@@ -53,7 +50,7 @@ export class QuizQuestionsComponent implements OnInit {
             ]
         };
 
-        this.quizQuestionsService.addQuestion(this.quizId, newQuestion).subscribe(
+        this.quizQuestionsService.addQuestion(this.quizSettingsService.quizId, newQuestion).subscribe(
             (response) => {
                 newQuestion.id = response.id;
 
@@ -90,7 +87,7 @@ export class QuizQuestionsComponent implements OnInit {
     }
 
     public saveQuestion(question) {
-        this.quizQuestionsService.saveQuestion(this.quizId, question).subscribe(
+        this.quizQuestionsService.saveQuestion(this.quizSettingsService.quizId, question).subscribe(
             (response) => {
 
             }
@@ -102,7 +99,7 @@ export class QuizQuestionsComponent implements OnInit {
 
         const newQuestion: QuestionInterface = {
             name: "",
-            type: "select",
+            type: "SELECT",
             options: [
                 {
                     option: this.customTranslateService.getTranslation("admin.quiz.question.newOption"),
@@ -111,7 +108,7 @@ export class QuizQuestionsComponent implements OnInit {
             ]
         };
 
-        this.quizQuestionsService.addQuestion(this.quizId, newQuestion).subscribe(
+        this.quizQuestionsService.addQuestion(this.quizSettingsService.quizId, newQuestion).subscribe(
             (response) => {
                 newQuestion.id = response.id;
 
