@@ -7,10 +7,15 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class NewQuizComponent implements OnInit {
+  public quizSettingSaved: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public quizSettingsSavedEventHandler() {
+    this.quizSettingSaved = true;
   }
 
 }

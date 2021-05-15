@@ -220,13 +220,13 @@
         "timeLimitLabel": "Timpul limită pentru a termina chestionarul",
         "timeLimitPlaceholder": "Selectați timpul limită pentru a termina chestionarul",
         "statusLabel": "Stare chestionar",
-        "statusInactiveValue": "INACTIVE",
-        "statusActiveValue": "ACTIVE"
+        "quizCreatedSuccessMessage": "Chestionar creat cu succes!"
       },
       "question": {
         "name": "Întrebare",
         "type": "Tip",
         "addQuestion": "Adaugă întrebare",
+        "saveQuestion": "Salvează întrebarea",
         "deleteQuestion": "Șterge întrebare",
         "addOption": "Adaugă opțiune",
         "deleteOption": "Șterge opțiune",
@@ -235,7 +235,8 @@
         "selectType": "Listă drop-down",
         "deleteLastQuestionMessage": "Ultima întrebare nu se poate șterge. Chestionarul trebuie să aibă cel puțin o întrebare.",
         "deleteLastOptionMessage": "Ultima opțiune nu se poate șterge. Întrebarea trebuie să aibă cel puțin o opțiune.",
-        "newOption": "Opțiune nouă"
+        "newOption": "Opțiune nouă",
+        "noQuestionsLabel": "Acest chestionar nu are întrebări adăugate."
       },
       "list": {
         "quizName": "Nume chestionar",

@@ -1,3 +1,14 @@
+<mat-card *ngIf="!questions.length && (quizSettingSaved || quizId)" class="add-question-card">
+    <div class="no-questions-label">{{ 'admin.quiz.question.noQuestionsLabel' | translate }}</div>
+
+    <button mat-fab
+            color="primary"
+            title="{{ 'admin.quiz.question.addQuestion' | translate }}"
+            (click)="addFirstQuestion()">
+        <mat-icon class="add-question-icon material-icons-outlined">add</mat-icon>
+    </button>
+</mat-card>
+
 <mat-card *ngFor="let question of questions" class="question-card">
     <mat-card-content>
         <div class="question-content-top">
@@ -48,6 +59,7 @@
     </mat-card-content>
 
     <mat-card-actions align="end">
+        <button mat-button mat-raised-button color="success" (click)="saveQuestion(question)">{{ 'admin.quiz.question.saveQuestion' | translate }}</button>
         <button mat-button mat-raised-button color="primary" (click)="addQuestion(question)">{{ 'admin.quiz.question.addQuestion' | translate }}</button>
         <button mat-button mat-raised-button color="warn" (click)="removeQuestion(question)">{{ 'admin.quiz.question.deleteQuestion' | translate }}</button>
     </mat-card-actions>
