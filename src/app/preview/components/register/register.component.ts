@@ -1,9 +1,4 @@
-import {
-  AfterContentInit,
-  Component,
-  OnInit,
-  ViewEncapsulation,
-} from '@angular/core';
+import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { MultiRequiredValidator } from 'src/app/shared/components/formly/formly-validation-config';
@@ -16,7 +11,7 @@ import { TooltipService } from 'src/app/shared/services/tooltip/tooltip.service'
   styleUrls: ['./register.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class RegisterComponent implements AfterContentInit {
+export class RegisterComponent implements AfterViewInit {
   private passwordRules = {
     textPassMinLength: 6,
     textPassMaxLength: 10,
@@ -250,37 +245,45 @@ export class RegisterComponent implements AfterContentInit {
     private customTranslateService: CustomTranslateService
   ) {}
 
-  ngAfterContentInit() {
-    // this.enable();
+  ngAfterViewInit() {
+    this.disableStepper();
   }
 
-  //   enable() {
-  //     let steps = document.querySelectorAll('.mat-step-header');
-  //     console.log(steps);
+  validationChange() {
+    this.disableStepper();
+    this.enableStepper();
+  }
 
-  //     let stepperToActivate = this.checkForms();
+  disableStepper() {
+    let steps = document.querySelectorAll('.mat-step-header');
+    let limit = this.checkForms();
+    for (let i = 3; i > limit; i--) {
+      if (steps.item(i)) {
+        steps.item(i).classList.add('enabled');
+      }
+    }
+  }
 
-  //     steps.forEach((item) => {
-  //       if (item['ariaPosInSet'] > stepperToActivate) {
-  //         item.setAttribute('style', 'pointer-events: none');
-  //         console.log(item['ariaPosInSet']);
-  //       }
-  //     });
-  //   }
+  enableStepper() {
+    let steps = document.querySelectorAll('.mat-step-header');
 
-  //   checkForms() {
-  //     let personalDataFormCheck = this.personalDataForm.valid;
-  //     let careerFormCheck = this.careerForm.valid && this.professionForm.valid;
-  //     let finalizationFormCheck = this.contactForm && this.finalizationForm.valid;
+    let limit = this.checkForms();
+    for (let i = 0; i <= limit; i++) {
+      if (steps.item(i)) {
+        steps.item(i).classList.remove('enabled');
+      }
+    }
+  }
 
-  //     if (!personalDataFormCheck && !careerFormCheck && !finalizationFormCheck) {
-  //       return 1;
-  //     } else if (personalDataFormCheck) {
-  //       return 2;
-  //     } else if (personalDataFormCheck && careerFormCheck) {
-  //       return 3;
-  //     }
-  //   }
+  checkForms() {
+    let personalDataFormCheck = this.personalDataForm.valid;
+    let careerFormCheck = this.careerForm.valid && this.professionForm.valid;
+
+    if (!personalDataFormCheck) return 0;
+    if (careerFormCheck) return 2;
+    return 1;
+  }
+
   getProfessionChoise(f) {
     let exceptions = ['OTHER', 'other_profession'];
     let profession: string[] = [];

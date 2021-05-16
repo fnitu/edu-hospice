@@ -1,8 +1,9 @@
 .mat-stepper-horizontal {
   margin-top: 30px;
-  .mat-step-header {
+  .enabled {
     pointer-events: none !important;
   }
+
   .registerFormContainer {
     .mat-card-footer {
       .navigation-panel {
@@ -19,7 +20,7 @@
       margin-top: 16px;
     }
 
-    width: 50vw;
+    width: 50rem;
     min-width: 400px;
     margin: auto;
     height: 100%;
@@ -45,6 +46,25 @@
       }
       margin-bottom: 20px;
       margin-top: 20px;
+    }
+  }
+  .contactContainer {
+    p {
+      margin: 1em 0 0;
+    }
+
+    .mat-form-field-appearance-legacy .mat-form-field-infix,
+    .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+  }
+  .wrapper {
+    margin: 2em 0;
+
+    span {
+      margin-right: 0.5em;
     }
   }
 }

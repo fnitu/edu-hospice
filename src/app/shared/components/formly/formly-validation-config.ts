@@ -59,7 +59,7 @@ export function MultiRequiredValidator(control: FormControl): ValidationErrors {
       validation = true;
     }
   }
-  if (control.value['other'] && !control.value['profession']) {
+  if (control.value['OTHER'] && !control.value['other_profession']) {
     validation = false;
     return { checkboxDependency: true };
   }
