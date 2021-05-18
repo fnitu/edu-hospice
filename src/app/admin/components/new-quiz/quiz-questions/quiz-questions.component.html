@@ -58,9 +58,12 @@
         </div>
     </mat-card-content>
 
-    <mat-card-actions align="end">
-        <button mat-button mat-raised-button color="success" (click)="saveQuestion(question)">{{ 'admin.quiz.question.saveQuestion' | translate }}</button>
-        <button mat-button mat-raised-button color="primary" (click)="addQuestion(question)">{{ 'admin.quiz.question.addQuestion' | translate }}</button>
-        <button mat-button mat-raised-button color="warn" (click)="removeQuestion(question)">{{ 'admin.quiz.question.deleteQuestion' | translate }}</button>
+    <mat-card-actions>
+        <button mat-button mat-raised-button color="primary"
+                (click)="addQuestion(question)">{{ 'admin.quiz.question.addQuestion' | translate }}</button>
+        <button mat-button mat-raised-button color="warn"
+                (click)="removeQuestion(question)">{{ 'admin.quiz.question.deleteQuestion' | translate }}</button>
+        <button mat-button mat-raised-button color="success" class="save-button"
+                (click)="saveQuestion(question)">{{ 'admin.quiz.question.saveQuestion' | translate }}</button>
     </mat-card-actions>
 </mat-card>
