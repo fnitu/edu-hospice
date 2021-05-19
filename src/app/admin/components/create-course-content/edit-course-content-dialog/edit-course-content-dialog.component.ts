@@ -2,6 +2,9 @@ import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {CustomTranslateService} from '../../../../shared/services/custom-translate/custom-translate.service';
 import * as moment from 'moment';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-edit-course-content-dialog',
@@ -12,35 +15,20 @@ import * as moment from 'moment';
 export class EditCourseContentDialogComponent implements OnInit {
 
   public tabs: any;
+  myControl = new FormControl();
+  options: string[] = ['EXTERNAL', 'PDF', 'QUIZ', 'VIDEO', 'ZOOM'];
+  filteredOptions: Observable<string[]>;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private dialogRef: MatDialogRef<EditCourseContentDialogComponent>,
-              private customTranslateService: CustomTranslateService,) {
+              private customTranslateService: CustomTranslateService) {
   }
 
   ngOnInit(): void {
     this.tabs = [
       {
         label: 'Adauga Continut',
-        content: 'addContentContainer',
-        contentTypes: [
-          {
-            label: this.customTranslateService.getTranslation('admin.createCourseContent.editCourseContentDialog.presentation'),
-            type: 'presentation'
-          },
-          {
-            label: this.customTranslateService.getTranslation('admin.createCourseContent.editCourseContentDialog.video'),
-            type: 'video'
-          },
-          {
-            label: this.customTranslateService.getTranslation('admin.createCourseContent.editCourseContentDialog.conference'),
-            type: 'conference'
-          },
-          {
-            label: this.customTranslateService.getTranslation('admin.createCourseContent.editCourseContentDialog.quiz'),
-            type: 'quiz'
-          }
-        ]
+        content: 'addContentContainer'
       },
       {
         label: 'Adauga Resurse',

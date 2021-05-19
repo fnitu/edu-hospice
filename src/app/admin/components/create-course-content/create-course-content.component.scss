@@ -35,7 +35,11 @@
 
   .sections-container {
     .section {
-      .section-title {
+      &:not(:last-child) {
+        margin-bottom: 40px;
+      }
+
+      .section-container {
         display: flex;
         align-items: center;
         background-color: $sectionColour;
@@ -61,6 +65,14 @@
 
         .title {
           font-weight: bold;
+        }
+
+        .button-container {
+          flex: 1;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          padding: 0;
         }
       }
 
@@ -104,9 +116,9 @@
       }
 
       .button-container {
-        padding: 10px 40px;
+        padding: 10px 10px 10px 40px;
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between
       }
     }
   }

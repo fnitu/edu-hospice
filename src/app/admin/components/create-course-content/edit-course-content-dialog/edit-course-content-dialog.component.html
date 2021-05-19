@@ -12,6 +12,19 @@
           <div class="item" [ngClass]="{'selected' : type.type === data.contentType}"
                *ngFor="let type of tab.contentTypes"
                (click)="setContentType(type.type)" >{{type.label}}</div>
+          <form class="form">
+            <mat-form-field>
+              <input type="text" matInput
+                     placeholder="{{'admin.createCourseContent.editCourseContentDialog.choseContentType' | translate}}"
+                     [formControl]="myControl"
+                     [matAutocomplete]="auto">
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of options " [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
         </div>
       </div>
 

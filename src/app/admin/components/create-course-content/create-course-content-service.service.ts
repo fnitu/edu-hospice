@@ -1,0 +1,61 @@
+import { Injectable } from '@angular/core';
+import {CreateCourse} from '../../../shared/interfaces/createCourse';
+import {Observable, throwError} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CreateCourseContentServiceService {
+
+  constructor(private http: HttpClient) { }
+
+  getCourseInfo(url): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+
+    const dataResponse = this.http.get(url, httpOptions);
+
+    dataResponse.pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+
+    return dataResponse;
+  }
+
+  addSection(url, data): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+
+    const dataResponse = this.http.post(url, JSON.stringify(data), httpOptions);
+
+    dataResponse.pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+
+    return dataResponse;
+  }
+
+  addContent(url, data): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+
+    const dataResponse = this.http.post(url, JSON.stringify(data), httpOptions);
+
+    dataResponse.pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+
+    return dataResponse;
+  }
+}

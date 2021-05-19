@@ -1,5 +1,5 @@
 export interface CourseInterface {
   id: number,
-  title: string,
+  name: string,
   sectionList: {}[],
 }

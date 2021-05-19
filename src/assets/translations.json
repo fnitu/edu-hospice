@@ -180,6 +180,10 @@
       "endDate": "Data sfârșit"
     },
     "createCourseContent": {
+      "addSectionButton": "Adauga sectiune",
+      "editSectionButton": "Editare sectiune",
+      "addContentButton": "Adauga continut",
+      "editContentButton": "Editare continut",
       "editCourseContentDialog": {
         "presentation": "Prezentare",
         "video": "Video",

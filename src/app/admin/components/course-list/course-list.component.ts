@@ -98,8 +98,7 @@ export class CourseListComponent implements OnInit {
   }
 
   onBtnClick(params) {
-      const courseId = 11111;
-      this.router.navigate([ROUTES.ADMIN.COURSE.CREATE_CONTENT, courseId], {
+      this.router.navigate([ROUTES.ADMIN.COURSE.CREATE_CONTENT, params.data.id], {
         relativeTo: this.route.parent,
       });
   }

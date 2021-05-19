@@ -5,41 +5,47 @@
     </div>
   </div>
   <div class="course-title">
-    {{course.title}}
+    {{course?.name}}
   </div>
   <div class="button-container">
-    <button mat-raised-button color="primary" (click)="addSecton()" >
-      Adauga sectiune
+    <button mat-raised-button color="primary" (click)="addSection()" >
+      {{'admin.createCourseContent.addSectionButton' | translate}}
     </button>
   </div>
   <div class="sections-container">
 
-    <div class="section" *ngFor="let section of course.sectionList">
-      <div class="section-title" >
-        <div class="title" *ngIf="!section.editSection">{{section.title}}</div>
+    <div class="section" *ngFor="let section of course?.sectionList, let sectionIndex = index">
+      <div class="section-container" >
+        <div class="title" *ngIf="section.id !== editedSectionId">{{section.name}}</div>
 
         <input class="input" matInput
-               value="{{section.title}}"
-               *ngIf="section.editSection"
+               value="{{section.name}}"
+               *ngIf="section.id === editedSectionId"
                (keypress)="setSectionTitle($event, section)"
                (focusout)="setSectionTitle($event, section)" >
 
-        <div class="edit" (click)="editSectonTitle(section)" *ngIf="!section.editSection">
+        <div class="edit" (click)="editSectionTitle(section)" *ngIf="section.id !== editedSectionId">
           <span class="material-icons-outlined">mode_edit</span>
+        </div>
+
+        <div class="button-container">
+          <button mat-raised-button color="primary" (click)="editSection(section)">
+            {{'admin.createCourseContent.editSectionButton' | translate}}
+          </button>
         </div>
       </div>
 
       <div class="content-container">
         <div class="content" *ngFor="let content of section.contentList, let i = index">
-          <div class="title" *ngIf="!content.editContent">{{section.number}}.{{i + 1}} {{content.title}}</div>
+          <div class="title" *ngIf="content.id !== editedContentId">{{sectionIndex + 1}}.{{i + 1}} {{content.name}}</div>
 
           <input class="input" matInput
-                 value="{{content.title}}"
-                 *ngIf="content.editContent"
+                 value="{{content.name}}"
+                 *ngIf="content.id === editedContentId"
                  (keypress)="setContentTitle($event, content)"
                  (focusout)="setContentTitle($event, content)" >
 
-          <div class="edit" (click)="editContentTitle(content)" *ngIf="!content.editContent">
+          <div class="edit" (click)="editContentTitle(content)" *ngIf="content.id !== editedContentId">
             <span class="material-icons-outlined">mode_edit</span>
           </div>
 
@@ -47,7 +53,7 @@
 
           <div class="button-container">
             <button mat-raised-button color="primary" (click)="editContent(content)">
-              Editare continut
+              {{'admin.createCourseContent.editContentButton' | translate}}
             </button>
           </div>
         </div>
@@ -55,7 +61,10 @@
 
       <div class="button-container">
         <button mat-raised-button color="primary" (click)="addContent(section)" >
-          Adauga continut
+          {{'admin.createCourseContent.addContentButton' | translate}}
+        </button>
+        <button mat-raised-button color="primary" (click)="addSection()" >
+          {{'admin.createCourseContent.addSectionButton' | translate}}
         </button>
       </div>
     </div>

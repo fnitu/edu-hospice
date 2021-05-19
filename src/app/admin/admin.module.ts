@@ -15,6 +15,7 @@ import { QuizListComponent } from './components/quiz-list/quiz-list.component';
 import { CreateCourseComponent } from './components/create-course/create-course.component';
 import { CreateCourseContentComponent } from './components/create-course-content/create-course-content.component';
 import { EditCourseContentDialogComponent } from './components/create-course-content/edit-course-content-dialog/edit-course-content-dialog.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { EditCourseContentDialogComponent } from './components/create-course-con
     CreateCourseContentComponent,
     EditCourseContentDialogComponent,
   ],
-  imports: [SharedModule, AdminRoutingModule],
+  imports: [SharedModule, AdminRoutingModule, MatAutocompleteModule],
   providers: [DatePipe],
 })
 export class AdminModule {}
