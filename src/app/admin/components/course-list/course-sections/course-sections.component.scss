@@ -1,0 +1,75 @@
+@import "../../../../../styles/scss/imports";
+
+.create-course-content-container {
+  padding: 20px 150px 0;
+  height: 100%;
+  box-sizing: border-box;
+
+  .beak-to-course-list-container {
+    padding: 20px 0;
+
+    .beak-to-course-list {
+      border-radius: 50%;
+      background-color: $sectionColour;
+      font-size: 20px;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+
+  .course-title {
+    padding: 15px 0;
+    font-size: 19px;
+    font-weight: bold;
+  }
+
+  .button-container {
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .sections-container {
+    .section {
+      .section-title {
+        display: flex;
+        align-items: center;
+        background-color: $sectionColour;
+        border: 1px solid $lightBorder;
+        padding: 0 15px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        height: 54px;
+
+        .edit {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 50px;
+          color: $editPenColour;
+          cursor: pointer;
+        }
+
+        .input {
+          padding: 10px;
+        }
+
+        .title {
+          font-weight: bold;
+        }
+        .button-container {
+          flex: 1;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          padding: 0;
+        }
+      }
+    }
+  }
+}

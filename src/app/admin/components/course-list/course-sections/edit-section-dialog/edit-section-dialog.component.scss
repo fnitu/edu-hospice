@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  h1 {
+    margin: 20px 0 10px 40px;
+  }
+  .course-edit {
+    margin-top: 5rem;
+    display: flex;
+    margin: 3rem;
+  }
+  .mat-dialog-actions {
+    justify-content: flex-end;
+  }
+}

@@ -20,6 +20,7 @@ export const ROUTES = {
       CREATE: 'course-list/new',
       CREATE_CONTENT: 'course-list/new-course-content',
       LIST: 'course-list',
+      EDIT_COURSE_SECTION: 'edit-section',
     },
     USERS: 'users',
     QUIZ: {

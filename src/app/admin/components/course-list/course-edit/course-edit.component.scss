@@ -1,0 +1,72 @@
+.app-course-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  background: hsla(0, 0%, 93.3%, 0.31);
+  padding-top: 25px;
+  height: 100vh;
+  justify-content: center;
+
+  .create-course {
+    display: flex;
+    margin: auto;
+    margin-top: 30px;
+    min-width: 650px;
+
+    .button-row button {
+      margin-right: 8px;
+    }
+
+    form {
+      width: 100%;
+    }
+  }
+
+  .mat-tab-group {
+    width: 80vw;
+  }
+
+  .mat-form-field {
+    padding-top: 15px;
+  }
+
+  .display-flex {
+    display: flex;
+  }
+
+  .flex-1 {
+    flex: 1;
+  }
+
+  .flex-2 {
+    flex: 2;
+  }
+
+  .flex-3 {
+    flex: 3;
+  }
+
+  .flex-4 {
+    flex: 4;
+  }
+
+  .flex-5 {
+    flex: 5;
+  }
+
+  .flex-6 {
+    flex: 6;
+  }
+
+  [class*="flex-"] {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  [class*="flex-"]:first-child {
+    padding-left: 0;
+  }
+
+  [class*="flex-"]:nth-last-child(2) {
+    padding-right: 0;
+  }
+}

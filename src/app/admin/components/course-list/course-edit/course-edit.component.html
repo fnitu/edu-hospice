@@ -1,0 +1,39 @@
+<div class="app-course-wrapper">
+  <mat-tab-group
+    [selectedIndex]="selected.value"
+    (selectedIndexChange)="selected.setValue($event)"
+  >
+    <mat-tab label="Sectiunile Cursului">
+      <app-course-section></app-course-section>
+    </mat-tab>
+    <mat-tab label="{{ 'admin.createCourse.courseDetails' | translate }}">
+      <mat-card class="create-course">
+        <form [formGroup]="form">
+          <formly-form
+            [model]="model"
+            [fields]="fields"
+            [options]="options"
+            [form]="form"
+          ></formly-form>
+          <div class="button-row">
+            <button
+              type="submit"
+              mat-raised-button
+              color="primary"
+              [disabled]="!form.valid"
+            >
+              {{ "general.save" | translate }}
+            </button>
+            <button
+              mat-raised-button
+              [disabled]="form.pristine"
+              (click)="options.resetModel()"
+            >
+              {{ "general.reset" | translate }}
+            </button>
+          </div>
+        </form>
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>
+</div>

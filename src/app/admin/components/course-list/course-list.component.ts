@@ -5,6 +5,7 @@ import { CustomTranslateService } from 'src/app/shared/services/custom-translate
 import { GridPropertiesInterface } from '../../../shared/components/grid/grid-properties.interface';
 import { ROUTES } from '../../../shared/core/routes';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CourseSectionService } from './course-sections/course-section.service';
 
 @Component({
   selector: 'app-course-list',
@@ -20,7 +21,8 @@ export class CourseListComponent implements OnInit {
     private customTranslateService: CustomTranslateService,
     private datePipe: DatePipe,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private courseSectionService: CourseSectionService
   ) {}
 
   ngOnInit(): void {
@@ -31,9 +33,8 @@ export class CourseListComponent implements OnInit {
   private getGridColumns() {
     return [
       {
-        headerName: this.customTranslateService.getTranslation(
-          'general.actions'
-        ),
+        headerName:
+          this.customTranslateService.getTranslation('general.actions'),
         field: 'actions',
         cellRenderer: 'rowActionsCellRenderer',
         maxWidth: 90,
@@ -41,9 +42,7 @@ export class CourseListComponent implements OnInit {
         cellRendererParams: {
           actions: [
             {
-              label: this.customTranslateService.getTranslation(
-                'general.edit'
-              ),
+              label: this.customTranslateService.getTranslation('general.edit'),
               icon: 'edit',
               handler: (params) => this.onBtnClick(params),
             },
@@ -98,10 +97,12 @@ export class CourseListComponent implements OnInit {
   }
 
   onBtnClick(params) {
-      this.router.navigate([ROUTES.ADMIN.COURSE.CREATE_CONTENT, params.data.id], {
-        relativeTo: this.route.parent,
-      });
+    const courseId = params.data.id;
+
+    this.courseSectionService.courseTitle.next(params.data.name);
+
+    this.router.navigate([ROUTES.ADMIN.COURSE.EDIT_COURSE_SECTION, courseId], {
+      relativeTo: this.route.parent,
+    });
   }
-
-
 }
