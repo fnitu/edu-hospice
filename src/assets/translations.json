@@ -97,7 +97,8 @@
       "finalization": "Finalizare",
       "next": "Următorul",
       "previous": "Înapoi",
-      "submit": "Trimiteți"
+      "submit": "Trimiteți",
+      "errorMessage": "Acest câmp este obligatoriu"
     }
   },
   "user": {

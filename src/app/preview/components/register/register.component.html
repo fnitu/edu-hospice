@@ -62,6 +62,10 @@
               (change)="validationChange()"
             />
           </mat-form-field>
+
+          <mat-error *ngIf="professionForm.invalid && professionForm.touched">
+            {{ "preview.register.errorMessage" | translate }}
+          </mat-error>
         </form>
       </mat-card-content>
     </mat-card>

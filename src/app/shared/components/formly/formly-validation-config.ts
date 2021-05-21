@@ -51,14 +51,14 @@ export function EmailValidator(control: FormControl): ValidationErrors {
 
 export function MultiRequiredValidator(control: FormControl): ValidationErrors {
   let valid = false;
-  //   for (let key in control.value) {
-  //     if (control.value[key] === true) {
-  //       valid = true;
-  //     }
-  //   }
-  //   if (control.value['OTHER'] && !control.value['other_profession']) {
-  //     valid = false;
-  //     return { checkboxDependency: true };
-  //   }
+  for (let key in control.value) {
+    if (control.value[key] === true) {
+      valid = true;
+    }
+  }
+  if (control.value['OTHER'] && !control.value['other_profession']) {
+    valid = false;
+    return { checkboxDependency: true };
+  }
   return valid ? null : { multiRequired: true };
 }
