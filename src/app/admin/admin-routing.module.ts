@@ -9,9 +9,7 @@ import { ROUTES } from '../shared/core/routes';
 import { NewQuizComponent } from './components/new-quiz/new-quiz.component';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
 import { CreateCourseComponent } from './components/create-course/create-course.component';
-import { CreateCourseContentComponent } from './components/create-course-content/create-course-content.component';
-import { CourseSectionsComponent } from './components/course-list/course-sections/course-sections.component';
-import { CourseEditComponent } from './components/course-list/course-edit/course-edit.component';
+import { CourseEditComponent } from './components/course-edit/course-edit.component';
 
 const routes: Routes = [
   {
@@ -32,15 +30,11 @@ const routes: Routes = [
         component: CourseListComponent,
       },
       {
-        path: ROUTES.ADMIN.COURSE.CREATE,
+        path: ROUTES.ADMIN.COURSE.EDIT_COURSE,
         component: CreateCourseComponent,
       },
       {
-        path: `${ROUTES.ADMIN.COURSE.CREATE_CONTENT}/:courseId`,
-        component: CreateCourseContentComponent,
-      },
-      {
-        path: `${ROUTES.ADMIN.COURSE.EDIT_COURSE_SECTION}/:id`,
+        path: `${ROUTES.ADMIN.COURSE.EDIT_COURSE}/:courseId`,
         component: CourseEditComponent,
       },
       {

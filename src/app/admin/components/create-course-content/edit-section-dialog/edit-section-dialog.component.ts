@@ -1,10 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { GLOBALS } from 'src/app/shared/core/globals';
-import { CourseSectionService } from '../course-section.service';
 
 @Component({
   selector: 'app-edit-section-dialog',
@@ -52,10 +49,9 @@ export class EditSectionDialogComponent {
     },
   ];
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private http: HttpClient
-  ) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+
+  }
 
   onSectionEdit() {
     console.log('a');

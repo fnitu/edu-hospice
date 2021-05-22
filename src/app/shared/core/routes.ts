@@ -17,10 +17,9 @@ export const ROUTES = {
     DASHBOARD: 'dashboard',
     COURSE_LIST: 'course-list',
     COURSE: {
-      CREATE: 'course-list/new',
-      CREATE_CONTENT: 'course-list/new-course-content',
+      CREATE: 'course-list/course',
       LIST: 'course-list',
-      EDIT_COURSE_SECTION: 'edit-section',
+      EDIT_COURSE: 'course-list/course',
     },
     USERS: 'users',
     QUIZ: {

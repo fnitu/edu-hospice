@@ -30,24 +30,24 @@
 
       <div class="addResourcesContainer" *ngIf="tab.content === 'addResourcesContainer'">
 
-        <div class="showResourceContainer" *ngIf="data.resources?.length">
-          <div class="resourceItem" *ngFor="let resourceItem of data.resources, let i = index">
+        <div class="showResourceContainer" *ngIf="data.resourceSummary?.length">
+          <div class="resourceItem" *ngFor="let resourceItem of data.resourceSummary, let i = index">
             {{'admin.createCourseContent.editCourseContentDialog.resource' | translate}} {{i + 1}}
           </div>
         </div>
 
         <div class="editResourceContainer" [ngClass]="{'hide' : !tab.editResource}">
-          <div class="resourceName" >{{'admin.createCourseContent.editCourseContentDialog.resource' | translate}} {{data.resources.length + 1}}</div>
+          <div class="resourceName" >{{'admin.createCourseContent.editCourseContentDialog.resource' | translate}} {{data.resourceSummary.length + 1}}</div>
           <input class="input" matInput #resourceInput [placeholder]="'Introdu un url'" >
         </div>
 
         <button mat-raised-button color="primary" class="button" (click)="addResource(tab)" >
-          Adauga resursa
+          {{'admin.createCourseContent.editCourseContentDialog.addResource' | translate}}
         </button>
 
         <button mat-raised-button color="primary" class="button"
                 *ngIf="tab.editResource" (click)="saveResource(resourceInput, tab)" >
-          Salveaza resursa
+          {{'admin.createCourseContent.editCourseContentDialog.saveResource' | translate}}
         </button>
       </div>
 

@@ -5,7 +5,6 @@ import { CustomTranslateService } from 'src/app/shared/services/custom-translate
 import { GridPropertiesInterface } from '../../../shared/components/grid/grid-properties.interface';
 import { ROUTES } from '../../../shared/core/routes';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CourseSectionService } from './course-sections/course-section.service';
 
 @Component({
   selector: 'app-course-list',
@@ -17,13 +16,10 @@ export class CourseListComponent implements OnInit {
   public gridProperties: GridPropertiesInterface;
   public gridColumns;
 
-  constructor(
-    private customTranslateService: CustomTranslateService,
-    private datePipe: DatePipe,
-    private route: ActivatedRoute,
-    private router: Router,
-    private courseSectionService: CourseSectionService
-  ) {}
+  constructor(private customTranslateService: CustomTranslateService,
+              private datePipe: DatePipe,
+              private route: ActivatedRoute,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.gridColumns = this.getGridColumns();
@@ -99,9 +95,7 @@ export class CourseListComponent implements OnInit {
   onBtnClick(params) {
     const courseId = params.data.id;
 
-    this.courseSectionService.courseTitle.next(params.data.name);
-
-    this.router.navigate([ROUTES.ADMIN.COURSE.EDIT_COURSE_SECTION, courseId], {
+    this.router.navigate([ROUTES.ADMIN.COURSE.EDIT_COURSE, courseId], {
       relativeTo: this.route.parent,
     });
   }

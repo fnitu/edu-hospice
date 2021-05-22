@@ -5,9 +5,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import * as moment from 'moment';
 import {MatDialog} from '@angular/material/dialog';
 import {EditCourseContentDialogComponent} from './edit-course-content-dialog/edit-course-content-dialog.component';
-import {CreateCourseContentServiceService} from './create-course-content-service.service';
+import {CreateCourseContentService} from './create-course-content.service';
 import {GLOBALS} from '../../../shared/core/globals';
 import {PlaceholderFormatService} from '../../../shared/services/format/placeholder-format.service';
+import {EditSectionDialogComponent} from './edit-section-dialog/edit-section-dialog.component';
 
 @Component({
   selector: 'app-create-course-content',
@@ -22,27 +23,42 @@ export class CreateCourseContentComponent implements OnInit {
   public editedContentId;
 
   private dialogRef;
+  private courseId;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               public dialog: MatDialog,
-              public createCourseContentServiceService: CreateCourseContentServiceService,
+              public createCourseContentService: CreateCourseContentService,
               private placeholderFormatService: PlaceholderFormatService) {
   }
 
   ngOnInit(): void {
+    this.courseId = this.route.snapshot.paramMap.get('courseId');
+
     this.getCourseInfo();
+    this.getSections();
   }
 
   public getCourseInfo() {
-    const courseId = this.route.snapshot.paramMap.get('courseId');
-
     const url =  this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.GET_COURSE_INFO, {
-      '{id}': courseId
+      '{id}': this.courseId
     });
 
-    this.createCourseContentServiceService.getCourseInfo(url).subscribe((response) => {
+    this.createCourseContentService.getCourseInfo(url).subscribe((response) => {
       this.course = response;
+    });
+  }
+
+  private getSections() {
+    const url = this.placeholderFormatService.stringFormat(
+      GLOBALS.DATA_URL.ADMIN_COURSE_SECTIONS,
+      {
+        '{courseId}': this.courseId,
+      }
+    );
+
+    this.createCourseContentService.getSections(url).subscribe((response) => {
+        this.course.sectionList = response;
     });
   }
 
@@ -55,17 +71,11 @@ export class CreateCourseContentComponent implements OnInit {
     let data = {
       name: 'Section',
       visible: true,
-      contentList: []
+      adminContentDetails: []
     };
 
-
-    this.createCourseContentServiceService.addSection(url, data).subscribe((response) => {
+    this.createCourseContentService.addSection(url, data).subscribe((response) => {
       data['id'] = response.id;
-
-      //FIXME section list from the server response
-      if (!this.course.sectionList?.length) {
-        this.course.sectionList = [];
-      }
 
       this.course.sectionList.push(data);
     });
@@ -81,12 +91,12 @@ export class CreateCourseContentComponent implements OnInit {
       type: 'PDF',
       url: 'url',
       visible: true,
-      resources: []
+      resourceSummary: []
     };
 
-    this.createCourseContentServiceService.addContent(url, data).subscribe((response) => {
+    this.createCourseContentService.addContent(url, data).subscribe((response) => {
       data['id'] = response.id;
-      section.contentList.push(data);
+      section.adminContentDetails.push(data);
     });
   }
 
@@ -113,7 +123,15 @@ export class CreateCourseContentComponent implements OnInit {
   }
 
   public editSection(section) {
+    const defaultConfig = {
+      minWidth: 500,
+      minHeight: 400,
+      panelClass: 'editContentPanel',
+      data: section,
+      disableClose: true,
+    };
 
+    this.dialogRef = this.dialog.open(EditSectionDialogComponent, defaultConfig);
   }
 
   public editContent(content) {
@@ -125,9 +143,5 @@ export class CreateCourseContentComponent implements OnInit {
     };
 
     this.dialogRef = this.dialog.open(EditCourseContentDialogComponent, defaultConfig);
-  }
-
-  public beakToCourseListHandler() {
-    this.router.navigate([ROUTES.ADMIN.COURSE_LIST], {relativeTo: this.route.parent});
   }
 }

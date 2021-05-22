@@ -7,7 +7,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class CreateCourseContentServiceService {
+export class CreateCourseContentService {
 
   constructor(private http: HttpClient) { }
 
@@ -57,5 +57,9 @@ export class CreateCourseContentServiceService {
     );
 
     return dataResponse;
+  }
+
+  public getSections(url): Observable<any> {
+    return this.http.get(url);
   }
 }

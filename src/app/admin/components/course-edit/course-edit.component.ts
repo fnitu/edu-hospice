@@ -31,12 +31,20 @@ export class CourseEditComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!!history.state?.data?.tabIndex){
+      this.changeTab(history.state?.data?.tabIndex);
+    }
+  }
 
   public selected = new FormControl(0);
 
   public tabChange() {
     this.selected.setValue(this.selected.value + 1);
+  }
+
+  public changeTab(index) {
+    this.selected.setValue(index);
   }
 
   form = new FormGroup({});

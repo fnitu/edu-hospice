@@ -191,7 +191,9 @@
         "conference": "Conferință Zoom",
         "quiz": "Chestionar",
         "choseContentType": "Alege tip conținut",
-        "resource": "Resursă"
+        "resource": "Resursă",
+        "addResource": "Adauga resursa",
+        "saveResource": "Salveaza resursa"
       }
     },
     "users": {

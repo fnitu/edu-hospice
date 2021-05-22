@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Location } from '@angular/common';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Location} from '@angular/common';
 
-import { FormControl, FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
-import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
-import { GLOBALS } from 'src/app/shared/core/globals';
+import {FormControl, FormGroup} from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {FormlyFormOptions, FormlyFieldConfig} from '@ngx-formly/core';
+import {SnackBarComponent} from 'src/app/shared/components/snack-bar/snack-bar.component';
+import {GLOBALS} from 'src/app/shared/core/globals';
 import {
   CourseRole,
   CourseState,
@@ -13,10 +13,10 @@ import {
   CreateCourse,
   Currency,
 } from 'src/app/shared/interfaces/createCourse';
-import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
-import { CreateCourseService } from '../create-course/create-course.service';
-import { ROUTES } from '../../../shared/core/routes';
-import { ActivatedRoute, Router } from '@angular/router';
+import {CustomTranslateService} from 'src/app/shared/services/custom-translate/custom-translate.service';
+import {CreateCourseService} from '../create-course/create-course.service';
+import {ROUTES} from '../../../shared/core/routes';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-course',
@@ -25,22 +25,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None,
 })
 export class CreateCourseComponent implements OnInit {
-  constructor(
-    private customTranslateService: CustomTranslateService,
-    private createCourseService: CreateCourseService,
-    private matSnackBar: MatSnackBar,
-    private location: Location,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
-
-  ngOnInit(): void {}
 
   public selected = new FormControl(0);
-
-  public tabChange() {
-    this.selected.setValue(this.selected.value + 1);
-  }
 
   form = new FormGroup({});
   model: CreateCourse = {} as CreateCourse;
@@ -363,11 +349,25 @@ export class CreateCourseComponent implements OnInit {
     },
   ];
 
+
+  constructor(private customTranslateService: CustomTranslateService,
+              private createCourseService: CreateCourseService,
+              private matSnackBar: MatSnackBar,
+              private location: Location,
+              private router: Router,
+              private route: ActivatedRoute) {
+  }
+
+  ngOnInit(): void {
+  }
+
+  public tabChange() {
+    this.selected.setValue(this.selected.value + 1);
+  }
+
   submit() {
     const url = GLOBALS.DATA_URL.ADMIN_COURSES;
-    this.createCourseService
-      .createCourse(url, this.model)
-      .subscribe((response) => {
+    this.createCourseService.createCourse(url, this.model).subscribe((response) => {
         if (response?.success) {
           this.matSnackBar.openFromComponent(SnackBarComponent, {
             verticalPosition: 'top',
@@ -376,9 +376,19 @@ export class CreateCourseComponent implements OnInit {
               type: GLOBALS.NOTIFICATIONS.INFO,
             },
           });
+
+          const extras = {
+            relativeTo: this.route.parent,
+            state: {
+              data: {
+                tabIndex: 2
+              }
+            }
+          };
+
+          this.router.navigate([ROUTES.ADMIN.COURSE.EDIT_COURSE, '24'], extras);
         }
       });
     this.options.resetModel();
-    setTimeout(() => this.tabChange(), 2000);
   }
 }

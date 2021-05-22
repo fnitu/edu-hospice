@@ -1,9 +1,4 @@
 <div class="create-course-content-container">
-  <div class="beak-to-course-list-container">
-    <div class="beak-to-course-list" (click)="beakToCourseListHandler()" >
-      <span class="material-icons-outlined">arrow_back_ios</span>
-    </div>
-  </div>
   <div class="course-title">
     {{course?.name}}
   </div>
@@ -36,7 +31,7 @@
       </div>
 
       <div class="content-container">
-        <div class="content" *ngFor="let content of section.contentList, let i = index">
+        <div class="content" *ngFor="let content of section.adminContentDetails, let i = index">
           <div class="title" *ngIf="content.id !== editedContentId">{{sectionIndex + 1}}.{{i + 1}} {{content.name}}</div>
 
           <input class="input" matInput

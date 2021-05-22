@@ -5,22 +5,6 @@
   height: 100%;
   box-sizing: border-box;
 
-  .beak-to-course-list-container {
-    padding: 20px 0;
-
-    .beak-to-course-list {
-      border-radius: 50%;
-      background-color: $sectionColour;
-      font-size: 20px;
-      width: 35px;
-      height: 35px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-  }
-
   .course-title {
     padding: 15px 0;
     font-size: 19px;
