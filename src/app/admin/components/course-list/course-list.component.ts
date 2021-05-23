@@ -50,7 +50,16 @@ export class CourseListComponent implements OnInit {
         headerName: this.customTranslateService.getTranslation(
           'admin.courses.courseName'
         ),
-        field: 'name',
+        cellRenderer: 'rowActionsCellRenderer',
+        maxWidth: 350,
+        minWidth: 350,
+        cellRendererParams: {
+          actions: [
+            {
+              handler: (params) => this.onBtnClick(params),
+            },
+          ],
+        },
       },
       {
         headerName: this.customTranslateService.getTranslation(
