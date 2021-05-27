@@ -20,8 +20,6 @@ export class QuizSettingsComponent implements OnInit {
 
     public settingsForm = new FormGroup({});
 
-    private quizId = null;
-
     public settingsFormFields: FormlyFieldConfig[];
 
     public settingsFormModel = {
@@ -47,8 +45,11 @@ export class QuizSettingsComponent implements OnInit {
     }
 
     private getQuizSettings() {
-        //TODO is quiz id is provided, make server request in order to get data
-        // populate form with info
+        this.quizSettingsService.getQuizSettings().subscribe(
+            (response) => {
+                this.settingsFormModel = response;
+            }
+        );
     }
 
     private defineSettingFormFields(): FormlyFieldConfig[] {

@@ -35,7 +35,11 @@ export class QuizQuestionsComponent implements OnInit {
     }
 
     private getQuestions() {
-        //TODO implementation of GET questions request
+        this.quizQuestionsService.getQuestions(this.quizSettingsService.quizId).subscribe(
+            (response) => {
+                this.questions = response;
+            }
+        );
     }
 
     public addFirstQuestion() {
@@ -87,9 +91,17 @@ export class QuizQuestionsComponent implements OnInit {
     }
 
     public saveQuestion(question) {
-        this.quizQuestionsService.saveQuestion(this.quizSettingsService.quizId, question).subscribe(
+        this.quizQuestionsService.saveQuestion(question).subscribe(
             (response) => {
-
+                if (response.success) {
+                    this.matSnackBar.openFromComponent(SnackBarComponent, {
+                        verticalPosition: 'top',
+                        data: {
+                            content: this.customTranslateService.getTranslation(response.message),
+                            type: GLOBALS.NOTIFICATIONS.INFO
+                        }
+                    });
+                }
             }
         )
     }

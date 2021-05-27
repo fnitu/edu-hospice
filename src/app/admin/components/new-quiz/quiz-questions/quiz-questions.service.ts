@@ -26,11 +26,25 @@ export class QuizQuestionsService {
     return this.http.post(url, bodyParams, httpOptions);
   }
 
-  public saveQuestion(quizId, questionConfig):Observable<any> {
-    const url = "";
+  public saveQuestion(questionConfig):Observable<any> {
+    const url = this.placeHolderFormatService.stringFormat(GLOBALS.DATA_URL.SAVE_QUIZ_QUESTION, {
+      "{questionId}": questionConfig.id
+    });
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
 
     const bodyParams = JSON.stringify(questionConfig);
 
-    return this.http.put(url, bodyParams);
+    return this.http.put(url, bodyParams, httpOptions);
+  }
+
+  public getQuestions(quizId): Observable<any> {
+    const url = this.placeHolderFormatService.stringFormat(GLOBALS.DATA_URL.GET_QUIZ_QUESTIONS, {
+      "{quizId}": quizId
+    });
+
+    return this.http.get(url);
   }
 }

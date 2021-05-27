@@ -19,7 +19,8 @@
     "save": "Salvează",
     "actions": "Acțiuni",
     "edit": "Editează",
-    "reset": "Resetează"
+    "reset": "Resetează",
+    "operationSuccessful": "Acțiune executată cu succes!"
   },
   "field": {
     "required": "Acest câmp este obligatoriu.",
