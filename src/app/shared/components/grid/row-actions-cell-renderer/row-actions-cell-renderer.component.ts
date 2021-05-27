@@ -20,7 +20,6 @@ export class RowActionsCellRendererComponent
 
     this.title = this.params.data.name;
     this.actions = params.actions;
-    // this.actions['text'] = this.params.data.name;
   }
 
   ngOnDestroy(): void {}

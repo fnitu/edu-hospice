@@ -63,7 +63,7 @@ import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { textareaFormlyFieldExtension } from '../admin/components/create-course/textarea-formly-field.extension';
 import { inputFormlyFieldExtension } from '../admin/components/create-course/input-formly-field.extension';
-
+import { MatBadgeModule } from '@angular/material/badge';
 @NgModule({
   declarations: [
     MaterialElevationDirective,
@@ -136,6 +136,7 @@ import { inputFormlyFieldExtension } from '../admin/components/create-course/inp
     MatSidenavModule,
     MatTreeModule,
     MatCheckboxModule,
+    MatBadgeModule,
     CourseCardComponent,
     TranslateModule,
     GridComponent,

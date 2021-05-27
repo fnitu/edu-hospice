@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  .mat-dialog-title {
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+  .add-resource {
+    display: flex;
+    button {
+      float: right;
+    }
+  }
+  .resource-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    .resources {
+      display: flex;
+      width: 90%;
+      height: 100px;
+      flex-direction: column;
+      margin-top: 30px;
+      padding-bottom: 20px;
+      .single-resource {
+        line-height: 30px;
+        border-bottom: 1px solid grey;
+        display: flex;
+        mat-icon {
+          font-size: 20px;
+        }
+        .resource-name {
+          cursor: pointer;
+          margin-left: 20px;
+          text-decoration: none;
+          color: inherit;
+        }
+        .delete-icon {
+          margin-left: auto;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .resource-added-info {
+    font-weight: 600;
+    margin-left: auto;
+  }
+  .action-info {
+    margin-left: auto;
+  }
+  .mat-dialog-actions {
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+}

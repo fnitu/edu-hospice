@@ -15,9 +15,10 @@ import { QuizListComponent } from './components/quiz-list/quiz-list.component';
 import { CreateCourseComponent } from './components/create-course/create-course.component';
 import { CreateCourseContentComponent } from './components/create-course-content/create-course-content.component';
 import { EditCourseContentDialogComponent } from './components/create-course-content/edit-course-content-dialog/edit-course-content-dialog.component';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { EditSectionDialogComponent } from './components/create-course-content/edit-section-dialog/edit-section-dialog.component';
 import { CourseEditComponent } from './components/course-edit/course-edit.component';
+import { ManageResourcesDialog } from './components/create-course-content/manage-resources-dialog/manage-resources-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CourseEditComponent } from './components/course-edit/course-edit.compon
     EditCourseContentDialogComponent,
     EditSectionDialogComponent,
     CourseEditComponent,
+    ManageResourcesDialog,
   ],
   imports: [SharedModule, AdminRoutingModule, MatAutocompleteModule],
   providers: [DatePipe],

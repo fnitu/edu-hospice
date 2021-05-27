@@ -1,0 +1,47 @@
+<div class="container">
+  <h1 mat-dialog-title>Titlu resursa: {{ content.name }}</h1>
+  <div class="add-resource" mat-dialog-content>
+    <form [formGroup]="form">
+      <formly-form
+        [form]="form"
+        [fields]="fields"
+        [model]="model"
+      ></formly-form>
+      <button mat-raised-button color="primary">+ Adauga resursa</button>
+    </form>
+  </div>
+  <div class="resource-container">
+    <div class="resources" mat-dialog-content>
+      <div
+        class="resource-field"
+        *ngFor="let resource of content.resourceSummary"
+      >
+        <div class="single-resource">
+          <mat-icon [inline]="true" aria-hidden="false">attachment</mat-icon>
+          <a class="resource-name" [href]="resource.url" target="_blank">{{
+            resource.name
+          }}</a>
+          <span class="delete-icon"
+            ><mat-icon
+              [inline]="true"
+              aria-hidden="false"
+              (click)="onResourceDelete()"
+              >delete_forever</mat-icon
+            ></span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="resource-added-info">
+    * Click pe butonul Salveaza pentru a salva () resurse
+  </p>
+  <div mat-dialog-actions>
+    <button mat-button mat-flat-button [mat-dialog-close]="true">
+      {{ "general.cancel" | translate }}
+    </button>
+    <button mat-button mat-flat-button (click)="onSave()">
+      {{ "general.save" | translate }}
+    </button>
+  </div>
+</div>
