@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { GLOBALS } from "../../../../shared/core/globals";
 import { PlaceholderFormatService } from "../../../../shared/services/format/placeholder-format.service";
 
@@ -13,16 +13,30 @@ export class QuizSettingsService {
   constructor(private http: HttpClient,
               private placeholderFormatService: PlaceholderFormatService) { }
 
-  public saveQuizSettings(data): Observable<any> {
-    return this.http.post(GLOBALS.DATA_URL.SAVE_QUIZ_SETTINGS, data);
-  }
-
   get quizId() {
     return this._quizId;
   }
 
   set quizId(value) {
     this._quizId = value;
+  }
+
+  public saveNewQuizSettings(data): Observable<any> {
+    return this.http.post(GLOBALS.DATA_URL.SAVE_QUIZ_SETTINGS, data);
+  }
+
+  public updateExistingQuizSettings(data): Observable<any> {
+    const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.UPDATE_EXISTING_QUIZ_SETTINGS, {
+      "{quizId}": this.quizId
+    });
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+
+    const bodyParams = JSON.stringify(data);
+
+    return this.http.put(url, bodyParams, httpOptions);
   }
 
   public getQuizSettings(): Observable<any> {

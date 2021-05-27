@@ -23,7 +23,8 @@ export class QuizSettingsComponent implements OnInit {
     public settingsFormFields: FormlyFieldConfig[];
 
     public settingsFormModel = {
-        shuffle: false
+        shuffle: false,
+        status: "INACTIVE"
     };
 
     constructor(private customTranslateService: CustomTranslateService,
@@ -54,6 +55,9 @@ export class QuizSettingsComponent implements OnInit {
 
     private defineSettingFormFields(): FormlyFieldConfig[] {
         return [
+            {
+                key: "status"
+            },
             {
                 key: "name",
                 type: "input",
@@ -147,7 +151,15 @@ export class QuizSettingsComponent implements OnInit {
     }
 
     public saveQuizSettings() {
-        this.quizSettingsService.saveQuizSettings(this.settingsForm.value).subscribe(
+        if (this.quizSettingsService.quizId) {
+            this.updateExistingQuizSettings()
+        } else {
+            this.saveNewQuizSettings();
+        }
+    }
+
+    private saveNewQuizSettings() {
+        this.quizSettingsService.saveNewQuizSettings(this.settingsForm.value).subscribe(
             (response) => {
                 this.quizSettingsSavedEvent.emit();
 
@@ -162,6 +174,20 @@ export class QuizSettingsComponent implements OnInit {
                 this.quizSettingsService.quizId = response.id;
 
                 this.updateRouteUrl(response.id);
+            }
+        );
+    }
+
+    private updateExistingQuizSettings() {
+        this.quizSettingsService.updateExistingQuizSettings(this.settingsForm.value).subscribe(
+            (response) => {
+                this.matSnackBar.openFromComponent(SnackBarComponent, {
+                    verticalPosition: 'top',
+                    data: {
+                        content: this.customTranslateService.getTranslation("admin.quiz.settings.quizUpdatedSuccessMessage"),
+                        type: GLOBALS.NOTIFICATIONS.INFO
+                    }
+                });
             }
         );
     }

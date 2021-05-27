@@ -230,7 +230,8 @@
         "timeLimitLabel": "Timpul limită pentru a termina chestionarul",
         "timeLimitPlaceholder": "Selectați timpul limită pentru a termina chestionarul",
         "statusLabel": "Stare chestionar",
-        "quizCreatedSuccessMessage": "Chestionar creat cu succes!"
+        "quizCreatedSuccessMessage": "Chestionar creat cu succes!",
+        "quizUpdatedSuccessMessage": "Chestionar actualizat cu succes!"
       },
       "question": {
         "name": "Întrebare",

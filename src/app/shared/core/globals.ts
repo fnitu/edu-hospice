@@ -22,7 +22,7 @@ export const GLOBALS = {
     REGISTER_COURSES: `${environment.BASE_URL}/api/users/{userId}/courses/{courseId}/register`,
     GET_QUIZ_SETTINGS: `${environment.BASE_URL}/api/admin/quizzes/{quizId}`,
     SAVE_QUIZ_SETTINGS: `${environment.BASE_URL}/api/admin/quizzes`,
-    SAVE_EXISTING_QUIZ_SETTINGS: `${environment.BASE_URL}/api/admin/quizzes/{quizId}/update`,
+    UPDATE_EXISTING_QUIZ_SETTINGS: `${environment.BASE_URL}/api/admin/quizzes/{quizId}/update`,
     ADD_QUIZ_QUESTION: `${environment.BASE_URL}/api/admin/quizzes/{quizId}/questions`,
     SAVE_QUIZ_QUESTION: `${environment.BASE_URL}/api/admin/quizzes/questions/{questionId}/update`,
     GET_QUIZ_QUESTIONS: `${environment.BASE_URL}/api/admin/quizzes/{quizId}/questions/details`,
