@@ -23,7 +23,7 @@ export const ROUTES = {
     },
     USERS: 'users',
     QUIZ: {
-      NEW: 'new-quiz',
+      NEW: 'quiz-list/quiz',
       LIST: 'quiz-list',
     },
   },

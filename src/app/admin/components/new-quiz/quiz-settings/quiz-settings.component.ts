@@ -195,9 +195,9 @@ export class QuizSettingsComponent implements OnInit {
     private updateRouteUrl(id) {
         let url = this.router.url;
 
-        const regex = /\/new-quiz.*$/;
+        const regex = /\/quiz-list\/quiz.*$/;
 
-        url = url.replace(regex, `/new-quiz/${id}`);
+        url = url.replace(regex, `/quiz-list/quiz/${id}`);
 
         // https://stackoverflow.com/questions/35618463/change-route-params-without-reloading-in-angular-2
         this.location.go(url);
