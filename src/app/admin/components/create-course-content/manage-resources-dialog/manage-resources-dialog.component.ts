@@ -1,7 +1,16 @@
-import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  QueryList,
+  ViewChildren,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { ManageResourcesDialogService } from './manage-resources-dialog.service';
 
 @Component({
   selector: 'app-manage-resources-dialog',
@@ -9,8 +18,12 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
   styleUrls: ['manage-resources-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ManageResourcesDialog {
+export class ManageResourcesDialog implements OnInit {
   public title: string;
+  public resources = [];
+
+  @ViewChildren('resourcesContainer') resourcesContainer: QueryList<ElementRef>;
+
   form = new FormGroup({});
   model = {};
   fields: FormlyFieldConfig[] = [
@@ -37,7 +50,29 @@ export class ManageResourcesDialog {
       },
     },
   ];
-  constructor(@Inject(MAT_DIALOG_DATA) public content: any) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public content: any,
+    private manageResourcesDialogService: ManageResourcesDialogService
+  ) {}
+
+  ngOnInit() {
+    this.resources = this.content.resourceSummary;
+  }
+
+  ngAfterViewInit() {
+    this.resourcesContainer.changes.subscribe(() => {
+      if (this.resourcesContainer && this.resourcesContainer.last) {
+        this.resourcesContainer.last.nativeElement.scrollIntoView();
+      }
+    });
+  }
+
+  onAddResource() {
+    this.resources.push(this.form.value);
+    this.manageResourcesDialogService
+      .addAditionalResource(this.content.id, this.form.value)
+      .subscribe((response) => console.log(response));
+  }
 
   onResourceDelete() {
     console.log('deleted');

@@ -1,7 +1,7 @@
 <div class="container">
   <h1 mat-dialog-title>Titlu resursa: {{ content.name }}</h1>
   <div class="add-resource" mat-dialog-content>
-    <form [formGroup]="form">
+    <form [formGroup]="form" (ngSubmit)="onAddResource()">
       <formly-form
         [form]="form"
         [fields]="fields"
@@ -14,7 +14,9 @@
     <div class="resources" mat-dialog-content>
       <div
         class="resource-field"
-        *ngFor="let resource of content.resourceSummary"
+        *ngFor="let resource of resources; let i = index"
+        tabindex="i"
+        #resourcesContainer
       >
         <div class="single-resource">
           <mat-icon [inline]="true" aria-hidden="false">attachment</mat-icon>
@@ -33,15 +35,9 @@
       </div>
     </div>
   </div>
-  <p class="resource-added-info">
-    * Click pe butonul Salveaza pentru a salva () resurse
-  </p>
   <div mat-dialog-actions>
     <button mat-button mat-flat-button [mat-dialog-close]="true">
-      {{ "general.cancel" | translate }}
-    </button>
-    <button mat-button mat-flat-button (click)="onSave()">
-      {{ "general.save" | translate }}
+      {{ "general.close" | translate }}
     </button>
   </div>
 </div>
