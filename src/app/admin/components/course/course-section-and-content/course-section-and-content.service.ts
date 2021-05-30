@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {CreateCourse} from '../../../shared/interfaces/createCourse';
+import {CreateCourse} from '../../../../shared/interfaces/createCourse';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -7,7 +7,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class CreateCourseContentService {
+export class CourseSectionAndContentService {
 
   constructor(private http: HttpClient) { }
 

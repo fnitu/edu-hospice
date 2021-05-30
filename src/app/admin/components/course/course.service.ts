@@ -7,7 +7,7 @@ import { CreateCourse } from 'src/app/shared/interfaces/createCourse';
 @Injectable({
   providedIn: 'root',
 })
-export class CreateCourseService {
+export class CourseService {
   constructor(private http: HttpClient) {}
 
   createCourse(url, data: CreateCourse): Observable<any> {

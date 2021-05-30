@@ -1,51 +1,34 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Location} from '@angular/common';
 
-import { FormControl, FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
-import { GLOBALS } from 'src/app/shared/core/globals';
-
-import { Router, ActivatedRoute } from '@angular/router';
+import {FormControl, FormGroup} from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {FormlyFormOptions, FormlyFieldConfig} from '@ngx-formly/core';
+import {SnackBarComponent} from 'src/app/shared/components/snack-bar/snack-bar.component';
+import {GLOBALS} from 'src/app/shared/core/globals';
 import {
+  CourseRole,
+  CourseState,
+  CourseType,
   CreateCourse,
   Currency,
-  CourseRole,
-  CourseType,
-  CourseState,
 } from 'src/app/shared/interfaces/createCourse';
-import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
+import {CustomTranslateService} from 'src/app/shared/services/custom-translate/custom-translate.service';
+import {CourseService} from './course.service';
+import {ROUTES} from '../../../shared/core/routes';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-edit-component',
-  templateUrl: './course-edit.component.html',
-  styleUrls: ['./course-edit.component.scss'],
+  selector: 'app-course',
+  templateUrl: './course.component.html',
+  styleUrls: ['./course.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class CourseEditComponent implements OnInit {
-  constructor(
-    private customTranslateService: CustomTranslateService,
-    private matSnackBar: MatSnackBar,
-    private location: Location,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
-
-  ngOnInit(): void {
-    if (!!history.state?.data?.tabIndex){
-      this.changeTab(history.state?.data?.tabIndex);
-    }
-  }
+export class CourseComponent implements OnInit {
 
   public selected = new FormControl(0);
-
-  public tabChange() {
-    this.selected.setValue(this.selected.value + 1);
-  }
-
-  public changeTab(index) {
-    this.selected.setValue(index);
-  }
+  public tabDisabled: boolean = true;
+  public courseId;
 
   form = new FormGroup({});
   model: CreateCourse = {} as CreateCourse;
@@ -367,4 +350,61 @@ export class CourseEditComponent implements OnInit {
       ],
     },
   ];
+
+
+  constructor(private customTranslateService: CustomTranslateService,
+              private courseService: CourseService,
+              private matSnackBar: MatSnackBar,
+              private location: Location,
+              private router: Router,
+              private route: ActivatedRoute) {
+  }
+
+  ngOnInit(): void {
+    this.tabDisabled = !this.route.snapshot.paramMap.get('courseId');
+  }
+
+  public tabChange() {
+    this.selected.setValue(this.selected.value + 1);
+  }
+
+  submit() {
+    const url = GLOBALS.DATA_URL.ADMIN_COURSES;
+    this.courseService.createCourse(url, this.model).subscribe((response) => {
+      //FIXME response need to have a success parameter
+
+      // if (response?.success) {
+      //     this.matSnackBar.openFromComponent(SnackBarComponent, {
+      //       verticalPosition: 'top',
+      //       data: {
+      //         content: response.message,
+      //         type: GLOBALS.NOTIFICATIONS.INFO,
+      //       },
+      //     });
+
+      this.courseId = response.id;
+
+      this.tabDisabled = false;
+
+      this.updateRouteUrl(response.id);
+      this.changeTab(2);
+      // }
+    });
+    this.options.resetModel();
+  }
+
+  private updateRouteUrl(id) {
+    let url = this.router.url;
+
+    const regex = /\/course-list\/course.*$/;
+
+    url = url.replace(regex, `/course-list/course/${id}`);
+
+    // https://stackoverflow.com/questions/35618463/change-route-params-without-reloading-in-angular-2
+    this.location.go(url);
+  }
+
+  public changeTab(index) {
+    this.selected.setValue(index);
+  }
 }

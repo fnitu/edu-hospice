@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {CustomTranslateService} from '../../../../shared/services/custom-translate/custom-translate.service';
+import {CustomTranslateService} from '../../../../../shared/services/custom-translate/custom-translate.service';
 import * as moment from 'moment';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl} from '@angular/forms';

@@ -61,8 +61,8 @@ import { CdkStepperModule } from '@angular/cdk/stepper';
 import { MatStepperModule } from '@angular/material/stepper';
 import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { textareaFormlyFieldExtension } from '../admin/components/create-course/textarea-formly-field.extension';
-import { inputFormlyFieldExtension } from '../admin/components/create-course/input-formly-field.extension';
+import { textareaFormlyFieldExtension } from '../admin/components/course/textarea-formly-field.extension';
+import { inputFormlyFieldExtension } from '../admin/components/course/input-formly-field.extension';
 import { MatBadgeModule } from '@angular/material/badge';
 @NgModule({
   declarations: [

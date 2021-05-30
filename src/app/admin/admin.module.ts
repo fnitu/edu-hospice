@@ -12,13 +12,12 @@ import { NewQuizComponent } from './components/new-quiz/new-quiz.component';
 import { QuizSettingsComponent } from './components/new-quiz/quiz-settings/quiz-settings.component';
 import { QuizQuestionsComponent } from './components/new-quiz/quiz-questions/quiz-questions.component';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
-import { CreateCourseComponent } from './components/create-course/create-course.component';
-import { CreateCourseContentComponent } from './components/create-course-content/create-course-content.component';
-import { EditCourseContentDialogComponent } from './components/create-course-content/edit-course-content-dialog/edit-course-content-dialog.component';
+import { CourseComponent } from './components/course/course.component';
+import { CourseSectionAndContentComponent } from './components/course/course-section-and-content/course-section-and-content.component';
+import { EditCourseContentDialogComponent } from './components/course/course-section-and-content/edit-course-content-dialog/edit-course-content-dialog.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { EditSectionDialogComponent } from './components/create-course-content/edit-section-dialog/edit-section-dialog.component';
-import { CourseEditComponent } from './components/course-edit/course-edit.component';
-import { ManageResourcesDialog } from './components/create-course-content/manage-resources-dialog/manage-resources-dialog.component';
+import { EditSectionDialogComponent } from './components/course/course-section-and-content/edit-section-dialog/edit-section-dialog.component';
+import { ManageResourcesDialog } from './components/course/course-section-and-content/manage-resources-dialog/manage-resources-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,11 +30,10 @@ import { ManageResourcesDialog } from './components/create-course-content/manage
     QuizSettingsComponent,
     QuizQuestionsComponent,
     QuizListComponent,
-    CreateCourseComponent,
-    CreateCourseContentComponent,
+    CourseComponent,
+    CourseSectionAndContentComponent,
     EditCourseContentDialogComponent,
     EditSectionDialogComponent,
-    CourseEditComponent,
     ManageResourcesDialog,
   ],
   imports: [SharedModule, AdminRoutingModule, MatAutocompleteModule],

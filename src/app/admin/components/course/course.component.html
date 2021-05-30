@@ -20,8 +20,8 @@
         </form>
       </mat-card>
     </mat-tab>
-    <mat-tab label="{{ 'admin.createCourse.courseContent' | translate }}" disabled >
-<!--      <app-create-course-content></app-create-course-content>-->
+    <mat-tab label="{{ 'admin.createCourse.courseContent' | translate }}"  [disabled]="tabDisabled" >
+      <app-course-section-and-content *ngIf="!tabDisabled" [courseId]="courseId"></app-course-section-and-content>
     </mat-tab>
   </mat-tab-group>
 </div>
