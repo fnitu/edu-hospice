@@ -1,27 +1,10 @@
 <div class="app-course-wrapper">
   <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
     <mat-tab label="{{ 'admin.createCourse.courseDetails' | translate }}">
-      <mat-card class="create-course">
-        <form [formGroup]="form" (ngSubmit)="submit()">
-          <formly-form
-            [model]="model"
-            [fields]="fields"
-            [options]="options"
-            [form]="form"
-          ></formly-form>
-          <div class="button-row">
-            <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">
-              {{'general.save' | translate}}
-            </button>
-            <button mat-raised-button [disabled]="form.pristine" (click)="options.resetModel()">
-              {{'general.reset' | translate}}
-            </button>
-          </div>
-        </form>
-      </mat-card>
+      <app-course-info (cardInfoHasBeenSubmitted)="cardInfoSubmitedHandler($event)" [courseId]="courseId"></app-course-info>
     </mat-tab>
-    <mat-tab label="{{ 'admin.createCourse.courseContent' | translate }}"  [disabled]="tabDisabled" >
-      <app-course-section-and-content *ngIf="!tabDisabled" [courseId]="courseId"></app-course-section-and-content>
+    <mat-tab label="{{ 'admin.createCourse.courseContent' | translate }}"  [disabled]="!courseId" >
+      <app-course-section-and-content *ngIf="!!courseId" [courseId]="courseId"></app-course-section-and-content>
     </mat-tab>
   </mat-tab-group>
 </div>

@@ -18,6 +18,7 @@ import { EditCourseContentDialogComponent } from './components/course/course-sec
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { EditSectionDialogComponent } from './components/course/course-section-and-content/edit-section-dialog/edit-section-dialog.component';
 import { ManageResourcesDialog } from './components/course/course-section-and-content/manage-resources-dialog/manage-resources-dialog.component';
+import { CourseInfoComponent } from './components/course/course-info/course-info.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ManageResourcesDialog } from './components/course/course-section-and-co
     EditCourseContentDialogComponent,
     EditSectionDialogComponent,
     ManageResourcesDialog,
+    CourseInfoComponent,
   ],
   imports: [SharedModule, AdminRoutingModule, MatAutocompleteModule],
   providers: [DatePipe],

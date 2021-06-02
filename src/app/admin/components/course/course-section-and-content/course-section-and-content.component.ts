@@ -36,11 +36,6 @@ export class CourseSectionAndContentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    if (!this.courseId) {
-      this.courseId = this.route.snapshot.paramMap.get('courseId');
-    }
-
     this.getCourseInfo();
     this.getSections();
   }
