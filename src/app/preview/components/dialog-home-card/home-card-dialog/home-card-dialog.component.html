@@ -1,0 +1,17 @@
+<div class="loading" *ngIf="!data; else elseBlock">
+    <app-progress-spinner class="spinner"></app-progress-spinner>
+</div>
+<ng-template #elseBlock>
+    <h2 mat-dialog-title>{{data.name}}</h2>
+    <mat-dialog-content class="mat-typography">
+        <img src="{{data.image}}" alt="{{data.name}}" class="dialogImage">
+        <h3>Informatii generale</h3>
+        <p>Numar de ore: {{data.hours}}</p>
+        <p>Numar de credite: {{data.credits}}</p>
+        <p>{{data.shortDescription}}</p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-flat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Vezi Curs</button>
+        <button mat-flat-button color="accent" mat-dialog-close>Inchide</button>
+    </mat-dialog-actions>
+</ng-template>

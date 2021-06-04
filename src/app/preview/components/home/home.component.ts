@@ -1,27 +1,62 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { HomeService } from './home.service';
 import { Course } from '../../../shared/interfaces/course';
-import {GLOBALS} from '../../../shared/core/globals';
+import { GLOBALS } from '../../../shared/core/globals';
+import { MatDialog } from '@angular/material/dialog';
+import { HomeCardDialogComponent } from '../dialog-home-card/home-card-dialog/home-card-dialog.component';
+import { PlaceholderFormatService } from 'src/app/shared/services/format/placeholder-format.service';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
+  public courseList: Array<Course> = new Array<Course>();
+  private dialogRef;
+  public courseId = 0;
+  public courseContent;
 
-    public courseList: Array<Course> = new Array<Course>();
+  constructor(
+    private homeService: HomeService,
+    public dialog: MatDialog,
+    private placeholderFormatService: PlaceholderFormatService
+  ) {}
 
-    constructor(private homeService: HomeService) {
-    }
+  ngOnInit(): void {
+    const url = GLOBALS.DATA_URL.COURSES;
 
-    ngOnInit(): void {
-        const url =  GLOBALS.DATA_URL.COURSES;
+    this.homeService.getCourses(url).subscribe((response: Array<Course>) => {
+      this.courseList = response;
+    });
+  }
 
-        this.homeService.getCourses(url).subscribe((response: Array<Course>) => {
-            this.courseList = response;
-        });
-    }
+  public dialogCourse(course) {
+    const url = this.placeholderFormatService.stringFormat(
+      GLOBALS.DATA_URL.GET_COURSE_INFO,
+      {
+        '{id}': course.id,
+      }
+    );
 
+    console.log('url', url);
+
+    this.homeService.getCourseInfo(url).subscribe((response) => {
+      this.courseContent = response;
+      console.log('course content', this.courseContent);
+    });
+
+    const defaultConfig = {
+      maxWidth: 781,
+      minWidth: 500,
+      minHeight: 600,
+      data: this.courseContent,
+      disableClose: false,
+    };
+
+    console.log('default config', defaultConfig);
+
+    this.dialogRef = this.dialog.open(HomeCardDialogComponent, defaultConfig);
+  }
 }
