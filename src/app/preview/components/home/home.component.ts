@@ -40,23 +40,18 @@ export class HomeComponent implements OnInit {
       }
     );
 
-    console.log('url', url);
-
     this.homeService.getCourseInfo(url).subscribe((response) => {
       this.courseContent = response;
-      console.log('course content', this.courseContent);
+
+      const defaultConfig = {
+        maxWidth: 781,
+        minWidth: 500,
+        minHeight: 600,
+        data: this.courseContent,
+        disableClose: false,
+      };
+
+      this.dialogRef = this.dialog.open(HomeCardDialogComponent, defaultConfig);
     });
-
-    const defaultConfig = {
-      maxWidth: 781,
-      minWidth: 500,
-      minHeight: 600,
-      data: this.courseContent,
-      disableClose: false,
-    };
-
-    console.log('default config', defaultConfig);
-
-    this.dialogRef = this.dialog.open(HomeCardDialogComponent, defaultConfig);
   }
 }
