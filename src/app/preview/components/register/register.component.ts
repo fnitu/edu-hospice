@@ -4,6 +4,7 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 import { MultiRequiredValidator } from 'src/app/shared/components/formly/formly-validation-config';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
 import { TooltipService } from 'src/app/shared/services/tooltip/tooltip.service';
+import { RegisterService } from './register.service';
 
 @Component({
   selector: 'app-register',
@@ -242,7 +243,8 @@ export class RegisterComponent implements AfterViewInit {
 
   constructor(
     private tooltipService: TooltipService,
-    private customTranslateService: CustomTranslateService
+    private customTranslateService: CustomTranslateService,
+    private registerService: RegisterService
   ) {}
 
   ngAfterViewInit() {
@@ -303,6 +305,17 @@ export class RegisterComponent implements AfterViewInit {
   getOtherProfessionChoise(f) {
     let checkValue = f['controls']['other_profession']['value'];
     return checkValue ? checkValue : '';
+  }
+
+  getContactChoise(f) {
+    let comunicationValue = [];
+
+    for (let choise in f) {
+      if (f[choise]) {
+        comunicationValue.push(choise);
+      }
+    }
+    return comunicationValue;
   }
 
   validateInputPasswordSet(control) {
@@ -387,7 +400,24 @@ export class RegisterComponent implements AfterViewInit {
       });
     }
   }
-}
-function enamble(arg0: number) {
-  throw new Error('Function not implemented.');
+
+  public onRegister() {
+    let registerFormDetails = {
+      firstName: this.personalDataForm.value['name']['fName'],
+      lastName: this.personalDataForm.value['name']['lName'],
+      email: this.personalDataForm.value['email'],
+      password: this.personalDataForm.value['password'],
+      phone: this.personalDataForm.value['phone'],
+      profession: this.getProfessionChoise(this.professionForm),
+      other_profession: this.getOtherProfessionChoise(this.professionForm),
+      employer: this.careerForm.value,
+      communication: this.getContactChoise(this.contactForm.value.comunication),
+    };
+
+    this.registerService
+      .registerUser(registerFormDetails)
+      .subscribe((response) => {
+        console.log(response);
+      });
+  }
 }
