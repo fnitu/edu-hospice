@@ -72,6 +72,8 @@ export class ManageResourcesDialog implements OnInit {
     this.manageResourcesDialogService
       .addAditionalResource(this.content.id, this.form.value)
       .subscribe((response) => console.log(response));
+
+    this.form.reset(this.form);
   }
 
   onResourceDelete() {
