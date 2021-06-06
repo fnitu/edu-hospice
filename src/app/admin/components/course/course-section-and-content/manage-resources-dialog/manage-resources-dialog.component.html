@@ -15,7 +15,7 @@
       <div
         class="resource-field"
         *ngFor="let resource of resources; let i = index"
-        tabindex="i"
+        tabindex="resource.index"
         #resourcesContainer
       >
         <div class="single-resource">
