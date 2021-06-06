@@ -5,76 +5,33 @@
     app-edit-course-content-dialog {
       display: flex;
       flex-direction: column;
+      height: 400px;
 
       .mat-dialog-content {
         flex: 1;
 
-        .mat-tab-group {
-          height: 300px;
+        .choseContentType, .addContentContainer {
+          padding-top: 10px;
 
-          .mat-tab-header {
-            .mat-tab-labels {
-              justify-content: center;
-            }
-          }
+          .mat-form-field {
+            width: 100%;
 
-          .addContentContainer {
-            display: flex;
-            padding-top: 50px;
-
-            .choseContentType {
+            .item {
               font-size: 16px;
               padding: 10px;
-            }
+              border: 1px solid $darkBorder;
 
-            .contentType {
-              flex: 1;
-
-              .item {
-                font-size: 16px;
-                padding: 10px;
-                border: 1px solid $darkBorder;
-
-                &.selected {
-                  background-color: $sideNavArrowBackground;
-                }
+              &.selected {
+                background-color: $sideNavArrowBackground;
               }
             }
           }
+        }
 
-          .addResourcesContainer {
-            overflow: auto;
+        .addContentContainer {
 
-            .showResourceContainer {
-              padding: 10px 0 15px;
 
-              .resourceItem {
-                padding: 20px;
-                margin: 0 0 10px;
-                font-size: 12px;
-                border: 1px solid $darkBorder;
-              }
-            }
 
-            .editResourceContainer {
-              padding: 15px 0;
-
-              .resourceName, .input {
-                padding: 10px 20px;
-                border: 1px solid $darkBorder;
-                margin-bottom: 10px;
-                width: 90%;
-              }
-
-              &.hide {
-                display: none;
-              }
-            }
-
-            .mat-raised-button {
-              margin-right: 10px;
-            }
-          }
         }
       }
 

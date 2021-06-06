@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {CourseInterface} from './course.interface';
 import {ROUTES} from '../../../../shared/core/routes';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -96,7 +96,7 @@ export class CourseSectionAndContentComponent implements OnInit {
     let data: ContentInterface = {
       name: 'Content',
       type: 'PDF',
-      url: 'url',
+      url: 'https://',
       visible: true,
       resourceSummary: [],
     };
@@ -196,7 +196,7 @@ export class CourseSectionAndContentComponent implements OnInit {
       minWidth: 500,
       minHeight: 400,
       panelClass: 'editContentPanel',
-      data: content,
+      data: {content},
     };
 
     this.dialogRef = this.dialog.open(EditCourseContentDialogComponent, defaultConfig);
