@@ -307,17 +307,6 @@ export class RegisterComponent implements AfterViewInit {
     return checkValue ? checkValue : '';
   }
 
-  getContactChoise(f) {
-    let comunicationValue = [];
-
-    for (let choise in f) {
-      if (f[choise]) {
-        comunicationValue.push(choise);
-      }
-    }
-    return comunicationValue;
-  }
-
   validateInputPasswordSet(control) {
     let valid = true;
     let message = '';
@@ -407,13 +396,22 @@ export class RegisterComponent implements AfterViewInit {
       lastName: this.personalDataForm.value['name']['lName'],
       email: this.personalDataForm.value['email'],
       password: this.personalDataForm.value['password'],
-      phone: this.personalDataForm.value['phone'],
-      profession: this.getProfessionChoise(this.professionForm),
-      other_profession: this.getOtherProfessionChoise(this.professionForm),
-      employer: this.careerForm.value,
-      communication: this.getContactChoise(this.contactForm.value.comunication),
+      confirmPassword: this.personalDataForm.value['confirmPassword'],
+      phoneNumber: this.personalDataForm.value['phone'],
+      professions: this.getProfessionChoise(this.professionForm),
+      otherProfessions: this.getOtherProfessionChoise(this.professionForm),
+      employerCity: this.careerForm.value['employerCity'],
+      employerCounty: this.careerForm.value['employerCountry'],
+      employerName: this.careerForm.value['employerName'],
+      communicationViaPhone:
+        this.contactForm.value.comunication['phoneContact'],
+      communicationViaEmail:
+        this.contactForm.value.comunication['emailContact'],
+      gdpr: this.finalizationForm.value['gdpr'],
+      termsAndConditions: this.finalizationForm.value['agreement'],
     };
 
+    console.log(registerFormDetails);
     this.registerService
       .registerUser(registerFormDetails)
       .subscribe((response) => {
