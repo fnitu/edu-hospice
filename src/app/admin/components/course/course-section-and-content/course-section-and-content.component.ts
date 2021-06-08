@@ -22,8 +22,8 @@ import {SnackBarComponent} from '../../../../shared/components/snack-bar/snack-b
 })
 export class CourseSectionAndContentComponent implements OnInit {
 
-  @Input() courseId;
-  public course: CourseInterface;
+  @Input() courseId: number;
+  public course: CourseInterface = {};
   public editedSectionId;
 
   public editedContentId;
@@ -38,20 +38,9 @@ export class CourseSectionAndContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCourseInfo();
+    this.course.id = this.courseId;
+
     this.getSections();
-  }
-
-  public getCourseInfo() {
-    const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.GET_COURSE_INFO,
-      {
-        '{id}': this.courseId,
-      }
-    );
-
-    this.courseSectionAndContentService.getCourseInfo(url).subscribe((response) => {
-      this.course = response;
-    });
   }
 
   private getSections() {
@@ -80,7 +69,7 @@ export class CourseSectionAndContentComponent implements OnInit {
     };
 
     this.courseSectionAndContentService.addSection(url, data).subscribe((response) => {
-      data['id'] = response.id;
+      data.id = response.id;
 
       this.course.sectionList.push(data);
     });
@@ -102,7 +91,7 @@ export class CourseSectionAndContentComponent implements OnInit {
     };
 
     this.courseSectionAndContentService.addContent(url, data).subscribe((response) => {
-      data['id'] = response.id;
+      data.id = response.id;
       section.adminContentDetails.push(data);
     });
   }
