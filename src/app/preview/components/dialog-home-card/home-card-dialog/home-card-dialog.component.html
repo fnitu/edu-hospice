@@ -2,16 +2,25 @@
     <app-progress-spinner class="spinner"></app-progress-spinner>
 </div>
 <ng-template #elseBlock>
+    <button mat-stroked-button mat-dialog-close class="close">X</button>
     <h2 mat-dialog-title>{{data.name}}</h2>
     <mat-dialog-content class="mat-typography">
         <img src="{{data.image}}" alt="{{data.name}}" class="dialogImage">
-        <h3>Informatii generale</h3>
-        <p>Numar de ore: {{data.hours}}</p>
-        <p>Numar de credite: {{data.credits}}</p>
-        <p>{{data.shortDescription}}</p>
+        <p>{{'admin.createCourse.author' | translate}}: {{data.authors}}</p>
+        <p>{{'admin.createCourse.role' | translate}}: {{data.courseRole}}</p>
+        <p>{{'admin.createCourse.courseType' | translate}}: {{data.courseType}}</p>
+        <p>{{'admin.createCourse.credits' | translate}}: {{data.credits}}</p>
+        <p>{{'admin.createCourse.description' | translate}}: {{data.description}}</p>
+        <p>{{'admin.createCourse.hours' | translate}}: {{data.hours}}</p>
+        <p>{{'admin.createCourse.price' | translate}}: {{data.price}}</p>
+        <p>{{'admin.createCourse.currency' | translate}}: {{data.currency}}</p>
+        <p>{{'admin.createCourse.accessDays' | translate}}: {{data.accessDays}}</p>
+        <p>{{'admin.createCourse.startDate' | translate}}: {{data.startDate | date: "dd.MM.yyyy" }} </p>
+        <p>{{'admin.createCourse.endDate' | translate}}: {{data.endDate | date: "dd.MM.yyyy"}}</p>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
-        <button mat-flat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Vezi Curs</button>
-        <button mat-flat-button color="accent" mat-dialog-close>Inchide</button>
+        <a mat-flat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial href="#/preview/register">
+            {{'preview.register.register'| translate}}
+        </a>
     </mat-dialog-actions>
 </ng-template>

@@ -12,4 +12,11 @@ export interface Course {
   chapters: Array<Chapter>;
   courseType: string;
   credits: number;
+  accessDays: number;
+  authors: string;
+  price: number;
+  currency: string;
+  courseRole: string;
+  endDate: string;
+  userSectionDetails: Array<any>;
 }
