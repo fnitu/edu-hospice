@@ -18,7 +18,7 @@
         [fields]="fields"
         [model]="model"
       ></formly-form>
-      <button mat-raised-button color="primary">
+      <button mat-raised-button color="primary" [disabled]="!form.valid">
         {{
           "admin.createCourseContent.manageResourcesDialog.addResource"
             | translate

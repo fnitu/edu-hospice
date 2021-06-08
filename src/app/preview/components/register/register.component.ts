@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { MultiRequiredValidator } from 'src/app/shared/components/formly/formly-validation-config';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
@@ -152,6 +153,8 @@ export class RegisterComponent implements AfterViewInit {
         placeholder: this.customTranslateService.getTranslation(
           'preview.register.phoneNumberPlaceholder'
         ),
+        minLength: 10,
+        maxLength: 14,
       },
       validators: {
         validation: [Validators.required],
@@ -244,7 +247,9 @@ export class RegisterComponent implements AfterViewInit {
   constructor(
     private tooltipService: TooltipService,
     private customTranslateService: CustomTranslateService,
-    private registerService: RegisterService
+    private registerService: RegisterService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngAfterViewInit() {
@@ -296,7 +301,6 @@ export class RegisterComponent implements AfterViewInit {
         !exceptions.some((item) => item === choise)
       ) {
         profession.push(choise);
-        console.log(f['controls'][choise]);
       }
     }
     return profession;
@@ -411,11 +415,12 @@ export class RegisterComponent implements AfterViewInit {
       termsAndConditions: this.finalizationForm.value['agreement'],
     };
 
-    console.log(registerFormDetails);
     this.registerService
       .registerUser(registerFormDetails)
       .subscribe((response) => {
-        console.log(response);
+        this.router.navigate(['login'], {
+          relativeTo: this.route.parent,
+        });
       });
   }
 }
