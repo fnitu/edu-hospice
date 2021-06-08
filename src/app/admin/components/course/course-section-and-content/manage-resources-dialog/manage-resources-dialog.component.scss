@@ -2,8 +2,12 @@
   display: flex;
   height: 100%;
   flex-direction: column;
-  .mat-dialog-title {
+  .mat-dialog-title.title {
     font-size: 20px;
+    margin-bottom: 5px;
+  }
+  .mat-dialog-title.subtitle {
+    font-size: 15px;
     margin-bottom: 25px;
   }
   .add-resource {
@@ -20,7 +24,7 @@
     .resources {
       display: flex;
       width: 90%;
-      height: 100px;
+      height: 150px;
       flex-direction: column;
       margin-top: 30px;
       padding-bottom: 20px;
@@ -31,14 +35,24 @@
         line-height: 30px;
         border-bottom: 1px solid grey;
         display: flex;
+        align-items: center;
         mat-icon {
           font-size: 20px;
         }
-        .resource-name {
-          cursor: pointer;
+        .link-under {
           margin-left: 20px;
-          text-decoration: none;
-          color: inherit;
+          display: flex;
+          flex-direction: column;
+          .resource-name {
+            font-size: 15px;
+          }
+          .resource-link {
+            cursor: pointer;
+            color: inherit;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+          }
         }
         .delete-icon {
           margin-left: auto;

@@ -4,6 +4,7 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 import { MultiRequiredValidator } from 'src/app/shared/components/formly/formly-validation-config';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
 import { TooltipService } from 'src/app/shared/services/tooltip/tooltip.service';
+import { RegisterService } from './register.service';
 
 @Component({
   selector: 'app-register',
@@ -242,7 +243,8 @@ export class RegisterComponent implements AfterViewInit {
 
   constructor(
     private tooltipService: TooltipService,
-    private customTranslateService: CustomTranslateService
+    private customTranslateService: CustomTranslateService,
+    private registerService: RegisterService
   ) {}
 
   ngAfterViewInit() {
@@ -387,7 +389,33 @@ export class RegisterComponent implements AfterViewInit {
       });
     }
   }
-}
-function enamble(arg0: number) {
-  throw new Error('Function not implemented.');
+
+  public onRegister() {
+    let registerFormDetails = {
+      firstName: this.personalDataForm.value['name']['fName'],
+      lastName: this.personalDataForm.value['name']['lName'],
+      email: this.personalDataForm.value['email'],
+      password: this.personalDataForm.value['password'],
+      confirmPassword: this.personalDataForm.value['confirmPassword'],
+      phoneNumber: this.personalDataForm.value['phone'],
+      professions: this.getProfessionChoise(this.professionForm),
+      otherProfessions: this.getOtherProfessionChoise(this.professionForm),
+      employerCity: this.careerForm.value['employerCity'],
+      employerCounty: this.careerForm.value['employerCountry'],
+      employerName: this.careerForm.value['employerName'],
+      communicationViaPhone:
+        this.contactForm.value.comunication['phoneContact'],
+      communicationViaEmail:
+        this.contactForm.value.comunication['emailContact'],
+      gdpr: this.finalizationForm.value['gdpr'],
+      termsAndConditions: this.finalizationForm.value['agreement'],
+    };
+
+    console.log(registerFormDetails);
+    this.registerService
+      .registerUser(registerFormDetails)
+      .subscribe((response) => {
+        console.log(response);
+      });
+  }
 }

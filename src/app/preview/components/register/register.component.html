@@ -150,6 +150,7 @@
             mat-raised-button
             color="primary"
             [disabled]="finalizationForm.invalid || contactForm.invalid"
+            (click)="onRegister()"
           >
             {{ "preview.register.submit" | translate }}
           </button>

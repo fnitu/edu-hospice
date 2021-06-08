@@ -1,10 +1,13 @@
 import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {CustomTranslateService} from '../../../../../shared/services/custom-translate/custom-translate.service';
-import * as moment from 'moment';
-import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
+import * as _ from 'lodash';
+import {GLOBALS} from '../../../../../shared/core/globals';
+import {SnackBarComponent} from '../../../../../shared/components/snack-bar/snack-bar.component';
+import {PlaceholderFormatService} from '../../../../../shared/services/format/placeholder-format.service';
+import {EditCourseContentDialogService} from './edit-course-content-dialog.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-course-content-dialog',
@@ -14,45 +17,88 @@ import {Observable} from 'rxjs';
 })
 export class EditCourseContentDialogComponent implements OnInit {
 
-  public tabs: any;
   myControl = new FormControl();
-  options: string[] = ['EXTERNAL', 'PDF', 'QUIZ', 'VIDEO', 'ZOOM'];
-  filteredOptions: Observable<string[]>;
+  options: { type: string, label: string, id: number }[] = [
+    {
+      type: 'PDF',
+      label: 'Presentation',
+      id: 1
+    },
+    {
+      type: 'QUIZ',
+      label: 'Quiz',
+      id: 2
+    },
+    {
+      type: 'VIDEO',
+      label: 'Video',
+      id: 3
+    },
+    {
+      type: 'ZOOM',
+      label: 'Zoom Meeting',
+      id: 4
+    }
+  ];
+
+  public contentType;
+  public url;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+              private placeholderFormatService: PlaceholderFormatService,
+              private editCourseContentDialogService: EditCourseContentDialogService,
+              private matSnackBar: MatSnackBar,
               private dialogRef: MatDialogRef<EditCourseContentDialogComponent>,
               private customTranslateService: CustomTranslateService) {
   }
 
   ngOnInit(): void {
-    this.tabs = [
-      {
-        label: 'Adauga Continut',
-        content: 'addContentContainer'
-      },
-      {
-        label: 'Adauga Resurse',
-        content: 'addResourcesContainer',
-        editResource: true
-      },
-    ];
+    _.map(this.options, (item) => {
+      if (item.type === this.data.content.contentType) {
+        this.contentType = item;
+      }
+    });
+
+    this.url = this.data.content.url;
   }
 
-  public setContentType(type) {
-    this.data.contentType = type;
+  displayHandler(option) {
+    this.contentType = option;
+
+    return option?.label ? option.label : '';
   }
 
-  public saveResource(inputElement, tab) {
-    const resource = {
-      id: moment.default().unix(),
-      url: inputElement.value
+  public updateContent() {
+
+    const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.UPDATE_SECTION_CONTENT,
+      {
+        '{contentId}': this.data.content.id,
+      }
+    );
+
+    const data = {
+      name: this.data.content.name,
+      url: this.url,
+      type: this.contentType.type,
+      visible: true
     };
 
-    tab.editResource = false;
-    this.data.resources.push(resource);
+    this.editCourseContentDialogService.updateContent(url, data).subscribe((response) => {
+      this.matSnackBar.openFromComponent(SnackBarComponent, {
+        verticalPosition: 'top',
+        data: {
+          content: response.message,
+          type: GLOBALS.NOTIFICATIONS.INFO,
+        },
+      });
+
+      if (response.success) {
+        this.data.content.url = this.url;
+        this.data.content.contentType = this.contentType.type;
+
+        this.dialogRef.close();
+      }
+    });
   }
 
-  public addResource(tab) {
-    tab.editResource = true;
-  }
 }

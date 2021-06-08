@@ -1,5 +1,16 @@
 <div class="container">
-  <h1 mat-dialog-title>Titlu resursa: {{ content.name }}</h1>
+  <h1 mat-dialog-title class="title">
+    {{
+      "admin.createCourseContent.manageResourcesDialog.contentTitle" | translate
+    }}
+    {{ content.name }}
+  </h1>
+  <h5 mat-dialog-title class="subtitle">
+    {{
+      "admin.createCourseContent.manageResourcesDialog.resourceManagement"
+        | translate
+    }}
+  </h5>
   <div class="add-resource" mat-dialog-content>
     <form [formGroup]="form" (ngSubmit)="onAddResource()">
       <formly-form
@@ -7,7 +18,12 @@
         [fields]="fields"
         [model]="model"
       ></formly-form>
-      <button mat-raised-button color="primary">+ Adauga resursa</button>
+      <button mat-raised-button color="primary">
+        {{
+          "admin.createCourseContent.manageResourcesDialog.addResource"
+            | translate
+        }}
+      </button>
     </form>
   </div>
   <div class="resource-container">
@@ -15,14 +31,17 @@
       <div
         class="resource-field"
         *ngFor="let resource of resources; let i = index"
-        tabindex="i"
+        tabindex="resource.index"
         #resourcesContainer
       >
         <div class="single-resource">
           <mat-icon [inline]="true" aria-hidden="false">attachment</mat-icon>
-          <a class="resource-name" [href]="resource.url" target="_blank">{{
-            resource.name
-          }}</a>
+          <div class="link-under">
+            <span class="resource-name">{{ resource.name }}</span>
+            <a class="resource-link" [href]="resource.url" target="_blank">{{
+              resource.url
+            }}</a>
+          </div>
           <span class="delete-icon"
             ><mat-icon
               [inline]="true"

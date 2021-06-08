@@ -195,6 +195,11 @@
         "resource": "Resursă",
         "addResource": "Adauga resursa",
         "saveResource": "Salveaza resursa"
+      },
+      "manageResourcesDialog": {
+        "contentTitle": "Conținut: ",
+        "addResource": "+ Adaugă resursă",
+        "resourceManagement": "Gestionare resurse"
       }
     },
     "users": {

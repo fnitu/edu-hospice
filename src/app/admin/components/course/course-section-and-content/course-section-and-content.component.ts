@@ -1,16 +1,18 @@
-import { Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {CourseInterface} from './course.interface';
 import {ROUTES} from '../../../../shared/core/routes';
-import { ActivatedRoute, Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {EditCourseContentDialogComponent} from './edit-course-content-dialog/edit-course-content-dialog.component';
-import {CourseSectionAndContentService } from './course-section-and-content.service';
-import { GLOBALS } from '../../../../shared/core/globals';
-import { PlaceholderFormatService } from '../../../../shared/services/format/placeholder-format.service';
-import { EditSectionDialogComponent } from './edit-section-dialog/edit-section-dialog.component';
-import { ManageResourcesDialog } from './manage-resources-dialog/manage-resources-dialog.component';
+import {CourseSectionAndContentService} from './course-section-and-content.service';
+import {GLOBALS} from '../../../../shared/core/globals';
+import {PlaceholderFormatService} from '../../../../shared/services/format/placeholder-format.service';
+import {EditSectionDialogComponent} from './edit-section-dialog/edit-section-dialog.component';
+import {ManageResourcesDialog} from './manage-resources-dialog/manage-resources-dialog.component';
 import {SectionInterface} from './section.interface';
 import {ContentInterface} from './content.interface';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {SnackBarComponent} from '../../../../shared/components/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-course-section-and-content',
@@ -20,36 +22,25 @@ import {ContentInterface} from './content.interface';
 })
 export class CourseSectionAndContentComponent implements OnInit {
 
-  @Input() courseId;
-  public course: CourseInterface;
+  @Input() courseId: number;
+  public course: CourseInterface = {};
   public editedSectionId;
 
   public editedContentId;
   private dialogRef;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    public dialog: MatDialog,
-    public courseSectionAndContentService: CourseSectionAndContentService,
-    private placeholderFormatService: PlaceholderFormatService
-  ) {}
-
-  ngOnInit(): void {
-    this.getCourseInfo();
-    this.getSections();
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              public dialog: MatDialog,
+              public courseSectionAndContentService: CourseSectionAndContentService,
+              private placeholderFormatService: PlaceholderFormatService,
+              private matSnackBar: MatSnackBar) {
   }
 
-  public getCourseInfo() {
-    const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.GET_COURSE_INFO,
-      {
-        '{id}': this.courseId,
-      }
-    );
+  ngOnInit(): void {
+    this.course.id = this.courseId;
 
-    this.courseSectionAndContentService.getCourseInfo(url).subscribe((response) => {
-      this.course = response;
-    });
+    this.getSections();
   }
 
   private getSections() {
@@ -72,16 +63,16 @@ export class CourseSectionAndContentComponent implements OnInit {
     );
 
     let data: SectionInterface = {
-      name: 'SectionInterface',
+      name: 'Section',
       visible: true,
       adminContentDetails: [],
     };
 
     this.courseSectionAndContentService.addSection(url, data).subscribe((response) => {
-        data['id'] = response.id;
+      data.id = response.id;
 
-        this.course.sectionList.push(data);
-      });
+      this.course.sectionList.push(data);
+    });
   }
 
   public addContent(section) {
@@ -92,17 +83,17 @@ export class CourseSectionAndContentComponent implements OnInit {
     );
 
     let data: ContentInterface = {
-      name: 'ContentInterface',
+      name: 'Content',
       type: 'PDF',
-      url: 'url',
+      url: 'https://',
       visible: true,
       resourceSummary: [],
     };
 
     this.courseSectionAndContentService.addContent(url, data).subscribe((response) => {
-        data['id'] = response.id;
-        section.adminContentDetails.push(data);
-      });
+      data.id = response.id;
+      section.adminContentDetails.push(data);
+    });
   }
 
   public editSectionTitle(section) {
@@ -111,8 +102,33 @@ export class CourseSectionAndContentComponent implements OnInit {
 
   public setSectionTitle(event, section) {
     if (event.keyCode === 13 || event.type === 'focusout') {
-      section.name = event.target.value;
       this.editedSectionId = -1;
+
+      const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.UPDATE_SECTION_NAME,
+        {
+          '{sectionId}': section.id,
+        }
+      );
+
+      const data = {
+        name: event.target.value,
+        visible: true
+      };
+
+      this.courseSectionAndContentService.updateSectionName(url, data).subscribe((response) => {
+
+        if (response.success) {
+          section.name = event.target.value;
+        }
+
+        this.matSnackBar.openFromComponent(SnackBarComponent, {
+          verticalPosition: 'top',
+          data: {
+            content: response.message,
+            type: GLOBALS.NOTIFICATIONS.INFO,
+          },
+        });
+      });
     }
   }
 
@@ -122,8 +138,33 @@ export class CourseSectionAndContentComponent implements OnInit {
 
   public setContentTitle(event, content) {
     if (event.keyCode === 13 || event.type === 'focusout') {
-      content.name = event.target.value;
       this.editedContentId = -1;
+
+
+      const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.UPDATE_SECTION_CONTENT_NAME,
+        {
+          '{contentId}': content.id,
+        }
+      );
+
+      const data = {
+        name: event.target.value
+      };
+
+      this.courseSectionAndContentService.updateContentName(url, data).subscribe((response) => {
+
+        if (response.success) {
+          content.name = event.target.value;
+        }
+
+        this.matSnackBar.openFromComponent(SnackBarComponent, {
+          verticalPosition: 'top',
+          data: {
+            content: response.message,
+            type: GLOBALS.NOTIFICATIONS.INFO,
+          },
+        });
+      });
     }
   }
 
@@ -144,7 +185,7 @@ export class CourseSectionAndContentComponent implements OnInit {
       minWidth: 500,
       minHeight: 400,
       panelClass: 'editContentPanel',
-      data: content,
+      data: {content},
     };
 
     this.dialogRef = this.dialog.open(EditCourseContentDialogComponent, defaultConfig);

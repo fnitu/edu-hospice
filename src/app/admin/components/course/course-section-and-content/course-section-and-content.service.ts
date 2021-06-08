@@ -43,12 +43,44 @@ export class CourseSectionAndContentService {
     return dataResponse;
   }
 
+  updateSectionName(url, data): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+
+    const dataResponse = this.http.put(url, JSON.stringify(data), httpOptions);
+
+    dataResponse.pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+
+    return dataResponse;
+  }
+
   addContent(url, data): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
 
     const dataResponse = this.http.post(url, JSON.stringify(data), httpOptions);
+
+    dataResponse.pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+
+    return dataResponse;
+  }
+
+  updateContentName(url, data): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+
+    const dataResponse = this.http.put(url, JSON.stringify(data), httpOptions);
 
     dataResponse.pipe(
       catchError((err) => {
