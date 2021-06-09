@@ -19,6 +19,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { EditSectionDialogComponent } from './components/course/course-section-and-content/edit-section-dialog/edit-section-dialog.component';
 import { ManageResourcesDialog } from './components/course/course-section-and-content/manage-resources-dialog/manage-resources-dialog.component';
 import { CourseInfoComponent } from './components/course/course-info/course-info.component';
+import {NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule} from '@angular-material-components/datetime-picker';
+import {MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,15 @@ import { CourseInfoComponent } from './components/course/course-info/course-info
     ManageResourcesDialog,
     CourseInfoComponent,
   ],
-  imports: [SharedModule, AdminRoutingModule, MatAutocompleteModule],
+  imports: [
+    SharedModule,
+    AdminRoutingModule,
+    MatAutocompleteModule,
+    NgxMatNativeDateModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    MatDatepickerModule,
+  ],
   providers: [DatePipe],
 })
 export class AdminModule {}

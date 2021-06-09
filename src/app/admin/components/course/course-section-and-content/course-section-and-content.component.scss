@@ -45,6 +45,8 @@
 
         .input {
           padding: 10px;
+          background: $cardBackground;
+          width: 35%
         }
 
         .title {
@@ -72,12 +74,22 @@
           border-radius: 5px;
           height: 54px;
 
+          .node-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 50px;
+          }
+
           .title {
             margin: 15px 0
           }
 
           .input {
             padding: 10px;
+            background: $cardBackground;
+            width: 35%
           }
 
           .edit {

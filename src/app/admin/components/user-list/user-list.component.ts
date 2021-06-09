@@ -185,7 +185,6 @@ export class UserListComponent implements OnInit {
   }
 
   private rejectRowActionHandler(params) {
-    debugger;
     const dialogRef = this.confirmationDialogService.show({
       data: {
         message: this.customTranslateService.getTranslation('admin.users.userList.rejectMessage'),

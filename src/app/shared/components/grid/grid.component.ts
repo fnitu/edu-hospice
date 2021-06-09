@@ -83,6 +83,10 @@ export class GridComponent implements OnInit {
 
   public refreshGrid() {
     // this.gridOptions.api.getModel().rootNode.childrenCache.setVirtualRowCount(0);
-    this.gridOptions.api.purgeServerSideCache([this.gridProperties.url]);
+    // this.gridOptions.api.purgeServerSideCache([this.gridProperties.url]);
+
+    // debugger;
+    this.gridOptions.api.getModel().rootNode.childrenCache.setVirtualRowCount(0);
+    this.gridOptions.api.purgeServerSideCache();
   }
 }

@@ -18,16 +18,12 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class EditCourseContentDialogComponent implements OnInit {
 
   myControl = new FormControl();
+  dateControl = new FormControl();
   options: { type: string, label: string, id: number }[] = [
     {
       type: 'PDF',
       label: 'Presentation',
       id: 1
-    },
-    {
-      type: 'QUIZ',
-      label: 'Quiz',
-      id: 2
     },
     {
       type: 'VIDEO',
@@ -38,6 +34,11 @@ export class EditCourseContentDialogComponent implements OnInit {
       type: 'ZOOM',
       label: 'Zoom Meeting',
       id: 4
+    },
+    {
+      type: 'QUIZ',
+      label: 'Quiz',
+      id: 2
     }
   ];
 

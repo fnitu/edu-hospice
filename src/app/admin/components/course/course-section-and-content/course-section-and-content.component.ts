@@ -182,7 +182,7 @@ export class CourseSectionAndContentComponent implements OnInit {
 
   public editContent(content) {
     const defaultConfig = {
-      minWidth: 500,
+      minWidth: 650,
       minHeight: 400,
       panelClass: 'editContentPanel',
       data: {content},

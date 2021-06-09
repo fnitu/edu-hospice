@@ -20,16 +20,41 @@
     </form>
   </div>
   <div class="addContentContainer">
-    <div class="zoomContainer" *ngIf="contentType.type === 'VIDEO'">
+    <div class="pdfContainer" *ngIf="contentType.type === 'PDF'">
       <mat-form-field>
-        <input matInput type="text" [(ngModel)]="url" placeholder="URL: https://">
+        <input matInput class="input" type="text" [(ngModel)]="url" placeholder="Add URL for PDF file (https://)">
+
+      </mat-form-field>
+    </div>
+    <div class="videoContainer" *ngIf="contentType.type === 'VIDEO'">
+      <mat-form-field>
+        <input matInput class="input" type="text" [(ngModel)]="url" placeholder="Add URL for Video file (https://)">
 
       </mat-form-field>
     </div>
     <div class="zoomContainer" *ngIf="contentType.type === 'ZOOM'">
       <mat-form-field>
-      <input matInput type="text" [(ngModel)]="url" placeholder="Link to Zoom Meeting https://">
+        <input matInput class="input" type="text" [(ngModel)]="url" placeholder="Add link to Zoom Meeting (https://)">
 
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Comment</mat-label>
+        <textarea class="textarea" matInput placeholder="Informatii despre Zoom Meeting"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="5"
+                  cdkAutosizeMaxRows="5" ></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [ngxMatDatetimePicker]="picker"
+               placeholder="Choose a date" [formControl]="dateControl"
+               disabled >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false"
+                                 [disableMinute]="false" [hideTime]="false"
+                                 disabled="false">
+        </ngx-mat-datetime-picker>
       </mat-form-field>
     </div>
 

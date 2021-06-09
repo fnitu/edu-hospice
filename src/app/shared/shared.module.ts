@@ -64,6 +64,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { textareaFormlyFieldExtension } from '../admin/components/course/textarea-formly-field.extension';
 import { inputFormlyFieldExtension } from '../admin/components/course/input-formly-field.extension';
 import { MatBadgeModule } from '@angular/material/badge';
+import { AutoFocusDirective } from './services/auto-focus/auto-focus.directive';
 @NgModule({
   declarations: [
     MaterialElevationDirective,
@@ -75,6 +76,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     SnackBarComponent,
     GridTopToolbarComponent,
     TopToolbarComponent,
+    AutoFocusDirective,
   ],
   imports: [
     CommonModule,
@@ -149,6 +151,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     FormlyMatDatepickerModule,
     CdkStepperModule,
     MatStepperModule,
+    AutoFocusDirective
   ],
   providers: [
     {

@@ -15,7 +15,7 @@
         </div>
 
         <input class="input" matInput value="{{ section.name }}"
-               *ngIf="section.id === editedSectionId"
+               *ngIf="section.id === editedSectionId" appAutoFocus
                (keypress)="setSectionTitle($event, section)"
                (focusout)="setSectionTitle($event, section)"/>
 
@@ -33,14 +33,21 @@
       <div class="content-container">
         <div class="content" *ngFor="let content of section.adminContentDetails; let i = index">
 
+          <div [ngSwitch]="content.contentType" class="node-icon">
+            <mat-icon *ngSwitchCase="'PDF'">library_books</mat-icon>
+            <mat-icon *ngSwitchCase="'VIDEO'">play_circle_filled</mat-icon>
+            <mat-icon *ngSwitchCase="'ZOOM'">video_camera_front</mat-icon>
+            <mat-icon *ngSwitchCase="'QUIZ'">quiz</mat-icon>
+          </div>
+
           <div class="title" *ngIf="content.id !== editedContentId">
             {{ sectionIndex + 1 }}.{{ i + 1 }} {{ content.name }}
           </div>
 
           <input class="input" matInput value="{{ content.name }}"
-                 *ngIf="content.id === editedContentId"
+                 *ngIf="content.id === editedContentId" appAutoFocus
                  (keypress)="setContentTitle($event, content)"
-                 (focusout)="setContentTitle($event, content)"/>
+                 (focusout)="setContentTitle($event, content)"  />
 
           <div class="edit" (click)="editContentTitle(content)" *ngIf="content.id !== editedContentId">
             <span class="material-icons-outlined">mode_edit</span>
