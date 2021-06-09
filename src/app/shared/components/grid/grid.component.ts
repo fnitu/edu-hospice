@@ -31,7 +31,6 @@ export class GridComponent implements OnInit {
    * Define the default options
    */
   private getDefaultGridOptions() {
-    debugger;
     return {
       defaultColDef: {
         sortable: true,
