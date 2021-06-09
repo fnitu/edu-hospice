@@ -1,8 +1,8 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { GridService } from './grid.service';
-import { GridPropertiesInterface } from './grid-properties.interface';
-import { RowActionsCellRendererComponent } from './row-actions-cell-renderer/row-actions-cell-renderer.component';
-import { GridActionsInterface } from './grid-actions.interface';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {GridService} from './grid.service';
+import {GridPropertiesInterface} from './grid-properties.interface';
+import {RowActionsCellRendererComponent} from './row-actions-cell-renderer/row-actions-cell-renderer.component';
+import {GridActionsInterface} from './grid-actions.interface';
 
 @Component({
   selector: 'app-grid',
@@ -17,7 +17,8 @@ export class GridComponent implements OnInit {
   public gridOptions;
   public actions: GridActionsInterface;
 
-  constructor(private gridService: GridService) {}
+  constructor(private gridService: GridService) {
+  }
 
   ngOnInit(): void {
     this.gridOptions = {
@@ -30,6 +31,7 @@ export class GridComponent implements OnInit {
    * Define the default options
    */
   private getDefaultGridOptions() {
+    debugger;
     return {
       defaultColDef: {
         sortable: true,
@@ -82,11 +84,8 @@ export class GridComponent implements OnInit {
   }
 
   public refreshGrid() {
-    // this.gridOptions.api.getModel().rootNode.childrenCache.setVirtualRowCount(0);
-    // this.gridOptions.api.purgeServerSideCache([this.gridProperties.url]);
-
-    // debugger;
-    this.gridOptions.api.getModel().rootNode.childrenCache.setVirtualRowCount(0);
-    this.gridOptions.api.purgeServerSideCache();
+    this.gridService.getData(this.gridProperties.url).subscribe((response: []) => {
+      this.gridOptions.api.setRowData(response);
+    });
   }
 }
