@@ -33,7 +33,7 @@
       <div class="content-container">
         <div class="content" *ngFor="let content of section.adminContentDetails; let i = index">
 
-          <div [ngSwitch]="content.contentType" class="node-icon">
+          <div [ngSwitch]="content.type" class="node-icon">
             <mat-icon *ngSwitchCase="'PDF'">library_books</mat-icon>
             <mat-icon *ngSwitchCase="'VIDEO'">play_circle_filled</mat-icon>
             <mat-icon *ngSwitchCase="'ZOOM'">video_camera_front</mat-icon>

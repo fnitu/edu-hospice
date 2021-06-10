@@ -55,7 +55,7 @@ export class EditCourseContentDialogComponent implements OnInit {
 
   ngOnInit(): void {
     _.map(this.options, (item) => {
-      if (item.type === this.data.content.contentType) {
+      if (item.type === this.data.content.type) {
         this.contentType = item;
       }
     });
