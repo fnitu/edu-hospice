@@ -10,6 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {PlaceholderFormatService} from '../../../../shared/services/format/placeholder-format.service';
 import {CourseInfoService} from './course-info.service';
 import {ROUTES} from '../../../../shared/core/routes';
+import {ConfirmationDialogService} from '../../../../shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-course-info',
@@ -350,7 +351,8 @@ export class CourseInfoComponent implements OnInit {
               private location: Location,
               private router: Router,
               private route: ActivatedRoute,
-              private placeholderFormatService: PlaceholderFormatService) {
+              private placeholderFormatService: PlaceholderFormatService,
+              private confirmationDialogService: ConfirmationDialogService,) {
   }
 
   ngOnInit(): void {
@@ -421,29 +423,46 @@ export class CourseInfoComponent implements OnInit {
   }
 
   public deleteCourse() {
-    const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.DELETE_COURSE,
-      {
-        '{courseId}': this.courseId,
-      }
-    );
+    const dialogRef = this.confirmationDialogService.show({
+      data: {
+        message: this.customTranslateService.getTranslation('confirmationDialog.deleteCourseConfirmation'),
+        buttons: [
+          {
+            text: this.customTranslateService.getTranslation('general.yes'),
+            handler: () => {
+              const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.DELETE_COURSE,
+                {
+                  '{courseId}': this.courseId,
+                }
+              );
 
-    this.courseInfoService.deleteCourse(url).subscribe((response) => {
+              this.courseInfoService.deleteCourse(url).subscribe((response) => {
 
-      this.matSnackBar.open(response.message, GLOBALS.NOTIFICATIONS.INFO, {
-        duration: GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
-        verticalPosition: 'bottom',
-      });
+                this.matSnackBar.open(response.message, GLOBALS.NOTIFICATIONS.INFO, {
+                  duration: GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
+                  verticalPosition: 'bottom',
+                });
 
-      if (response.success) {
-        this.options.resetModel();
+                if (response.success) {
+                  this.options.resetModel();
 
-        setTimeout(() => {
-          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-          this.router.onSameUrlNavigation = 'reload';
-          this.router.navigate([ROUTES.ADMIN.COURSE.CREATE], {
-            relativeTo: this.route.parent,
-          });
-        }, 2000);
+                  dialogRef.close();
+
+                  setTimeout(() => {
+                    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+                    this.router.onSameUrlNavigation = 'reload';
+                    this.router.navigate([ROUTES.ADMIN.COURSE.CREATE], {
+                      relativeTo: this.route.parent,
+                    });
+                  }, 2000);
+                }
+              });
+            }
+          },
+          {
+            text: this.customTranslateService.getTranslation('general.no')
+          }
+        ]
       }
     });
   }

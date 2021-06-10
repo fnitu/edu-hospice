@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {PlaceholderFormatService} from '../../../shared/services/format/placeholder-format.service';
 import {CourseListService} from './course-list.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {ConfirmationDialogService} from '../../../shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-course-list',
@@ -28,6 +29,7 @@ export class CourseListComponent implements OnInit {
               private router: Router,
               private placeholderFormatService: PlaceholderFormatService,
               private courseListService: CourseListService,
+              private confirmationDialogService: ConfirmationDialogService,
               private matSnackBar: MatSnackBar) {}
 
   ngOnInit(): void {
@@ -125,19 +127,36 @@ export class CourseListComponent implements OnInit {
   }
 
   private deleteRowActionHandler(params) {
-    const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.DELETE_COURSE,
-      {
-        '{courseId}': params.data.id,
+    const dialogRef = this.confirmationDialogService.show({
+      data: {
+        message: this.customTranslateService.getTranslation('confirmationDialog.deleteCourseConfirmation'),
+        buttons: [
+          {
+            text: this.customTranslateService.getTranslation('general.yes'),
+            handler: () => {
+              const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.DELETE_COURSE,
+                {
+                  '{courseId}': params.data.id,
+                }
+              );
+
+              this.courseListService.deleteCourse(url).subscribe((response) => {
+                this.matSnackBar.open(response.message, GLOBALS.NOTIFICATIONS.INFO, {
+                  duration: GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
+                  verticalPosition: 'bottom',
+                });
+
+                dialogRef.close();
+
+                this.gridComponent.refreshGrid();
+              });
+            }
+          },
+          {
+            text: this.customTranslateService.getTranslation('general.no')
+          }
+        ]
       }
-    );
-
-    this.courseListService.deleteCourse(url).subscribe((response) => {
-      this.matSnackBar.open(response.message, GLOBALS.NOTIFICATIONS.INFO, {
-        duration: GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
-        verticalPosition: 'bottom',
-      });
-
-      this.gridComponent.refreshGrid();
     });
   }
 }

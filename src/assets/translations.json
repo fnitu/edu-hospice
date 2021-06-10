@@ -32,7 +32,8 @@
     "max": "Această valoare ar trebui să fie mai mica de"
   },
   "confirmationDialog": {
-    "commentBoxLabel": "Explicați motivul"
+    "commentBoxLabel": "Explicați motivul",
+    "deleteCourseConfirmation": "Sigur că doriți să ștergeți acest curs?"
   },
   "preview": {
     "home": {
