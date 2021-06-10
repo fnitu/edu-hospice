@@ -1,10 +1,13 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import { GLOBALS } from 'src/app/shared/core/globals';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
 import { GridPropertiesInterface } from '../../../shared/components/grid/grid-properties.interface';
 import { ROUTES } from '../../../shared/core/routes';
 import { Router, ActivatedRoute } from '@angular/router';
+import {PlaceholderFormatService} from '../../../shared/services/format/placeholder-format.service';
+import {CourseListService} from './course-list.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-course-list',
@@ -13,13 +16,19 @@ import { Router, ActivatedRoute } from '@angular/router';
   encapsulation: ViewEncapsulation.None,
 })
 export class CourseListComponent implements OnInit {
+
+  @ViewChild('gridComponent') gridComponent;
+
   public gridProperties: GridPropertiesInterface;
   public gridColumns;
 
   constructor(private customTranslateService: CustomTranslateService,
               private datePipe: DatePipe,
               private route: ActivatedRoute,
-              private router: Router) {}
+              private router: Router,
+              private placeholderFormatService: PlaceholderFormatService,
+              private courseListService: CourseListService,
+              private matSnackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.gridColumns = this.getGridColumns();
@@ -33,8 +42,8 @@ export class CourseListComponent implements OnInit {
           this.customTranslateService.getTranslation('general.actions'),
         field: 'actions',
         cellRenderer: 'rowActionsCellRenderer',
-        maxWidth: 90,
-        minWidth: 90,
+        maxWidth: 120,
+        minWidth: 120,
         cellRendererParams: {
           actions: [
             {
@@ -42,6 +51,12 @@ export class CourseListComponent implements OnInit {
               icon: 'edit',
               handler: (params) => this.onBtnClick(params),
             },
+            {
+              label: this.customTranslateService.getTranslation('general.delete'),
+              icon: 'delete_forever',
+              cls: 'action-red',
+              handler: (params) => this.deleteRowActionHandler(params)
+            }
           ],
         },
         sortable: false,
@@ -106,6 +121,23 @@ export class CourseListComponent implements OnInit {
 
     this.router.navigate([ROUTES.ADMIN.COURSE.EDIT_COURSE, courseId], {
       relativeTo: this.route.parent,
+    });
+  }
+
+  private deleteRowActionHandler(params) {
+    const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.DELETE_COURSE,
+      {
+        '{courseId}': params.data.id,
+      }
+    );
+
+    this.courseListService.deleteCourse(url).subscribe((response) => {
+      this.matSnackBar.open(response.message, GLOBALS.NOTIFICATIONS.INFO, {
+        duration: GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
+        verticalPosition: 'bottom',
+      });
+
+      this.gridComponent.refreshGrid();
     });
   }
 }
