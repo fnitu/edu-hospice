@@ -15,6 +15,7 @@ export const GLOBALS = {
     USER_DETAILS: `${environment.BASE_URL}/api/users/{id}/details`,
     COURSES: `${environment.BASE_URL}/api/courses`,
     ADMIN_COURSES: `${environment.BASE_URL}/api/admin/courses`,
+    DELETE_COURSE: `${environment.BASE_URL}/api/admin/courses/{courseId}`,
     GET_ADMIN_COURSE_INFO: `${environment.BASE_URL}/api/admin/courses/{id}`,
     ADMIN_COURSE_SECTIONS: `${environment.BASE_URL}/api/admin/courses/{courseId}/sections-details`,
     ADMIN_DASHBOARD_STATS: `${environment.BASE_URL}/api/admin/dashboard/stats`,

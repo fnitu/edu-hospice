@@ -95,7 +95,7 @@ export class EditCourseContentDialogComponent implements OnInit {
 
       if (response.success) {
         this.data.content.url = this.url;
-        this.data.content.contentType = this.contentType.type;
+        this.data.content.type = this.contentType.type;
 
         this.dialogRef.close();
       }

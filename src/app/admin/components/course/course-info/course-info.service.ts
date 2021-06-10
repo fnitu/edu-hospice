@@ -34,4 +34,16 @@ export class CourseInfoService {
 
     return dataResponse;
   }
+
+  public deleteCourse(url): Observable<any> {
+    const dataResponse = this.http.delete(url);
+
+    dataResponse.pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+
+    return dataResponse;
+  }
 }

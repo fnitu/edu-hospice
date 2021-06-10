@@ -13,6 +13,9 @@
       <button mat-raised-button [disabled]="form.pristine" (click)="options.resetModel()">
         {{'general.reset' | translate}}
       </button>
+      <button mat-raised-button color="warn" [disabled]="!courseId" (click)="deleteCourse()">
+        {{'general.delete' | translate}}
+      </button>
     </div>
   </form>
 </mat-card>
