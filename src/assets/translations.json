@@ -39,6 +39,21 @@
     "home": {
       "title": "Cursuri de îngrijiri paliative"
     },
+    "dialog": {
+        "courseDetails": "Detalii curs",
+        "courseStructure": "Structura curs",
+        "authors": "Autori",
+        "info":  "Informatii curs",
+        "courseType":"Tip de curs",
+        "accessDays":"Zile de acces",
+        "days": "zile",
+        "time": "Durata",
+        "hours":"Ore",
+        "role":"Rol",
+        "credits":"Numar Credite",
+        "price":"Preț",
+        "interval": "Perioada Cursului"
+    },
     "login": {
       "clickHere": "Click aici!",
       "forgotPassword": "Ai uitat parola?",

@@ -2,25 +2,72 @@
     <app-progress-spinner class="spinner"></app-progress-spinner>
 </div>
 <ng-template #elseBlock>
-    <button mat-stroked-button mat-dialog-close class="close">X</button>
-    <h2 mat-dialog-title>{{data.name}}</h2>
-    <mat-dialog-content class="mat-typography">
-        <img src="{{data.image}}" alt="{{data.name}}" class="dialogImage">
-        <p>{{'admin.createCourse.author' | translate}}: {{data.authors}}</p>
-        <p>{{'admin.createCourse.role' | translate}}: {{data.courseRole}}</p>
-        <p>{{'admin.createCourse.courseType' | translate}}: {{data.courseType}}</p>
-        <p>{{'admin.createCourse.credits' | translate}}: {{data.credits}}</p>
-        <p>{{'admin.createCourse.description' | translate}}: {{data.description}}</p>
-        <p>{{'admin.createCourse.hours' | translate}}: {{data.hours}}</p>
-        <p>{{'admin.createCourse.price' | translate}}: {{data.price}}</p>
-        <p>{{'admin.createCourse.currency' | translate}}: {{data.currency}}</p>
-        <p>{{'admin.createCourse.accessDays' | translate}}: {{data.accessDays}}</p>
-        <p>{{'admin.createCourse.startDate' | translate}}: {{data.startDate | date: "dd.MM.yyyy" }} </p>
-        <p>{{'admin.createCourse.endDate' | translate}}: {{data.endDate | date: "dd.MM.yyyy"}}</p>
-    </mat-dialog-content>
-    <mat-dialog-actions align="end">
-        <a mat-flat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial href="#/preview/register">
-            {{'preview.register.register'| translate}}
-        </a>
-    </mat-dialog-actions>
+    <div class="homeDialog">
+        <button mat-stroked-button mat-dialog-close class="close">X</button>
+        <h2 mat-dialog-title>{{data.name}}</h2>
+        <mat-dialog-content class="mat-typography">
+            <img src="{{data.image}}" alt="{{data.name}}" class="dialogImage">
+            <mat-tab-group id="dialogTabs">
+                <mat-tab label="{{ 'preview.dialog.courseDetails' | translate }}">
+                    <div id='content'>
+                        <p id="description">{{data.description}}</p>
+                        <h2 id='title'>{{ 'preview.dialog.authors' | translate }}</h2>
+                        <p>{{data.authors}}</p>
+                        <h2 id="title">{{ 'preview.dialog.info' | translate }}</h2>
+                        <div id='moreDetails'>
+                            <div>
+                                <span>{{'preview.dialog.courseType' | translate}} </span>
+                                <p>{{data.courseType}}</p>
+                            </div>
+                            <div>
+                                <span>{{ 'preview.dialog.accessDays' | translate }}</span>
+                                <p>{{data.accessDays}} {{ 'preview.dialog.days' | translate }}</p>
+                            </div>
+                            <div>
+                                <span>{{ 'preview.dialog.time' | translate }}</span>
+                                <p>{{data.hours}} {{'preview.dialog.hours' | translate}}</p>
+                            </div>
+                            <div>
+                                <span>{{'preview.dialog.role' | translate}}</span>
+                                <p>{{data.courseRole}}</p>
+                            </div>
+                            <div>
+                                <span>{{'preview.dialog.credits' | translate}}</span>
+                                <p>{{data.credits}}</p>
+                            </div>
+                            <div>
+                                <span>{{'preview.dialog.price' | translate}}</span>
+                                <p>{{data.price}} {{data.currency}}</p>
+                            </div>
+                            <div>
+                                <span>{{'preview.dialog.interval' | translate}}</span>
+                                <p>{{data.startDate | date: "dd.MM.yyyy"}} - {{data.endDate | date: "dd.MM.yyyy"}}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="{{ 'preview.dialog.courseStructure' | translate }}">
+                    <div id='content' *ngIf="data">
+                        <h2 id='title'>{{data?.userSectionDetails[0]?.name}}</h2>
+                        <div id='sectionDetails'>
+                            <div *ngFor="let content of data.userSectionDetails[0]?.userContentDetails">
+                                <div id="resource">
+                                    <h4 id="contentCourse">{{content?.name}}</h4>
+                                    <p>{{content?.type}}</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <a mat-flat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial href="#/preview/register">
+                {{'preview.register.register'| translate}}
+            </a>
+        </mat-dialog-actions>
+    </div>
 </ng-template>

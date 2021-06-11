@@ -1,3 +1,14 @@
+.mat-dialog-container {
+  background-color: #e5e5e5;
+  border-radius: 0;
+}
+
+.homeDialog .mat-dialog-title {
+  font-size: 26px;
+  font-family: Roboto;
+  font-weight: 700;
+}
+
 .dialogImage {
   width: 100%;
   height: 400px;
@@ -7,4 +18,67 @@
 .close {
   float: right;
   font-size: 1.5em;
+}
+
+#dialogTabs {
+  margin-top: 15px;
+}
+
+#dialogTabs .mat-tab-header {
+  border-bottom: 1px solid #000000;
+}
+
+#dialogTabs .mat-tab-label {
+  background-color: #fff;
+  color: #000000;
+}
+
+#description {
+  margin-top: 40px;
+}
+
+#title {
+  font-size: 26px;
+  font-family: Roboto;
+  font-weight: 700;
+  margin-top: 25px;
+}
+
+#moreDetails {
+  display: grid;
+  grid-template-columns: 3fr 3fr 1fr;
+}
+
+#moreDetails span {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  color: #5a5a5a;
+}
+
+#moreDetails div {
+  font-weight: 500;
+}
+
+#sectionDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 15px;
+}
+
+#contentCourse {
+  margin: 0;
+}
+
+#resource {
+  border-bottom: 1px solid #000;
+  margin-bottom: 20px;
+}
+
+#resource:hover {
+  background-color: #fff;
+}
+
+#resource p {
+  margin: 0;
 }
