@@ -10,9 +10,9 @@
             <mat-tab-group id="dialogTabs">
                 <mat-tab label="{{ 'preview.dialog.courseDetails' | translate }}">
                     <div id='content'>
-                        <p id="description">{{data.description}}</p>
+                        <p id="description"><span [innerHTML]="data.description"></span></p>
                         <h2 id='title'>{{ 'preview.dialog.authors' | translate }}</h2>
-                        <p>{{data.authors}}</p>
+                        <p [innerHTML]="data.authors"></p>
                         <h2 id="title">{{ 'preview.dialog.info' | translate }}</h2>
                         <div id='moreDetails'>
                             <div>
