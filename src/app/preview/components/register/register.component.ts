@@ -1,8 +1,11 @@
 import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { MultiRequiredValidator } from 'src/app/shared/components/formly/formly-validation-config';
+import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
+import { GLOBALS } from 'src/app/shared/core/globals';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
 import { TooltipService } from 'src/app/shared/services/tooltip/tooltip.service';
 import { RegisterService } from './register.service';
@@ -249,7 +252,8 @@ export class RegisterComponent implements AfterViewInit {
     private customTranslateService: CustomTranslateService,
     private registerService: RegisterService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private matSnackBar: MatSnackBar
   ) {}
 
   ngAfterViewInit() {
@@ -415,14 +419,26 @@ export class RegisterComponent implements AfterViewInit {
       termsAndConditions: this.finalizationForm.value['agreement'],
     };
 
-    this.registerService
-      .registerUser(registerFormDetails)
-      .subscribe((response) => {
+    this.registerService.registerUser(registerFormDetails).subscribe(
+      (response) => {
+        this.matSnackBar.openFromComponent(SnackBarComponent, {
+          verticalPosition: 'top',
+          data: {
+            content: this.customTranslateService.getTranslation(
+              response['message']
+            ),
+            type: GLOBALS.NOTIFICATIONS.INFO,
+          },
+        });
         setTimeout(() => {
           this.router.navigate(['login'], {
             relativeTo: this.route.parent,
           });
         }, 3000);
-      });
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }
