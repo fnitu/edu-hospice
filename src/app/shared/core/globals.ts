@@ -29,6 +29,8 @@ export const GLOBALS = {
     UPDATE_EXISTING_QUIZ_SETTINGS: `${environment.BASE_URL}/api/admin/quizzes/{quizId}/update`,
     ADD_QUIZ_QUESTION: `${environment.BASE_URL}/api/admin/quizzes/{quizId}/questions`,
     SAVE_QUIZ_QUESTION: `${environment.BASE_URL}/api/admin/quizzes/questions/{questionId}/update`,
+    DELETE_QUIZ_QUESTION: `${environment.BASE_URL}/api/admin/quizzes/questions/{questionId}/delete
+    `,
     GET_QUIZ_QUESTIONS: `${environment.BASE_URL}/api/admin/quizzes/{quizId}/questions/details`,
     GET_COURSE_INFO: `${environment.BASE_URL}/api/courses/{id}`,
     CREATE_SECTION: `${environment.BASE_URL}/api/admin/courses/{courseId}/sections`,
