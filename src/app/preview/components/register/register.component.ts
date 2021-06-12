@@ -418,9 +418,11 @@ export class RegisterComponent implements AfterViewInit {
     this.registerService
       .registerUser(registerFormDetails)
       .subscribe((response) => {
-        this.router.navigate(['login'], {
-          relativeTo: this.route.parent,
-        });
+        setTimeout(() => {
+          this.router.navigate(['login'], {
+            relativeTo: this.route.parent,
+          });
+        }, 3000);
       });
   }
 }
