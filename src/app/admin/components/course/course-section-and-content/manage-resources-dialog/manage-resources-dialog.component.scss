@@ -44,9 +44,17 @@
           display: flex;
           flex-direction: column;
           .resource-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 300px;
             font-size: 15px;
           }
           .resource-link {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 300px;
             cursor: pointer;
             color: inherit;
             text-decoration: none;

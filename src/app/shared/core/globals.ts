@@ -37,6 +37,7 @@ export const GLOBALS = {
     UPDATE_SECTION_CONTENT: `${environment.BASE_URL}/api/admin/courses/sections/contents/{contentId}/update`,
     UPDATE_SECTION_CONTENT_NAME: `${environment.BASE_URL}/api/admin/courses/sections/contents/{contentId}/update-name`,
     CREATE_SECTION_CONTENT_RESOURCES: `${environment.BASE_URL}/api/admin/courses/sections/contents/{contentId}/resources`,
+    DELETE_SECTION_CONTENT_RESOURCES: `${environment.BASE_URL}/api/admin/courses/sections/contents/resources/{resourceId}/delete`,
     ACTION_LIST_WAITING_FOR_REGISTRATION: `./assets/json/registration.json`,
     ACTION_LIST_WAITING_FOR_PAYMENT: `./assets/json/payment.json`,
   },

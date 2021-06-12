@@ -68,17 +68,23 @@ export class ManageResourcesDialog implements OnInit {
   }
 
   onAddResource() {
-    this.resources.push(this.form.value);
     this.manageResourcesDialogService
       .addAditionalResource(this.content.id, this.form.value)
-      .subscribe((response) => console.log(response));
-
-    this.form.reset(this.form);
+      .subscribe((response) => {
+        this.resources.push({ ...this.form.value, id: response['id'] });
+        this.form.reset(this.form);
+      });
   }
 
-  onResourceDelete() {
-    console.log('deleted');
-  }
+  onResourceDelete(resource) {
+    let indexToRemove = this.resources.findIndex(
+      (item) => item['id'] === resource['id']
+    );
 
-  onSave() {}
+    this.manageResourcesDialogService
+      .removeResource(resource.id)
+      .subscribe((response) => {
+        this.resources.splice(indexToRemove, 1);
+      });
+  }
 }

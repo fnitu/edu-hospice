@@ -37,16 +37,22 @@
         <div class="single-resource">
           <mat-icon [inline]="true" aria-hidden="false">attachment</mat-icon>
           <div class="link-under">
-            <span class="resource-name">{{ resource.name }}</span>
-            <a class="resource-link" [href]="resource.url" target="_blank">{{
-              resource.url
-            }}</a>
+            <span class="resource-name" [title]="resource.name">{{
+              resource.name
+            }}</span>
+            <a
+              class="resource-link"
+              [href]="resource.url"
+              target="_blank"
+              [title]="resource.url"
+              >{{ resource.url }}</a
+            >
           </div>
           <span class="delete-icon"
             ><mat-icon
               [inline]="true"
               aria-hidden="false"
-              (click)="onResourceDelete()"
+              (click)="onResourceDelete(resource)"
               >delete_forever</mat-icon
             ></span
           >

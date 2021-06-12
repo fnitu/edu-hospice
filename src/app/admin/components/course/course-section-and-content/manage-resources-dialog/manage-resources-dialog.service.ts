@@ -17,4 +17,12 @@ export class ManageResourcesDialogService {
     );
     return this.http.post(url, data);
   }
+
+  public removeResource(resourceId) {
+    const url = this.placeHolderFormatService.stringFormat(
+      GLOBALS.DATA_URL.DELETE_SECTION_CONTENT_RESOURCES,
+      { '{resourceId}': resourceId }
+    );
+    return this.http.delete(url);
+  }
 }
