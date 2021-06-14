@@ -101,7 +101,7 @@ export class CourseComponent implements OnInit {
             children.push({
                 id: key,
                 name: value.name,
-                contentType: value.contentType,
+                contentType: value.type,
                 resourceSummary: value.resourceSummary,
                 url: safeUrl
             });

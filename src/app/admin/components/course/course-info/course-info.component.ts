@@ -12,6 +12,12 @@ import {CourseInfoService} from './course-info.service';
 import {ROUTES} from '../../../../shared/core/routes';
 import {ConfirmationDialogService} from '../../../../shared/components/confirmation-dialog/confirmation-dialog.service';
 
+import * as _moment from 'moment';
+import * as momentJDate from 'moment-jdateformatparser';
+import * as _ from 'lodash';
+
+const moment = _.merge(_moment, momentJDate);
+
 @Component({
   selector: 'app-course-info',
   templateUrl: './course-info.component.html',
@@ -382,33 +388,56 @@ export class CourseInfoComponent implements OnInit {
     this.form.get('credits').setValue(response.credits);
     this.form.get('currency').setValue(response.currency);
     this.form.get('description').setValue(response.description);
-    this.form.get('endDate').setValue(response.endDate);
+    this.form.get('endDate').setValue(moment.utc(response.endDate).format());
     this.form.get('hours').setValue(response.hours);
     this.form.get('image').setValue(response.image);
     this.form.get('name').setValue(response.name);
     this.form.get('price').setValue(response.price);
     this.form.get('image').setValue(response.image);
     this.form.get('shortDescription').setValue(response.shortDescription);
-    this.form.get('startDate').setValue(response.startDate);
+    this.form.get('startDate').setValue(moment.utc(response.startDate).format());
   }
 
   submit() {
-
     // condition needed in ore prevent making post when you are in another course
     if (!this.courseId) {
-      const url = GLOBALS.DATA_URL.ADMIN_COURSES;
-      this.courseInfoService.createCourse(url, this.model).subscribe((response) => {
-        //FIXME response need to have a success parameter
-
-        // if (response?.success) {
-        if (!!response?.id) {
-          this.updateRouteUrl(response.id);
-
-          this.cardInfoHasBeenSubmitted.emit(response);
-        }
-      });
+      this.createCourse();
+    } else {
+      this.updateCourse();
     }
-    // this.options.resetModel();
+  }
+
+  createCourse() {
+    const url = GLOBALS.DATA_URL.ADMIN_COURSES;
+    this.courseInfoService.createCourse(url, this.model).subscribe((response) => {
+      //FIXME response need to have a success parameterY
+
+      // if (response?.success) {
+      if (!!response?.id) {
+        this.updateRouteUrl(response.id);
+
+        this.cardInfoHasBeenSubmitted.emit(response);
+      }
+    });
+  }
+
+  updateCourse() {
+    const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.UPDATE_COURSE,
+      {
+        '{courseId}': this.courseId,
+      }
+    );
+
+    this.courseInfoService.updateCourse(url, this.model).subscribe((response) => {
+      this.matSnackBar.open(response.message, GLOBALS.NOTIFICATIONS.INFO, {
+        duration: GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
+        verticalPosition: 'bottom',
+      });
+
+      if (!response.success) {
+        this.getCourseInfo();
+      }
+    });
   }
 
   private updateRouteUrl(id) {

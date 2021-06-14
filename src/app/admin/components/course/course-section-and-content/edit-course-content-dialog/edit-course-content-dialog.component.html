@@ -57,6 +57,12 @@
         </ngx-mat-datetime-picker>
       </mat-form-field>
     </div>
+    <div class="videoContainer" *ngIf="contentType.type === 'QUIZ'">
+      <mat-form-field>
+        <input matInput class="input" type="text" [(ngModel)]="url" placeholder="Add URL for Quiz file (https://)">
+
+      </mat-form-field>
+    </div>
 
   </div>
 

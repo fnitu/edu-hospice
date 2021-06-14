@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, throwError} from 'rxjs';
 import {CreateCourse} from '../../../../shared/interfaces/createCourse';
 import {catchError} from 'rxjs/operators';
@@ -25,6 +25,18 @@ export class CourseInfoService {
 
   public getCourseInfo(url): Observable<any> {
     const dataResponse = this.http.get<CreateCourse>(url);
+
+    dataResponse.pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+
+    return dataResponse;
+  }
+
+  public updateCourse(url, data: CreateCourse): Observable<any> {
+    const dataResponse = this.http.put<CreateCourse>(url, data);
 
     dataResponse.pipe(
       catchError((err) => {
