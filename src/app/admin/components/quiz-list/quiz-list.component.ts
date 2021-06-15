@@ -1,10 +1,15 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GridPropertiesInterface } from 'src/app/shared/components/grid/grid-properties.interface';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
 import { ROUTES } from '../../../shared/core/routes';
 import { GLOBALS } from 'src/app/shared/core/globals';
+import { ConfirmationDialogService } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { PlaceholderFormatService } from 'src/app/shared/services/format/placeholder-format.service';
+import { QuizListService } from './quiz-list.service';
+import { Logger } from 'ag-grid-community';
 
 @Component({
   selector: 'app-quiz-list',
@@ -13,6 +18,8 @@ import { GLOBALS } from 'src/app/shared/core/globals';
   encapsulation: ViewEncapsulation.None,
 })
 export class QuizListComponent implements OnInit {
+  @ViewChild('gridComponent') gridComponent;
+
   public gridProperties: GridPropertiesInterface;
   public gridColumns: any[];
 
@@ -20,7 +27,11 @@ export class QuizListComponent implements OnInit {
     private datePipe: DatePipe,
     private router: Router,
     private route: ActivatedRoute,
-    private customTranslateService: CustomTranslateService
+    private customTranslateService: CustomTranslateService,
+    private confirmationDialogService: ConfirmationDialogService,
+    private matSnackBar: MatSnackBar,
+    private placeholderFormatService: PlaceholderFormatService,
+    private quizListService: QuizListService
   ) {}
 
   ngOnInit() {
@@ -31,21 +42,25 @@ export class QuizListComponent implements OnInit {
   private getGridColumns() {
     return [
       {
-        headerName: this.customTranslateService.getTranslation(
-          'general.actions'
-        ),
+        headerName:
+          this.customTranslateService.getTranslation('general.actions'),
         field: 'actions',
         cellRenderer: 'rowActionsCellRenderer',
-        maxWidth: 90,
-        minWidth: 90,
+        maxWidth: 120,
+        minWidth: 120,
         cellRendererParams: {
           actions: [
             {
-              label: this.customTranslateService.getTranslation(
-                'general.edit'
-              ),
+              label: this.customTranslateService.getTranslation('general.edit'),
               icon: 'edit',
               handler: (params) => this.onBtnClick(params),
+            },
+            {
+              label:
+                this.customTranslateService.getTranslation('general.delete'),
+              icon: 'delete_forever',
+              cls: 'action-red',
+              handler: (params) => this.deleteQuiz(params),
             },
           ],
         },
@@ -122,5 +137,46 @@ export class QuizListComponent implements OnInit {
         ],
       },
     };
+  }
+
+  private deleteQuiz(params) {
+    const dialogRef = this.confirmationDialogService.show({
+      data: {
+        message: this.customTranslateService.getTranslation(
+          'confirmationDialog.deleteQuizConfirmation'
+        ),
+        buttons: [
+          {
+            text: this.customTranslateService.getTranslation('general.yes'),
+            handler: () => {
+              const url = this.placeholderFormatService.stringFormat(
+                GLOBALS.DATA_URL.DELETE_QUIZ,
+                {
+                  '{quizId}': params.data.id,
+                }
+              );
+
+              this.quizListService.removeQuiz(url).subscribe((response) => {
+                this.matSnackBar.open(
+                  response['message'],
+                  GLOBALS.NOTIFICATIONS.INFO,
+                  {
+                    duration: GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
+                    verticalPosition: 'bottom',
+                  }
+                );
+
+                dialogRef.close();
+
+                this.gridComponent.refreshGrid();
+              });
+            },
+          },
+          {
+            text: this.customTranslateService.getTranslation('general.no'),
+          },
+        ],
+      },
+    });
   }
 }

@@ -36,27 +36,28 @@
     "commentBoxLabel": "Explicați motivul",
     "deleteCourseConfirmation": "Sigur doriți să ștergeți acest curs?",
     "deleteCourseSectionConfirmation": "Sigur doriți să ștergeți acestă sectiune?",
-    "deleteCourseContentConfirmation": "Sigur doriți să ștergeți acest continut?"
+    "deleteCourseContentConfirmation": "Sigur doriți să ștergeți acest continut?",
+    "deleteQuizConfirmation": "Sigur doriți să ștergeți acest quiz?"
   },
   "preview": {
     "home": {
       "title": "Cursuri de îngrijiri paliative"
     },
     "dialog": {
-        "courseDetails": "Detalii curs",
-        "courseStructure": "Structura curs",
-        "authors": "Autori",
-        "info":  "Informatii curs",
-        "courseType":"Tip de curs",
-        "accessDays":"Zile de acces",
-        "days": "zile",
-        "time": "Durata",
-        "hours":"Ore",
-        "role":"Rol",
-        "credits":"Numar Credite",
-        "price":"Preț",
-        "interval": "Perioada Cursului",
-        "register": "Inscriere"
+      "courseDetails": "Detalii curs",
+      "courseStructure": "Structura curs",
+      "authors": "Autori",
+      "info": "Informatii curs",
+      "courseType": "Tip de curs",
+      "accessDays": "Zile de acces",
+      "days": "zile",
+      "time": "Durata",
+      "hours": "Ore",
+      "role": "Rol",
+      "credits": "Numar Credite",
+      "price": "Preț",
+      "interval": "Perioada Cursului",
+      "register": "Inscriere"
     },
     "login": {
       "clickHere": "Click aici!",

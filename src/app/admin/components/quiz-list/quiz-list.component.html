@@ -1,4 +1,8 @@
 <div class="course-list-container">
-  <app-grid [gridColumns]="gridColumns" [gridProperties]="gridProperties">
+  <app-grid
+    #gridComponent
+    [gridColumns]="gridColumns"
+    [gridProperties]="gridProperties"
+  >
   </app-grid>
 </div>
