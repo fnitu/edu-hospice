@@ -21,7 +21,8 @@
     "edit": "Editează",
     "reset": "Resetează",
     "delete": "Șterge",
-    "operationSuccessful": "Acțiune executată cu succes!"
+    "operationSuccessful": "Acțiune executată cu succes!",
+    "userCreated": "Contul dumneavoastră a fost creeat cu succes!"
   },
   "field": {
     "required": "Acest câmp este obligatoriu.",
