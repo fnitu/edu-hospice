@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeCardDialogComponent } from './components/dialog-home-card/home-card-dialog/home-card-dialog.component';
 import { ProgressSpinnerComponent } from './components/progress-spinner/progress-spinner/progress-spinner.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     HomeCardDialogComponent,
     ProgressSpinnerComponent,
   ],
-  imports: [SharedModule, PreviewRoutingModule, MatProgressSpinnerModule],
-  exports: [MatProgressSpinnerModule],
+  imports: [
+    SharedModule,
+    PreviewRoutingModule,
+    MatProgressSpinnerModule,
+    MatExpansionModule,
+  ],
+  exports: [MatProgressSpinnerModule, MatExpansionModule],
 })
 export class PreviewModule {}

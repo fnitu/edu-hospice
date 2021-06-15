@@ -3,12 +3,14 @@
 </div>
 <ng-template #elseBlock>
     <div id="homeDialog">
-        <button mat-stroked-button mat-dialog-close class="close">X</button>
+        <div>
+            <button mat-dialog-close class="close">X</button>
+        </div>
         <h2 mat-dialog-title>{{data.name}}</h2>
         <mat-dialog-content class="mat-typography">
             <img src="{{data.image}}" alt="{{data.name}}" class="dialogImage">
             <mat-tab-group id="dialogTabs">
-                <mat-tab label="{{ 'preview.dialog.courseDetails' | translate }}">
+                <mat-tab id="labelContent" label="{{ 'preview.dialog.courseDetails' | translate }}">
                     <div id='content'>
                         <p id="description"><span [innerHTML]="data.description"></span></p>
                         <h2 id='title'>{{ 'preview.dialog.authors' | translate }}</h2>
@@ -49,25 +51,40 @@
                 </mat-tab>
                 <mat-tab label="{{ 'preview.dialog.courseStructure' | translate }}">
                     <div id='content' *ngIf="data">
-                        <h2 id='title'>{{data?.userSectionDetails[0]?.name}}</h2>
-                        <div id='sectionDetails'>
-                            <div *ngFor="let content of data.userSectionDetails[0]?.userContentDetails">
-                                <div id="resource">
-                                    <h4 id="contentCourse">{{content?.name}}</h4>
-                                    <p>{{content?.type}}</p>
-                                </div>
+                        <div *ngFor="let section of data.userSectionDetails">
+                            <mat-accordion multi>
+                                <mat-expansion-panel expanded="true" id='accordion'>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <h2 id='title'>{{section?.name}}</h2>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <div id='sectionDetails'>
+                                        <div *ngFor="let content of section.userContentDetails">
+                                            <div id="resource">
+                                                <div [ngSwitch]="content?.type" class="node-icon">
+                                                    <mat-icon *ngSwitchCase="'PDF'">library_books</mat-icon>
+                                                    <mat-icon *ngSwitchCase="'VIDEO'">play_circle_filled</mat-icon>
+                                                    <mat-icon *ngSwitchCase="'ZOOM'">video_camera_front</mat-icon>
+                                                    <mat-icon *ngSwitchCase="'QUIZ'">quiz</mat-icon>
+                                                    <h4 id="contentCourse">{{content?.name}}</h4>
+                                                </div>
+                                            </div>
 
-                            </div>
+                                        </div>
+                                    </div>
+                                </mat-expansion-panel>
+                            </mat-accordion>
                         </div>
                     </div>
                 </mat-tab>
             </mat-tab-group>
-
         </mat-dialog-content>
-        <mat-dialog-actions align="end">
-            <a mat-flat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial href="#/preview/register">
-                {{'preview.register.register'| translate}}
+        <mat-dialog-actions align="center">
+            <a id='register' mat-flat-button [mat-dialog-close]="true" cdkFocusInitial href="#/preview/register">
+                {{'preview.dialog.register'| translate}}
             </a>
         </mat-dialog-actions>
     </div>
+
 </ng-template>

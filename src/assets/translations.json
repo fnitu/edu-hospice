@@ -52,7 +52,8 @@
         "role":"Rol",
         "credits":"Numar Credite",
         "price":"Preț",
-        "interval": "Perioada Cursului"
+        "interval": "Perioada Cursului",
+        "register": "Inscriere"
     },
     "login": {
       "clickHere": "Click aici!",
