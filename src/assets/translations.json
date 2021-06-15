@@ -34,7 +34,9 @@
   },
   "confirmationDialog": {
     "commentBoxLabel": "Explicați motivul",
-    "deleteCourseConfirmation": "Sigur că doriți să ștergeți acest curs?"
+    "deleteCourseConfirmation": "Sigur doriți să ștergeți acest curs?",
+    "deleteCourseSectionConfirmation": "Sigur doriți să ștergeți acestă sectiune?",
+    "deleteCourseContentConfirmation": "Sigur doriți să ștergeți acest continut?"
   },
   "preview": {
     "home": {

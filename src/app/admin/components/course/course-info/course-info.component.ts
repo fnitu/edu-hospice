@@ -358,7 +358,7 @@ export class CourseInfoComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private placeholderFormatService: PlaceholderFormatService,
-              private confirmationDialogService: ConfirmationDialogService,) {
+              private confirmationDialogService: ConfirmationDialogService) {
   }
 
   ngOnInit(): void {

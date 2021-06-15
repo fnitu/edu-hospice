@@ -13,6 +13,8 @@ import {SectionInterface} from './section.interface';
 import {ContentInterface} from './content.interface';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {SnackBarComponent} from '../../../../shared/components/snack-bar/snack-bar.component';
+import {ConfirmationDialogService} from '../../../../shared/components/confirmation-dialog/confirmation-dialog.service';
+import {CustomTranslateService} from '../../../../shared/services/custom-translate/custom-translate.service';
 
 @Component({
   selector: 'app-course-section-and-content',
@@ -34,7 +36,9 @@ export class CourseSectionAndContentComponent implements OnInit {
               public dialog: MatDialog,
               public courseSectionAndContentService: CourseSectionAndContentService,
               private placeholderFormatService: PlaceholderFormatService,
-              private matSnackBar: MatSnackBar) {
+              private matSnackBar: MatSnackBar,
+              private confirmationDialogService: ConfirmationDialogService,
+              private customTranslateService: CustomTranslateService) {
   }
 
   ngOnInit(): void {
@@ -104,7 +108,7 @@ export class CourseSectionAndContentComponent implements OnInit {
     if (event.keyCode === 13 || event.type === 'focusout') {
       this.editedSectionId = -1;
 
-      const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.UPDATE_SECTION_NAME,
+      const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.UPDATE_SECTION,
         {
           '{sectionId}': section.id,
         }
@@ -130,6 +134,43 @@ export class CourseSectionAndContentComponent implements OnInit {
         });
       });
     }
+  }
+
+  public deleteSection(section) {
+    const dialogRef = this.confirmationDialogService.show({
+      data: {
+        message: this.customTranslateService.getTranslation('confirmationDialog.deleteCourseSectionConfirmation'),
+        buttons: [
+          {
+            text: this.customTranslateService.getTranslation('general.yes'),
+            handler: () => {
+              const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.DELETE_SECTION,
+                {
+                  '{sectionId}': section.id,
+                }
+              );
+
+              this.courseSectionAndContentService.deleteSection(url).subscribe((response) => {
+                this.matSnackBar.openFromComponent(SnackBarComponent, {
+                  verticalPosition: 'top',
+                  data: {
+                    content: response.message,
+                    type: GLOBALS.NOTIFICATIONS.INFO,
+                  },
+                });
+
+                dialogRef.close();
+
+                this.getSections();
+              });
+            }
+          },
+          {
+            text: this.customTranslateService.getTranslation('general.no')
+          }
+        ]
+      }
+    });
   }
 
   public editContentTitle(content) {
@@ -166,6 +207,43 @@ export class CourseSectionAndContentComponent implements OnInit {
         });
       });
     }
+  }
+
+  public deleteContent(content) {
+    const dialogRef = this.confirmationDialogService.show({
+      data: {
+        message: this.customTranslateService.getTranslation('confirmationDialog.deleteCourseContentConfirmation'),
+        buttons: [
+          {
+            text: this.customTranslateService.getTranslation('general.yes'),
+            handler: () => {
+              const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.DELETE_SECTION_CONTENT,
+                {
+                  '{contentId}': content.id,
+                }
+              );
+
+              this.courseSectionAndContentService.deleteContent(url).subscribe((response) => {
+                this.matSnackBar.openFromComponent(SnackBarComponent, {
+                  verticalPosition: 'top',
+                  data: {
+                    content: response.message,
+                    type: GLOBALS.NOTIFICATIONS.INFO,
+                  },
+                });
+
+                dialogRef.close();
+
+                this.getSections();
+              });
+            }
+          },
+          {
+            text: this.customTranslateService.getTranslation('general.no')
+          }
+        ]
+      }
+    });
   }
 
   public editSection(section) {

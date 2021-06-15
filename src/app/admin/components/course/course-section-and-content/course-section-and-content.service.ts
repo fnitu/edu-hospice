@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {CreateCourse} from '../../../../shared/interfaces/createCourse';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -59,6 +58,22 @@ export class CourseSectionAndContentService {
     return dataResponse;
   }
 
+  public deleteSection(url): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+
+    const dataResponse = this.http.delete(url, httpOptions);
+
+    dataResponse.pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+
+    return dataResponse;
+  }
+
   addContent(url, data): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -81,6 +96,22 @@ export class CourseSectionAndContentService {
     };
 
     const dataResponse = this.http.put(url, JSON.stringify(data), httpOptions);
+
+    dataResponse.pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+
+    return dataResponse;
+  }
+
+  public deleteContent(url): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+
+    const dataResponse = this.http.delete(url, httpOptions);
 
     dataResponse.pipe(
       catchError((err) => {

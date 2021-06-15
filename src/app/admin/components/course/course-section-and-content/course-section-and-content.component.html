@@ -22,6 +22,9 @@
         <div class="edit" (click)="editSectionTitle(section)" *ngIf="section.id !== editedSectionId">
           <span class="material-icons-outlined">mode_edit</span>
         </div>
+        <div class="delete" (click)="deleteSection(section)" *ngIf="section.id !== editedSectionId">
+          <span class="material-icons-outlined">delete_forever</span>
+        </div>
 
         <div class="button-container">
           <button mat-raised-button color="primary" (click)="editSection(section)">
@@ -51,6 +54,9 @@
 
           <div class="edit" (click)="editContentTitle(content)" *ngIf="content.id !== editedContentId">
             <span class="material-icons-outlined">mode_edit</span>
+          </div>
+          <div class="delete" (click)="deleteContent(content)" *ngIf="content.id !== editedContentId">
+            <span class="material-icons-outlined">delete_forever</span>
           </div>
 
           <div class="button-container">

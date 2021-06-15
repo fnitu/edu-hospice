@@ -63,7 +63,7 @@ export class EditSectionDialogComponent {
   }
 
   saveHandler() {
-    const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.UPDATE_SECTION_NAME,
+    const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.UPDATE_SECTION,
       {
         '{sectionId}': this.data.id,
       }

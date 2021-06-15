@@ -34,13 +34,21 @@
         border-radius: 5px;
         height: 54px;
 
-        .edit {
+        .edit, .delete {
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 50px;
-          color: $editPenColour;
+          width: 25px;
           cursor: pointer;
+        }
+
+        .edit {
+          margin-left: 10px;
+          color: $editPenColour;
+        }
+
+        .delete {
+          color: $actionRed;
         }
 
         .input {
@@ -92,13 +100,21 @@
             width: 35%
           }
 
-          .edit {
+          .edit, .delete {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 50px;
-            color: $editPenColour;
+            width: 25px;
             cursor: pointer;
+          }
+
+          .edit {
+            margin-left: 10px;
+            color: $editPenColour;
+          }
+
+          .delete {
+            color: $actionRed;
           }
 
           .button-container {
