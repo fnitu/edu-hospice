@@ -34,7 +34,7 @@
         border-radius: 5px;
         height: 54px;
 
-        .edit, .delete {
+        .edit, .delete, .visibility {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -49,6 +49,16 @@
 
         .delete {
           color: $actionRed;
+        }
+
+        .visibility {
+          .visibilityIcon {
+            color: $loginButtonColor
+          }
+
+          .visibilityOffIcon {
+            color: $actionRed;
+          }
         }
 
         .input {

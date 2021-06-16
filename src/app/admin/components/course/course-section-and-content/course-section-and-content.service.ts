@@ -125,4 +125,20 @@ export class CourseSectionAndContentService {
   public getSections(url): Observable<any> {
     return this.http.get(url);
   }
+
+  updateSectionVisibility(url, data): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+
+    const dataResponse = this.http.put(url, JSON.stringify(data), httpOptions);
+
+    dataResponse.pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+
+    return dataResponse;
+  }
 }
