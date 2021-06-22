@@ -42,15 +42,20 @@ const routes: Routes = [
       },
       {
         path: ROUTES.ADMIN.QUIZ.LIST,
-        component: QuizListComponent,
-      },
-      {
-        path: ROUTES.ADMIN.QUIZ.NEW,
-        component: NewQuizComponent,
-      },
-      {
-        path: `${ROUTES.ADMIN.QUIZ.NEW}/:id`,
-        component: NewQuizComponent,
+        children: [
+          {
+            path: "",
+            component: QuizListComponent
+          },
+          {
+            path: ROUTES.ADMIN.QUIZ.NEW,
+            component: NewQuizComponent,
+          },
+          {
+            path: `${ROUTES.ADMIN.QUIZ.NEW}/:id`,
+            component: NewQuizComponent,
+          }
+        ]
       },
     ],
   },
