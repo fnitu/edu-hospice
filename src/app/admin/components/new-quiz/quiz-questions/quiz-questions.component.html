@@ -70,7 +70,7 @@
                           [cdkTextareaAutosize]="true"
                           [mat-autosize]
                           [cdkAutosizeMinRows]="TEXTAREA_MIN_ROWS"
-                          [cdkAutosizeMaxRows]="TEXTAREA_MAX_ROWS"></textarea>
+                          [cdkAutosizeMaxRows]="TEXTAREA_MAX_ROWS" disabled></textarea>
 
                 <mat-hint *ngIf="question.type === 'TEXTAREA_SHORT'"
                           align="end">{{textareaElement.value.length}} / {{ TEXTAREA_SHORT_LIMIT }}</mat-hint>
@@ -85,7 +85,7 @@
                           [cdkTextareaAutosize]="true"
                           [mat-autosize]
                           [cdkAutosizeMinRows]="TEXTAREA_MIN_ROWS"
-                          [cdkAutosizeMaxRows]="TEXTAREA_MAX_ROWS"></textarea>
+                          [cdkAutosizeMaxRows]="TEXTAREA_MAX_ROWS" disabled></textarea>
 
                 <mat-hint *ngIf="question.type === 'TEXTAREA_BIG'"
                           align="end">{{textareaElement.value.length}} / {{ TEXTAREA_BIG_LIMIT }}</mat-hint>
