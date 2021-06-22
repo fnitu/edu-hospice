@@ -60,5 +60,7 @@ export const GLOBALS = {
   TEXTAREA: {
     MAX_ROWS: 5,
     MIN_ROWS: 2,
+    SHORT_LIMIT: 500,
+    BIG_LIMIT: 2000
   },
 };

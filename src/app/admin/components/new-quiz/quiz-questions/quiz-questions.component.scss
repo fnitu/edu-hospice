@@ -57,6 +57,14 @@
     }
   }
 
+  .textarea-container {
+    width: 100%;
+    display: flex;
+    .textarea-field {
+      flex: 1;
+    }
+  }
+
   .save-button {
     float: right;
   }

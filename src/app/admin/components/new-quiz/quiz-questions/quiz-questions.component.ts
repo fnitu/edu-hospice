@@ -19,6 +19,12 @@ import { QuizSettingsService } from '../quiz-settings/quiz-settings.service';
 export class QuizQuestionsComponent implements OnInit {
   public questions: QuestionInterface[] = [];
 
+  public readonly TEXTAREA_SHORT_LIMIT = GLOBALS.TEXTAREA.SHORT_LIMIT;
+  public readonly TEXTAREA_BIG_LIMIT = GLOBALS.TEXTAREA.BIG_LIMIT;
+
+  public readonly TEXTAREA_MAX_ROWS = GLOBALS.TEXTAREA.MAX_ROWS;
+  public readonly TEXTAREA_MIN_ROWS = GLOBALS.TEXTAREA.MIN_ROWS;
+
   @Input() quizSettingSaved: boolean = false;
 
   constructor(
