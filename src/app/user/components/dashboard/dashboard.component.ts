@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/shared/services/authentication/auth.service
 import { GLOBALS} from '../../../shared/core/globals';
 import { environment } from "../../../../environments/environment";
 import {PlaceholderFormatService} from '../../../shared/services/format/placeholder-format.service';
+import {HomeCardDialogComponent} from '../../../preview/components/dialog-home-card/home-card-dialog/home-card-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +24,9 @@ export class DashboardComponent implements OnInit {
   constructor(private dashboardService: DashboardService,
               private router: Router,
               private authService: AuthService,
-              private placeholderFormat: PlaceholderFormatService) {}
+              private placeholderFormat: PlaceholderFormatService,
+              private placeholderFormatService: PlaceholderFormatService,
+              public dialog: MatDialog) {}
 
   user = {
     firstName: '',
@@ -37,11 +41,38 @@ export class DashboardComponent implements OnInit {
     this.getCurrentUser();
   }
 
-  public goToCourse(course: Course) {
-    this.router.navigate([
-      `${ROUTES.USER.MAIN_ROUTE}/${ROUTES.USER.COURSE}`,
-      course.id,
-    ]);
+  public goToCourse(course: Course, tab) {
+    if (tab.type === 'RECOMMENDED' || tab.type === 'PENDING' || tab.type === 'FINISHED') {
+      this.dialogCourse(course.id);
+    } else {
+      this.router.navigate([
+        `${ROUTES.USER.MAIN_ROUTE}/${ROUTES.USER.COURSE}`,
+        course.id,
+      ]);
+    }
+  }
+
+  public dialogCourse(id) {
+    const url = this.placeholderFormatService.stringFormat(
+      GLOBALS.DATA_URL.GET_COURSE_INFO,
+      {
+        '{id}': id,
+      }
+    );
+
+    this.dashboardService.getCourseInfo(url).subscribe((response) => {
+      const courseContent = response;
+
+      const defaultConfig = {
+        maxWidth: 781,
+        minWidth: 500,
+        minHeight: 600,
+        data: courseContent,
+        disableClose: false,
+      };
+
+      this.dialog.open(HomeCardDialogComponent, defaultConfig);
+    });
   }
 
   private getCurrentUser() {
