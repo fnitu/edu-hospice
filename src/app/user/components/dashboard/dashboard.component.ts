@@ -1,15 +1,16 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { User } from '../../../shared/interfaces/user';
-import { Router } from '@angular/router';
-import { Course } from '../../../shared/interfaces/course';
-import { DashboardService } from './dashboard.service';
-import { ROUTES } from '../../../shared/core/routes';
-import { AuthService } from 'src/app/shared/services/authentication/auth.service';
-import { GLOBALS} from '../../../shared/core/globals';
-import { environment } from "../../../../environments/environment";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {User} from '../../../shared/interfaces/user';
+import {Router} from '@angular/router';
+import {Course} from '../../../shared/interfaces/course';
+import {DashboardService} from './dashboard.service';
+import {ROUTES} from '../../../shared/core/routes';
+import {AuthService} from 'src/app/shared/services/authentication/auth.service';
+import {GLOBALS} from '../../../shared/core/globals';
+import {environment} from '../../../../environments/environment';
 import {PlaceholderFormatService} from '../../../shared/services/format/placeholder-format.service';
 import {HomeCardDialogComponent} from '../../../preview/components/dialog-home-card/home-card-dialog/home-card-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import {UploadProfilePictureDialogComponent} from './upload-profile-picture-dialog/upload-profile-picture-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +27,8 @@ export class DashboardComponent implements OnInit {
               private authService: AuthService,
               private placeholderFormat: PlaceholderFormatService,
               private placeholderFormatService: PlaceholderFormatService,
-              public dialog: MatDialog) {}
+              public dialog: MatDialog) {
+  }
 
   user = {
     firstName: '',
@@ -80,7 +82,7 @@ export class DashboardComponent implements OnInit {
       let url = GLOBALS.DATA_URL.USER_DETAILS;
 
       const params = {
-        "{id}": data.id
+        '{id}': data.id
       };
 
       url = this.placeholderFormat.stringFormat(url, params);
@@ -97,7 +99,7 @@ export class DashboardComponent implements OnInit {
     let url = GLOBALS.DATA_URL.COURSES_TABS;
 
     const params = {
-      "{userId}": this.user.id
+      '{userId}': this.user.id
     };
 
     url = this.placeholderFormat.stringFormat(url, params);
@@ -108,7 +110,7 @@ export class DashboardComponent implements OnInit {
   }
 
   private getTabData(tab) {
-    if (!tab.courseList){
+    if (!tab.courseList) {
       const url = environment.BASE_URL + tab.link;
 
       this.dashboardService
@@ -123,5 +125,18 @@ export class DashboardComponent implements OnInit {
     const currentTab = this.courseTabs[tab.index];
 
     this.getTabData(currentTab);
+  }
+
+  public uploadProfilePicture(event) {
+    event.preventDefault();
+
+    const defaultConfig = {
+      maxWidth: 781,
+      minWidth: 500,
+      minHeight: 400,
+      panelClass: 'editContentPanel',
+    };
+
+    this.dialog.open(UploadProfilePictureDialogComponent, defaultConfig);
   }
 }

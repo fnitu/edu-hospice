@@ -1,0 +1,11 @@
+<div class="uploadContainer">
+
+  <div #fileUpload class="fileUpload">
+    <div> {{'upload.placeholderDragNDropDescription' | translate}}</div>
+    <label class="browseButtonLabel" for="browseFile_{{componentId}}">{{'upload.buttonBrowse' | translate}}</label>
+    <input class="browseButton" id="browseFile_{{componentId}}" type="file" [multiple]="config.multiple">
+  </div>
+
+  <ul #uploadedFilesContainer class="uploadedFiles"></ul>
+</div>
+

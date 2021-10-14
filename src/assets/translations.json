@@ -140,6 +140,7 @@
       "phone": "Tel",
       "totalFinishedCourses": "Total cursuri finalizate",
       "totalHoursFinishedCourses": "Total ore parcurse",
+      "uploadProfilePictureDialogComponentTitle": "Upload profile picture",
       "tabs": {
         "pending": "În așteptare",
         "ongoing": "Începute",
@@ -314,5 +315,10 @@
       "adminDashboard": "Panou principal",
       "logout": "Închidere sesiune"
     }
+  },
+  "upload": {
+    "buttonBrowse": "Browse",
+    "placeholderDragNDropDescription": "Drag files here",
+    "warning": "Only one file can be uploaded. Please select only one file and try again."
   }
 }

@@ -66,6 +66,8 @@ import { textareaFormlyFieldExtension } from '../admin/components/course/textare
 import { inputFormlyFieldExtension } from '../admin/components/course/input-formly-field.extension';
 import { MatBadgeModule } from '@angular/material/badge';
 import { AutoFocusDirective } from './services/auto-focus/auto-focus.directive';
+import { UploadComponent } from './components/upload/upload.component';
+
 @NgModule({
   declarations: [
     MaterialElevationDirective,
@@ -78,6 +80,7 @@ import { AutoFocusDirective } from './services/auto-focus/auto-focus.directive';
     GridTopToolbarComponent,
     TopToolbarComponent,
     AutoFocusDirective,
+    UploadComponent,
   ],
   imports: [
     CommonModule,
@@ -153,7 +156,8 @@ import { AutoFocusDirective } from './services/auto-focus/auto-focus.directive';
     CdkStepperModule,
     MatStepperModule,
     AutoFocusDirective,
-    CdkTextareaAutosize
+    CdkTextareaAutosize,
+    UploadComponent
   ],
   providers: [
     {
