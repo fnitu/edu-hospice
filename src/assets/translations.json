@@ -178,6 +178,7 @@
       "addNewCourse": "Creeaza Curs",
       "courseDetails": "Detaliile Cursului",
       "courseContent": "Continutul Cursului",
+      "uploadCoursePicture": "Încarcă o imagine pentru curs",
       "name": "Nume",
       "shortDescription": "Scurtă descriere",
       "description": "Descriere",
@@ -319,6 +320,6 @@
   "upload": {
     "buttonBrowse": "Browse",
     "placeholderDragNDropDescription": "Drag files here",
-    "warning": "Only one file can be uploaded. Please select only one file and try again."
+    "warning": "Doar un singur fişier poate sa fie incarcat. Vă rugam selectați doar un singur fişier si încercați din nou."
   }
 }
