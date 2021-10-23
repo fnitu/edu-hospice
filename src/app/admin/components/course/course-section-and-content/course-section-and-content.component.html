@@ -25,6 +25,10 @@
         <div class="delete" (click)="deleteSection(section)" *ngIf="section.id !== editedSectionId">
           <span class="material-icons-outlined">delete_forever</span>
         </div>
+        <div class="visibility" (click)="editVisibilityStatus(section)" *ngIf="section.id !== editedContentId">
+          <span class="material-icons-outlined visibilityIcon" *ngIf="section.visible" >visibility</span>
+          <span class="material-icons-outlined visibilityOffIcon" *ngIf="!section.visible" >visibility_off</span>
+        </div>
 
         <div class="button-container">
           <button mat-raised-button color="primary" (click)="editSection(section)">

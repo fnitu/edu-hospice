@@ -1,6 +1,9 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+import {GLOBALS} from '../../../shared/core/globals';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {CustomTranslateService} from '../../../shared/services/custom-translate/custom-translate.service';
 
 @Component({
   selector: 'app-course',

@@ -3,6 +3,7 @@
     <div class="container">
       <div class="container-avatar">
         <div class="avatar">
+          <span class="material-icons-outlined" (click)="uploadProfilePicture($event)">edit</span>
           <a href="#">
             <img
               src="https://demos.creative-tim.com/material-dashboard-pro-angular2/assets/img/faces/marc.jpg"
@@ -106,7 +107,7 @@
                   [types]="types"
                   [hasAction]="true"
                   [tab]="tab"
-                  (cardAction)="goToCourse(course)"
+                  (cardAction)="goToCourse(course, tab)"
                 ></app-course-card>
               </div>
             </div>

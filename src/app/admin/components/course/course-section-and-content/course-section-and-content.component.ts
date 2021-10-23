@@ -116,7 +116,7 @@ export class CourseSectionAndContentComponent implements OnInit {
 
       const data = {
         name: event.target.value,
-        visible: true
+        visible: section.visible
       };
 
       this.courseSectionAndContentService.updateSectionName(url, data).subscribe((response) => {
@@ -279,5 +279,32 @@ export class CourseSectionAndContentComponent implements OnInit {
     };
 
     this.dialogRef = this.dialog.open(ManageResourcesDialog, defaultConfig);
+  }
+
+  editVisibilityStatus(section) {
+    const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.UPDATE_SECTION,
+      {
+        '{sectionId}': section.id,
+      }
+    );
+
+    const data = {
+      name: section.name,
+      visible: !section.visible
+    };
+
+    this.courseSectionAndContentService.updateSectionVisibility(url, data).subscribe((response) => {
+      if (response.success) {
+        section.visible = !section.visible;
+      }
+
+      this.matSnackBar.openFromComponent(SnackBarComponent, {
+        verticalPosition: 'top',
+        data: {
+          content: response.message,
+          type: GLOBALS.NOTIFICATIONS.INFO,
+        },
+      });
+    });
   }
 }

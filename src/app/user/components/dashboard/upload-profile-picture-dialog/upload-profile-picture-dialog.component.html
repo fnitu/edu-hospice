@@ -1,0 +1,13 @@
+<div class="container">
+  <div mat-dialog-title class="title">
+    {{"user.dashboard.uploadProfilePictureDialogComponentTitle" | translate}}
+  </div>
+  <div mat-dialog-content>
+    <app-upload [config]="uploadConfig" #uploadComponent ></app-upload>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-flat-button [mat-dialog-close]="true">
+      {{ "general.close" | translate }}
+    </button>
+  </div>
+</div>

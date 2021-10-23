@@ -24,11 +24,14 @@
                     <mat-option value="RADIO">{{ 'admin.quiz.question.radioType' | translate }}</mat-option>
                     <mat-option value="SELECT">{{ 'admin.quiz.question.selectType' | translate }}</mat-option>
                     <mat-option value="CHECKBOXES">{{ 'admin.quiz.question.checkboxesType' | translate }}</mat-option>
+                    <mat-option value="TEXTAREA_SHORT">{{ 'admin.quiz.question.textareaShortType' | translate }}</mat-option>
+                    <mat-option value="TEXTAREA_BIG">{{ 'admin.quiz.question.textareaBigType' | translate }}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
 
-        <div class="options-container">
+        <div class="options-container"
+             *ngIf="question.type !== 'TEXTAREA_SHORT' && question.type !== 'TEXTAREA_BIG'">
             <div class="option-wrapper" *ngFor="let option of question.options">
                 <mat-icon class="material-icons-outlined question-type-icon"
                           *ngIf="question.type === 'RADIO'">circle</mat-icon>
@@ -55,6 +58,38 @@
                     </button>
                 </div>
             </div>
+        </div>
+
+        <div class="textarea-container" *ngIf="question.type === 'TEXTAREA_SHORT' || question.type === 'TEXTAREA_BIG'">
+            <mat-form-field *ngIf="question.type === 'TEXTAREA_SHORT'"
+                            [floatLabel]="'auto'" class="textarea-field">
+                <mat-label *ngIf="question.type === 'TEXTAREA_SHORT'">{{ 'admin.quiz.question.textareaShortLabel' | translate }}</mat-label>
+
+                <textarea #textareaElement matInput
+                          [maxLength]="TEXTAREA_SHORT_LIMIT"
+                          [cdkTextareaAutosize]="true"
+                          [mat-autosize]
+                          [cdkAutosizeMinRows]="TEXTAREA_MIN_ROWS"
+                          [cdkAutosizeMaxRows]="TEXTAREA_MAX_ROWS" disabled></textarea>
+
+                <mat-hint *ngIf="question.type === 'TEXTAREA_SHORT'"
+                          align="end">{{textareaElement.value.length}} / {{ TEXTAREA_SHORT_LIMIT }}</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="question.type === 'TEXTAREA_BIG'"
+                            [floatLabel]="'auto'" class="textarea-field">
+                <mat-label *ngIf="question.type === 'TEXTAREA_BIG'">{{ 'admin.quiz.question.textareaBigLabel' | translate }}</mat-label>
+
+                <textarea #textareaElement matInput
+                          [maxLength]="TEXTAREA_BIG_LIMIT"
+                          [cdkTextareaAutosize]="true"
+                          [mat-autosize]
+                          [cdkAutosizeMinRows]="TEXTAREA_MIN_ROWS"
+                          [cdkAutosizeMaxRows]="TEXTAREA_MAX_ROWS" disabled></textarea>
+
+                <mat-hint *ngIf="question.type === 'TEXTAREA_BIG'"
+                          align="end">{{textareaElement.value.length}} / {{ TEXTAREA_BIG_LIMIT }}</mat-hint>
+            </mat-form-field>
         </div>
     </mat-card-content>
 

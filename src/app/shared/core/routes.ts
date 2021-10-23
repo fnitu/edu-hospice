@@ -24,7 +24,7 @@ export const ROUTES = {
     },
     USERS: 'users',
     QUIZ: {
-      NEW: 'quiz-list/quiz',
+      NEW: 'quiz',
       LIST: 'quiz-list',
     },
     PROFILE_EDIT: 'edit-profile',

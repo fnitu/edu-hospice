@@ -1,0 +1,24 @@
+.mat-dialog-container {
+  display: flex;
+
+  app-upload-profile-picture-dialog {
+    height: 400px;
+    flex: 1;
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      .mat-dialog-content {
+        flex: 1;
+      }
+
+      .mat-dialog-actions {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+}
+

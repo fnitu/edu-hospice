@@ -21,6 +21,7 @@ import { ManageResourcesDialog } from './components/course/course-section-and-co
 import { CourseInfoComponent } from './components/course/course-info/course-info.component';
 import {NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule} from '@angular-material-components/datetime-picker';
 import {MatDatepickerModule } from '@angular/material/datepicker';
+import { UploadCoursePictureComponent } from './components/course/upload-course-picture-dialog/upload-course-picture.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {MatDatepickerModule } from '@angular/material/datepicker';
     EditSectionDialogComponent,
     ManageResourcesDialog,
     CourseInfoComponent,
+    UploadCoursePictureComponent,
   ],
   imports: [
     SharedModule,

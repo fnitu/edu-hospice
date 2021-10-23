@@ -140,6 +140,7 @@
       "phone": "Tel",
       "totalFinishedCourses": "Total cursuri finalizate",
       "totalHoursFinishedCourses": "Total ore parcurse",
+      "uploadProfilePictureDialogComponentTitle": "Upload profile picture",
       "tabs": {
         "pending": "În așteptare",
         "ongoing": "Începute",
@@ -177,6 +178,7 @@
       "addNewCourse": "Creeaza Curs",
       "courseDetails": "Detaliile Cursului",
       "courseContent": "Continutul Cursului",
+      "uploadCoursePicture": "Încarcă o imagine pentru curs",
       "name": "Nume",
       "shortDescription": "Scurtă descriere",
       "description": "Descriere",
@@ -271,6 +273,10 @@
         "checkboxesType": "Selecție multiplă",
         "radioType": "Selecție singulară",
         "selectType": "Listă drop-down",
+        "textareaShortType": "Paragraf scurt",
+        "textareaBigType": "Paragraf lung",
+        "textareaBigLabel": "Textul unui raspuns lung",
+        "textareaShortLabel": "Textul unui raspuns scurt",
         "deleteLastQuestionMessage": "Ultima întrebare nu se poate șterge. Chestionarul trebuie să aibă cel puțin o întrebare.",
         "deleteLastOptionMessage": "Ultima opțiune nu se poate șterge. Întrebarea trebuie să aibă cel puțin o opțiune.",
         "newOption": "Opțiune nouă",
@@ -310,5 +316,10 @@
       "adminDashboard": "Panou principal",
       "logout": "Închidere sesiune"
     }
+  },
+  "upload": {
+    "buttonBrowse": "Browse",
+    "placeholderDragNDropDescription": "Drag files here",
+    "warning": "Doar un singur fişier poate sa fie incarcat. Vă rugam selectați doar un singur fişier si încercați din nou."
   }
 }

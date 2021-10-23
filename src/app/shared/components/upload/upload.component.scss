@@ -1,0 +1,124 @@
+@import "../../../../styles/scss/imports";
+
+.uploadContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .fileUpload {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 400;
+    color: $generalTextColor;
+    border: 2px dashed $darkBorder;
+
+    .browseButton {
+      display: none;
+    }
+
+    .browseButtonLabel {
+      font-size: 16px;
+      color: $actionGreen;
+      cursor: pointer;
+    }
+
+    &.dragOver {
+      background-color: $hoverAndSelectedBackground;
+    }
+
+    &.blueimp-fileupload-disabled {
+      cursor: no-drop;
+
+      .browseButtonLabel {
+        cursor: no-drop;
+      }
+    }
+  }
+
+  .uploadedFiles {
+    flex: 1;
+    overflow: auto;
+    margin-top: 20px;
+    margin-bottom: 0;
+    padding: 0;
+
+    .template-upload, .template-download {
+      display: flex;
+      margin-bottom: 15px;
+
+      .documentIcon {
+        display: flex;
+        align-self: flex-end;
+
+        &:before {
+          font-size: 25px;
+          margin-right: 10px;
+        }
+
+      }
+
+      .file {
+        flex: 1;
+
+        .fileName {
+          font-size: 14px;
+          margin-bottom: 5px;
+          word-break: break-all;
+        }
+
+        .fileProgress {
+          height: 10px;
+        }
+      }
+
+      .remove, .cancel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        margin: 0 10px;
+        color: $actionRed;
+      }
+    }
+
+    .template-upload {
+      .file {
+        .fileProgress {
+          background-color: $hoverAndSelectedBackground;
+
+          .fileProgressBar {
+            height: 100%;
+            transition: width 0.6s ease;
+            background-color: $actionGreen;
+          }
+        }
+      }
+    }
+
+    .template-download {
+      .file {
+        .fileProgress {
+          background-color: $cardLabelHourColor;
+          width: 100%;
+        }
+
+        &.errorFile {
+          .fileName {
+            color: $actionRed;
+          }
+
+          .fileProgress {
+            background-color: $actionRed;
+          }
+        }
+      }
+    }
+  }
+}
+
+
