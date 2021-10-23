@@ -9,6 +9,7 @@ import { ROUTES } from '../shared/core/routes';
 import { NewQuizComponent } from './components/new-quiz/new-quiz.component';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
 import { CourseComponent } from './components/course/course.component';
+import { RegisterComponent } from '../preview/components/register/register.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
       {
         path: `${ROUTES.ADMIN.QUIZ.NEW}/:id`,
         component: NewQuizComponent,
+      },
+      {
+        path: `${ROUTES.ADMIN.PROFILE_EDIT}`,
+        component: RegisterComponent,
       },
     ],
   },

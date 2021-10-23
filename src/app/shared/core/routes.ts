@@ -3,6 +3,7 @@ export const ROUTES = {
     MAIN_ROUTE: 'user',
     DASHBOARD: 'dashboard',
     COURSE: 'course/course',
+    EDIT_USER_INFO: 'personal-data-edit',
   },
   PREVIEW: {
     MAIN_ROUTE: 'preview',
@@ -26,5 +27,6 @@ export const ROUTES = {
       NEW: 'quiz-list/quiz',
       LIST: 'quiz-list',
     },
+    PROFILE_EDIT: 'edit-profile',
   },
 };
