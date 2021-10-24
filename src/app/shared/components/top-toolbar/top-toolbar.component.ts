@@ -15,27 +15,27 @@ import { Observable } from 'rxjs';
   selector: 'app-top-toolbar',
   templateUrl: './top-toolbar.component.html',
   styleUrls: ['./top-toolbar.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class TopToolbarComponent implements OnInit {
   public previewRoute = ROUTES.PREVIEW.MAIN_ROUTE;
   public loginRoute = `${ROUTES.PREVIEW.MAIN_ROUTE}/${ROUTES.PREVIEW.LOGIN}`;
   public readonly GLOBALS = GLOBALS;
 
-  constructor(
-    private loginService: LoginService,
-    private router: Router,
-    public authService: AuthService,
-    private translateService: TranslateService,
-    private loadingMaskService: LoadingMaskService,
-    private appService: AppService
-  ) {
+  constructor(private loginService: LoginService,
+              private router: Router,
+              public authService: AuthService,
+              private translateService: TranslateService,
+              private loadingMaskService: LoadingMaskService,
+              private appService: AppService) {
+
     // init translations
     this.translateService.setTranslation('en', TranslationsJson);
     this.translateService.setDefaultLang('en');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   ngAfterViewInit() {
     this.loadingMaskService.init();
@@ -46,44 +46,27 @@ export class TopToolbarComponent implements OnInit {
   }
 
   public goToDashboard() {
-    this.router.navigate([
-      `${ROUTES.USER.MAIN_ROUTE}/${ROUTES.USER.DASHBOARD}`,
-    ]);
-  }
-
-  public goToEditProfile() {
-    this.authService.currentUser.then((user) => {
-      user.role === GLOBALS.ROLES.USER &&
-        this.router.navigate([
-          `${ROUTES.USER.MAIN_ROUTE}/${ROUTES.USER.EDIT_USER_INFO}`,
-        ]);
-      user.role === GLOBALS.ROLES.ADMIN &&
-        this.router.navigate([
-          `${ROUTES.ADMIN.MAIN_ROUTE}/${ROUTES.ADMIN.PROFILE_EDIT}`,
-        ]);
-    });
+    this.router.navigate([`${ROUTES.USER.MAIN_ROUTE}/${ROUTES.USER.DASHBOARD}`]);
   }
 
   public logout() {
-    this.appService.executeLogout().subscribe((response) => {
-      if (response.success) {
-        this.loginService.userDetails = null;
-        this.authService.currentUserResponse = null;
+    this.appService.executeLogout().subscribe(
+      (response) => {
+        if (response.success) {
+          this.loginService.userDetails = null;
+          this.authService.currentUserResponse = null;
 
-        this.authService.accessToken = '';
+          this.authService.accessToken = '';
 
-        this.router.navigate([ROUTES.PREVIEW.MAIN_ROUTE]);
+          this.router.navigate([ROUTES.PREVIEW.MAIN_ROUTE]);
+        }
       }
-    });
+    );
   }
 
-  public checkUserRole(userRole: string): Observable<any> {
+  public checkUserRole(userRole: string): Observable<any>{
     let checkUser$: Observable<any>;
-    checkUser$ = this.authService.currentUserResponse.pipe(
-      map((data) => {
-        return data.role === userRole;
-      })
-    );
+    checkUser$ = this.authService.currentUserResponse.pipe(map((data => { return data.role === userRole})));
     return checkUser$;
   }
 }

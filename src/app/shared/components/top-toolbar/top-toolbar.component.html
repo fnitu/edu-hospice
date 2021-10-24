@@ -1,57 +1,39 @@
 <mat-toolbar class="mat-toolbar">
   <mat-toolbar-row>
-    <h2 class="logo-title" (click)="goToHome()">
-      {{ "general.siteName" | translate }}
-    </h2>
+    <h2 class="logo-title" (click)="goToHome()">{{ 'general.siteName' | translate }}</h2>
     <span class="example-spacer"></span>
     <nav class="navigation">
       <ul>
-        <li>
-          <a
-            mat-button
-            routerLink="{{ previewRoute }}"
-            routerLinkActive="active"
-            class="home-tab"
-            >{{ "general.home" | translate }}</a
-          >
-        </li>
-        <li>
-          <a
-            mat-button
-            routerLink="{{ loginRoute }}"
-            routerLinkActive="active"
-            *ngIf="!authService.isAuthenticated()"
-            >{{ "general.login" | translate }}</a
-          >
-        </li>
+        <li><a mat-button routerLink="{{previewRoute}}" routerLinkActive="active" class="home-tab">{{ 'general.home' | translate }}</a></li>
+        <li><a mat-button routerLink="{{loginRoute}}" routerLinkActive="active" *ngIf="!authService.isAuthenticated()">{{ 'general.login' | translate }}</a></li>
       </ul>
     </nav>
 
     <div class="userIcons" *ngIf="authService.isAuthenticated()">
       <div>
         <mat-icon
-          (click)="goToEditProfile()"
+          *ngIf="checkUserRole(GLOBALS.ROLES.USER) | async"
+          (click)="goToDashboard()"
           matTooltip="{{ 'topToolbar.tooltips.userDashboard' | translate }}"
-          matTooltipClass="icon-tooltip"
-          >account_circle
+          matTooltipClass="icon-tooltip">account_circle
         </mat-icon>
       </div>
       <div>
         <mat-icon
+          *ngIf="checkUserRole(GLOBALS.ROLES.ADMIN) | async"
           (click)="goToDashboard()"
           matTooltip="{{ 'topToolbar.tooltips.adminDashboard' | translate }}"
-          matTooltipClass="icon-tooltip"
-          >dashboard
+          matTooltipClass="icon-tooltip">dashboard
         </mat-icon>
       </div>
       <div>
         <mat-icon
           (click)="logout()"
           matTooltip="{{ 'topToolbar.tooltips.logout' | translate }}"
-          matTooltipClass="icon-tooltip"
-          >exit_to_app
+          matTooltipClass="icon-tooltip">exit_to_app
         </mat-icon>
       </div>
     </div>
+
   </mat-toolbar-row>
 </mat-toolbar>
