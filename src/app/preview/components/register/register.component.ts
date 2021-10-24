@@ -1,4 +1,9 @@
-import { AfterViewInit, Component, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -6,6 +11,7 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 import { MultiRequiredValidator } from 'src/app/shared/components/formly/formly-validation-config';
 import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
 import { GLOBALS } from 'src/app/shared/core/globals';
+import { AuthService } from 'src/app/shared/services/authentication/auth.service';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
 import { TooltipService } from 'src/app/shared/services/tooltip/tooltip.service';
 import { RegisterService } from './register.service';
@@ -16,7 +22,8 @@ import { RegisterService } from './register.service';
   styleUrls: ['./register.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class RegisterComponent implements AfterViewInit {
+export class RegisterComponent implements OnInit, AfterViewInit {
+  isAuth = this.authService.isAuthenticated();
   private passwordRules = {
     textPassMinLength: 6,
     textPassMaxLength: 10,
@@ -107,6 +114,7 @@ export class RegisterComponent implements AfterViewInit {
       key: 'password',
       type: 'input',
       id: 'password',
+      hideExpression: this.isAuth,
       templateOptions: {
         type: 'password',
         label: this.customTranslateService.getTranslation(
@@ -126,6 +134,7 @@ export class RegisterComponent implements AfterViewInit {
     {
       key: 'confirmPassword',
       type: 'input',
+      hideExpression: this.isAuth,
       templateOptions: {
         type: 'password',
         label: this.customTranslateService.getTranslation(
@@ -253,9 +262,20 @@ export class RegisterComponent implements AfterViewInit {
     private registerService: RegisterService,
     private route: ActivatedRoute,
     private router: Router,
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
+    private authService: AuthService
   ) {}
 
+  ngOnInit() {
+    if (this.isAuth) {
+      this.authService.currentUser.then((user) => {
+        console.log(user);
+        this.personalDataForm
+          .get('name')
+          .setValue({ fName: user.firstName, lName: user.lastName });
+      });
+    }
+  }
   ngAfterViewInit() {
     this.disableStepper();
   }
@@ -419,26 +439,49 @@ export class RegisterComponent implements AfterViewInit {
       termsAndConditions: this.finalizationForm.value['agreement'],
     };
 
-    this.registerService.registerUser(registerFormDetails).subscribe(
-      (response) => {
-        this.matSnackBar.openFromComponent(SnackBarComponent, {
-          verticalPosition: 'top',
-          data: {
-            content: this.customTranslateService.getTranslation(
-              response['message']
-            ),
-            type: GLOBALS.NOTIFICATIONS.INFO,
-          },
-        });
-        setTimeout(() => {
-          this.router.navigate(['login'], {
-            relativeTo: this.route.parent,
+    !this.isAuth &&
+      this.registerService.registerUser(registerFormDetails).subscribe(
+        (response) => {
+          this.matSnackBar.openFromComponent(SnackBarComponent, {
+            verticalPosition: 'top',
+            data: {
+              content: this.customTranslateService.getTranslation(
+                response['message']
+              ),
+              type: GLOBALS.NOTIFICATIONS.INFO,
+            },
           });
-        }, 3000);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+          setTimeout(() => {
+            this.router.navigate(['login'], {
+              relativeTo: this.route.parent,
+            });
+          }, 3000);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    this.isAuth &&
+      this.registerService.editUserData(registerFormDetails).subscribe(
+        (response) => {
+          this.matSnackBar.openFromComponent(SnackBarComponent, {
+            verticalPosition: 'top',
+            data: {
+              content: this.customTranslateService.getTranslation(
+                response['message']
+              ),
+              type: GLOBALS.NOTIFICATIONS.INFO,
+            },
+          });
+          setTimeout(() => {
+            this.router.navigate(['dashboard'], {
+              relativeTo: this.route.parent,
+            });
+          }, 3000);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 }

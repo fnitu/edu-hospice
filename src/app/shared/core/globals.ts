@@ -5,6 +5,7 @@ export const GLOBALS = {
     LOGIN: `${environment.BASE_URL}/api/auth/login`,
     LOGOUT: `${environment.BASE_URL}/api/auth/logout`,
     REGISTER: `${environment.BASE_URL}/api/auth/register`,
+    EDIT_USER_DATA: `${environment.BASE_URL}/api/users`,
     CURRENT_USER: `${environment.BASE_URL}/api/users/current-user`,
     SEND_EMAIL_FOR_RECOVER_PASSWORD: `${environment.BASE_URL}/api/auth/send-reset-password-link`,
     RESET_PASSWORD: `${environment.BASE_URL}/api/auth/reset-password`,
@@ -61,6 +62,6 @@ export const GLOBALS = {
     MAX_ROWS: 5,
     MIN_ROWS: 2,
     SHORT_LIMIT: 500,
-    BIG_LIMIT: 2000
+    BIG_LIMIT: 2000,
   },
 };
