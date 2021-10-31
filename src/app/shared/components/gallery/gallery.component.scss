@@ -1,0 +1,91 @@
+@import "~blueimp-gallery/css/blueimp-gallery.css";
+@import "~blueimp-gallery/css/blueimp-gallery-indicator.css";
+@import "../../../../styles/scss/imports";
+
+app-gallery {
+  .imageLink {
+    margin-right: 10px;
+    cursor: pointer;
+    position: relative;
+
+    .material-icons-outlined {
+      position: absolute;
+      right: 0;
+      color: $darkBorder;
+      background-color: $cardBackground;
+      border-radius: 50%;
+      opacity: 0.6;
+
+      &:hover {
+        color: $actionRed;
+        opacity: 1;
+      }
+    }
+
+    .image {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+  }
+
+  .blueimp-gallery {
+    height: 100%;
+
+    &.blueimp-gallery-controls {
+      .prev, .next, .close {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        outline: none;
+        color: $generalTextColor;
+        background-color: $cardBackgroundColor;
+        background-image: none;
+        @include shadowLevel-1;
+        font-size: 30px;
+        width: 30px;
+        height: 30px;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      .close {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    & > .indicator > li {
+      background-size: contain;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+
+      &:after {
+        top: -135px;
+        width: 125px;
+        height: 125px;
+        left: 31px;
+        border: 1px solid $lightBorder;
+      }
+
+    }
+
+    & > .slides > .slide-loading {
+      background: none;
+    }
+  }
+
+  // Duplication from node_modules/blueimp-gallery/css/blueimp-gallery.css because it was defined with @supports and it's not included in IE11
+  .blueimp-gallery-contain > .slides > .slide > .slide-content,
+  .blueimp-gallery-contain > .slides > .slide > .slide-content > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    font-family: 'object-fit: contain;'
+  }
+}

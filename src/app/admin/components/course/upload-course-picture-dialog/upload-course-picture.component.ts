@@ -3,6 +3,9 @@ import {GLOBALS} from '../../../../shared/core/globals';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {CustomTranslateService} from '../../../../shared/services/custom-translate/custom-translate.service';
 import {UploadCoursePictureService} from './upload-course-picture.service';
+import {GalleryLinkInterface} from '../../../../shared/components/gallery/gallery-link.interface';
+
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-upload-course-picture',
@@ -13,12 +16,14 @@ import {UploadCoursePictureService} from './upload-course-picture.service';
 export class UploadCoursePictureComponent implements OnInit, AfterViewInit {
 
   @ViewChild('uploadComponent') uploadComponent;
+  @ViewChild('gallery') gallery;
 
   @Input() courseId;
 
   public images = [];
   public uploadConfig = {};
   public fileUploaded = null;
+  public imageLinks: GalleryLinkInterface[];
   private numberOfUploadedFiles = 0;
 
   constructor(private matSnackBar: MatSnackBar,
@@ -65,10 +70,19 @@ export class UploadCoursePictureComponent implements OnInit, AfterViewInit {
   }
 
   private getImages() {
-    const url = '';
+    const url = './assets/json/courseImages.json';
 
     this.uploadCoursePictureService.getImages(url).subscribe((response) => {
       this.images = response.payload;
+
+      this.imageLinks = _.map(response.payload, (item) => {
+        return {
+          'href': item.url,
+          'thumbnail': item.url
+        };
+      });
+
+      this.gallery.linksUpdated.emit(this.imageLinks);
     });
   }
 

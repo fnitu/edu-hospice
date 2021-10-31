@@ -67,6 +67,7 @@ import { inputFormlyFieldExtension } from '../admin/components/course/input-form
 import { MatBadgeModule } from '@angular/material/badge';
 import { AutoFocusDirective } from './services/auto-focus/auto-focus.directive';
 import { UploadComponent } from './components/upload/upload.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { UploadComponent } from './components/upload/upload.component';
     TopToolbarComponent,
     AutoFocusDirective,
     UploadComponent,
+    GalleryComponent,
   ],
   imports: [
     CommonModule,
@@ -157,7 +159,8 @@ import { UploadComponent } from './components/upload/upload.component';
     MatStepperModule,
     AutoFocusDirective,
     CdkTextareaAutosize,
-    UploadComponent
+    UploadComponent,
+    GalleryComponent
   ],
   providers: [
     {

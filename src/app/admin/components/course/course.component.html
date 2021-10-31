@@ -3,11 +3,11 @@
     <mat-tab label="{{ 'admin.createCourse.courseDetails' | translate }}">
       <app-course-info (cardInfoHasBeenSubmitted)="cardInfoSubmitedHandler($event)" [courseId]="courseId"></app-course-info>
     </mat-tab>
-    <mat-tab label="{{ 'admin.createCourse.courseContent' | translate }}"  [disabled]="!courseId" >
-      <app-course-section-and-content *ngIf="!!courseId" [courseId]="courseId"></app-course-section-and-content>
-    </mat-tab>
     <mat-tab label="{{ 'admin.createCourse.uploadCoursePicture' | translate }}"  [disabled]="!courseId" >
       <app-upload-course-picture *ngIf="!!courseId" [courseId]="courseId"></app-upload-course-picture>
+    </mat-tab>
+    <mat-tab label="{{ 'admin.createCourse.courseContent' | translate }}"  [disabled]="!courseId" >
+      <app-course-section-and-content *ngIf="!!courseId" [courseId]="courseId"></app-course-section-and-content>
     </mat-tab>
   </mat-tab-group>
 </div>

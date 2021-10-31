@@ -1,0 +1,37 @@
+<div class="galleryLinks" *ngIf="isReady">
+
+  <a class="imageLink" *ngFor="let link of links"
+     (click)="openImage($event)">
+    <span class="material-icons-outlined" (click)="deleteImg($event)">cancel</span>
+    <img class="image" [src]="link.href"/>
+  </a>
+
+</div>
+
+<div class="blueimp-gallery blueimp-gallery-controls blueimp-gallery-contain"
+     aria-label="image gallery" aria-modal="true" role="dialog">
+  <div class="slides" aria-live="polite"></div>
+
+  <a class="prev"
+     aria-controls="blueimp-gallery"
+     aria-label="previous slide"
+     aria-keyshortcuts="ArrowLeft">
+    <span class="material-icons-outlined">arrow_back_ios</span>
+  </a>
+
+  <a class="next"
+     aria-controls="blueimp-gallery"
+     aria-label="next slide"
+     aria-keyshortcuts="ArrowRight">
+    <span class="material-icons-outlined">arrow_forward_ios</span>
+  </a>
+
+  <a class="close"
+     aria-controls="blueimp-gallery"
+     aria-label="close"
+     aria-keyshortcuts="Escape">
+    <span class="material-icons-outlined">close</span>
+  </a>
+
+  <ol class="indicator"></ol>
+</div>
