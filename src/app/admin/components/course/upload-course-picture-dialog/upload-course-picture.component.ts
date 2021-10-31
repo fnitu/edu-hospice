@@ -23,7 +23,7 @@ export class UploadCoursePictureComponent implements OnInit, AfterViewInit {
   public images = [];
   public uploadConfig = {};
   public fileUploaded = null;
-  public imageLinks: GalleryLinkInterface[];
+  public imageLinks: GalleryLinkInterface[] = [];
   private numberOfUploadedFiles = 0;
 
   constructor(private matSnackBar: MatSnackBar,
@@ -81,8 +81,6 @@ export class UploadCoursePictureComponent implements OnInit, AfterViewInit {
           'thumbnail': item.url
         };
       });
-
-      this.gallery.linksUpdated.emit(this.imageLinks);
     });
   }
 

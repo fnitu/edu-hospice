@@ -1,2 +1,2 @@
 <app-upload [config]="uploadConfig" #uploadComponent ></app-upload>
-<app-gallery [links]="imageLinks" #gallery></app-gallery>
+<app-gallery *ngIf="imageLinks.length" [links]="imageLinks" #gallery></app-gallery>
