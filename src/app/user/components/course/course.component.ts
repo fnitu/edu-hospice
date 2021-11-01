@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { CourseService } from './course.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree'
@@ -8,6 +8,8 @@ import { CourseInterface, CourseTreeNodeInterface } from "./course.interface";
 import * as _ from "lodash";
 import { User } from "../../../shared/interfaces/user";
 import { AuthService } from "../../../shared/services/authentication/auth.service";
+import { ROUTES } from "../../../shared/core/routes";
+import { Subscription } from "rxjs";
 
 @Component({
     selector: 'app-course',
@@ -32,8 +34,14 @@ export class CourseComponent implements OnInit {
     public treeControl = new NestedTreeControl<CourseTreeNodeInterface>(node => node.children);
     public dataSource = new MatTreeNestedDataSource<CourseTreeNodeInterface>();
 
+    private queryParamsSubscription = new Subscription();
+
+    public disablePrevButton: boolean = false;
+    public disableNextButton: boolean = false;
+
     constructor(private courseService: CourseService,
                 private route: ActivatedRoute,
+                private router: Router,
                 private sanitizer: DomSanitizer,
                 private authService: AuthService) {
     }
@@ -57,7 +65,17 @@ export class CourseComponent implements OnInit {
 
             this.tree.treeControl.expandAll();
 
-            this.activateFirstLeaf();
+            this.queryParamsSubscription = this.route.queryParams.subscribe((params) => {
+                // If the query params is defined, navigates directly to that node
+                if (params.node) {
+                    this.openNode(params.node);
+                } else {
+                    // Otherwise activate first leaf
+                    this.activateFirstLeaf();
+                }
+            });
+
+            this.queryParamsSubscription.unsubscribe();
         });
     }
 
@@ -121,6 +139,10 @@ export class CourseComponent implements OnInit {
     }
 
     public openNode(nodeId) {
+        //TODO make request for the node
+
+        this.changeRoute(nodeId);
+
         this.selectedNode = this.nodesMap.get(nodeId);
 
         this.selectedNodeId = nodeId;
@@ -128,6 +150,17 @@ export class CourseComponent implements OnInit {
         this.inactivateChildrenNodes();
 
         this.nodesMap.get(nodeId).active = true;
+
+        this.disableNavigationButtons();
+    }
+
+    private changeRoute(nodeId) {
+        this.router.navigate([ROUTES.USER.COURSE, this.route.snapshot.paramMap.get('courseId')], {
+            relativeTo: this.route.parent,
+            queryParams: {
+                node: nodeId
+            }
+        });
     }
 
     /**
@@ -139,6 +172,30 @@ export class CourseComponent implements OnInit {
             if (!value.parent) {
                 value.active = false;
             }
+        }
+    }
+
+    /**
+     * Disable prev for first content and next for last content
+     * @private
+     */
+    private disableNavigationButtons() {
+        const selectedIndex = this.nodeIds.indexOf(this.selectedNodeId);
+
+        const isFirst = selectedIndex === 1; // check if is equal with 1 and not with 0 because 0 is the index of the first section
+        const isLast = selectedIndex === this.nodeIds.length - 1;
+
+        if (isFirst) {
+            this.disablePrevButton = true;
+        }
+
+        if (isLast) {
+            this.disableNextButton = true;
+        }
+
+        if (!isFirst && !isLast) {
+            this.disablePrevButton = false;
+            this.disableNextButton = false;
         }
     }
 
@@ -184,4 +241,8 @@ export class CourseComponent implements OnInit {
     }
 
     public hasChild = (_: number, node: CourseTreeNodeInterface) => !!node.children && node.children.length > 0;
+
+    public finalizeContent() {
+        console.log("finalize content");
+    }
 }
