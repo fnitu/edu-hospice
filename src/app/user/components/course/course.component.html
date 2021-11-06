@@ -63,14 +63,16 @@
                     <button class="prev"
                             mat-button
                             title="{{ 'user.course.prev' | translate }}"
-                            (click)="navigateToNextNode(false)">
+                            (click)="navigateToNextNode(false)"
+                            [disabled]="disablePrevButton">
                         <mat-icon>navigate_before</mat-icon>
                     </button>
 
                     <button class="next"
                             mat-button
                             title="{{ 'user.course.next' | translate }}"
-                            (click)="navigateToNextNode(true)">
+                            (click)="navigateToNextNode(true)"
+                            [disabled]="disableNextButton">
                         <mat-icon>navigate_next</mat-icon>
                     </button>
                 </div>
@@ -91,6 +93,13 @@
                             </li>
                         </ul>
                     </div>
+
+                    <button mat-fab color="primary"
+                            class="finalize-content"
+                            title="{{ 'user.course.finalizeContent' | translate }}"
+                            (click)="finalizeContent()">
+                        <mat-icon>done_all</mat-icon>
+                    </button>
 
                 </mat-card>
             </div>

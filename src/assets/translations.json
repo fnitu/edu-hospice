@@ -130,7 +130,8 @@
       "content": "Conținut",
       "externalResources": "Resurse suplimentare",
       "next": "Următorul",
-      "prev": "Anteriorul"
+      "prev": "Anteriorul",
+      "finalizeContent": "Finalizează conținut"
     },
     "dashboard": {
       "name": "Nume",
