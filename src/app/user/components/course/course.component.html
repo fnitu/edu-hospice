@@ -21,7 +21,7 @@
                 <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
                     <div class="tree-node"
                          (click)="openNode(node.id)"
-                         [ngClass]="{'active': nodesMap.get(node.id).active}">
+                         [ngClass]="{'active': nodesMap.get(node.id).active, 'disabled': !node.enabled}">
                         <div [ngSwitch]="node.contentType" class="node-icon">
                             <mat-icon *ngSwitchCase="'PDF'">library_books</mat-icon>
                             <mat-icon *ngSwitchCase="'VIDEO'">play_circle_filled</mat-icon>
@@ -72,7 +72,7 @@
                             mat-button
                             title="{{ 'user.course.next' | translate }}"
                             (click)="navigateToNextNode(true)"
-                            [disabled]="disableNextButton">
+                            [disabled]="disableNextButton || !selectedNode.isCompleted">
                         <mat-icon>navigate_next</mat-icon>
                     </button>
                 </div>
@@ -94,11 +94,12 @@
                         </ul>
                     </div>
 
-                    <button mat-fab color="primary"
+                    <button *ngIf="!selectedNode.isCompleted" mat-button color="success"
                             class="finalize-content"
                             title="{{ 'user.course.finalizeContent' | translate }}"
                             (click)="finalizeContent()">
-                        <mat-icon>done_all</mat-icon>
+                        <mat-icon>done</mat-icon>
+                        {{ 'user.course.finalizeContent' | translate }}
                     </button>
 
                 </mat-card>

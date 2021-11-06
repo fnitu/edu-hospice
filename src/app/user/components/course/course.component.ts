@@ -70,8 +70,8 @@ export class CourseComponent implements OnInit {
                 if (params.node) {
                     this.openNode(params.node);
                 } else {
-                    // Otherwise activate first leaf
-                    this.activateFirstLeaf();
+                    // Otherwise activate first uncompleted content
+                    this.activateFirstUncompletedContent();
                 }
             });
 
@@ -113,7 +113,9 @@ export class CourseComponent implements OnInit {
                 parent: false,
                 url: safeUrl,
                 active: false,
-                resourceSummary: value.resourceSummary
+                resourceSummary: value.resourceSummary,
+                enabled: value.enabled,
+                isCompleted: !!value.completionDate
             });
 
             children.push({
@@ -121,37 +123,45 @@ export class CourseComponent implements OnInit {
                 name: value.name,
                 contentType: value.type,
                 resourceSummary: value.resourceSummary,
-                url: safeUrl
+                url: safeUrl,
+                enabled: value.enabled,
+                isCompleted: !!value.completionDate
             });
         });
 
         return children;
     }
 
-    private activateFirstLeaf() {
+    private activateFirstUncompletedContent() {
         for (let [key, value] of this.nodesMap) {
             if (!value.parent) {
-                this.openNode(key);
+                if (value.enabled && !value.isCompleted) {
+                    this.openNode(key);
 
-                break;
+                    break;
+                }
             }
         }
     }
 
     public openNode(nodeId) {
-        //TODO make request for the node
+        const selectedNode = this.nodesMap.get(nodeId);
 
-        this.changeRoute(nodeId);
+        if (selectedNode.enabled) {
+            //TODO make request for the node
 
-        this.selectedNode = this.nodesMap.get(nodeId);
+            this.changeRoute(nodeId);
 
-        this.selectedNodeId = nodeId;
+            this.selectedNode = selectedNode;
 
-        this.inactivateChildrenNodes();
+            this.selectedNodeId = nodeId;
 
-        this.nodesMap.get(nodeId).active = true;
+            this.inactivateChildrenNodes();
 
-        this.disableNavigationButtons();
+            this.nodesMap.get(nodeId).active = true;
+
+            this.disableNavigationButtons();
+        }
     }
 
     private changeRoute(nodeId) {
@@ -243,6 +253,10 @@ export class CourseComponent implements OnInit {
     public hasChild = (_: number, node: CourseTreeNodeInterface) => !!node.children && node.children.length > 0;
 
     public finalizeContent() {
+        // request to save the timestamp
+        // navigate to the next course
+        // increment progress bar
         console.log("finalize content");
+        this.selectedNode.isCompleted = true;
     }
 }
