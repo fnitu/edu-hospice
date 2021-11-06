@@ -173,7 +173,12 @@
     "courses": {
       "courseName": "Numele cursului",
       "startDate": "Data începerii cursului",
-      "totalRegisteredUsers": "Total utilizatori înscriși"
+      "totalRegisteredUsers": "Total utilizatori înscriși",
+      "status": {
+        "unpublished": "ne publicat",
+        "published": "publicat",
+        "closed": "închis"
+      }
     },
     "createCourse": {
       "addNewCourse": "Creeaza Curs",

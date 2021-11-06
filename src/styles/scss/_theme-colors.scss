@@ -66,3 +66,8 @@ $editPenColour: #DADADA;
 @mixin shadowLevel-1($left: 0, $top: 1px, $blur: 4px, $color: rgba($shadowColor, 0.30)) {
   box-shadow: $left $top $blur $color;
 }
+
+// status
+$published: #0CB853;
+$unpublished: #FFC107;
+$close: #646464;

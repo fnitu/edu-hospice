@@ -1,7 +1,23 @@
+@import "../../../../styles/scss/imports";
+
 .course-list-container {
   height: 100%;
   display: flex;
   flex-direction: column;
+
+  app-grid {
+    .unpublished {
+      color: $unpublished;
+    }
+
+    .published {
+      color: $published;
+    }
+
+    .closed {
+      color: $close;
+    }
+  }
 }
 
 .create-course {

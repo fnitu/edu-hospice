@@ -23,6 +23,12 @@ export class CourseListComponent implements OnInit {
   public gridProperties: GridPropertiesInterface;
   public gridColumns;
 
+  private readonly STATUS = {
+    PUBLISHED: 'published',
+    UNPUBLISHED: 'unpublished',
+    CLOSED: 'closed'
+  };
+
   constructor(private customTranslateService: CustomTranslateService,
               private datePipe: DatePipe,
               private route: ActivatedRoute,
@@ -77,6 +83,31 @@ export class CourseListComponent implements OnInit {
             },
           ],
         },
+      },
+      {
+        headerName: 'Status',
+        field: 'status',
+        cellRenderer: (data) => {
+          let status = '';
+          let cssClass = '';
+
+          switch (data.value) {
+            case this.STATUS.UNPUBLISHED :
+              status = this.customTranslateService.getTranslation('admin.courses.status.unpublished');
+              cssClass = 'unpublished';
+              break;
+            case this.STATUS.PUBLISHED :
+              status = this.customTranslateService.getTranslation('admin.courses.status.published');
+              cssClass = 'published';
+              break;
+            case this.STATUS.CLOSED:
+              status = this.customTranslateService.getTranslation('admin.courses.status.closed');
+              cssClass = 'closed';
+              break;
+          }
+
+          return `<div class="${cssClass}">${status}</div>`;
+        }
       },
       {
         headerName: this.customTranslateService.getTranslation(
