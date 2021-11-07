@@ -37,6 +37,10 @@
     </div>
   </div>
 
+  <div *ngIf="tab.type === 'PENDING'">
+    <div *ngIf="course['status']">{{ course["status"] }}</div>
+  </div>
+
   <div
     class="progress-bar"
     *ngIf="course.progress !== undefined && !hideProgressbar"

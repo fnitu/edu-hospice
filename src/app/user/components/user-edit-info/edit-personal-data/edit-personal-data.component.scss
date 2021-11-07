@@ -1,0 +1,70 @@
+.mat-stepper-horizontal {
+  margin-top: 30px;
+  .enabled {
+    pointer-events: none !important;
+  }
+
+  .registerFormContainer {
+    .mat-card-footer {
+      .navigation-panel {
+        float: right;
+        margin: 20px;
+      }
+      width: 100%;
+    }
+    .checkboxGroup {
+      display: flex;
+      flex-direction: column;
+    }
+    .mat-form-field {
+      margin-top: 16px;
+    }
+
+    width: 50rem;
+    min-width: 400px;
+    margin: auto;
+    height: 100%;
+    margin-top: 3em;
+    display: flex;
+    flex-direction: column;
+    formly-field {
+      &:not(:last-child) {
+        .mat-form-field {
+          margin-bottom: 10px;
+        }
+      }
+      .row-layout {
+        display: flex;
+
+        formly-field {
+          flex: 1;
+
+          &:not(:last-child) {
+            margin-right: 10px;
+          }
+        }
+      }
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+  }
+  .contactContainer {
+    p {
+      margin: 1em 0 0;
+    }
+
+    .mat-form-field-appearance-legacy .mat-form-field-infix,
+    .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+  }
+  .wrapper {
+    margin: 2em 0;
+
+    span {
+      margin-right: 0.5em;
+    }
+  }
+}

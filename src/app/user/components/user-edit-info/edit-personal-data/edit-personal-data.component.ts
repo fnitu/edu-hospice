@@ -1,46 +1,25 @@
-import {
-  AfterViewInit,
-  Component,
-  OnInit,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { RegisterService } from 'src/app/preview/components/register/register.service';
 import { MultiRequiredValidator } from 'src/app/shared/components/formly/formly-validation-config';
 import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
 import { GLOBALS } from 'src/app/shared/core/globals';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
-import { TooltipService } from 'src/app/shared/services/tooltip/tooltip.service';
-import { RegisterService } from './register.service';
+import { UserEditInfoService } from '../user-edit-info.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  selector: 'app-edit-personal-data',
+  templateUrl: './edit-personal-data.component.html',
+  styleUrls: ['./edit-personal-data.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class RegisterComponent implements OnInit, AfterViewInit {
-  private passwordRules = {
-    textPassMinLength: 6,
-    textPassMaxLength: 10,
-    textPassMinNum: 1,
-    textPassMaxNum: 5,
-    textPassMinSpecChars: 1,
-    textPassMaxSpecChars: 5,
-    textPassMinCaps: 1,
-  };
-  private numericRegex = /([0-9])/g;
-  private specialCharactersRegex = /([^0-9A-Za-z])/g;
-  private capitalLettersRegex = /([A-Z])/g;
-
-  private tippyInstancePasswordSet;
-
+export class EditPersonalData {
   personalDataForm = new FormGroup({});
   careerForm = new FormGroup({});
   contactForm = new FormGroup({});
-
   professionForm = new FormGroup(
     {
       NURSE: new FormControl(false),
@@ -53,8 +32,14 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   );
 
   finalizationForm = new FormGroup({
-    agreement: new FormControl(false, Validators.requiredTrue),
-    gdpr: new FormControl(false, Validators.requiredTrue),
+    agreement: new FormControl(
+      { value: true, disabled: true },
+      Validators.requiredTrue
+    ),
+    gdpr: new FormControl(
+      { value: true, disabled: true },
+      Validators.requiredTrue
+    ),
   });
 
   personalDataFields: FormlyFieldConfig[] = [
@@ -98,7 +83,9 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     {
       key: 'email',
       type: 'input',
+
       templateOptions: {
+        disabled: true,
         label: this.customTranslateService.getTranslation('general.email'),
         placeholder: this.customTranslateService.getTranslation(
           'preview.register.emailPlaceholder'
@@ -106,48 +93,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       },
       validators: {
         validation: [Validators.required, 'email'],
-      },
-    },
-    {
-      key: 'password',
-      type: 'input',
-      id: 'password',
-      templateOptions: {
-        type: 'password',
-        label: this.customTranslateService.getTranslation(
-          'preview.register.password'
-        ),
-        placeholder: this.customTranslateService.getTranslation(
-          'preview.register.passwordPlaceholder'
-        ),
-      },
-      validators: {
-        validation: [Validators.required],
-        passwordMatchCriteria: {
-          expression: (control) => this.validateInputPasswordSet(control),
-        },
-      },
-    },
-    {
-      key: 'confirmPassword',
-      type: 'input',
-      templateOptions: {
-        type: 'password',
-        label: this.customTranslateService.getTranslation(
-          'preview.register.confirmPassword'
-        ),
-        placeholder: this.customTranslateService.getTranslation(
-          'preview.register.confirmPasswordPlaceholder'
-        ),
-      },
-      validators: {
-        validation: [Validators.required],
-        passwordMatchCriteria: {
-          expression: (control) => this.validateInputPasswordCheck(control),
-          message: this.customTranslateService.getTranslation(
-            'preview.managePassword.passwordsMatch'
-          ),
-        },
       },
     },
     {
@@ -162,7 +107,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           'preview.register.phoneNumberPlaceholder'
         ),
         minLength: 10,
-        maxLength: 14,
+        maxLength: 16,
       },
       validators: {
         validation: [Validators.required, 'phone'],
@@ -253,15 +198,48 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   ];
 
   constructor(
-    private tooltipService: TooltipService,
     private customTranslateService: CustomTranslateService,
     private registerService: RegisterService,
     private route: ActivatedRoute,
     private router: Router,
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
+    private userEditInfoService: UserEditInfoService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userEditInfoService.getUserDetails().subscribe((user) => {
+      this.personalDataForm
+        .get('name')
+        .setValue({ fName: user['firstName'], lName: user['lastName'] });
+      this.personalDataForm.get('email').setValue(user['email']);
+      this.personalDataForm.get('phone').setValue(user['phoneNumber']);
+
+      this.professionForm
+        .get('NURSE')
+        .setValue(user['professions'].includes('NURSE'));
+      this.professionForm
+        .get('CARE_ASSISTANT')
+        .setValue(user['professions'].includes('CARE_ASSISTANT'));
+      this.professionForm
+        .get('CARETAKER')
+        .setValue(user['professions'].includes('CARETAKER'));
+      this.professionForm.get('OTHER').setValue(!!user['otherProfessions']);
+      !!user['otherProfessions'] &&
+        this.professionForm
+          .get('other_profession')
+          .setValue(user['otherProfessions']);
+
+      this.careerForm.get('employerName').setValue(user['employerName']);
+      this.careerForm.get('employerCity').setValue(user['employerCity']);
+      this.careerForm.get('employerCountry').setValue(user['employerCounty']);
+      this.contactForm.get('comunication').setValue({
+        emailContact: user['communicationViaEmail'],
+        phoneContact: user['communicationViaPhone'],
+      });
+      this.enableStepper();
+    });
+  }
+
   ngAfterViewInit() {
     this.disableStepper();
   }
@@ -321,91 +299,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     return checkValue ? checkValue : '';
   }
 
-  validateInputPasswordSet(control) {
-    let valid = true;
-    let message = '';
-    const element = document.getElementById('password');
-
-    if (control.value) {
-      if (
-        control.value.length < this.passwordRules.textPassMinLength ||
-        control.value.length > this.passwordRules.textPassMaxLength
-      ) {
-        message += `<div>${this.customTranslateService.getTranslation(
-          'preview.managePassword.length'
-        )}</div>`;
-        valid = false;
-      }
-
-      const matchNumberLength = control.value.match(this.numericRegex)
-        ? control.value.match(this.numericRegex).length
-        : null;
-      if (
-        this.passwordRules.textPassMinNum > matchNumberLength ||
-        this.passwordRules.textPassMaxNum < matchNumberLength
-      ) {
-        message += `<div>${this.customTranslateService.getTranslation(
-          'preview.managePassword.numberOfNumericCharacters'
-        )}</div>`;
-        valid = false;
-      }
-
-      const matchSpecialCharactersLength = control.value.match(
-        this.specialCharactersRegex
-      )
-        ? control.value.match(this.specialCharactersRegex).length
-        : null;
-      if (
-        this.passwordRules.textPassMinSpecChars >
-          matchSpecialCharactersLength ||
-        this.passwordRules.textPassMaxSpecChars < matchSpecialCharactersLength
-      ) {
-        message += `<div>${this.customTranslateService.getTranslation(
-          'preview.managePassword.numberOfSpecialCharacters'
-        )}</div>`;
-        valid = false;
-      }
-
-      const matchCapitalLettersLength = control.value.match(
-        this.capitalLettersRegex
-      )
-        ? control.value.match(this.capitalLettersRegex)
-        : null;
-      if (this.passwordRules.textPassMinCaps > matchCapitalLettersLength) {
-        message += `<div>${this.customTranslateService.getTranslation(
-          'preview.managePassword.numberOfCapitalLetters'
-        )}</div>`;
-        valid = false;
-      }
-    }
-
-    if (!valid) {
-      this.initTooltipTippyInstancePasswordSet(element, message);
-      this.tippyInstancePasswordSet.show();
-    } else if (valid && this.tippyInstancePasswordSet) {
-      this.tippyInstancePasswordSet.hide();
-    }
-
-    return valid;
-  }
-
-  private validateInputPasswordCheck(control) {
-    return control.value === this.personalDataForm.get(['password']).value;
-  }
-
-  private initTooltipTippyInstancePasswordSet(element, message) {
-    if (this.tippyInstancePasswordSet) {
-      this.tippyInstancePasswordSet.setContent(message);
-    } else {
-      this.tippyInstancePasswordSet = this.tooltipService.init(element, {
-        content: `<div>${message}</div>`,
-        trigger: 'manual',
-      });
-    }
-  }
-
-  public onRegister() {
-    let registerFormDetails = {
+  public onEditUserInfo() {
+    let editUserDetails = {
       firstName: this.personalDataForm.value['name']['fName'],
       lastName: this.personalDataForm.value['name']['lName'],
       email: this.personalDataForm.value['email'],
@@ -425,7 +320,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       termsAndConditions: this.finalizationForm.value['agreement'],
     };
 
-    this.registerService.registerUser(registerFormDetails).subscribe(
+    this.registerService.editUserData(editUserDetails).subscribe(
       (response) => {
         this.matSnackBar.openFromComponent(SnackBarComponent, {
           verticalPosition: 'top',
@@ -437,7 +332,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           },
         });
         setTimeout(() => {
-          this.router.navigate(['login'], {
+          this.router.navigate(['dashboard'], {
             relativeTo: this.route.parent,
           });
         }, 3000);

@@ -1,0 +1,161 @@
+<mat-horizontal-stepper #stepper>
+  <mat-step>
+    <mat-card class="registerFormContainer">
+      <form [formGroup]="personalDataForm">
+        <ng-template matStepLabel
+          >{{ "preview.register.personalData" | translate }}
+        </ng-template>
+        <formly-form
+          [form]="personalDataForm"
+          [fields]="personalDataFields"
+          (change)="validationChange()"
+        ></formly-form>
+      </form>
+      <mat-card-footer>
+        <div class="navigation-panel">
+          <button
+            mat-raised-button
+            matStepperNext
+            [disabled]="personalDataForm.invalid"
+            color="primary"
+          >
+            {{ "preview.register.next" | translate }}
+          </button>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+  </mat-step>
+  <mat-step label="{{ 'preview.register.career' | translate }}">
+    <mat-card class="registerFormContainer">
+      <mat-card-title>{{
+        "preview.register.profession" | translate
+      }}</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="professionForm" (change)="validationChange()">
+          <div class="checkboxGroup">
+            <mat-checkbox
+              formControlName="NURSE"
+              (change)="validationChange()"
+              >{{ "preview.register.nurse" | translate }}</mat-checkbox
+            >
+            <mat-checkbox
+              formControlName="CARE_ASSISTANT"
+              (change)="validationChange()"
+              >{{ "preview.register.care_asistant" | translate }}</mat-checkbox
+            >
+            <mat-checkbox
+              formControlName="CARETAKER"
+              (change)="validationChange()"
+              >{{ "preview.register.caretaker" | translate }}</mat-checkbox
+            >
+            <mat-checkbox
+              formControlName="OTHER"
+              (change)="validationChange()"
+              >{{ "preview.register.other" | translate }}</mat-checkbox
+            >
+          </div>
+          <mat-form-field *ngIf="professionForm.value.OTHER">
+            <input
+              matInput
+              placeholder="Profession"
+              formControlName="other_profession"
+              (change)="validationChange()"
+            />
+          </mat-form-field>
+
+          <mat-error *ngIf="professionForm.invalid && professionForm.touched">
+            {{ "preview.register.errorMessage" | translate }}
+          </mat-error>
+        </form>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="registerFormContainer">
+      <mat-card-title>{{
+        "preview.register.employer" | translate
+      }}</mat-card-title>
+      <form [formGroup]="careerForm">
+        <formly-form
+          [form]="careerForm"
+          [fields]="careerFields"
+          (change)="validationChange()"
+        ></formly-form>
+      </form>
+      <mat-card-footer>
+        <div class="navigation-panel">
+          <button mat-button matStepperPrevious>
+            {{ "preview.register.previous" | translate }}
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            matStepperNext
+            [disabled]="careerForm.invalid || professionForm.invalid"
+          >
+            {{ "preview.register.next" | translate }}
+          </button>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+  </mat-step>
+  <mat-step label="{{ 'preview.register.finalization' | translate }}">
+    <mat-card class="registerFormContainer contactContainer">
+      <mat-card-title>{{
+        "preview.register.contactTitle" | translate
+      }}</mat-card-title>
+      <div class="checkboxGroup">
+        <form [formGroup]="contactForm">
+          <p>{{ "preview.register.contactMe" | translate }}</p>
+          <formly-form
+            [form]="contactForm"
+            [fields]="contactFields"
+            (change)="validationChange()"
+          ></formly-form>
+        </form>
+      </div>
+    </mat-card>
+    <mat-card class="registerFormContainer">
+      <mat-card-title>{{
+        "preview.register.agreementTitle" | translate
+      }}</mat-card-title>
+      <form [formGroup]="finalizationForm" (change)="validationChange()">
+        <div class="wrapper">
+          <mat-checkbox
+            id="agreement"
+            name="agreement"
+            formControlName="agreement"
+            >{{ "preview.register.agreement" | translate }} </mat-checkbox
+          ><a
+            target="_blank"
+            href="http://www.studiipaliative.ro/termeni-si-conditii/"
+            >{{ "preview.register.readAgreement" | translate }}
+          </a>
+        </div>
+        <div class="wrapper">
+          <mat-checkbox id="gdpr" name="gdpr" formControlName="gdpr"
+            >{{ "preview.register.gdpr" | translate }}
+          </mat-checkbox>
+          <a
+            target="_blank"
+            href="http://www.studiipaliative.ro/wp-content/uploads/2020/05/NOTA-DE-INFORMARE.pdf"
+            >{{ "preview.register.gdprRead" | translate }}
+          </a>
+        </div>
+      </form>
+      <mat-card-footer>
+        <div class="navigation-panel">
+          <button mat-button matStepperPrevious>
+            {{ "preview.register.previous" | translate }}
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="finalizationForm.invalid || contactForm.invalid"
+            (click)="onEditUserInfo()"
+          >
+            {{ "preview.register.submit" | translate }}
+          </button>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+  </mat-step>
+</mat-horizontal-stepper>

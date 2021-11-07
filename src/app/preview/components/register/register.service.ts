@@ -14,13 +14,6 @@ export class RegisterService {
   }
 
   public editUserData(userData) {
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-    };
-    return this.http.put(
-      GLOBALS.DATA_URL.EDIT_USER_DATA,
-      userData,
-      httpOptions
-    );
+    return this.http.put(GLOBALS.DATA_URL.EDIT_USER_DATA, userData);
   }
 }

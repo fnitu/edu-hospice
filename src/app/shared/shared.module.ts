@@ -59,7 +59,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { MatStepperModule } from '@angular/material/stepper';
-import {CdkTextareaAutosize} from '@angular/cdk/text-field';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { textareaFormlyFieldExtension } from '../admin/components/course/textarea-formly-field.extension';
@@ -68,6 +68,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { AutoFocusDirective } from './services/auto-focus/auto-focus.directive';
 import { UploadComponent } from './components/upload/upload.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { ChangePassword } from './components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
     AutoFocusDirective,
     UploadComponent,
     GalleryComponent,
+    ChangePassword,
   ],
   imports: [
     CommonModule,
@@ -160,7 +162,8 @@ import { GalleryComponent } from './components/gallery/gallery.component';
     AutoFocusDirective,
     CdkTextareaAutosize,
     UploadComponent,
-    GalleryComponent
+    GalleryComponent,
+    ChangePassword,
   ],
   providers: [
     {

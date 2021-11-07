@@ -1,13 +1,18 @@
 <div class="home">
   <div class="mat-divider">
-    <h1 class="title-home">{{ 'preview.home.title' | translate }}</h1>
+    <h1 class="title-home">{{ "preview.home.title" | translate }}</h1>
   </div>
   <mat-card class="tabs-container mat-elevation-z">
     <mat-card-content>
       <div class="app-course-wrapper">
         <div class="card-box" *ngFor="let course of courseList">
-          <app-course-card class="app-course-card mat-elevation-z4" [course]="course" [hasAction]="true"
-            [hideProgressbar]="true" (cardAction)="cardClickHandler(course)"></app-course-card>
+          <app-course-card
+            class="app-course-card mat-elevation-z4"
+            [course]="course"
+            [hasAction]="true"
+            [hideProgressbar]="true"
+            (cardAction)="cardClickHandler(course)"
+          ></app-course-card>
         </div>
       </div>
     </mat-card-content>

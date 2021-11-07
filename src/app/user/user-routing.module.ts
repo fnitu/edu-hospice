@@ -5,7 +5,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CourseComponent } from './components/course/course.component';
 import { UserComponent } from './user.component';
 import { ROUTES } from '../shared/core/routes';
-import { RegisterComponent } from '../preview/components/register/register.component';
+import { UserEditInfo } from './components/user-edit-info/user-edit-info.component';
 
 const routes: Routes = [
   {
@@ -27,7 +27,7 @@ const routes: Routes = [
       },
       {
         path: `${ROUTES.USER.EDIT_USER_INFO}`,
-        component: RegisterComponent,
+        component: UserEditInfo,
       },
     ],
   },

@@ -19,9 +19,15 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { EditSectionDialogComponent } from './components/course/course-section-and-content/edit-section-dialog/edit-section-dialog.component';
 import { ManageResourcesDialog } from './components/course/course-section-and-content/manage-resources-dialog/manage-resources-dialog.component';
 import { CourseInfoComponent } from './components/course/course-info/course-info.component';
-import {NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule} from '@angular-material-components/datetime-picker';
-import {MatDatepickerModule } from '@angular/material/datepicker';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { UploadCoursePictureComponent } from './components/course/upload-course-picture-dialog/upload-course-picture.component';
+import { AdminEditInfo } from './components/admin-edit-info/admin-edit-info.component';
+import { EditPersonalData } from './components/admin-edit-info/edit-personal-data/edit-personal-data.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +47,8 @@ import { UploadCoursePictureComponent } from './components/course/upload-course-
     ManageResourcesDialog,
     CourseInfoComponent,
     UploadCoursePictureComponent,
+    AdminEditInfo,
+    EditPersonalData,
   ],
   imports: [
     SharedModule,
