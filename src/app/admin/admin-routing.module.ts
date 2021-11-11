@@ -31,7 +31,7 @@ const routes: Routes = [
         component: CourseListComponent,
       },
       {
-        path: ROUTES.ADMIN.COURSE.EDIT_COURSE,
+        path: ROUTES.ADMIN.COURSE.CREATE,
         component: CourseComponent,
       },
       {

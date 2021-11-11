@@ -1,7 +1,10 @@
 @import "../../../../../styles/scss/imports";
 
-.gridComponent {
+app-grid-top-toolbar {
+  z-index: 2;
+
   .pageToolbar, .multipleToolbar {
+    @include shadowLevel-1;
     &.hideToolbar {
       display: none;
     }

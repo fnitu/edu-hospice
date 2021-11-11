@@ -1,6 +1,7 @@
 app-course {
   display: flex;
   height: 100%;
+  flex-direction: column;
 
   .app-course-wrapper {
     flex: 1;
@@ -9,6 +10,7 @@ app-course {
     background: hsla(0, 0%, 93.3%, 0.31);
     padding-top: 25px;
     justify-content: center;
+    overflow: auto;
 
     //.create-course {
     //  display: flex;

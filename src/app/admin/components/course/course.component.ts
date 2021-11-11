@@ -1,9 +1,8 @@
-import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {GLOBALS} from '../../../shared/core/globals';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {CustomTranslateService} from '../../../shared/services/custom-translate/custom-translate.service';
+import { ROUTES } from "../../../shared/core/routes";
 
 @Component({
   selector: 'app-course',
@@ -15,13 +14,17 @@ export class CourseComponent implements OnInit {
 
   public selected = new FormControl(0);
   public courseId;
+  public pageActions = [];
 
   constructor(private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private customTranslateService: CustomTranslateService) {
   }
 
   ngOnInit(): void {
     this.courseId = this.route.snapshot.paramMap.get('courseId');
+
+    this.pageActions = this.generatePageActions();
   }
 
   public tabChange() {
@@ -36,5 +39,26 @@ export class CourseComponent implements OnInit {
     this.courseId = response.id;
 
     this.changeTab(2);
+  }
+
+  private generatePageActions() {
+    return [
+      {
+        label: this.customTranslateService.getTranslation('admin.createCourse.showAllCourses'),
+        handler: () => {
+          this.router.navigate([ROUTES.ADMIN.COURSE_LIST], {
+            relativeTo: this.route.parent,
+          });
+        }
+      },
+      {
+        label: this.customTranslateService.getTranslation('admin.createCourse.addNewCourse'),
+        handler: () => {
+          this.router.navigate([ROUTES.ADMIN.COURSE.CREATE], {
+            relativeTo: this.route.parent,
+          });
+        }
+      }
+    ]
   }
 }

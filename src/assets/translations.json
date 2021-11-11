@@ -188,6 +188,7 @@
     },
     "createCourse": {
       "addNewCourse": "Creeaza Curs",
+      "showAllCourses": "Vezi toate cursurile",
       "courseDetails": "Detaliile Cursului",
       "courseContent": "Continutul Cursului",
       "uploadCoursePicture": "Încarcă o imagine pentru curs",

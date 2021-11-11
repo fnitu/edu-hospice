@@ -164,6 +164,7 @@ import { ChangePassword } from './components/change-password/change-password.com
     UploadComponent,
     GalleryComponent,
     ChangePassword,
+    GridTopToolbarComponent
   ],
   providers: [
     {
