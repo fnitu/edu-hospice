@@ -29,7 +29,7 @@ export class CourseComponent implements OnInit {
     public nodesMap = new Map();
     private nodeIds = [];
 
-    public courseDetails: CourseInterface = <CourseInterface>{};
+    public courseDetails = null;
 
     public treeControl = new NestedTreeControl<CourseTreeNodeInterface>(node => node.children);
     public dataSource = new MatTreeNestedDataSource<CourseTreeNodeInterface>();
@@ -56,7 +56,7 @@ export class CourseComponent implements OnInit {
         this.courseService.getTreeJsonData(userId, courseId).subscribe(response => {
             this.courseDetails = response;
 
-            const nodes = this.generateNodesModel(this.courseDetails.sectionSummary);
+            const nodes = this.generateNodesModel(this.courseDetails.userSectionSummary);
 
             this.dataSource.data = nodes;
 
@@ -103,7 +103,7 @@ export class CourseComponent implements OnInit {
     private getNodeChildren(node): any[] {
         let children: any[] = [];
 
-        _.each(node.contentSummary, (value) => {
+        _.each(node.contentSummaryWithoutResources, (value) => {
             const safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(value.url);
 
             const key = `${this.SECTION}_${node.id}_${this.CONTENT}_${value.id}`;

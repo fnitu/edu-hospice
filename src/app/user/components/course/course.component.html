@@ -10,8 +10,8 @@
             </div>
 
             <div *ngIf="sidenav.opened" class="course-header">
-                <div class="title">{{this.courseDetails.name}}</div>
-                <mat-progress-bar mode="determinate" value="{{this.courseDetails.progress}}"></mat-progress-bar>
+                <div class="title">{{this.courseDetails?.name}}</div>
+                <mat-progress-bar mode="determinate" value="{{this.courseDetails?.progress}}"></mat-progress-bar>
             </div>
 
             <mat-tree *ngIf="sidenav.opened" #tree
