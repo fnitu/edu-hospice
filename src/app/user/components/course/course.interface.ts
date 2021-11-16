@@ -2,7 +2,7 @@ export interface CourseInterface {
     'id': number;
     'name': string;
     'progress': number;
-    'sectionSummary': any[]
+    'userSectionSummary': any[]
 }
 
 export interface CourseTreeNodeInterface {

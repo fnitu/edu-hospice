@@ -29,7 +29,7 @@ export class CourseComponent implements OnInit {
     public nodesMap = new Map();
     private nodeIds = [];
 
-    public courseDetails = null;
+    public courseDetails: CourseInterface = <CourseInterface>{};
 
     public treeControl = new NestedTreeControl<CourseTreeNodeInterface>(node => node.children);
     public dataSource = new MatTreeNestedDataSource<CourseTreeNodeInterface>();
