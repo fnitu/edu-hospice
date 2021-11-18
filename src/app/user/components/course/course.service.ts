@@ -24,4 +24,26 @@ export class CourseService {
 
     return this.http.get(url);
   }
+
+  public getContentDetails(contentId): Observable<any> {
+    const url = this.placeholderFormatService.stringFormat(
+        GLOBALS.DATA_URL.CONTENT_DETAILS,
+        {
+          '{contentId}': contentId,
+        }
+    );
+
+    return this.http.get(url);
+  }
+
+  public finalizeContent(contentId):Observable<any> {
+      const url = this.placeholderFormatService.stringFormat(
+          GLOBALS.DATA_URL.CONTENT_DETAILS,
+          {
+              '{contentId}': contentId,
+          }
+      );
+
+      return this.http.post(url, null);
+  }
 }

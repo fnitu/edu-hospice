@@ -21,7 +21,7 @@
                 <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
                     <div class="tree-node"
                          (click)="openNode(node.id)"
-                         [ngClass]="{'active': nodesMap.get(node.id).active, 'disabled': !node.enabled}">
+                         [ngClass]="{'active': nodesMap.get(node.id).active, 'disabled': !nodesMap.get(node.id).enabled}">
                         <div [ngSwitch]="node.contentType" class="node-icon">
                             <mat-icon *ngSwitchCase="'PDF'">library_books</mat-icon>
                             <mat-icon *ngSwitchCase="'VIDEO'">play_circle_filled</mat-icon>

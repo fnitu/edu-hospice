@@ -87,7 +87,8 @@ export class CourseComponent implements OnInit {
 
             this.populateNodesMap(key, {
                 name: value.name,
-                parent: true
+                parent: true,
+                sectionId: value.id
             });
 
             treeNodes.push({
@@ -104,28 +105,28 @@ export class CourseComponent implements OnInit {
         let children: any[] = [];
 
         _.each(node.contentSummaryWithoutResources, (value) => {
-            const safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(value.url);
-
             const key = `${this.SECTION}_${node.id}_${this.CONTENT}_${value.id}`;
 
             this.populateNodesMap(key, {
                 name: value.name,
                 parent: false,
-                url: safeUrl,
+                url: "",
                 active: false,
-                resourceSummary: value.resourceSummary,
+                resourceSummary: null,
                 enabled: value.enabled,
-                isCompleted: !!value.completionDate
+                isCompleted: !!value.completionDate,
+                contentId: value.id
             });
 
             children.push({
                 id: key,
                 name: value.name,
                 contentType: value.type,
-                resourceSummary: value.resourceSummary,
-                url: safeUrl,
+                resourceSummary: null,
+                url: "",
                 enabled: value.enabled,
-                isCompleted: !!value.completionDate
+                isCompleted: !!value.completionDate,
+                contentId: value.id
             });
         });
 
@@ -148,19 +149,26 @@ export class CourseComponent implements OnInit {
         const selectedNode = this.nodesMap.get(nodeId);
 
         if (selectedNode.enabled) {
-            //TODO make request for the node
+            this.courseService.getContentDetails(selectedNode.contentId).subscribe(
+                (response) => {
+                    this.changeRoute(nodeId);
 
-            this.changeRoute(nodeId);
+                    this.inactivateChildrenNodes();
 
-            this.selectedNode = selectedNode;
+                    this.nodesMap.set(nodeId, {
+                        ...this.nodesMap.get(nodeId),
+                        active: true,
+                        url: this.sanitizer.bypassSecurityTrustResourceUrl(response.url),
+                        resourceSummary: response.resourceSummary
+                    })
 
-            this.selectedNodeId = nodeId;
+                    this.selectedNode = this.nodesMap.get(nodeId);
 
-            this.inactivateChildrenNodes();
+                    this.selectedNodeId = nodeId;
 
-            this.nodesMap.get(nodeId).active = true;
-
-            this.disableNavigationButtons();
+                    this.disableNavigationButtons();
+                }
+            )
         }
     }
 
@@ -253,10 +261,25 @@ export class CourseComponent implements OnInit {
     public hasChild = (_: number, node: CourseTreeNodeInterface) => !!node.children && node.children.length > 0;
 
     public finalizeContent() {
-        // request to save the timestamp
-        // navigate to the next course
-        // increment progress bar
-        console.log("finalize content");
-        this.selectedNode.isCompleted = true;
+        this.courseService.finalizeContent(this.selectedNode.contentId).subscribe((response) => {
+            this.courseDetails.progress = response.progress;
+
+            this.nodesMap.get(this.selectedNodeId).isCompleted = true;
+
+            this.selectedNode = this.nodesMap.get(this.selectedNodeId);
+
+            this.enableNextNode(response.nextContentId);
+
+            this.navigateToNextNode(true);
+        });
+    }
+
+    private enableNextNode(nextContentId) {
+        for (let value of this.nodesMap.values()) {
+            if (!value.parent && value.contentId === nextContentId) {
+                value.enabled = true;
+                break;
+            }
+        }
     }
 }

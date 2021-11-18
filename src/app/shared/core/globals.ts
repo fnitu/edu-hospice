@@ -23,6 +23,7 @@ export const GLOBALS = {
     ADMIN_COURSE_SECTIONS: `${environment.BASE_URL}/api/admin/courses/{courseId}/sections-details`,
     ADMIN_DASHBOARD_STATS: `${environment.BASE_URL}/api/admin/dashboard/stats`,
     COURSE_DETAILS: `${environment.BASE_URL}/api/users/{userId}/courses/{courseId}`,
+    CONTENT_DETAILS: `${environment.BASE_URL}/api/courses/content/{contentId}`,
     APPROVE_COURSE: `${environment.BASE_URL}/api/admin/users/{userId}/courses/{courseId}/approve`,
     REJECT_COURSE_REGISTRATION: `${environment.BASE_URL}/api/admin/users/{userId}/courses/{courseId}/reject-registration`,
     REJECT_COURSE_REGISTRATION_PAYMENT: `${environment.BASE_URL}/api/admin/users/{userId}/courses/{courseId}/reject-payment`,
