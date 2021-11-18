@@ -25,6 +25,7 @@ export class CourseComponent implements OnInit {
 
     private readonly SECTION: string = "section";
     private readonly CONTENT: string = "content";
+    private readonly PERCENTAGE_COURSE_COMPLETED = 100;
 
     public nodesMap = new Map();
     private nodeIds = [];
@@ -70,8 +71,15 @@ export class CourseComponent implements OnInit {
                 if (params.node) {
                     this.openNode(params.node);
                 } else {
-                    // Otherwise activate first uncompleted content
-                    this.activateFirstUncompletedContent();
+                    const courseCompleted = this.courseDetails.progress === this.PERCENTAGE_COURSE_COMPLETED;
+
+                    if (!courseCompleted) {
+                        // Activate first uncompleted content if the course is not fully completed
+                        this.activateFirstUncompletedContent();
+                    } else {
+                        this.activateFirstNode();
+                    }
+
                 }
             });
 
@@ -137,6 +145,18 @@ export class CourseComponent implements OnInit {
         for (let [key, value] of this.nodesMap) {
             if (!value.parent) {
                 if (value.enabled && !value.isCompleted) {
+                    this.openNode(key);
+
+                    break;
+                }
+            }
+        }
+    }
+
+    private activateFirstNode() {
+        for (let [key, value] of this.nodesMap) {
+            if (!value.parent) {
+                if (value.enabled) {
                     this.openNode(key);
 
                     break;
