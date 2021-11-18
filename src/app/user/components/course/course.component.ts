@@ -268,9 +268,11 @@ export class CourseComponent implements OnInit {
 
             this.selectedNode = this.nodesMap.get(this.selectedNodeId);
 
-            this.enableNextNode(response.nextContentId);
+            if (response.nextContentId !== null) {
+                this.enableNextNode(response.nextContentId);
 
-            this.navigateToNextNode(true);
+                this.navigateToNextNode(true);
+            }
         });
     }
 
