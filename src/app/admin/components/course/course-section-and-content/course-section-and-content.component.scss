@@ -15,6 +15,10 @@
     padding: 10px;
     display: flex;
     justify-content: flex-end;
+
+    .addSection {
+      background-color: $buttonColor1
+    }
   }
 
   .sections-container {
@@ -77,6 +81,10 @@
           justify-content: flex-end;
           align-items: center;
           padding: 0;
+
+          .editSection {
+            background-color: $buttonColor1;
+          }
         }
       }
 
@@ -134,6 +142,18 @@
             align-items: center;
             padding: 0;
 
+            .editContent {
+              background-color: $buttonColor2;
+            }
+
+            .manageResources {
+              background-color: $buttonColor3;
+
+              .mat-badge-content {
+                background-color: $buttonColor4;
+              }
+            }
+
             .button {
               margin-left: 10px;
             }
@@ -144,7 +164,15 @@
       .button-container {
         padding: 10px 10px 10px 40px;
         display: flex;
-        justify-content: space-between
+        justify-content: space-between;
+
+        .addContent {
+          background-color: $buttonColor2;
+        }
+
+        .addSection {
+          background-color: $buttonColor1;
+        }
       }
     }
   }

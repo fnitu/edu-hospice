@@ -3,7 +3,7 @@
     {{ course?.name }}
   </div>
   <div class="button-container">
-    <button mat-raised-button color="primary" (click)="addSection()">
+    <button mat-raised-button class="addSection" (click)="addSection()">
       {{ "admin.createCourseContent.addSectionButton" | translate }}
     </button>
   </div>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="button-container">
-          <button mat-raised-button color="primary" (click)="editSection(section)">
+          <button mat-raised-button class="editSection" (click)="editSection(section)">
             {{ "admin.createCourseContent.editSectionButton" | translate }}
           </button>
         </div>
@@ -64,12 +64,12 @@
           </div>
 
           <div class="button-container">
-            <button mat-raised-button color="primary" class="button"
+            <button mat-raised-button class="editContent button"
                     (click)="editContent(content)">
               {{ "admin.createCourseContent.editContentButton" | translate }}
             </button>
 
-            <button mat-raised-button color="primary" class="button"
+            <button mat-raised-button class="manageResources button"
                     [matBadge]="content.resourceSummary.length"
                     matBadgePosition="after" matBadgeColor="accent"
                     matBadgeSize="medium" (click)="manageResources(content)">
@@ -80,10 +80,10 @@
       </div>
 
       <div class="button-container">
-        <button mat-raised-button color="primary" (click)="addContent(section)">
+        <button mat-raised-button class="addContent" (click)="addContent(section)">
           {{ "admin.createCourseContent.addContentButton" | translate }}
         </button>
-        <button mat-raised-button color="primary" (click)="addSection()">
+        <button mat-raised-button class="addSection" (click)="addSection()">
           {{ "admin.createCourseContent.addSectionButton" | translate }}
         </button>
       </div>
