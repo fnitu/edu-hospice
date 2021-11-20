@@ -181,6 +181,7 @@
       "startDate": "Data începerii cursului",
       "totalRegisteredUsers": "Total utilizatori înscriși",
       "status": {
+        "headerName": "Status",
         "unpublished": "ne publicat",
         "published": "publicat",
         "closed": "închis"

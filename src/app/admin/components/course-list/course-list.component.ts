@@ -24,9 +24,9 @@ export class CourseListComponent implements OnInit {
   public gridColumns;
 
   private readonly STATUS = {
-    PUBLISHED: 'published',
-    UNPUBLISHED: 'unpublished',
-    CLOSED: 'closed'
+    PUBLISHED: 'PUBLISHED',
+    UNPUBLISHED: 'UNPUBLISHED',
+    CLOSED: 'CLOSED'
   };
 
   constructor(private customTranslateService: CustomTranslateService,
@@ -85,8 +85,10 @@ export class CourseListComponent implements OnInit {
         },
       },
       {
-        headerName: 'Status',
-        field: 'status',
+        headerName: this.customTranslateService.getTranslation(
+          'admin.courses.status.headerName'
+        ),
+        field: 'courseState',
         cellRenderer: (data) => {
           let status = '';
           let cssClass = '';
