@@ -12,17 +12,6 @@
     <mat-card-title>{{ course.name }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <!-- <div class="course-label">
-      <span class="label label-1" *ngIf="types.indexOf('active') > -1">{{
-        "card.inProgress" | translate
-      }}</span>
-      <span class="label label-2" *ngIf="types.indexOf('recommended') > -1">{{
-        "card.recommended" | translate
-      }}</span>
-      <span class="label label-3" *ngIf="types.indexOf('finished') > -1">{{
-        "card.finalized" | translate
-      }}</span>
-    </div> -->
     <div class="course-short-description">
       {{ course.shortDescription }}
     </div>
@@ -32,35 +21,68 @@
   </mat-card-content>
 
   <div *ngIf="tab?.type === 'RECOMMENDED'">
-    <div class="register" (click)="registerClick(course.id, $event)">
-      {{ "card.register" | translate }}
+    <div class="registration-button-container">
+      <button
+        class="register"
+        (click)="registerClick(course.id, $event)"
+        mat-button
+      >
+        {{ "card.register" | translate }}
+      </button>
     </div>
   </div>
 
-  <div *ngIf="tab?.type === 'PENDING'">
-    <div *ngIf="course['status']">{{ course["status"] }}</div>
+  <div *ngIf="tab?.type === 'PENDING'" class="status">
+    <div
+      *ngIf="course['status'] === 'PAYMENT_PENDING'"
+      class="status-pending status-pending-payment"
+    >
+      <h5>{{ "card.payment_pending_title" | translate }}</h5>
+      <p>{{ "card.payment_pending_description" | translate }}</p>
+    </div>
+    <div
+      *ngIf="course['status'] === 'REGISTRATION_PENDING'"
+      class="status-pending status-pending-registration"
+    >
+      <h5>{{ "card.registration_pending_title" | translate }}</h5>
+      <p>{{ "card.registration_pending_description" | translate }}</p>
+    </div>
   </div>
 
-  <div
-    class="progress-bar"
-    *ngIf="course.progress !== undefined && !hideProgressbar"
-  >
-    <div class="percent">
-      {{ "card.progress" | translate }}: {{ course.progress }}%
+  <div *ngIf="tab?.type === 'ONGOING'">
+    <div
+      class="progress-bar"
+      *ngIf="course.progress !== undefined && !hideProgressbar"
+    >
+      <div class="percent">
+        {{ "card.progress" | translate }}: {{ course.progress }}%
+      </div>
+      <mat-progress-bar
+        mode="determinate"
+        value="{{ course.progress }}"
+      ></mat-progress-bar>
     </div>
-    <mat-progress-bar
-      mode="determinate"
-      value="{{ course.progress }}"
-    ></mat-progress-bar>
   </div>
-  <div
-    class="card-footer-{{
-      course.courseType?.includes('teoretic') ? 'green' : 'pink'
-    }}"
-  >
-    <div class="stats">
-      <div class="card-category"><i class="material-icons">schedule</i></div>
-      <div>{{ course.hours }} {{ "card.hours" | translate }}</div>
+  <div class="card-footer">
+    <div class="footer-item footer-item-grow">
+      <h4>{{ "card.duration" | translate }} :</h4>
+      <p>{{ course.hours }} ore</p>
+    </div>
+    <div class="footer-item">
+      <h4>{{ "card.role" | translate }} :</h4>
+      <p>-</p>
+    </div>
+    <div class="footer-item footer-item-grow">
+      <h4>{{ "card.period" | translate }}:</h4>
+      <p>
+        {{ course.startDate | date: "dd.MM.yyyy" }}-{{
+          course.startDate | date: "dd.MM.yyyy"
+        }}
+      </p>
+    </div>
+    <div class="footer-item">
+      <h4>{{ "card.price" | translate }}:</h4>
+      <p>-</p>
     </div>
   </div>
 </ng-template>

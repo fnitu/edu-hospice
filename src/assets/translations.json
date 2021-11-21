@@ -322,7 +322,15 @@
     "hours": "Ore",
     "recommended": "Recomandat",
     "inProgress": "In desfasurare",
-    "finalized": "Finalizat"
+    "finalized": "Finalizat",
+    "duration": "Durata",
+    "role": "Rol",
+    "period": "Perioada",
+    "price": "Preț",
+    "payment_pending_title": "In asteptarea platii",
+    "payment_pending_description": "Se asteapta plata cursului. Participarea la curs va fi accesibila din momentul efecturii platii",
+    "registration_pending_title": "In asteptarea aprobarii",
+    "registration_pending_description": "Analizam candidatura ta. Daca intrunesti criteriile, vei primi prin email link-ul unde poti efectua plata."
   },
   "topToolbar": {
     "tooltips": {

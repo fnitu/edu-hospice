@@ -118,12 +118,21 @@
     }
   }
 
-  .register {
-    display: block;
-    background-color: $themeColor1-light;
-    color: $textWithBackground;
-    text-align: center;
-    padding: 5px;
+  .registration-button-container {
+    display: flex;
+    padding: 8px;
+    align-content: space-around;
+    justify-content: center;
+    align-items: center;
+    .register {
+      display: block;
+      background-color: $themeColor1-light;
+      color: $textWithBackground;
+      text-align: center;
+      background-color: #6e73fc;
+      font-size: large;
+      font-weight: 400;
+    }
   }
 
   .progress-bar {
@@ -136,36 +145,73 @@
     }
   }
 
-  [class*="card-footer-"] {
-    margin: 0;
-    border-radius: 0 0 6px 6px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 0;
-    color: #fff;
-    padding: 8px 0;
-
-    .stats {
+  .status {
+    margin: 10px 0;
+    .status-pending {
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 0 45px;
+      h5 {
+        margin: 10px;
+        font-size: 15px;
+        font-weight: 400;
+      }
+      p {
+        font-size: 0.8em;
+        line-height: 0.8rem;
+      }
+    }
+    .status-pending-payment {
+      background: #d4ecf6;
+    }
+    .status-pending-registration {
+      background: rgb(217, 247, 147);
     }
   }
 
-  .card-footer-green {
-    background: linear-gradient(
-      $gradientDegree,
-      $themeColor1-light,
-      $themeColor1-dark
-    );
-  }
+  .card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    background: #eaeaea;
+    padding: 15px 10px;
 
-  .card-footer-pink {
-    background: linear-gradient(
-      $gradientDegree,
-      $themeColor2-light,
-      $themeColor2-dark
-    );
+    div {
+      display: flex;
+      flex-basis: calc(35% - 5px);
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      h4 {
+        color: #b9afc2;
+        margin: 0;
+        font-weight: 500;
+        font-size: 0.7rem;
+        line-height: 0.7rem;
+      }
+      p {
+        padding-left: 5px;
+        margin: 0;
+        font-weight: 500;
+        font-size: 0.7rem;
+        line-height: 0.7rem;
+      }
+      div {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-grow: 2;
+      }
+    }
+    .footer-item {
+      display: flex;
+      flex-direction: row;
+      padding: 3px;
+    }
+    .footer-item-grow {
+      flex-grow: 1;
+    }
   }
 }
