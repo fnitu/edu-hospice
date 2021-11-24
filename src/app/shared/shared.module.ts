@@ -69,7 +69,7 @@ import { AutoFocusDirective } from './services/auto-focus/auto-focus.directive';
 import { UploadComponent } from './components/upload/upload.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { ChangePassword } from './components/change-password/change-password.component';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 @NgModule({
   declarations: [
     MaterialElevationDirective,
@@ -147,6 +147,7 @@ import { ChangePassword } from './components/change-password/change-password.com
     MatTreeModule,
     MatCheckboxModule,
     MatBadgeModule,
+    MatSlideToggleModule,
     CourseCardComponent,
     TranslateModule,
     GridComponent,

@@ -15,7 +15,8 @@
             <mat-form-field [floatLabel]="'auto'"
                             class="question-name">
                 <mat-label>{{ 'admin.quiz.question.name' | translate }}</mat-label>
-                <input matInput [(ngModel)]="question.name">
+                <input matInput [(ngModel)]="question.name" required>
+                <mat-error *ngIf="!question.name">{{ 'field.required' | translate }}</mat-error>
             </mat-form-field>
 
             <mat-form-field class="question-type-dropdown">
@@ -56,6 +57,11 @@
                             (click)="removeOption(question, option)">
                         <mat-icon class="delete">delete_forever</mat-icon>
                     </button>
+
+                    <mat-slide-toggle
+                            title="{{ 'admin.quiz.question.chooseValidAnswer' | translate }}"
+                            [checked]="option.valid"
+                            (change)="validOptionChanged($event, question, option)"></mat-slide-toggle>
                 </div>
             </div>
         </div>

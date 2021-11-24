@@ -11,155 +11,191 @@ import { QuizQuestionsService } from './quiz-questions.service';
 import { QuizSettingsService } from '../quiz-settings/quiz-settings.service';
 
 @Component({
-  selector: 'app-quiz-questions',
-  templateUrl: './quiz-questions.component.html',
-  styleUrls: ['./quiz-questions.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-quiz-questions',
+    templateUrl: './quiz-questions.component.html',
+    styleUrls: ['./quiz-questions.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class QuizQuestionsComponent implements OnInit {
-  public questions: QuestionInterface[] = [];
+    public questions: QuestionInterface[] = [];
 
-  public readonly TEXTAREA_SHORT_LIMIT = GLOBALS.TEXTAREA.SHORT_LIMIT;
-  public readonly TEXTAREA_BIG_LIMIT = GLOBALS.TEXTAREA.BIG_LIMIT;
+    public readonly TEXTAREA_SHORT_LIMIT = GLOBALS.TEXTAREA.SHORT_LIMIT;
+    public readonly TEXTAREA_BIG_LIMIT = GLOBALS.TEXTAREA.BIG_LIMIT;
 
-  public readonly TEXTAREA_MAX_ROWS = GLOBALS.TEXTAREA.MAX_ROWS;
-  public readonly TEXTAREA_MIN_ROWS = GLOBALS.TEXTAREA.MIN_ROWS;
+    public readonly TEXTAREA_MAX_ROWS = GLOBALS.TEXTAREA.MAX_ROWS;
+    public readonly TEXTAREA_MIN_ROWS = GLOBALS.TEXTAREA.MIN_ROWS;
 
-  @Input() quizSettingSaved: boolean = false;
+    @Input() quizSettingSaved: boolean = false;
 
-  constructor(
-    private route: ActivatedRoute,
-    private matSnackBar: MatSnackBar,
-    private customTranslateService: CustomTranslateService,
-    private quizQuestionsService: QuizQuestionsService,
-    public quizSettingsService: QuizSettingsService
-  ) {}
-
-  ngOnInit(): void {
-    if (this.quizSettingsService.quizId) {
-      this.getQuestions();
+    constructor(
+        private route: ActivatedRoute,
+        private matSnackBar: MatSnackBar,
+        private customTranslateService: CustomTranslateService,
+        private quizQuestionsService: QuizQuestionsService,
+        public quizSettingsService: QuizSettingsService) {
     }
-  }
 
-  private getQuestions() {
-    this.quizQuestionsService
-      .getQuestions(this.quizSettingsService.quizId)
-      .subscribe((response) => {
-        this.questions = response;
-      });
-  }
-
-  public addFirstQuestion() {
-    let newQuestion: any = {
-      name: '',
-      type: 'SELECT',
-      options: [
-        {
-          option: this.customTranslateService.getTranslation(
-            'admin.quiz.question.newOption'
-          ),
-          valid: true,
-        },
-      ],
-    };
-
-    this.quizQuestionsService
-      .addQuestion(this.quizSettingsService.quizId, newQuestion)
-      .subscribe((response) => {
-        newQuestion.id = response.id;
-
-        this.questions.push(newQuestion);
-      });
-  }
-
-  public addOption(question, option) {
-    const currentOptionIndex = question.options.indexOf(option);
-
-    const newOption: QuestionOptionInterface = {
-      option: this.customTranslateService.getTranslation(
-        'admin.quiz.question.newOption'
-      ),
-      valid: true,
-    };
-
-    question.options.splice(currentOptionIndex + 1, 0, newOption);
-  }
-
-  public removeOption(question, option) {
-    if (question.options.length > 1) {
-      _.remove(question.options, function (item) {
-        return item === option;
-      });
-    } else {
-      this.matSnackBar.openFromComponent(SnackBarComponent, {
-        verticalPosition: 'top',
-        data: {
-          content: this.customTranslateService.getTranslation(
-            'admin.quiz.question.deleteLastOptionMessage'
-          ),
-          type: GLOBALS.NOTIFICATIONS.ERROR,
-        },
-      });
+    ngOnInit(): void {
+        if (this.quizSettingsService.quizId) {
+            this.getQuestions();
+        }
     }
-  }
 
-  public saveQuestion(question) {
-    this.quizQuestionsService.saveQuestion(question).subscribe((response) => {
-      if (response.success) {
-        this.matSnackBar.openFromComponent(SnackBarComponent, {
-          verticalPosition: 'top',
-          data: {
-            content: this.customTranslateService.getTranslation(
-              response.message
-            ),
-            type: GLOBALS.NOTIFICATIONS.INFO,
-          },
+    private getQuestions() {
+        this.quizQuestionsService
+            .getQuestions(this.quizSettingsService.quizId)
+            .subscribe((response) => {
+                this.questions = response;
+            });
+    }
+
+    public addFirstQuestion() {
+        const newQuestion: QuestionInterface = this.getDefaultQuestionModel();
+
+        this.quizQuestionsService
+            .addQuestion(this.quizSettingsService.quizId, newQuestion)
+            .subscribe((response) => {
+                newQuestion.id = response.id;
+
+                this.questions.push(newQuestion);
+            });
+    }
+
+    private getDefaultOptionModel(): QuestionOptionInterface {
+        return {
+            option: this.customTranslateService.getTranslation('admin.quiz.question.newOption'),
+            valid: false
+        }
+    }
+
+    private getDefaultQuestionModel(): QuestionInterface {
+        return {
+            name: '',
+            type: 'SELECT',
+            options: [
+                this.getDefaultOptionModel()
+            ]
+        }
+    }
+
+    public addOption(question, option) {
+        const currentOptionIndex = question.options.indexOf(option);
+
+        const newOption: QuestionOptionInterface = this.getDefaultOptionModel();
+
+        question.options.splice(currentOptionIndex + 1, 0, newOption);
+    }
+
+    public removeOption(question, option) {
+        if (question.options.length > 1) {
+            _.remove(question.options, function (item) {
+                return item === option;
+            });
+        } else {
+            this.matSnackBar.openFromComponent(SnackBarComponent, {
+                verticalPosition: 'top',
+                data: {
+                    content: this.customTranslateService.getTranslation(
+                        'admin.quiz.question.deleteLastOptionMessage'
+                    ),
+                    type: GLOBALS.NOTIFICATIONS.ERROR,
+                }
+            });
+        }
+    }
+
+    public saveQuestion(question) {
+        let hasQuestionName = !!question.name;
+        let hasValidOptionChecked = true;
+
+        if (["RADIO", "SELECT", "CHECKBOXES"].indexOf(question.type) !== -1) {
+            // check if question has at least one option checked as valid
+            hasValidOptionChecked = _.filter(question.options, "valid").length !== 0;
+        }
+
+        if (hasQuestionName && hasValidOptionChecked) {
+            this.quizQuestionsService.saveQuestion(question).subscribe((response) => {
+                if (response.success) {
+                    this.matSnackBar.openFromComponent(SnackBarComponent, {
+                        verticalPosition: 'top',
+                        data: {
+                            content: this.customTranslateService.getTranslation(
+                                response.message
+                            ),
+                            type: GLOBALS.NOTIFICATIONS.INFO,
+                        }
+                    });
+                }
+            });
+        } else {
+            this.matSnackBar.openFromComponent(SnackBarComponent, {
+                verticalPosition: 'top',
+                data: {
+                    contentAsHTML: this.buildSaveQuestionErrorMessage(hasQuestionName, hasValidOptionChecked),
+                    type: GLOBALS.NOTIFICATIONS.ERROR,
+                }
+            });
+        }
+    }
+
+    private buildSaveQuestionErrorMessage(hasQuestionName, hasValidOptionChecked): string {
+        let messageTemplate = "";
+
+        if (!hasQuestionName) {
+            messageTemplate += `<div>${this.customTranslateService.getTranslation('admin.quiz.question.saveEmptyQuestionNameErrorMessage')}</div>`
+        }
+
+        if(!hasValidOptionChecked) {
+            messageTemplate += `<div>${this.customTranslateService.getTranslation('admin.quiz.question.hasValidOptionCheckedErrorMessage')}</div>`
+        }
+
+        return messageTemplate;
+    }
+
+    public addQuestion(question) {
+        const currentQuestionIndex = this.questions.indexOf(question);
+
+        const newQuestion: QuestionInterface = this.getDefaultQuestionModel();
+
+        this.quizQuestionsService
+            .addQuestion(this.quizSettingsService.quizId, newQuestion)
+            .subscribe((response) => {
+                newQuestion.id = response.id;
+
+                this.questions.splice(currentQuestionIndex + 1, 0, newQuestion);
+            });
+    }
+
+    public removeQuestion(question) {
+        if (this.questions.length > 1) {
+            this.quizQuestionsService
+                .removeQuestion(question.id)
+                .subscribe((response) => {
+                    _.remove(this.questions, (item) => item === question);
+                });
+        } else
+            this.matSnackBar.openFromComponent(SnackBarComponent, {
+                verticalPosition: 'top',
+                data: {
+                    content: this.customTranslateService.getTranslation(
+                        'admin.quiz.question.deleteLastQuestionMessage'
+                    ),
+                    type: GLOBALS.NOTIFICATIONS.ERROR,
+                }
+            });
+    }
+
+    public validOptionChanged($event, question, option) {
+        if (question.type === "RADIO" || question.type === "SELECT") {
+            QuizQuestionsComponent.resetOptionsValidState(question);
+        }
+
+        option.valid = $event.checked;
+    }
+
+    private static resetOptionsValidState(question) {
+        _.each(question.options, (option) => {
+            option.valid = false;
         });
-      }
-    });
-  }
-
-  public addQuestion(question) {
-    const currentQuestionIndex = this.questions.indexOf(question);
-
-    const newQuestion: QuestionInterface = {
-      name: '',
-      type: 'SELECT',
-      options: [
-        {
-          option: this.customTranslateService.getTranslation(
-            'admin.quiz.question.newOption'
-          ),
-          valid: true,
-        },
-      ],
-    };
-
-    this.quizQuestionsService
-      .addQuestion(this.quizSettingsService.quizId, newQuestion)
-      .subscribe((response) => {
-        newQuestion.id = response.id;
-
-        this.questions.splice(currentQuestionIndex + 1, 0, newQuestion);
-      });
-  }
-
-  public removeQuestion(question) {
-    if (this.questions.length > 1) {
-      this.quizQuestionsService
-        .removeQuestion(question.id)
-        .subscribe((response) => {
-          _.remove(this.questions, (item) => item === question);
-        });
-    } else
-      this.matSnackBar.openFromComponent(SnackBarComponent, {
-        verticalPosition: 'top',
-        data: {
-          content: this.customTranslateService.getTranslation(
-            'admin.quiz.question.deleteLastQuestionMessage'
-          ),
-          type: GLOBALS.NOTIFICATIONS.ERROR,
-        },
-      });
-  }
+    }
 }
