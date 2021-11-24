@@ -188,7 +188,7 @@
       }
     },
     "createCourse": {
-      "addNewCourse": "Creeaza Curs",
+      "addNewCourse": "Creează Curs",
       "showAllCourses": "Vezi toate cursurile",
       "courseDetails": "Detaliile Cursului",
       "courseContent": "Continutul Cursului",
@@ -303,7 +303,9 @@
         "creationDate": "Data creării",
         "lastUpdate": "Ultima actualizare",
         "addQuizButton": "Chestionar nou"
-      }
+      },
+      "showAllQuizzes": "Afișează toate chestionarele",
+      "previewQuiz": "Previzualizează chestionar"
     }
   },
   "course": {
