@@ -1,8 +1,20 @@
-.new-quiz-container {
-  width: 60vw;
-  min-width: 800px;
-  margin: 0 auto;
-  height: 100%;
+app-new-quiz {
   display: flex;
+  height: 100%;
   flex-direction: column;
+
+
+  .new-quiz-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: auto;
+    align-items: center;
+
+    app-quiz-settings, app-quiz-questions {
+      width: 60vw;
+      min-width: 800px;
+    }
+  }
 }
