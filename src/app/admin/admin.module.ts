@@ -28,6 +28,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { UploadCoursePictureComponent } from './components/course/upload-course-picture-dialog/upload-course-picture.component';
 import { AdminEditInfo } from './components/admin-edit-info/admin-edit-info.component';
 import { EditPersonalData } from './components/admin-edit-info/edit-personal-data/edit-personal-data.component';
+import { PreviewQuizDialogComponent } from './components/preview-quiz-dialog/preview-quiz-dialog.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { EditPersonalData } from './components/admin-edit-info/edit-personal-dat
     UploadCoursePictureComponent,
     AdminEditInfo,
     EditPersonalData,
+    PreviewQuizDialogComponent,
   ],
   imports: [
     SharedModule,

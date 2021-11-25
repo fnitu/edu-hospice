@@ -9,7 +9,8 @@ import { ConfirmationDialogService } from 'src/app/shared/components/confirmatio
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PlaceholderFormatService } from 'src/app/shared/services/format/placeholder-format.service';
 import { QuizListService } from './quiz-list.service';
-import { Logger } from 'ag-grid-community';
+import { PreviewQuizDialogComponent } from "../preview-quiz-dialog/preview-quiz-dialog.component";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-quiz-list',
@@ -31,7 +32,8 @@ export class QuizListComponent implements OnInit {
     private confirmationDialogService: ConfirmationDialogService,
     private matSnackBar: MatSnackBar,
     private placeholderFormatService: PlaceholderFormatService,
-    private quizListService: QuizListService
+    private quizListService: QuizListService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -46,7 +48,7 @@ export class QuizListComponent implements OnInit {
           this.customTranslateService.getTranslation('general.actions'),
         field: 'actions',
         cellRenderer: 'rowActionsCellRenderer',
-        maxWidth: 120,
+        maxWidth: 160,
         minWidth: 120,
         cellRendererParams: {
           actions: [
@@ -56,13 +58,17 @@ export class QuizListComponent implements OnInit {
               handler: (params) => this.onBtnClick(params),
             },
             {
-              label:
-                this.customTranslateService.getTranslation('general.delete'),
+              label: this.customTranslateService.getTranslation('general.delete'),
               icon: 'delete_forever',
               cls: 'action-red',
               handler: (params) => this.deleteQuiz(params),
             },
-          ],
+            {
+              label: this.customTranslateService.getTranslation('admin.quiz.previewQuiz'),
+              icon: 'preview',
+              handler: (params) => this.openPreviewQuizDialog(),
+            }
+          ]
         },
         sortable: false,
       },
@@ -108,8 +114,8 @@ export class QuizListComponent implements OnInit {
           return data.value
             ? this.datePipe.transform(new Date(data.value), 'dd/MM/yyyy')
             : '-';
-        },
-      },
+        }
+      }
     ];
   }
 
@@ -132,10 +138,10 @@ export class QuizListComponent implements OnInit {
               this.router.navigate([ROUTES.ADMIN.QUIZ.NEW], {
                 relativeTo: this.route.parent,
               });
-            },
-          },
-        ],
-      },
+            }
+          }
+        ]
+      }
     };
   }
 
@@ -174,9 +180,16 @@ export class QuizListComponent implements OnInit {
           },
           {
             text: this.customTranslateService.getTranslation('general.no'),
-          },
-        ],
-      },
+          }
+        ]
+      }
+    });
+  }
+
+  private openPreviewQuizDialog() {
+    this.dialog.open(PreviewQuizDialogComponent, {
+      height: "95vh",
+      width: "60vw"
     });
   }
 }

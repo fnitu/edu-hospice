@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ROUTES } from "../../../shared/core/routes";
 import { CustomTranslateService } from "../../../shared/services/custom-translate/custom-translate.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { MatDialog } from "@angular/material/dialog";
+import { PreviewQuizDialogComponent } from "../preview-quiz-dialog/preview-quiz-dialog.component";
 
 @Component({
     selector: 'app-new-quiz',
@@ -15,7 +17,8 @@ export class NewQuizComponent implements OnInit {
 
     constructor(private customTranslateService: CustomTranslateService,
                 private router: Router,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private dialog: MatDialog) {
     }
 
     ngOnInit(): void {
@@ -58,12 +61,17 @@ export class NewQuizComponent implements OnInit {
         if (this.quizSettingSaved) {
             actions.push({
                 label: this.customTranslateService.getTranslation('admin.quiz.previewQuiz'),
-                handler: () => {
-                    console.log("Preview quiz");
-                }
+                handler: () => this.openPreviewQuizDialog()
             });
         }
 
         return actions;
+    }
+
+    private openPreviewQuizDialog() {
+        this.dialog.open(PreviewQuizDialogComponent, {
+            height: "95vh",
+            width: "60vw"
+        });
     }
 }
