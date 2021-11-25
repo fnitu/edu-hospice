@@ -1,0 +1,20 @@
+app-quiz {
+  .quiz {
+    .quizDetails {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .title {
+        font-size: 30px;
+        margin-bottom: 30px;
+      }
+
+      .duration {
+        .value {
+          margin-left: 10px;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

@@ -70,6 +70,7 @@ import { UploadComponent } from './components/upload/upload.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { ChangePassword } from './components/change-password/change-password.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { QuizComponent } from './components/quiz/quiz.component';
 @NgModule({
   declarations: [
     MaterialElevationDirective,
@@ -85,6 +86,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     UploadComponent,
     GalleryComponent,
     ChangePassword,
+    QuizComponent,
   ],
   imports: [
     CommonModule,
@@ -165,7 +167,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     UploadComponent,
     GalleryComponent,
     ChangePassword,
-    GridTopToolbarComponent
+    GridTopToolbarComponent,
+    QuizComponent
   ],
   providers: [
     {

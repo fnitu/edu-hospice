@@ -66,7 +66,7 @@ export class QuizListComponent implements OnInit {
             {
               label: this.customTranslateService.getTranslation('admin.quiz.previewQuiz'),
               icon: 'preview',
-              handler: (params) => this.openPreviewQuizDialog(),
+              handler: (params) => this.openPreviewQuizDialog(params.data.id),
             }
           ]
         },
@@ -186,10 +186,13 @@ export class QuizListComponent implements OnInit {
     });
   }
 
-  private openPreviewQuizDialog() {
+  private openPreviewQuizDialog(id) {
     this.dialog.open(PreviewQuizDialogComponent, {
       height: "95vh",
-      width: "60vw"
+      width: "60vw",
+      data: {
+        quizId: id
+      }
     });
   }
 }

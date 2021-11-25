@@ -1,0 +1,13 @@
+<div class="quiz">
+    <div *ngIf="quizDetails"
+         class="quizDetails">
+        <div class="title">{{ quizDetails.name }}</div>
+        <div class="duration">
+            <span class="label">{{ "admin.quiz.settings.timeLimitLabel" | translate }}:</span>
+            <span class="value">{{ quizDetails.timeLimit }} {{ "general.minutes" | translate }}</span>
+        </div>
+    </div>
+
+    <div *ngIf="quizQuestions"
+         class="quizQuestions"></div>
+</div>
