@@ -297,6 +297,7 @@
         "hasValidOptionCheckedErrorMessage": "Cel puțin o opțiune trebuie marcată ca și opțiune corectă.",
         "chooseValidAnswer": "Alege răspunsul corect.",
         "newOption": "Opțiune nouă",
+        "newQuestion": "Întrebare nouă",
         "noQuestionsLabel": "Acest chestionar nu are întrebări adăugate."
       },
       "list": {

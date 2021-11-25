@@ -70,7 +70,7 @@ export class QuizQuestionsComponent implements OnInit {
 
     private getDefaultQuestionModel(): QuestionInterface {
         return {
-            name: '',
+            name: this.customTranslateService.getTranslation('admin.quiz.question.newQuestion'),
             type: 'SELECT',
             options: [
                 this.getDefaultOptionModel()
