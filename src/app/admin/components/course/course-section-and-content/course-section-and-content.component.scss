@@ -17,7 +17,8 @@
     justify-content: flex-end;
 
     .addSection {
-      background-color: $buttonColor1
+      background-color: $buttonColor1;
+      color: $navBarTextColor;
     }
   }
 
@@ -84,6 +85,7 @@
 
           .editSection {
             background-color: $buttonColor1;
+            color: $navBarTextColor;
           }
         }
       }
@@ -144,10 +146,12 @@
 
             .editContent {
               background-color: $buttonColor2;
+              color: $navBarTextColor;
             }
 
             .manageResources {
               background-color: $buttonColor3;
+              color: $navBarTextColor;
 
               .mat-badge-content {
                 background-color: $buttonColor4;
@@ -168,10 +172,12 @@
 
         .addContent {
           background-color: $buttonColor2;
+          color: $navBarTextColor;
         }
 
         .addSection {
           background-color: $buttonColor1;
+          color: $navBarTextColor;
         }
       }
     }
