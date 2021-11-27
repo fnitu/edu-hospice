@@ -9,5 +9,10 @@
     </div>
 
     <div *ngIf="quizQuestions"
-         class="quizQuestions"></div>
+         class="quizQuestions">
+
+        <formly-form [form]="quizForm"
+                     [fields]="quizFields"
+                     [model]="quizModel"></formly-form>
+    </div>
 </div>

@@ -19,6 +19,8 @@ import { QuizSettingsService } from '../quiz-settings/quiz-settings.service';
 export class QuizQuestionsComponent implements OnInit {
     public questions: QuestionInterface[] = [];
 
+    public readonly FIELD_TYPES = GLOBALS.FIELD_TYPES;
+
     public readonly TEXTAREA_SHORT_LIMIT = GLOBALS.TEXTAREA.SHORT_LIMIT;
     public readonly TEXTAREA_BIG_LIMIT = GLOBALS.TEXTAREA.BIG_LIMIT;
 
@@ -71,7 +73,7 @@ export class QuizQuestionsComponent implements OnInit {
     private getDefaultQuestionModel(): QuestionInterface {
         return {
             name: this.customTranslateService.getTranslation('admin.quiz.question.newQuestion'),
-            type: 'SELECT',
+            type: <any>this.FIELD_TYPES.SELECT,
             options: [
                 this.getDefaultOptionModel()
             ]
@@ -108,7 +110,7 @@ export class QuizQuestionsComponent implements OnInit {
         let hasQuestionName = !!question.name;
         let hasValidOptionChecked = true;
 
-        if (["RADIO", "SELECT", "CHECKBOXES"].indexOf(question.type) !== -1) {
+        if ([this.FIELD_TYPES.RADIO, this.FIELD_TYPES.SELECT, this.FIELD_TYPES.CHECKBOXES].indexOf(question.type) !== -1) {
             // check if question has at least one option checked as valid
             hasValidOptionChecked = _.filter(question.options, "valid").length !== 0;
         }
@@ -186,7 +188,7 @@ export class QuizQuestionsComponent implements OnInit {
     }
 
     public validOptionChanged($event, question, option) {
-        if (question.type === "RADIO" || question.type === "SELECT") {
+        if (question.type === this.FIELD_TYPES.RADIO || question.type === this.FIELD_TYPES.SELECT) {
             QuizQuestionsComponent.resetOptionsValidState(question);
         }
 

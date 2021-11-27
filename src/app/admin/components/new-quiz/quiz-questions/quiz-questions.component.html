@@ -22,23 +22,23 @@
             <mat-form-field class="question-type-dropdown">
                 <mat-label>{{ 'admin.quiz.question.type' | translate }}</mat-label>
                 <mat-select [(value)]="question.type">
-                    <mat-option value="RADIO">{{ 'admin.quiz.question.radioType' | translate }}</mat-option>
-                    <mat-option value="SELECT">{{ 'admin.quiz.question.selectType' | translate }}</mat-option>
-                    <mat-option value="CHECKBOXES">{{ 'admin.quiz.question.checkboxesType' | translate }}</mat-option>
-                    <mat-option value="TEXTAREA_SHORT">{{ 'admin.quiz.question.textareaShortType' | translate }}</mat-option>
-                    <mat-option value="TEXTAREA_BIG">{{ 'admin.quiz.question.textareaBigType' | translate }}</mat-option>
+                    <mat-option value="{{FIELD_TYPES.RADIO}}">{{ 'admin.quiz.question.radioType' | translate }}</mat-option>
+                    <mat-option value="{{FIELD_TYPES.SELECT}}">{{ 'admin.quiz.question.selectType' | translate }}</mat-option>
+                    <mat-option value="{{FIELD_TYPES.CHECKBOXES}}">{{ 'admin.quiz.question.checkboxesType' | translate }}</mat-option>
+                    <mat-option value="{{FIELD_TYPES.TEXTAREA_SHORT}}">{{ 'admin.quiz.question.textareaShortType' | translate }}</mat-option>
+                    <mat-option value="{{FIELD_TYPES.TEXTAREA_BIG}}">{{ 'admin.quiz.question.textareaBigType' | translate }}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
 
         <div class="options-container"
-             *ngIf="question.type !== 'TEXTAREA_SHORT' && question.type !== 'TEXTAREA_BIG'">
+             *ngIf="question.type !== FIELD_TYPES.TEXTAREA_SHORT && question.type !== FIELD_TYPES.TEXTAREA_BIG">
             <div class="option-wrapper" *ngFor="let option of question.options">
                 <mat-icon class="material-icons-outlined question-type-icon"
-                          *ngIf="question.type === 'RADIO'">circle</mat-icon>
+                          *ngIf="question.type === FIELD_TYPES.RADIO">circle</mat-icon>
 
                 <mat-icon class="material-icons-outlined question-type-icon"
-                          *ngIf="question.type === 'CHECKBOXES'">crop_square</mat-icon>
+                          *ngIf="question.type === FIELD_TYPES.CHECKBOXES">crop_square</mat-icon>
 
                 <mat-form-field class="option-field">
                     <input matInput [(ngModel)]="option.option">

@@ -14,6 +14,7 @@ import { PreviewQuizDialogComponent } from "../preview-quiz-dialog/preview-quiz-
 export class NewQuizComponent implements OnInit {
     public quizSettingSaved: boolean = false;
     public pageActions = [];
+    private quizId;
 
     constructor(private customTranslateService: CustomTranslateService,
                 private router: Router,
@@ -25,6 +26,8 @@ export class NewQuizComponent implements OnInit {
         // if id is present on route, the quiz is saved
         if (this.route.snapshot.params.id) {
             this.quizSettingSaved = true;
+
+            this.quizId = this.route.snapshot.params.id;
         }
 
         this.pageActions = this.generatePageActions();
@@ -71,7 +74,10 @@ export class NewQuizComponent implements OnInit {
     private openPreviewQuizDialog() {
         this.dialog.open(PreviewQuizDialogComponent, {
             height: "95vh",
-            width: "60vw"
+            width: "60vw",
+            data: {
+                quizId: this.quizId
+            }
         });
     }
 }
