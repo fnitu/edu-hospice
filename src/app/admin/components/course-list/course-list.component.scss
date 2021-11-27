@@ -7,15 +7,23 @@
 
   app-grid {
     .unpublished {
-      color: $unpublished;
+      background-color: $unpublished;
+      color: $navBarTextColor;
     }
 
     .published {
-      color: $published;
+      background-color: $published;
+      color: $navBarTextColor;
     }
 
     .closed {
-      color: $close;
+      background-color: $close;
+      color: $navBarTextColor;
+    }
+
+    .status {
+      padding: 1px 10px;
+      border-radius: 6px;
     }
   }
 }

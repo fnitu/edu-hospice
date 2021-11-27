@@ -182,7 +182,7 @@
       "totalRegisteredUsers": "Total utilizatori înscriși",
       "status": {
         "headerName": "Status",
-        "unpublished": "ne publicat",
+        "unpublished": "nepublicat",
         "published": "publicat",
         "closed": "închis"
       }

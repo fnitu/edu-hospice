@@ -108,7 +108,7 @@ export class CourseListComponent implements OnInit {
               break;
           }
 
-          return `<div class="${cssClass}">${status}</div>`;
+          return `<div class="${cssClass} status">${status}</div>`;
         }
       },
       {
