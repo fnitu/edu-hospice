@@ -1,0 +1,9 @@
+app-preview-quiz-dialog {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .mat-dialog-content {
+    max-height: 95vh;
+  }
+}

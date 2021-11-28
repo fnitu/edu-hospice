@@ -1,5 +1,11 @@
 app-quiz {
+  height: 100%;
+  display: flex;
+
   .quiz {
+    display: flex;
+    flex-direction: column;
+
     .quizDetails {
       display: flex;
       flex-direction: column;
@@ -8,6 +14,7 @@ app-quiz {
       .title {
         font-size: 30px;
         margin-bottom: 30px;
+        line-height: normal;
       }
 
       .duration {
@@ -19,7 +26,10 @@ app-quiz {
     }
 
     .quizQuestions {
+      flex: 1;
+      overflow: auto;
       margin-top: 10px;
+      padding-right: 15px;
 
       .mat-form-field {
         margin-bottom: 15px;

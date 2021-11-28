@@ -1,2 +1,8 @@
-<app-quiz [quizDetailsUrl]="quizDetailsUrl"
+<div mat-dialog-content>
+    <app-quiz [quizDetailsUrl]="quizDetailsUrl"
           [quizQuestionsUrl]="quizQuestionsUrl"></app-quiz>
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+    <button mat-button mat-flat-button [mat-dialog-close]="true">{{ 'general.close' | translate }}</button>
+</div>
