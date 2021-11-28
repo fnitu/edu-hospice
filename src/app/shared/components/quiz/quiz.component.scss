@@ -5,6 +5,7 @@ app-quiz {
   .quiz {
     display: flex;
     flex-direction: column;
+    width: 100%;
 
     .quizDetails {
       display: flex;
