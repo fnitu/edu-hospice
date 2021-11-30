@@ -14,6 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../../../shared/interfaces/user';
 import { AuthService } from '../../services/authentication/auth.service';
 import { Tabs } from '../../interfaces/tabs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-card',
@@ -38,7 +39,8 @@ export class CourseCardComponent implements OnInit {
     private userListService: UserListService,
     private placeholderFormat: PlaceholderFormatService,
     private matSnackBar: MatSnackBar,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -76,6 +78,21 @@ export class CourseCardComponent implements OnInit {
           duration: GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
           verticalPosition: 'bottom',
         });
+
+        const redirectToPendingTab = Array.from(
+          document.getElementsByClassName('mat-tab-label-content')
+        );
+        const htmlNode = document.getElementsByClassName(
+          'mat-tab-label-content'
+        );
+
+        for (let item of redirectToPendingTab) {
+          if (item.innerHTML.includes('În așteptare')) {
+            let index = redirectToPendingTab.indexOf(item);
+            let element = htmlNode[index] as HTMLElement;
+            element.click();
+          }
+        }
       }
     });
   }

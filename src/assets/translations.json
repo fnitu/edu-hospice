@@ -333,10 +333,10 @@
     "role": "Rol",
     "period": "Perioada",
     "price": "Preț",
-    "payment_pending_title": "In asteptarea platii",
-    "payment_pending_description": "Se asteapta plata cursului. Participarea la curs va fi accesibila din momentul efecturii platii",
-    "registration_pending_title": "In asteptarea aprobarii",
-    "registration_pending_description": "Analizam candidatura ta. Daca intrunesti criteriile, vei primi prin email link-ul unde poti efectua plata."
+    "payment_pending_title": "În așteptarea plății",
+    "payment_pending_description": "Cererea ta de înscriere a fost acceptată. Verifică-ți email-ul si accesează link-ul unde poți efectua plata.",
+    "registration_pending_title": "În așteptarea aprobării",
+    "registration_pending_description": "Analizăm candidatura ta. Dacă întrunești criteriile, vei primi prin email link-ul unde poti efectua plata."
   },
   "topToolbar": {
     "tooltips": {
@@ -348,6 +348,6 @@
   "upload": {
     "buttonBrowse": "Browse",
     "placeholderDragNDropDescription": "Drag files here",
-    "warning": "Doar un singur fişier poate sa fie incarcat. Vă rugam selectați doar un singur fişier si încercați din nou."
+    "warning": "Doar un singur fişier poate sa fie încărcat. Vă rugăm selectați doar un singur fişier si încercați din nou."
   }
 }

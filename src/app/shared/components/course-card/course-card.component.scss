@@ -151,7 +151,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0 45px;
+      padding: 0 20px;
       h5 {
         margin: 10px;
         font-size: 15px;
@@ -160,13 +160,17 @@
       p {
         font-size: 0.8em;
         line-height: 0.8rem;
+        text-align: center;
+        vertical-align: middle;
+        display: table-cell;
       }
     }
+    // TODO change colors when design is ready
     .status-pending-payment {
-      background: #d4ecf6;
+      background: #f2d1d1;
     }
     .status-pending-registration {
-      background: rgb(217, 247, 147);
+      background: #d4ecf6;
     }
   }
 
@@ -176,7 +180,7 @@
     flex-direction: row;
     justify-content: center;
     background: #eaeaea;
-    padding: 15px 10px;
+    padding: 15px 20px;
 
     div {
       display: flex;
@@ -197,6 +201,7 @@
         font-weight: 500;
         font-size: 0.7rem;
         line-height: 0.7rem;
+        text-align: center;
       }
       div {
         display: flex;

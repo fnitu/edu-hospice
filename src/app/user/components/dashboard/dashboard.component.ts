@@ -1,16 +1,16 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {User} from '../../../shared/interfaces/user';
-import {Router} from '@angular/router';
-import {Course} from '../../../shared/interfaces/course';
-import {DashboardService} from './dashboard.service';
-import {ROUTES} from '../../../shared/core/routes';
-import {AuthService} from 'src/app/shared/services/authentication/auth.service';
-import {GLOBALS} from '../../../shared/core/globals';
-import {environment} from '../../../../environments/environment';
-import {PlaceholderFormatService} from '../../../shared/services/format/placeholder-format.service';
-import {HomeCardDialogComponent} from '../../../preview/components/dialog-home-card/home-card-dialog/home-card-dialog.component';
-import {MatDialog} from '@angular/material/dialog';
-import {UploadProfilePictureDialogComponent} from './upload-profile-picture-dialog/upload-profile-picture-dialog.component';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { User } from '../../../shared/interfaces/user';
+import { Router } from '@angular/router';
+import { Course } from '../../../shared/interfaces/course';
+import { DashboardService } from './dashboard.service';
+import { ROUTES } from '../../../shared/core/routes';
+import { AuthService } from 'src/app/shared/services/authentication/auth.service';
+import { GLOBALS } from '../../../shared/core/globals';
+import { environment } from '../../../../environments/environment';
+import { PlaceholderFormatService } from '../../../shared/services/format/placeholder-format.service';
+import { HomeCardDialogComponent } from '../../../preview/components/dialog-home-card/home-card-dialog/home-card-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { UploadProfilePictureDialogComponent } from './upload-profile-picture-dialog/upload-profile-picture-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,13 +22,14 @@ export class DashboardComponent implements OnInit {
   public courseTabs;
   public types = ['recommended', 'finished'];
 
-  constructor(private dashboardService: DashboardService,
-              private router: Router,
-              private authService: AuthService,
-              private placeholderFormat: PlaceholderFormatService,
-              private placeholderFormatService: PlaceholderFormatService,
-              public dialog: MatDialog) {
-  }
+  constructor(
+    private dashboardService: DashboardService,
+    private router: Router,
+    private authService: AuthService,
+    private placeholderFormat: PlaceholderFormatService,
+    private placeholderFormatService: PlaceholderFormatService,
+    public dialog: MatDialog
+  ) {}
 
   user = {
     firstName: '',
@@ -44,7 +45,11 @@ export class DashboardComponent implements OnInit {
   }
 
   public goToCourse(course: Course, tab) {
-    if (tab.type === 'RECOMMENDED' || tab.type === 'PENDING' || tab.type === 'FINISHED') {
+    if (
+      tab.type === 'RECOMMENDED' ||
+      tab.type === 'PENDING' ||
+      tab.type === 'FINISHED'
+    ) {
       this.dialogCourse(course.id);
     } else {
       this.router.navigate([
@@ -82,7 +87,7 @@ export class DashboardComponent implements OnInit {
       let url = GLOBALS.DATA_URL.USER_DETAILS;
 
       const params = {
-        '{id}': data.id
+        '{id}': data.id,
       };
 
       url = this.placeholderFormat.stringFormat(url, params);
@@ -99,7 +104,7 @@ export class DashboardComponent implements OnInit {
     let url = GLOBALS.DATA_URL.COURSES_TABS;
 
     const params = {
-      '{userId}': this.user.id
+      '{userId}': this.user.id,
     };
 
     url = this.placeholderFormat.stringFormat(url, params);
@@ -110,15 +115,13 @@ export class DashboardComponent implements OnInit {
   }
 
   private getTabData(tab) {
-    if (!tab.courseList) {
-      const url = environment.BASE_URL + tab.link;
+    const url = environment.BASE_URL + tab.link;
 
-      this.dashboardService
-        .fetchTabData(url)
-        .subscribe((response: Array<Course>) => {
-          tab.courseList = response;
-        });
-    }
+    this.dashboardService
+      .fetchTabData(url)
+      .subscribe((response: Array<Course>) => {
+        tab.courseList = response;
+      });
   }
 
   public selectedTabChange(tab) {
