@@ -200,4 +200,10 @@ export class QuizQuestionsComponent implements OnInit {
             option.valid = false;
         });
     }
+
+    public selectionChangeHandler(question) {
+        if (question.type === this.FIELD_TYPES.TEXTAREA_SHORT || question.type === this.FIELD_TYPES.TEXTAREA_BIG) {
+            delete question.options;
+        }
+    }
 }

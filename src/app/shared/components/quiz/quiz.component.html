@@ -1,6 +1,6 @@
 <div class="quiz">
     <div *ngIf="quizDetails"
-         class="quizDetails">
+         class="quiz-details">
         <div class="title">{{ quizDetails.name }}</div>
         <div class="duration">
             <span class="label">{{ "admin.quiz.settings.timeLimitLabel" | translate }}:</span>
@@ -9,7 +9,7 @@
     </div>
 
     <div *ngIf="quizQuestions"
-         class="quizQuestions">
+         class="quiz-questions">
 
         <formly-form [form]="quizForm"
                      [fields]="quizFields"

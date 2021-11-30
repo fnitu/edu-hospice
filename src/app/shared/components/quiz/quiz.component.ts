@@ -44,11 +44,11 @@ export class QuizComponent implements OnInit {
   private generateQuizFields(serverFields): FormlyFieldConfig[] {
     let fields: FormlyFieldConfig[] = [];
 
-    _.each(serverFields, (field) => {
+    _.each(serverFields, (field, i) => {
       fields.push(_.merge({
         key: field.id.toString(),
         templateOptions: {
-          label: field.name,
+          label: `${i+1}. ${field.name}`,
           required: true
         },
         validators: {

@@ -7,7 +7,7 @@ app-quiz {
     flex-direction: column;
     width: 100%;
 
-    .quizDetails {
+    .quiz-details {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -26,7 +26,7 @@ app-quiz {
       }
     }
 
-    .quizQuestions {
+    .quiz-questions {
       flex: 1;
       overflow: auto;
       margin-top: 10px;

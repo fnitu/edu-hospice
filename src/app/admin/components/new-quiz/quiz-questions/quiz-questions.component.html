@@ -21,7 +21,7 @@
 
             <mat-form-field class="question-type-dropdown">
                 <mat-label>{{ 'admin.quiz.question.type' | translate }}</mat-label>
-                <mat-select [(value)]="question.type">
+                <mat-select [(value)]="question.type" (selectionChange)="selectionChangeHandler(question)">
                     <mat-option value="{{FIELD_TYPES.RADIO}}">{{ 'admin.quiz.question.radioType' | translate }}</mat-option>
                     <mat-option value="{{FIELD_TYPES.SELECT}}">{{ 'admin.quiz.question.selectType' | translate }}</mat-option>
                     <mat-option value="{{FIELD_TYPES.CHECKBOXES}}">{{ 'admin.quiz.question.checkboxesType' | translate }}</mat-option>
