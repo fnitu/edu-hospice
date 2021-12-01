@@ -18,7 +18,7 @@ app-quiz {
         line-height: normal;
       }
 
-      .duration {
+      .duration, .score, .attempts {
         .value {
           margin-left: 10px;
           font-weight: 700;
@@ -29,8 +29,9 @@ app-quiz {
     .quiz-questions {
       flex: 1;
       overflow: auto;
-      margin-top: 10px;
+      margin-top: 15px;
       padding-right: 15px;
+      padding-left: 15px;
 
       .mat-form-field {
         margin-bottom: 15px;
@@ -43,6 +44,20 @@ app-quiz {
         mat-radio-group {
           .mat-radio-button {
             margin-bottom: 5px;
+          }
+        }
+
+        .mat-form-field-label {
+          transform: translateY(-1.28125em) scale(1) perspective(100px) translateZ(0.001px);
+          font-size: 18px;
+        }
+
+        .mat-form-field-infix {
+          border-top-width: 2em;
+
+          .mat-form-field-label-wrapper {
+            padding-top: 2em;
+            top: -2em;
           }
         }
       }

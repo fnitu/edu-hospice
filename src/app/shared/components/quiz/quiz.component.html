@@ -2,6 +2,14 @@
     <div *ngIf="quizDetails"
          class="quiz-details">
         <div class="title">{{ quizDetails.name }}</div>
+        <div class="score">
+            <span class="label">{{ "admin.quiz.settings.minimumScoreLabel" | translate }}:</span>
+            <span class="value">{{ quizDetails.minScore }}</span>
+        </div>
+        <div class="attempts">
+            <span class="label">{{ "admin.quiz.settings.retryAttemptsLabel" | translate }}:</span>
+            <span class="value">{{ quizDetails.retryAttempts }}</span>
+        </div>
         <div class="duration">
             <span class="label">{{ "admin.quiz.settings.timeLimitLabel" | translate }}:</span>
             <span class="value">{{ quizDetails.timeLimit }} {{ "general.minutes" | translate }}</span>
