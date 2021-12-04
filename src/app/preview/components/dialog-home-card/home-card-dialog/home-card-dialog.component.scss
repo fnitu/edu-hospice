@@ -34,6 +34,7 @@
 
         #dialogTabs {
           margin-top: 15px;
+          height: 415px;
 
           .mat-tab-header {
             border-bottom: 1px solid #bcbcbc;
@@ -57,7 +58,7 @@
           }
 
           .content {
-            min-width: 750px;
+            min-width: 700px;
 
             .description {
               margin-top: 40px;
