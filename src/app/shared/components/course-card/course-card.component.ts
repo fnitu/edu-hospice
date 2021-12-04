@@ -14,7 +14,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../../../shared/interfaces/user';
 import { AuthService } from '../../services/authentication/auth.service';
 import { Tabs } from '../../interfaces/tabs';
-import { Router } from '@angular/router';
+import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-dialog.service';
+import { CustomTranslateService } from '../../services/custom-translate/custom-translate.service';
 
 @Component({
   selector: 'app-course-card',
@@ -40,7 +41,8 @@ export class CourseCardComponent implements OnInit {
     private placeholderFormat: PlaceholderFormatService,
     private matSnackBar: MatSnackBar,
     private authService: AuthService,
-    private router: Router
+    private confirmationDialogService: ConfirmationDialogService,
+    private customTranslateService: CustomTranslateService
   ) {}
 
   ngOnInit(): void {}
@@ -56,44 +58,68 @@ export class CourseCardComponent implements OnInit {
 
   public registerClick(courseId, $event) {
     $event.stopPropagation();
-    let userId;
 
-    this.authService.currentUserResponse.subscribe((data: User) => {
-      userId = data.id;
-    });
+    const dialogRef = this.confirmationDialogService.show({
+      data: {
+        message: this.customTranslateService.getTranslation(
+          'confirmationDialog.courseRegister'
+        ),
+        buttons: [
+          {
+            text: this.customTranslateService.getTranslation('general.no'),
+          },
+          {
+            text: this.customTranslateService.getTranslation('general.yes'),
+            handler: () => {
+              let userId;
 
-    const urlParams = {
-      '{userId}': userId,
-      '{courseId}': courseId,
-    };
+              this.authService.currentUserResponse.subscribe((data: User) => {
+                userId = data.id;
+              });
 
-    const url = this.placeholderFormat.stringFormat(
-      GLOBALS.DATA_URL.REGISTER_COURSES,
-      urlParams
-    );
+              const urlParams = {
+                '{userId}': userId,
+                '{courseId}': courseId,
+              };
 
-    this.userListService.register(url).subscribe((result) => {
-      if (result) {
-        this.matSnackBar.open(result.message, GLOBALS.NOTIFICATIONS.INFO, {
-          duration: GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
-          verticalPosition: 'bottom',
-        });
+              const url = this.placeholderFormat.stringFormat(
+                GLOBALS.DATA_URL.REGISTER_COURSES,
+                urlParams
+              );
 
-        const redirectToPendingTab = Array.from(
-          document.getElementsByClassName('mat-tab-label-content')
-        );
-        const htmlNode = document.getElementsByClassName(
-          'mat-tab-label-content'
-        );
+              this.userListService.register(url).subscribe((result) => {
+                if (result) {
+                  this.matSnackBar.open(
+                    result.message,
+                    GLOBALS.NOTIFICATIONS.INFO,
+                    {
+                      duration:
+                        GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
+                      verticalPosition: 'bottom',
+                    }
+                  );
 
-        for (let item of redirectToPendingTab) {
-          if (item.innerHTML.includes('În așteptare')) {
-            let index = redirectToPendingTab.indexOf(item);
-            let element = htmlNode[index] as HTMLElement;
-            element.click();
-          }
-        }
-      }
+                  const redirectToPendingTab = Array.from(
+                    document.getElementsByClassName('mat-tab-label-content')
+                  );
+                  const htmlNode = document.getElementsByClassName(
+                    'mat-tab-label-content'
+                  );
+
+                  for (let item of redirectToPendingTab) {
+                    if (item.innerHTML.includes('În așteptare')) {
+                      let index = redirectToPendingTab.indexOf(item);
+                      let element = htmlNode[index] as HTMLElement;
+                      element.click();
+                    }
+                  }
+                }
+              });
+              dialogRef.close();
+            },
+          },
+        ],
+      },
     });
   }
 }

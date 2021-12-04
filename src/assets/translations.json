@@ -39,7 +39,8 @@
     "deleteCourseSectionConfirmation": "Sigur doriți să ștergeți acestă sectiune?",
     "deleteCourseContentConfirmation": "Sigur doriți să ștergeți acest continut?",
     "deleteQuizConfirmation": "Sigur doriți să ștergeți acest quiz?",
-    "deleteImgFile": "Sigur doriți să ștergeți acestă imagine?"
+    "deleteImgFile": "Sigur doriți să ștergeți acestă imagine?",
+    "courseRegister": "Sigur doriți să vă înregistrați la acest curs?"
   },
   "preview": {
     "home": {
@@ -175,6 +176,14 @@
       "statsRequests": "cereri",
       "statsPaymentConfirmation": "confirmare",
       "statsPaymentConfirmations": "confirmări"
+    },
+    "editInformations": {
+      "editInfo": "Editare informații personale",
+      "newUsername": "Noul nume de utilizator",
+      "newEmail": "Noua parolă",
+      "name": "Nume",
+      "email": "E-mail",
+      "saveChanges": "Salvează modificările"
     },
     "courses": {
       "courseName": "Numele cursului",

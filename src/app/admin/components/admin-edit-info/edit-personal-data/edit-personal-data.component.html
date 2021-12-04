@@ -1,1 +1,11 @@
-Edit admin data
+<mat-card class="ChangePersonalDataCard">
+  <mat-card-content>
+    <form [formGroup]="form">
+      <h2>{{ "admin.editInformations.editInfo" | translate }}</h2>
+      <formly-form [form]="form" [fields]="fields"></formly-form>
+      <button mat-raised-button [disabled]="form.invalid">
+        {{ "admin.editInformations.saveChanges" | translate }}
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
