@@ -1,126 +1,153 @@
-#homeDialog .mat-dialog-title {
-  font-size: 26px;
-  font-family: Roboto;
-  font-weight: 700;
+.mat-dialog-container {
+  display: flex;
+  flex-direction: column;
+
+  app-home-card-dialog {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    #homeDialog {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+      .close {
+        float: right;
+        font-size: 1.5em;
+        border: none;
+        background-color: transparent;
+        display: block;
+        width: 100%;
+        text-align: end;
+        cursor: pointer;
+      }
+
+      .mat-dialog-title {
+        font-size: 26px;
+        font-family: Roboto;
+        font-weight: 700;
+      }
+
+      .mat-dialog-content {
+        flex: 1;
+
+        #dialogTabs {
+          margin-top: 15px;
+
+          .mat-tab-header {
+            border-bottom: 1px solid #bcbcbc;
+
+            .mat-tab-label {
+              text-transform: uppercase;
+            }
+
+            .mat-tab-label[aria-selected="true"] {
+              .mat-tab-label-content {
+                background-color: #fff;
+                color: #1e5a0b;
+                font-weight: 700;
+              }
+            }
+
+            .mat-ink-bar {
+              background-color: #1e5a0b;
+            }
+
+          }
+
+          .content {
+            min-width: 750px;
+
+            .description {
+              margin-top: 40px;
+            }
+
+            .title {
+              font-size: 20px;
+              font-family: Roboto;
+              font-weight: 700;
+              margin: 0;
+              color: #6e6e6e;
+            }
+
+            .moreDetails {
+              display: grid;
+              grid-template-columns: 3fr 3fr 1fr;
+
+              span {
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: normal;
+                color: #5a5a5a;
+              }
+
+              div {
+                font-weight: 500;
+              }
+            }
+
+            .accordion {
+              border-radius: 0;
+              box-shadow: none;
+
+              .mat-expansion-panel-header {
+                flex-direction: row-reverse;
+
+                .mat-expansion-indicator {
+                  margin-right: 10px;
+                }
+              }
+
+              .mat-expansion-panel-header[aria-expanded="true"] {
+                .mat-expansion-indicator {
+                  position: relative;
+                  top: 2px;
+                }
+              }
+
+              .mat-expansion-panel-header[aria-expanded="false"] {
+                .mat-expansion-indicator {
+                  position: relative;
+                  top: -4px;
+                }
+              }
+
+              .mat-expansion-panel-body {
+                padding-bottom: 0;
+              }
+
+              .sectionDetails {
+                padding-left: 20px;
+
+                .resource {
+                  margin-bottom: 15px;
+
+                  .mat-icon {
+                    float: left;
+                    margin-right: 10px;
+                    color: #8daf80;
+                  }
+
+                  .contentCourse {
+                    margin: 0;
+                  }
+                }
+              }
+            }
+          }
+
+          .register {
+            background-color: #637b5a;
+            color: #fff;
+            width: 150px;
+          }
+        }
+      }
+    }
+  }
 }
 
-.dialogImage {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-}
 
-.close {
-  float: right;
-  font-size: 1.5em;
-  border: none;
-  background-color: transparent;
-  display: block;
-  width: 100%;
-  text-align: end;
-  cursor: pointer;
-}
 
-#dialogTabs {
-  margin-top: 15px;
-}
 
-#dialogTabs .mat-tab-header {
-  border-bottom: 1px solid #bcbcbc;
-}
-#dialogTabs .mat-tab-label {
-  text-transform: uppercase;
-}
-
-#dialogTabs .mat-tab-label[aria-selected="true"] .mat-tab-label-content {
-  background-color: #fff;
-  color: #1e5a0b;
-  font-weight: 700;
-}
-
-#dialogTabs .mat-ink-bar {
-  background-color: #1e5a0b;
-}
-
-#description {
-  margin-top: 40px;
-}
-
-#title {
-  font-size: 20px;
-  font-family: Roboto;
-  font-weight: 700;
-  margin: 0;
-  color: #6e6e6e;
-}
-
-#moreDetails {
-  display: grid;
-  grid-template-columns: 3fr 3fr 1fr;
-}
-
-#moreDetails span {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  color: #5a5a5a;
-}
-
-#moreDetails div {
-  font-weight: 500;
-}
-
-#contentCourse {
-  margin: 0;
-}
-
-#sectionDetails {
-  padding-left: 20px;
-}
-
-#accordion {
-  border-radius: 0;
-  box-shadow: none;
-}
-
-#accordion .mat-expansion-panel-body {
-  padding-bottom: 0;
-}
-
-#accordion .mat-expansion-panel-header {
-  flex-direction: row-reverse;
-}
-
-#accordion .mat-expansion-panel-header .mat-expansion-indicator {
-  margin-right: 10px;
-}
-
-#accordion
-  .mat-expansion-panel-header[aria-expanded="true"]
-  .mat-expansion-indicator {
-  position: relative;
-  top: 2px;
-}
-
-#accordion
-  .mat-expansion-panel-header[aria-expanded="false"]
-  .mat-expansion-indicator {
-  position: relative;
-  top: -4px;
-}
-
-#resource {
-  margin-bottom: 15px;
-}
-
-#resource .mat-icon {
-  float: left;
-  margin-right: 10px;
-  color: #8daf80;
-}
-
-#register {
-  background-color: #637b5a;
-  color: #fff;
-  width: 150px;
-}

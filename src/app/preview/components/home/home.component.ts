@@ -65,8 +65,8 @@ export class HomeComponent implements OnInit {
       this.courseContent = response;
 
       const defaultConfig = {
-        maxWidth: 781,
-        minWidth: 500,
+        maxWidth: 800,
+        minWidth: 800,
         minHeight: 600,
         data: this.courseContent,
         disableClose: false,

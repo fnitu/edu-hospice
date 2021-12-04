@@ -71,8 +71,8 @@ export class DashboardComponent implements OnInit {
       const courseContent = response;
 
       const defaultConfig = {
-        maxWidth: 781,
-        minWidth: 500,
+        maxWidth: 800,
+        minWidth: 800,
         minHeight: 600,
         data: courseContent,
         disableClose: false,
