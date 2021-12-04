@@ -3,10 +3,14 @@
 </div>
 <ng-template #elseBlock>
     <div id="homeDialog">
-        <div>
-            <button mat-dialog-close class="close">X</button>
+
+        <div mat-dialog-title >
+          <h2 class="title">{{data.name}}</h2>
+          <button mat-dialog-close class="close">
+            <span class="material-icons-outlined">close</span>
+          </button>
         </div>
-        <h2 mat-dialog-title>{{data.name}}</h2>
+
         <mat-dialog-content class="mat-typography">
             <mat-tab-group id="dialogTabs">
                 <mat-tab id="labelContent" label="{{ 'preview.dialog.courseDetails' | translate }}">

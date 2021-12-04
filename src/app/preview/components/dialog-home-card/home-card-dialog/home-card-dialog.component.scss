@@ -12,21 +12,25 @@
       flex-direction: column;
       flex: 1;
 
-      .close {
-        float: right;
-        font-size: 1.5em;
-        border: none;
-        background-color: transparent;
-        display: block;
-        width: 100%;
-        text-align: end;
-        cursor: pointer;
-      }
-
       .mat-dialog-title {
-        font-size: 26px;
-        font-family: Roboto;
-        font-weight: 700;
+        display: flex;
+        margin: 0;
+
+        .title {
+          flex: 1;
+          font-size: 26px;
+          font-family: Roboto;
+          font-weight: 700;
+        }
+
+        .close {
+          display: flex;
+          font-size: 1.5em;
+          border: none;
+          background-color: transparent;
+          text-align: end;
+          cursor: pointer;
+        }
       }
 
       .mat-dialog-content {
