@@ -49,6 +49,13 @@
     </div>
   </div>
 
+  <div *ngIf="tab?.type === 'REJECTED'" class="status">
+    <div class="status-pending status-rejected">
+      <h5>{{ "card.rejected_title" | translate }}</h5>
+      <p>{{ "card.rejected_description" | translate }}</p>
+    </div>
+  </div>
+
   <div *ngIf="tab?.type === 'ONGOING'">
     <div
       class="progress-bar"
