@@ -70,29 +70,19 @@
     </div>
     <div class="footer-item">
       <h4>{{ "card.role" | translate }} :</h4>
-      <p>-</p>
-      <!-- TODO replace when data come from endpoint -->
-      <!-- <p>{{course.courseRole}}</p> -->
+      <p>{{ translate(course.courseRole) }}</p>
     </div>
     <div class="footer-item footer-item-grow">
       <h4>{{ "card.period" | translate }}:</h4>
       <p>
         {{ course.startDate | date: "dd.MM.yyyy" }}-{{
-          course.startDate | date: "dd.MM.yyyy"
+          course.endDate | date: "dd.MM.yyyy"
         }}
       </p>
-      <!-- TODO  replace when data come from endpoint -->
-      <!-- <p>
-            {{ course.startDate | date: "dd.MM.yyyy" }}-{{
-                course.endDate | date: "dd.MM.yyyy"
-            }}
-        </p> -->
     </div>
     <div class="footer-item">
       <h4>{{ "card.price" | translate }}:</h4>
-      <p>-</p>
-      <!-- TODO replace when data come from endpoint -->
-      <!-- <p>{{course.price}}</p> -->
+      <p>{{ course.price }} {{ course.currency }}</p>
     </div>
   </div>
 </ng-template>

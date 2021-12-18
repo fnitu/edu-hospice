@@ -333,6 +333,10 @@
     }
   },
   "card": {
+    "roles": {
+      "MEDICAL": "Medical",
+      "MULTI_DISCIPLINARY": "Multidisciplinar"
+    },
     "register": "Înregistrează-te!",
     "progress": "Progres",
     "hours": "Ore",
