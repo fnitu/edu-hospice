@@ -142,10 +142,10 @@ export class CourseSectionAndContentComponent implements OnInit {
         message: this.customTranslateService.getTranslation('confirmationDialog.deleteCourseSectionConfirmation'),
         buttons: [
           {
-            text: this.customTranslateService.getTranslation('general.no')
+            text: this.customTranslateService.getTranslation('general.cancel')
           },
           {
-            text: this.customTranslateService.getTranslation('general.yes'),
+            text: this.customTranslateService.getTranslation('general.confirm'),
             handler: () => {
               const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.DELETE_SECTION,
                 {
@@ -215,10 +215,10 @@ export class CourseSectionAndContentComponent implements OnInit {
         message: this.customTranslateService.getTranslation('confirmationDialog.deleteCourseContentConfirmation'),
         buttons: [
           {
-            text: this.customTranslateService.getTranslation('general.no')
+            text: this.customTranslateService.getTranslation('general.cancel')
           },
           {
-            text: this.customTranslateService.getTranslation('general.yes'),
+            text: this.customTranslateService.getTranslation('general.confirm'),
             handler: () => {
               const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.DELETE_SECTION_CONTENT,
                 {

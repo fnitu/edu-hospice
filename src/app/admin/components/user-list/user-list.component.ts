@@ -150,10 +150,10 @@ export class UserListComponent implements OnInit {
         message: this.customTranslateService.getTranslation('admin.users.userList.approveMessage'),
         buttons: [
           {
-            text: this.customTranslateService.getTranslation('general.no')
+            text: this.customTranslateService.getTranslation('general.cancel')
           },
           {
-            text: this.customTranslateService.getTranslation('general.yes'),
+            text: this.customTranslateService.getTranslation('general.confirm'),
             handler: () => {
               let url = GLOBALS.DATA_URL.APPROVE_COURSE;
               const urlParams = {
@@ -191,10 +191,10 @@ export class UserListComponent implements OnInit {
         hasCommentBox: true,
         buttons: [
           {
-            text: this.customTranslateService.getTranslation('general.no')
+            text: this.customTranslateService.getTranslation('general.cancel')
           },
           {
-            text: this.customTranslateService.getTranslation('general.yes'),
+            text: this.customTranslateService.getTranslation('general.confirm'),
             handler: () => {
               let url =  '';
               switch (this.listType) {

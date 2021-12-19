@@ -153,10 +153,10 @@ export class QuizListComponent implements OnInit {
         ),
         buttons: [
           {
-            text: this.customTranslateService.getTranslation('general.no'),
+            text: this.customTranslateService.getTranslation('general.cancel'),
           },
           {
-            text: this.customTranslateService.getTranslation('general.yes'),
+            text: this.customTranslateService.getTranslation('general.confirm'),
             handler: () => {
               const url = this.placeholderFormatService.stringFormat(
                 GLOBALS.DATA_URL.DELETE_QUIZ,
