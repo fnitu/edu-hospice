@@ -1,10 +1,14 @@
-.confirmation-dialog {
-  .mat-dialog-content {
-    display: flex;
-    flex-direction: column;
+app-confirmation-dialog {
+  width: 100%;
 
-    .comment-box {
-      margin-top: 10px;
+  .confirmation-dialog {
+    .mat-dialog-content {
+      display: flex;
+      flex-direction: column;
+
+      .comment-box {
+        margin-top: 10px;
+      }
     }
   }
 }
