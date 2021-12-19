@@ -1,3 +1,5 @@
+@import "../../../../../styles/scss/imports";
+
 .mat-dialog-container {
   display: flex;
   flex-direction: column;
@@ -141,12 +143,20 @@
               }
             }
           }
+        }
+      }
 
-          .register {
-            background-color: #637b5a;
-            color: #fff;
-            width: 150px;
-          }
+      .mat-dialog-actions {
+        justify-content: flex-end;
+
+        .cancel {
+          color: $generalTextColor;
+        }
+
+        .register {
+          background-color: $registerButton;
+          color: #fff;
+          width: 150px;
         }
       }
     }

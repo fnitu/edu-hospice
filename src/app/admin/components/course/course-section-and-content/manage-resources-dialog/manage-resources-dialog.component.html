@@ -1,10 +1,14 @@
 <div class="container">
-  <h1 mat-dialog-title class="title">
-    {{
-      "admin.createCourseContent.manageResourcesDialog.contentTitle" | translate
-    }}
-    {{ content.name }}
-  </h1>
+  <div mat-dialog-title>
+    <h2 class="title">
+      {{"admin.createCourseContent.manageResourcesDialog.contentTitle" | translate}}
+      "{{ content.name }}"
+    </h2>
+    <button mat-dialog-close class="close">
+      <span class="material-icons-outlined">close</span>
+    </button>
+  </div>
+
   <h5 mat-dialog-title class="subtitle">
     {{
       "admin.createCourseContent.manageResourcesDialog.resourceManagement"

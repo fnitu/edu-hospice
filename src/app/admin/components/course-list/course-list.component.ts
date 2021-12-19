@@ -165,6 +165,9 @@ export class CourseListComponent implements OnInit {
         message: this.customTranslateService.getTranslation('confirmationDialog.deleteCourseConfirmation'),
         buttons: [
           {
+            text: this.customTranslateService.getTranslation('general.no')
+          },
+          {
             text: this.customTranslateService.getTranslation('general.yes'),
             handler: () => {
               const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.DELETE_COURSE,
@@ -185,9 +188,6 @@ export class CourseListComponent implements OnInit {
               });
             }
           },
-          {
-            text: this.customTranslateService.getTranslation('general.no')
-          }
         ]
       }
     });

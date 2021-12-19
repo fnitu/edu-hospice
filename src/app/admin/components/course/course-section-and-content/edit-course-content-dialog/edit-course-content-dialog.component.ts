@@ -55,12 +55,12 @@ export class EditCourseContentDialogComponent implements OnInit {
 
   ngOnInit(): void {
     _.map(this.options, (item) => {
-      if (item.type === this.data.content.type) {
+      if (item.type === this.data.type) {
         this.contentType = item;
       }
     });
 
-    this.url = this.data.content.url;
+    this.url = this.data.url;
   }
 
   displayHandler(option) {
@@ -73,12 +73,12 @@ export class EditCourseContentDialogComponent implements OnInit {
 
     const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.UPDATE_SECTION_CONTENT,
       {
-        '{contentId}': this.data.content.id,
+        '{contentId}': this.data.id,
       }
     );
 
     const data = {
-      name: this.data.content.name,
+      name: this.data.name,
       url: this.url,
       type: this.contentType.type,
       visible: true
@@ -94,8 +94,8 @@ export class EditCourseContentDialogComponent implements OnInit {
       });
 
       if (response.success) {
-        this.data.content.url = this.url;
-        this.data.content.type = this.contentType.type;
+        this.data.url = this.url;
+        this.data.type = this.contentType.type;
 
         this.dialogRef.close();
       }

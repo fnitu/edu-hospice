@@ -132,7 +132,7 @@ export class GalleryComponent implements OnInit {
 
               dialogRef.close();
             }
-          }
+          },
         ]
       }
     });

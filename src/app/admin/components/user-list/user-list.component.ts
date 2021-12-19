@@ -150,6 +150,9 @@ export class UserListComponent implements OnInit {
         message: this.customTranslateService.getTranslation('admin.users.userList.approveMessage'),
         buttons: [
           {
+            text: this.customTranslateService.getTranslation('general.no')
+          },
+          {
             text: this.customTranslateService.getTranslation('general.yes'),
             handler: () => {
               let url = GLOBALS.DATA_URL.APPROVE_COURSE;
@@ -176,9 +179,6 @@ export class UserListComponent implements OnInit {
               });
             }
           },
-          {
-            text: this.customTranslateService.getTranslation('general.no')
-          }
         ]
       }
     });
@@ -190,6 +190,9 @@ export class UserListComponent implements OnInit {
         message: this.customTranslateService.getTranslation('admin.users.userList.rejectMessage'),
         hasCommentBox: true,
         buttons: [
+          {
+            text: this.customTranslateService.getTranslation('general.no')
+          },
           {
             text: this.customTranslateService.getTranslation('general.yes'),
             handler: () => {
@@ -229,9 +232,6 @@ export class UserListComponent implements OnInit {
               });
             }
           },
-          {
-            text: this.customTranslateService.getTranslation('general.no')
-          }
         ]
       }
     });

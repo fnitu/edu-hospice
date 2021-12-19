@@ -233,7 +233,11 @@
       "editSectionButton": "Editare sectiune",
       "addContentButton": "Adauga continut",
       "editContentButton": "Editare continut",
+      "editCourseSectionDialog": {
+        "title": "Editare sectiune"
+      },
       "editCourseContentDialog": {
+        "title": "Adauga Continut pentru",
         "presentation": "Prezentare",
         "video": "Video",
         "conference": "Conferință Zoom",

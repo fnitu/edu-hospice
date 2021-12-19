@@ -6,6 +6,28 @@
       display: flex;
       flex-direction: column;
       height: 500px;
+      width: 100%;
+
+      .mat-dialog-title {
+        display: flex;
+        margin: 0 0 40px;
+
+        .title {
+          flex: 1;
+          font-size: 26px;
+          font-family: Roboto;
+          font-weight: 700;
+        }
+
+        .close {
+          display: flex;
+          font-size: 1.5em;
+          border: none;
+          background-color: transparent;
+          text-align: end;
+          cursor: pointer;
+        }
+      }
 
       .mat-dialog-content {
         flex: 1;

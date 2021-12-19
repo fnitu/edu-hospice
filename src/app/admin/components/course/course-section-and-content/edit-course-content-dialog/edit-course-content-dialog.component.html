@@ -1,5 +1,11 @@
-<div mat-dialog-title *ngIf="data?.content?.name">
-  Adauga Continut pentru "{{ data?.content?.name }}"
+<div mat-dialog-title>
+  <h2 class="title">
+    {{"admin.createCourseContent.editCourseContentDialog.title" | translate}}
+    "{{data?.name}}"
+  </h2>
+  <button mat-dialog-close class="close">
+    <span class="material-icons-outlined">close</span>
+  </button>
 </div>
 
 <div mat-dialog-content>
@@ -20,19 +26,19 @@
     </form>
   </div>
   <div class="addContentContainer">
-    <div class="pdfContainer" *ngIf="contentType.type === 'PDF'">
+    <div class="pdfContainer" *ngIf="contentType?.type === 'PDF'">
       <mat-form-field>
         <input matInput class="input" type="text" [(ngModel)]="url" placeholder="Add URL for PDF file (https://)">
 
       </mat-form-field>
     </div>
-    <div class="videoContainer" *ngIf="contentType.type === 'VIDEO'">
+    <div class="videoContainer" *ngIf="contentType?.type === 'VIDEO'">
       <mat-form-field>
         <input matInput class="input" type="text" [(ngModel)]="url" placeholder="Add URL for Video file (https://)">
 
       </mat-form-field>
     </div>
-    <div class="zoomContainer" *ngIf="contentType.type === 'ZOOM'">
+    <div class="zoomContainer" *ngIf="contentType?.type === 'ZOOM'">
       <mat-form-field>
         <input matInput class="input" type="text" [(ngModel)]="url" placeholder="Add link to Zoom Meeting (https://)">
 
@@ -57,7 +63,7 @@
         </ngx-mat-datetime-picker>
       </mat-form-field>
     </div>
-    <div class="videoContainer" *ngIf="contentType.type === 'QUIZ'">
+    <div class="videoContainer" *ngIf="contentType?.type === 'QUIZ'">
       <mat-form-field>
         <input matInput class="input" type="text" [(ngModel)]="url" placeholder="Add URL for Quiz file (https://)">
 

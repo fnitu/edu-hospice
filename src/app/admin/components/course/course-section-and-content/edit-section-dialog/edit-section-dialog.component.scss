@@ -1,16 +1,41 @@
-.container {
+
+.mat-dialog-container {
   display: flex;
-  height: 100%;
-  flex-direction: column;
-  h1 {
-    margin: 20px 0 10px 40px;
-  }
-  .course-edit {
-    margin-top: 5rem;
+
+  .editSectionDialogContianer {
     display: flex;
-    margin: 3rem;
-  }
-  .mat-dialog-actions {
-    justify-content: flex-end;
+    height: 100%;
+    flex-direction: column;
+
+    .mat-dialog-title {
+      display: flex;
+      margin: 0 0 40px;
+
+      .title {
+        flex: 1;
+        font-size: 26px;
+        font-family: Roboto;
+        font-weight: 700;
+      }
+
+      .close {
+        display: flex;
+        font-size: 1.5em;
+        border: none;
+        background-color: transparent;
+        text-align: end;
+        cursor: pointer;
+      }
+    }
+
+    .mat-dialog-content {
+      display: flex;
+      flex: 1;
+    }
+
+    .mat-dialog-actions {
+      justify-content: flex-end;
+    }
   }
 }
+

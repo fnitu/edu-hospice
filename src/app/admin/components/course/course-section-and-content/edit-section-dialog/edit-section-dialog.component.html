@@ -1,6 +1,14 @@
-<div class="container">
-  <h1>Editare sectiune</h1>
-  <div class="course-edit">
+<div class="editSectionDialogContianer">
+  <div mat-dialog-title>
+    <h2 class="title">
+      {{"admin.createCourseContent.editCourseSectionDialog.title" | translate}}
+      "{{data?.name}}"
+    </h2>
+    <button mat-dialog-close class="close">
+      <span class="material-icons-outlined">close</span>
+    </button>
+  </div>
+  <div mat-dialog-content>
     <form [formGroup]="form">
       <formly-form
         [form]="form"

@@ -2,25 +2,46 @@
   display: flex;
   height: 100%;
   flex-direction: column;
-  .mat-dialog-title.title {
-    font-size: 20px;
-    margin-bottom: 5px;
+
+  .mat-dialog-title {
+    display: flex;
+    margin: 0 0 40px;
+
+    .title {
+      flex: 1;
+      font-size: 26px;
+      font-family: Roboto;
+      font-weight: 700;
+    }
+
+    .close {
+      display: flex;
+      font-size: 1.5em;
+      border: none;
+      background-color: transparent;
+      text-align: end;
+      cursor: pointer;
+    }
   }
+
   .mat-dialog-title.subtitle {
     font-size: 15px;
     margin-bottom: 25px;
   }
+
   .add-resource {
     display: flex;
     button {
       float: right;
     }
   }
+
   .resource-container {
     width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 20px;
+
     .resources {
       display: flex;
       width: 90%;
@@ -28,21 +49,26 @@
       flex-direction: column;
       margin-top: 30px;
       padding-bottom: 20px;
+
       .resource-field {
         outline: none;
       }
+
       .single-resource {
         line-height: 30px;
         border-bottom: 1px solid grey;
         display: flex;
         align-items: center;
+
         mat-icon {
           font-size: 20px;
         }
+
         .link-under {
           margin-left: 20px;
           display: flex;
           flex-direction: column;
+
           .resource-name {
             overflow: hidden;
             white-space: nowrap;
@@ -50,6 +76,7 @@
             max-width: 300px;
             font-size: 15px;
           }
+
           .resource-link {
             overflow: hidden;
             white-space: nowrap;
@@ -61,10 +88,12 @@
             font-size: 11px;
             font-weight: 600;
           }
+
           .resource-link:hover {
             text-decoration: underline;
           }
         }
+
         .delete-icon {
           margin-left: auto;
           cursor: pointer;
@@ -72,13 +101,16 @@
       }
     }
   }
+
   .resource-added-info {
     font-weight: 600;
     margin-left: auto;
   }
+
   .action-info {
     margin-left: auto;
   }
+
   .mat-dialog-actions {
     justify-content: flex-end;
     margin-left: auto;

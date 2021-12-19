@@ -142,6 +142,9 @@ export class CourseSectionAndContentComponent implements OnInit {
         message: this.customTranslateService.getTranslation('confirmationDialog.deleteCourseSectionConfirmation'),
         buttons: [
           {
+            text: this.customTranslateService.getTranslation('general.no')
+          },
+          {
             text: this.customTranslateService.getTranslation('general.yes'),
             handler: () => {
               const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.DELETE_SECTION,
@@ -165,9 +168,6 @@ export class CourseSectionAndContentComponent implements OnInit {
               });
             }
           },
-          {
-            text: this.customTranslateService.getTranslation('general.no')
-          }
         ]
       }
     });
@@ -215,6 +215,9 @@ export class CourseSectionAndContentComponent implements OnInit {
         message: this.customTranslateService.getTranslation('confirmationDialog.deleteCourseContentConfirmation'),
         buttons: [
           {
+            text: this.customTranslateService.getTranslation('general.no')
+          },
+          {
             text: this.customTranslateService.getTranslation('general.yes'),
             handler: () => {
               const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.DELETE_SECTION_CONTENT,
@@ -238,9 +241,6 @@ export class CourseSectionAndContentComponent implements OnInit {
               });
             }
           },
-          {
-            text: this.customTranslateService.getTranslation('general.no')
-          }
         ]
       }
     });
@@ -263,7 +263,7 @@ export class CourseSectionAndContentComponent implements OnInit {
       minWidth: 650,
       minHeight: 400,
       panelClass: 'editContentPanel',
-      data: {content},
+      data: content,
     };
 
     this.dialogRef = this.dialog.open(EditCourseContentDialogComponent, defaultConfig);

@@ -153,6 +153,9 @@ export class QuizListComponent implements OnInit {
         ),
         buttons: [
           {
+            text: this.customTranslateService.getTranslation('general.no'),
+          },
+          {
             text: this.customTranslateService.getTranslation('general.yes'),
             handler: () => {
               const url = this.placeholderFormatService.stringFormat(
@@ -178,9 +181,6 @@ export class QuizListComponent implements OnInit {
               });
             },
           },
-          {
-            text: this.customTranslateService.getTranslation('general.no'),
-          }
         ]
       }
     });

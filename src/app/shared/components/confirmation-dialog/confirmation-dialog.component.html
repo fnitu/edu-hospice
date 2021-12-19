@@ -1,35 +1,36 @@
 <div class="confirmation-dialog">
-    <div mat-dialog-title *ngIf="data?.title">
-        {{ data?.title }}
-    </div>
+  <div mat-dialog-title *ngIf="data?.title">
+    {{ data?.title }}
+  </div>
 
-    <div mat-dialog-content>
-        {{ data?.message }}
+  <div mat-dialog-content>
+    {{ data?.message }}
 
-        <mat-form-field *ngIf="data?.hasCommentBox" class="comment-box">
-            <mat-label>{{ 'confirmationDialog.commentBoxLabel' | translate }}</mat-label>
-            <textarea matInput
-                      [(ngModel)]="commentBox"
-                      cdkTextareaAutosize
-                      cdkAutosizeMinRows="1"
-                      cdkAutosizeMaxRows="5"></textarea>
-        </mat-form-field>
-    </div>
+    <mat-form-field *ngIf="data?.hasCommentBox" class="comment-box">
+      <mat-label>{{ 'confirmationDialog.commentBoxLabel' | translate }}</mat-label>
+      <textarea matInput
+                [(ngModel)]="commentBox"
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+  </div>
 
 
+  <div mat-dialog-actions align="end">
 
-    <div mat-dialog-actions align="end">
-        <span *ngFor="let button of data?.buttons">
-            <button *ngIf="button.handler" mat-button mat-flat-button
-                    (click)="button.handler()">{{ button.text }}</button>
+    <span *ngFor="let button of data?.buttons">
+        <button *ngIf="button.handler" mat-button mat-flat-button
+                (click)="button.handler()">{{ button.text }}</button>
 
-            <button *ngIf="!button.handler" mat-button mat-flat-button
-                    [mat-dialog-close]="true">{{ button.text }}</button>
-        </span>
+        <button *ngIf="!button.handler" mat-button mat-flat-button
+                [mat-dialog-close]="true">{{ button.text }}</button>
+    </span>
 
-        <button *ngIf="!data?.buttons" mat-button mat-flat-button
-                [mat-dialog-close]="true">{{ "general.close" | translate }}</button>
+    <button *ngIf="!data?.buttons" mat-button mat-flat-button
+            [mat-dialog-close]="true">{{ "general.close" | translate }}
+    </button>
 
-    </div>
+  </div>
 </div>
 
