@@ -165,12 +165,14 @@
         display: table-cell;
       }
     }
-    // TODO change colors when design is ready
     .status-pending-payment {
-      background: #f2d1d1;
+      background: $themeColorWarning;
     }
     .status-pending-registration {
-      background: #d4ecf6;
+      background: $themeColorInfo;
+    }
+    .status-rejected {
+      background: $themeColorError;
     }
   }
 

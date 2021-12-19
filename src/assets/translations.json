@@ -154,7 +154,8 @@
         "pending": "În așteptare",
         "ongoing": "Începute",
         "finalized": "Finalizate",
-        "recommended": "Recomandate"
+        "recommended": "Recomandate",
+        "rejected": "Respinse"
       }
     }
   },
@@ -337,6 +338,10 @@
     }
   },
   "card": {
+    "roles": {
+      "MEDICAL": "Medical",
+      "MULTI_DISCIPLINARY": "Multidisciplinar"
+    },
     "register": "Înregistrează-te!",
     "progress": "Progres",
     "hours": "Ore",
@@ -350,7 +355,9 @@
     "payment_pending_title": "În așteptarea plății",
     "payment_pending_description": "Cererea ta de înscriere a fost acceptată. Verifică-ți email-ul si accesează link-ul unde poți efectua plata.",
     "registration_pending_title": "În așteptarea aprobării",
-    "registration_pending_description": "Analizăm candidatura ta. Dacă întrunești criteriile, vei primi prin email link-ul unde poti efectua plata."
+    "registration_pending_description": "Analizăm candidatura ta. Dacă întrunești criteriile, vei primi prin email link-ul unde poti efectua plata.",
+    "rejected_title": "Respins",
+    "rejected_description": "Cererea ta de înscriere a fost refuzată. Poți încerca din nou sa te înscrii după indeplinirea criteriilor."
   },
   "topToolbar": {
     "tooltips": {

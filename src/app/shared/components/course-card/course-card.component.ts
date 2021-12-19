@@ -56,6 +56,10 @@ export class CourseCardComponent implements OnInit {
     }
   }
 
+  public translate(name) {
+    return this.customTranslateService.getTranslation(`card.roles.${name}`);
+  }
+
   public registerClick(courseId, $event) {
     $event.stopPropagation();
 
