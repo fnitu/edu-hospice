@@ -30,6 +30,7 @@ export class CourseCardComponent implements OnInit {
   @Input() hideProgressbar: boolean;
   @Input() tab: Tabs;
 
+  @Output() refetch = new EventEmitter<any>();
   @Output() cardAction = new EventEmitter<any>();
 
   public defaultElevation: number = 2;
@@ -103,20 +104,11 @@ export class CourseCardComponent implements OnInit {
                     }
                   );
 
-                  const redirectToPendingTab = Array.from(
-                    document.getElementsByClassName('mat-tab-label-content')
-                  );
-                  const htmlNode = document.getElementsByClassName(
-                    'mat-tab-label-content'
+                  this.tab.courseList = this.tab.courseList.filter(
+                    (course) => course.id !== courseId
                   );
 
-                  for (let item of redirectToPendingTab) {
-                    if (item.innerHTML.includes('În așteptare')) {
-                      let index = redirectToPendingTab.indexOf(item);
-                      let element = htmlNode[index] as HTMLElement;
-                      element.click();
-                    }
-                  }
+                  this.refetch.emit();
                 }
               });
               dialogRef.close();

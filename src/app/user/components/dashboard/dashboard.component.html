@@ -109,6 +109,7 @@
             <div class="app-course-wrapper">
               <div class="card-box" *ngFor="let course of tab.courseList">
                 <app-course-card
+                  (refetch)="redirectTab()"
                   class="app-course-card mat-elevation-z4"
                   [course]="course"
                   [types]="types"

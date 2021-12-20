@@ -48,7 +48,8 @@ export class DashboardComponent implements OnInit {
     if (
       tab.type === 'RECOMMENDED' ||
       tab.type === 'PENDING' ||
-      tab.type === 'FINISHED'
+      tab.type === 'FINISHED' ||
+      tab.type === 'REJECTED'
     ) {
       this.dialogCourse(course.id);
     } else {
@@ -115,8 +116,45 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  private getTabData(tab) {
+  public async redirectTab() {
+    let url = GLOBALS.DATA_URL.COURSES_TABS;
+
+    const params = {
+      '{userId}': this.user.id,
+    };
+
+    url = this.placeholderFormat.stringFormat(url, params);
+
+    this.dashboardService.fetchCourseTabs(url).subscribe((response) => {
+      this.courseTabs = response;
+      for (let tab of this.courseTabs) {
+        if (tab.type === 'PENDING') {
+          console.log(tab);
+          this.getTabData(tab);
+          setTimeout(() => {
+            const redirectToPendingTab = Array.from(
+              document.getElementsByClassName('mat-tab-label-content')
+            );
+            const htmlNode = document.getElementsByClassName(
+              'mat-tab-label-content'
+            );
+
+            for (let item of redirectToPendingTab) {
+              if (item.innerHTML.includes('În așteptare')) {
+                let index = redirectToPendingTab.indexOf(item);
+                let element = htmlNode[index] as HTMLElement;
+                element.click();
+              }
+            }
+          }, 0);
+        }
+      }
+    });
+  }
+
+  public getTabData(tab) {
     const url = environment.BASE_URL + tab.link;
+    console.log(tab);
 
     this.dashboardService
       .fetchTabData(url)
