@@ -18,6 +18,8 @@ import * as _ from 'lodash';
 
 const moment = _.merge(_moment, momentJDate);
 
+import { formlyUtils } from "../../../../shared/components/formly/formly-utils";
+
 @Component({
   selector: 'app-course-info',
   templateUrl: './course-info.component.html',
@@ -37,319 +39,7 @@ export class CourseInfoComponent implements OnInit {
       awesomeIsForced: true,
     },
   };
-  fields: FormlyFieldConfig[] = [
-    {
-      key: 'name',
-      type: 'inputField',
-      templateOptions: {
-        label: this.customTranslateService.getTranslation(
-          'admin.createCourse.name'
-        ),
-        placeholder: this.customTranslateService.getTranslation(
-          'admin.createCourse.name'
-        ),
-        maxLength: 150,
-        required: true,
-      },
-    },
-    {
-      key: 'shortDescription',
-      type: 'textareafield',
-      templateOptions: {
-        label: this.customTranslateService.getTranslation(
-          'admin.createCourse.shortDescription'
-        ),
-        placeholder: this.customTranslateService.getTranslation(
-          'admin.createCourse.shortDescription'
-        ),
-        rows: 3,
-        maxLength: 500,
-        required: true,
-      },
-    },
-    {
-      key: 'description',
-      type: 'textareafield',
-      templateOptions: {
-        label: this.customTranslateService.getTranslation(
-          'admin.createCourse.description'
-        ),
-        placeholder: this.customTranslateService.getTranslation(
-          'admin.createCourse.description'
-        ),
-        rows: 5,
-        maxLength: 2000,
-        required: true,
-      },
-    },
-    {
-      key: 'authors',
-      type: 'textareafield',
-      templateOptions: {
-        label: this.customTranslateService.getTranslation(
-          'admin.createCourse.author'
-        ),
-        placeholder: this.customTranslateService.getTranslation(
-          'admin.createCourse.author'
-        ),
-        rows: 3,
-        maxLength: 500,
-      },
-    },
-    {
-      fieldGroupClassName: 'display-flex',
-      fieldGroup: [
-        {
-          className: 'flex-1',
-          key: 'image',
-          type: 'input',
-          templateOptions: {
-            label: this.customTranslateService.getTranslation(
-              'admin.createCourse.image'
-            ),
-            placeholder: this.customTranslateService.getTranslation(
-              'admin.createCourse.url'
-            ),
-            required: true,
-          },
-        },
-      ],
-    },
-    {
-      fieldGroupClassName: 'display-flex',
-      fieldGroup: [
-        {
-          className: 'flex-1',
-          key: 'price',
-          type: 'input',
-          templateOptions: {
-            type: 'number',
-            min: 0,
-            step: 0.01,
-            label: this.customTranslateService.getTranslation(
-              'admin.createCourse.price'
-            ),
-            placeholder: this.customTranslateService.getTranslation(
-              'admin.createCourse.price'
-            ),
-          },
-        },
-        {
-          className: 'flex-1',
-          key: 'currency',
-          type: 'select',
-          templateOptions: {
-            label: this.customTranslateService.getTranslation(
-              'admin.createCourse.currency'
-            ),
-            placeholder: this.customTranslateService.getTranslation(
-              'admin.createCourse.currency'
-            ),
-            options: [
-              {
-                value: Currency.EUR,
-                label: this.customTranslateService.getTranslation(
-                  'admin.createCourse.eur'
-                ),
-              },
-              {
-                value: Currency.RON,
-                label: this.customTranslateService.getTranslation(
-                  'admin.createCourse.ron'
-                ),
-              },
-            ],
-          },
-        },
-      ],
-    },
-    {
-      fieldGroupClassName: 'display-flex',
-      fieldGroup: [
-        {
-          className: 'flex-1',
-          key: 'courseRole',
-          type: 'select',
-          templateOptions: {
-            label: this.customTranslateService.getTranslation(
-              'admin.createCourse.role'
-            ),
-            placeholder: this.customTranslateService.getTranslation(
-              'admin.createCourse.role'
-            ),
-            options: [
-              {
-                value: CourseRole.MEDICAL,
-                label: this.customTranslateService.getTranslation(
-                  'admin.createCourse.medicalPersonnel'
-                ),
-              },
-              {
-                value: CourseRole.MULTI_DISCIPLINARY,
-                label: this.customTranslateService.getTranslation(
-                  'admin.createCourse.multiDisciplinaryPersonnel'
-                ),
-              },
-            ],
-            required: true,
-          },
-        },
-        {
-          className: 'flex-1',
-          key: 'courseType',
-          type: 'select',
-          templateOptions: {
-            label: this.customTranslateService.getTranslation(
-              'admin.createCourse.courseType'
-            ),
-            placeholder: this.customTranslateService.getTranslation(
-              'admin.createCourse.courseType'
-            ),
-            options: [
-              {
-                value: CourseType.ALWAYS_ON,
-                label: this.customTranslateService.getTranslation(
-                  'admin.createCourse.alwaysOn'
-                ),
-              },
-              {
-                value: CourseType.WITH_LIVE_SESSIONS,
-                label: this.customTranslateService.getTranslation(
-                  'admin.createCourse.liveSessions'
-                ),
-              },
-            ],
-            required: true,
-          },
-        },
-      ],
-    },
-    {
-      fieldGroupClassName: 'display-flex',
-      fieldGroup: [
-        {
-          className: 'flex-1',
-          key: 'startDate',
-          type: 'datepicker',
-          templateOptions: {
-            label: this.customTranslateService.getTranslation(
-              'admin.createCourse.startDate'
-            ),
-            placeholder: this.customTranslateService.getTranslation(
-              'admin.createCourse.startDate'
-            ),
-          },
-        },
-        {
-          className: 'flex-1',
-          key: 'endDate',
-          type: 'datepicker',
-          templateOptions: {
-            label: this.customTranslateService.getTranslation(
-              'admin.createCourse.endDate'
-            ),
-            placeholder: this.customTranslateService.getTranslation(
-              'admin.createCourse.endDate'
-            ),
-          },
-        },
-      ],
-    },
-
-    {
-      fieldGroupClassName: 'display-flex',
-      fieldGroup: [
-        {
-          className: 'flex-1',
-          key: 'courseState',
-          type: 'select',
-          templateOptions: {
-            label: this.customTranslateService.getTranslation(
-              'admin.createCourse.status'
-            ),
-            placeholder: this.customTranslateService.getTranslation(
-              'admin.createCourse.status'
-            ),
-            options: [
-              {
-                value: CourseState.UNPUBLISHED,
-                label: this.customTranslateService.getTranslation(
-                  'admin.createCourse.unpublished'
-                ),
-              },
-              {
-                value: CourseState.PUBLISHED,
-                label: this.customTranslateService.getTranslation(
-                  'admin.createCourse.published'
-                ),
-              },
-              {
-                value: CourseState.CLOSED,
-                label: this.customTranslateService.getTranslation(
-                  'admin.createCourse.closed'
-                ),
-              },
-            ],
-            required: true,
-          },
-        },
-        {
-          className: 'flex-1',
-          key: 'hours',
-          type: 'input',
-          templateOptions: {
-            type: 'number',
-            min: 0,
-            max: 1000,
-            label: this.customTranslateService.getTranslation(
-              'admin.createCourse.hours'
-            ),
-            placeholder: this.customTranslateService.getTranslation(
-              'admin.createCourse.hours'
-            ),
-            required: true,
-          },
-        },
-      ],
-    },
-    {
-      fieldGroupClassName: 'display-flex',
-      fieldGroup: [
-        {
-          className: 'flex-1',
-          key: 'accessDays',
-          type: 'input',
-          templateOptions: {
-            type: 'number',
-            min: 0,
-            label: this.customTranslateService.getTranslation(
-              'admin.createCourse.accessDays'
-            ),
-            placeholder: this.customTranslateService.getTranslation(
-              'admin.createCourse.accessDays'
-            ),
-          },
-        },
-        {
-          className: 'flex-1',
-          key: 'credits',
-          type: 'input',
-          templateOptions: {
-            type: 'number',
-            min: 0,
-            max: 100,
-            label: this.customTranslateService.getTranslation(
-              'admin.createCourse.credits'
-            ),
-            placeholder: this.customTranslateService.getTranslation(
-              'admin.createCourse.credits'
-            ),
-            required: true,
-          },
-        },
-      ],
-    },
-  ];
+  fields: FormlyFieldConfig[] = [];
 
   constructor(private customTranslateService: CustomTranslateService,
               private courseInfoService: CourseInfoService,
@@ -362,9 +52,355 @@ export class CourseInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.fields = this.generateFormConfig();
+
     if (!!this.courseId) {
       this.getCourseInfo();
     }
+  }
+
+  private generateFormConfig(): FormlyFieldConfig[] {
+    return [
+      {
+        key: 'name',
+        type: 'inputField',
+        templateOptions: {
+          label: this.customTranslateService.getTranslation(
+              'admin.createCourse.name'
+          ),
+          placeholder: this.customTranslateService.getTranslation(
+              'admin.createCourse.name'
+          ),
+          maxLength: 150,
+          required: true,
+        },
+      },
+      {
+        key: 'shortDescription',
+        type: 'textareafield',
+        templateOptions: {
+          label: this.customTranslateService.getTranslation(
+              'admin.createCourse.shortDescription'
+          ),
+          placeholder: this.customTranslateService.getTranslation(
+              'admin.createCourse.shortDescription'
+          ),
+          rows: 3,
+          maxLength: 500,
+          required: true,
+        },
+      },
+      {
+        key: 'description',
+        type: 'textareafield',
+        templateOptions: {
+          label: this.customTranslateService.getTranslation(
+              'admin.createCourse.description'
+          ),
+          placeholder: this.customTranslateService.getTranslation(
+              'admin.createCourse.description'
+          ),
+          rows: 5,
+          maxLength: 2000,
+          required: true,
+        },
+      },
+      {
+        key: 'authors',
+        type: 'textareafield',
+        templateOptions: {
+          label: this.customTranslateService.getTranslation(
+              'admin.createCourse.author'
+          ),
+          placeholder: this.customTranslateService.getTranslation(
+              'admin.createCourse.author'
+          ),
+          rows: 3,
+          maxLength: 500,
+          required: true
+        },
+      },
+      {
+        fieldGroupClassName: 'display-flex',
+        fieldGroup: [
+          {
+            className: 'flex-1',
+            key: 'image',
+            type: 'input',
+            templateOptions: {
+              label: this.customTranslateService.getTranslation(
+                  'admin.createCourse.image'
+              ),
+              placeholder: this.customTranslateService.getTranslation(
+                  'admin.createCourse.url'
+              ),
+              required: true,
+            },
+          },
+        ],
+      },
+      {
+        fieldGroupClassName: 'display-flex',
+        fieldGroup: [
+          {
+            className: 'flex-1',
+            key: 'price',
+            type: 'input',
+            templateOptions: {
+              type: 'number',
+              min: 0,
+              step: 0.01,
+              label: this.customTranslateService.getTranslation(
+                  'admin.createCourse.price'
+              ),
+              placeholder: this.customTranslateService.getTranslation(
+                  'admin.createCourse.price'
+              ),
+              required: true
+            },
+          },
+          {
+            className: 'flex-1',
+            key: 'currency',
+            type: 'select',
+            templateOptions: {
+              label: this.customTranslateService.getTranslation(
+                  'admin.createCourse.currency'
+              ),
+              placeholder: this.customTranslateService.getTranslation(
+                  'admin.createCourse.currency'
+              ),
+              options: [
+                {
+                  value: Currency.EUR,
+                  label: this.customTranslateService.getTranslation(
+                      'admin.createCourse.eur'
+                  ),
+                },
+                {
+                  value: Currency.RON,
+                  label: this.customTranslateService.getTranslation(
+                      'admin.createCourse.ron'
+                  ),
+                },
+              ],
+              required: true
+            },
+          },
+        ],
+      },
+      {
+        fieldGroupClassName: 'display-flex',
+        fieldGroup: [
+          {
+            className: 'flex-1',
+            key: 'courseRole',
+            type: 'select',
+            templateOptions: {
+              label: this.customTranslateService.getTranslation(
+                  'admin.createCourse.role'
+              ),
+              placeholder: this.customTranslateService.getTranslation(
+                  'admin.createCourse.role'
+              ),
+              options: [
+                {
+                  value: CourseRole.MEDICAL,
+                  label: this.customTranslateService.getTranslation(
+                      'admin.createCourse.medicalPersonnel'
+                  ),
+                },
+                {
+                  value: CourseRole.MULTI_DISCIPLINARY,
+                  label: this.customTranslateService.getTranslation(
+                      'admin.createCourse.multiDisciplinaryPersonnel'
+                  ),
+                },
+              ],
+              required: true,
+            },
+          },
+          {
+            className: 'flex-1',
+            key: 'courseType',
+            type: 'select',
+            templateOptions: {
+              label: this.customTranslateService.getTranslation(
+                  'admin.createCourse.courseType'
+              ),
+              placeholder: this.customTranslateService.getTranslation(
+                  'admin.createCourse.courseType'
+              ),
+              options: [
+                {
+                  value: CourseType.ALWAYS_ON,
+                  label: this.customTranslateService.getTranslation(
+                      'admin.createCourse.alwaysOn'
+                  ),
+                },
+                {
+                  value: CourseType.WITH_LIVE_SESSIONS,
+                  label: this.customTranslateService.getTranslation(
+                      'admin.createCourse.liveSessions'
+                  ),
+                },
+              ],
+              required: true,
+            },
+          },
+        ],
+      },
+      {
+        fieldGroupClassName: 'display-flex',
+        fieldGroup: [
+          {
+            className: 'flex-1',
+            key: 'startDate',
+            type: 'datepicker',
+            templateOptions: {
+              label: this.customTranslateService.getTranslation(
+                  'admin.createCourse.startDate'
+              ),
+              placeholder: this.customTranslateService.getTranslation(
+                  'admin.createCourse.startDate'
+              ),
+              required: true
+            },
+          },
+          {
+            className: 'flex-1',
+            key: 'endDate',
+            type: 'datepicker',
+            templateOptions: {
+              label: this.customTranslateService.getTranslation(
+                  'admin.createCourse.endDate'
+              ),
+              placeholder: this.customTranslateService.getTranslation(
+                  'admin.createCourse.endDate'
+              ),
+              required: true
+            },
+          },
+        ],
+      },
+
+      {
+        fieldGroupClassName: 'display-flex',
+        fieldGroup: [
+          {
+            className: 'flex-1',
+            key: 'courseState',
+            type: 'select',
+            templateOptions: {
+              label: this.customTranslateService.getTranslation(
+                  'admin.createCourse.status'
+              ),
+              placeholder: this.customTranslateService.getTranslation(
+                  'admin.createCourse.status'
+              ),
+              options: [
+                {
+                  value: CourseState.UNPUBLISHED,
+                  label: this.customTranslateService.getTranslation(
+                      'admin.createCourse.unpublished'
+                  ),
+                },
+                ...this.getNewStatusFieldOptions()
+              ],
+              required: true,
+            },
+          },
+          {
+            className: 'flex-1',
+            key: 'hours',
+            type: 'input',
+            templateOptions: {
+              type: 'number',
+              min: 0,
+              max: 1000,
+              label: this.customTranslateService.getTranslation(
+                  'admin.createCourse.hours'
+              ),
+              placeholder: this.customTranslateService.getTranslation(
+                  'admin.createCourse.hours'
+              ),
+              required: true,
+            },
+          },
+        ],
+      },
+      {
+        fieldGroupClassName: 'display-flex',
+        fieldGroup: [
+          {
+            className: 'flex-1',
+            key: 'accessDays',
+            type: 'input',
+            templateOptions: {
+              type: 'number',
+              min: 0,
+              label: this.customTranslateService.getTranslation(
+                  'admin.createCourse.accessDays'
+              ),
+              placeholder: this.customTranslateService.getTranslation(
+                  'admin.createCourse.accessDays'
+              ),
+              required: true
+            },
+          },
+          {
+            className: 'flex-1',
+            key: 'credits',
+            type: 'input',
+            templateOptions: {
+              type: 'number',
+              min: 0,
+              max: 100,
+              label: this.customTranslateService.getTranslation(
+                  'admin.createCourse.credits'
+              ),
+              placeholder: this.customTranslateService.getTranslation(
+                  'admin.createCourse.credits'
+              ),
+              required: true,
+            },
+          },
+        ],
+      },
+    ]
+  }
+
+  private addNewStatusFieldOptions() {
+    let field = formlyUtils.getField('courseState', this.fields);
+
+    if (field) {
+      field.templateOptions.options = [
+          ...(field.templateOptions.options as any[]),
+          ...this.getNewStatusFieldOptions()
+      ];
+    }
+  }
+
+  private getNewStatusFieldOptions(): any[] {
+    let options: any[] = [];
+
+    if (this.courseId) {
+      options.push(
+          {
+            value: CourseState.PUBLISHED,
+            label: this.customTranslateService.getTranslation(
+                'admin.createCourse.published'
+            ),
+          },
+          {
+            value: CourseState.CLOSED,
+            label: this.customTranslateService.getTranslation(
+                'admin.createCourse.closed'
+            )
+          });
+    }
+
+    return options;
   }
 
   private getCourseInfo() {
@@ -414,7 +450,11 @@ export class CourseInfoComponent implements OnInit {
 
       // if (response?.success) {
       if (!!response?.id) {
+        this.courseId = response.id;
+
         this.updateRouteUrl(response.id);
+
+        this.addNewStatusFieldOptions();
 
         this.cardInfoHasBeenSubmitted.emit(response);
       }
