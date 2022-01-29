@@ -57,8 +57,6 @@ export class QuizComponent implements OnInit {
       }, this.getFieldSpecificConfig(field)));
     });
 
-    console.log(fields);
-
     return fields;
   }
 

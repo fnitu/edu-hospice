@@ -98,7 +98,7 @@
   <mat-tab-group
     class="mat-tab-group"
     (selectedTabChange)="selectedTabChange($event)"
-  >
+    [selectedIndex]="selectedIndex">
     <mat-tab
       *ngFor="let tab of courseTabs; let i = index"
       label="{{ tab.name | translate }}"
@@ -112,7 +112,6 @@
                   (refetch)="redirectTab()"
                   class="app-course-card mat-elevation-z4"
                   [course]="course"
-                  [types]="types"
                   [hasAction]="true"
                   [tab]="tab"
                   (cardAction)="goToCourse(course, tab)"

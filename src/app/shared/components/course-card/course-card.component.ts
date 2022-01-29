@@ -26,7 +26,6 @@ import { CustomTranslateService } from '../../services/custom-translate/custom-t
 export class CourseCardComponent implements OnInit {
   @Input() course: Course;
   @Input() hasAction: boolean = false;
-  @Input() types: string[] = [];
   @Input() hideProgressbar: boolean;
   @Input() tab: Tabs;
 

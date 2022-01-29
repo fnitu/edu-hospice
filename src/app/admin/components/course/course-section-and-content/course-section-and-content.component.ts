@@ -270,7 +270,6 @@ export class CourseSectionAndContentComponent implements OnInit {
   }
 
   public manageResources(content) {
-    console.log(content);
 
     const defaultConfig = {
       panelClass: 'editContentPanel',
