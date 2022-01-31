@@ -15,6 +15,7 @@ import { GLOBALS } from "../../core/globals";
 export class QuizComponent implements OnInit {
   @Input() quizDetailsUrl: string;
   @Input() quizQuestionsUrl: string;
+  @Input() displayCorrectValues: boolean = false;
 
   public quizDetails = null;
   public quizQuestions: QuestionInterface[] = [];
@@ -26,7 +27,7 @@ export class QuizComponent implements OnInit {
   constructor(private quizService: QuizService) { }
 
   ngOnInit(): void {
-    this.getQuizDetails()
+    this.getQuizDetails();
   }
 
   private getQuizDetails() {
@@ -37,6 +38,10 @@ export class QuizComponent implements OnInit {
         this.quizQuestions = response;
 
         this.quizFields = this.generateQuizFields(this.quizQuestions);
+
+        if (this.displayCorrectValues) {
+          this.quizModel = this.generateQuizModel();
+        }
       });
     });
   }
@@ -114,6 +119,37 @@ export class QuizComponent implements OnInit {
     });
 
     return newModel;
+  }
+
+  private generateQuizModel(): {} {
+    let model = {};
+
+    for (const field of this.quizQuestions) {
+      const fieldType = field.type;
+
+      if (fieldType === GLOBALS.FIELD_TYPES.SELECT || fieldType === GLOBALS.FIELD_TYPES.RADIO || fieldType === GLOBALS.FIELD_TYPES.CHECKBOXES) {
+        // get valid options
+        const validOptions = field.options.filter(option => option.valid);
+
+        for (const option of validOptions) {
+          // store in model the valid options
+          // for multi checkboxes the valid options must be stored like { optionId: true }
+          if (field.type !== GLOBALS.FIELD_TYPES.CHECKBOXES) {
+            model[field.id] = option.id;
+          } else {
+            const newValidOption = {}
+            newValidOption[option.id] = option.valid;
+
+            model[field.id] = {
+              ...model[field.id],
+              ...newValidOption
+            };
+          }
+        }
+      }
+    }
+
+    return model;
   }
 
 }
