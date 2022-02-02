@@ -7,7 +7,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { SnackBarComponent } from "../../../../shared/components/snack-bar/snack-bar.component";
 import { GLOBALS } from "../../../../shared/core/globals";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Location } from '@angular/common'
+import { RouterUtilsService } from "../../../../shared/services/router/router-utils.service";
 
 @Component({
     selector: 'app-quiz-settings',
@@ -32,7 +32,7 @@ export class QuizSettingsComponent implements OnInit {
                 private matSnackBar: MatSnackBar,
                 private router: Router,
                 private route: ActivatedRoute,
-                private location: Location) {
+                private routerUtilsService: RouterUtilsService) {
     }
 
     ngOnInit(): void {
@@ -173,7 +173,8 @@ export class QuizSettingsComponent implements OnInit {
 
                 this.quizSettingsService.quizId = response.id;
 
-                this.updateRouteUrl(response.id);
+                this.routerUtilsService.updateRouteUrl(this.router.url,
+                    /\/quiz-list\/quiz.*$/, `/quiz-list/quiz/${this.quizSettingsService.quizId}`);
             }
         );
     }
@@ -190,16 +191,5 @@ export class QuizSettingsComponent implements OnInit {
                 });
             }
         );
-    }
-
-    private updateRouteUrl(id) {
-        let url = this.router.url;
-
-        const regex = /\/quiz-list\/quiz.*$/;
-
-        url = url.replace(regex, `/quiz-list/quiz/${id}`);
-
-        // https://stackoverflow.com/questions/35618463/change-route-params-without-reloading-in-angular-2
-        this.location.go(url);
     }
 }

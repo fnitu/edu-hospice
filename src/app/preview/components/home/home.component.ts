@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HomeService } from './home.service';
 import { Course } from '../../../shared/interfaces/course';
 import { GLOBALS } from '../../../shared/core/globals';
@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { HomeCardDialogComponent } from '../dialog-home-card/home-card-dialog/home-card-dialog.component';
 import { PlaceholderFormatService } from 'src/app/shared/services/format/placeholder-format.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
+import { RouterUtilsService } from "../../../shared/services/router/router-utils.service";
 
 @Component({
   selector: 'app-home',
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     private placeholderFormatService: PlaceholderFormatService,
     private router: Router,
     private route: ActivatedRoute,
-    private location: Location
+    private routerUtilsService: RouterUtilsService
   ) {}
 
   ngOnInit(): void {
@@ -50,7 +50,8 @@ export class HomeComponent implements OnInit {
 
   public cardClickHandler(course) {
     this.dialogCourse(course.id);
-    this.updateRouteUrl(course.id);
+
+    this.routerUtilsService.updateRouteUrl(this.router.url, /\/preview\/home.*$/, `/preview/home?courseId=${course.id}`);
   }
 
   public dialogCourse(id) {
@@ -75,15 +76,5 @@ export class HomeComponent implements OnInit {
 
       this.dialogRef = this.dialog.open(HomeCardDialogComponent, defaultConfig);
     });
-  }
-
-  private updateRouteUrl(id) {
-    let url = this.router.url;
-    const regex = /\/preview\/home.*$/;
-
-    url = url.replace(regex, `/preview/home?courseId=${id}`);
-
-    // https://stackoverflow.com/questions/35618463/change-route-params-without-reloading-in-angular-2
-    this.location.go(url);
   }
 }

@@ -9,7 +9,7 @@ import { ROUTES } from '../../../shared/core/routes';
   encapsulation: ViewEncapsulation.None,
 })
 export class DashboardComponent implements OnInit {
-  public courseListRoute = `/${ROUTES.ADMIN.MAIN_ROUTE}/${ROUTES.ADMIN.COURSE_LIST}`;
+  public courseListRoute = `/${ROUTES.ADMIN.MAIN_ROUTE}/${ROUTES.ADMIN.COURSE.LIST}`;
 
   public usersRoute = `/${ROUTES.ADMIN.MAIN_ROUTE}/${ROUTES.ADMIN.USERS}/${this.adminService.USER_LIST_TYPES.ALL}`;
   public paymentRoute = `/${ROUTES.ADMIN.MAIN_ROUTE}/${ROUTES.ADMIN.USERS}/${this.adminService.USER_LIST_TYPES.PAYMENT}`;

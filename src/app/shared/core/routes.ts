@@ -16,11 +16,9 @@ export const ROUTES = {
   ADMIN: {
     MAIN_ROUTE: 'admin',
     DASHBOARD: 'dashboard',
-    COURSE_LIST: 'course-list',
     COURSE: {
-      CREATE: 'course-list/course',
-      LIST: 'course-list',
-      EDIT_COURSE: 'course-list/course',
+      NEW: 'course',
+      LIST: 'course-list'
     },
     USERS: 'users',
     QUIZ: {

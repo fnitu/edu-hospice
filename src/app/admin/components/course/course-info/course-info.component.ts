@@ -5,7 +5,6 @@ import {FormlyFieldConfig, FormlyFormOptions} from '@ngx-formly/core';
 import {GLOBALS} from '../../../../shared/core/globals';
 import {CustomTranslateService} from '../../../../shared/services/custom-translate/custom-translate.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {Location} from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PlaceholderFormatService} from '../../../../shared/services/format/placeholder-format.service';
 import {CourseInfoService} from './course-info.service';
@@ -19,6 +18,7 @@ import * as _ from 'lodash';
 const moment = _.merge(_moment, momentJDate);
 
 import { formlyUtils } from "../../../../shared/components/formly/formly-utils";
+import { RouterUtilsService } from "../../../../shared/services/router/router-utils.service";
 
 @Component({
   selector: 'app-course-info',
@@ -44,7 +44,7 @@ export class CourseInfoComponent implements OnInit {
   constructor(private customTranslateService: CustomTranslateService,
               private courseInfoService: CourseInfoService,
               private matSnackBar: MatSnackBar,
-              private location: Location,
+              private routerUtilsService: RouterUtilsService,
               private router: Router,
               private route: ActivatedRoute,
               private placeholderFormatService: PlaceholderFormatService,
@@ -452,7 +452,7 @@ export class CourseInfoComponent implements OnInit {
       if (!!response?.id) {
         this.courseId = response.id;
 
-        this.updateRouteUrl(response.id);
+        this.routerUtilsService.updateRouteUrl(this.router.url, /\/course-list\/course.*$/, `/course-list/course/${this.courseId}`);
 
         this.addNewStatusFieldOptions();
 
@@ -478,17 +478,6 @@ export class CourseInfoComponent implements OnInit {
         this.getCourseInfo();
       }
     });
-  }
-
-  private updateRouteUrl(id) {
-    let url = this.router.url;
-
-    const regex = /\/course-list\/course.*$/;
-
-    url = url.replace(regex, `/course-list/course/${id}`);
-
-    // https://stackoverflow.com/questions/35618463/change-route-params-without-reloading-in-angular-2
-    this.location.go(url);
   }
 
   public deleteCourse() {
@@ -523,7 +512,7 @@ export class CourseInfoComponent implements OnInit {
                   setTimeout(() => {
                     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
                     this.router.onSameUrlNavigation = 'reload';
-                    this.router.navigate([ROUTES.ADMIN.COURSE.CREATE], {
+                    this.router.navigate([ROUTES.ADMIN.COURSE.NEW], {
                       relativeTo: this.route.parent,
                     });
                   }, 2000);

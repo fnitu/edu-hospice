@@ -4,6 +4,7 @@ import { CustomTranslateService } from "../../../shared/services/custom-translat
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { PreviewQuizDialogComponent } from "../preview-quiz-dialog/preview-quiz-dialog.component";
+import { RouterUtilsService } from "../../../shared/services/router/router-utils.service";
 
 @Component({
     selector: 'app-new-quiz',
@@ -19,7 +20,8 @@ export class NewQuizComponent implements OnInit {
     constructor(private customTranslateService: CustomTranslateService,
                 private router: Router,
                 private route: ActivatedRoute,
-                private dialog: MatDialog) {
+                private dialog: MatDialog,
+                private routerUtilsService: RouterUtilsService) {
     }
 
     ngOnInit(): void {
@@ -53,9 +55,8 @@ export class NewQuizComponent implements OnInit {
             {
                 label: this.customTranslateService.getTranslation('admin.quiz.list.addQuizButton'),
                 handler: () => {
-                    this.router.navigate([ROUTES.ADMIN.QUIZ.NEW], {
-                        relativeTo: this.route.parent,
-                    });
+                    this.routerUtilsService.refreshRoute(ROUTES.ADMIN.MAIN_ROUTE,
+                        [ROUTES.ADMIN.MAIN_ROUTE, ROUTES.ADMIN.QUIZ.LIST, ROUTES.ADMIN.QUIZ.NEW]);
                 }
             }
         ];

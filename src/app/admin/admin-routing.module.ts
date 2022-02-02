@@ -27,16 +27,21 @@ const routes: Routes = [
         component: DashboardComponent,
       },
       {
-        path: ROUTES.ADMIN.COURSE_LIST,
-        component: CourseListComponent,
-      },
-      {
-        path: ROUTES.ADMIN.COURSE.CREATE,
-        component: CourseComponent,
-      },
-      {
-        path: `${ROUTES.ADMIN.COURSE.EDIT_COURSE}/:courseId`,
-        component: CourseComponent,
+        path: ROUTES.ADMIN.COURSE.LIST,
+        children: [
+          {
+            path: '',
+            component: CourseListComponent
+          },
+          {
+            path: ROUTES.ADMIN.COURSE.NEW,
+            component: CourseComponent,
+          },
+          {
+            path: `${ROUTES.ADMIN.COURSE.NEW}/:courseId`,
+            component: CourseComponent,
+          }
+        ]
       },
       {
         path: `${ROUTES.ADMIN.USERS}/:listType`,

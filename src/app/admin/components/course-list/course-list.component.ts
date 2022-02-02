@@ -141,7 +141,7 @@ export class CourseListComponent implements OnInit {
               'admin.createCourse.addNewCourse'
             ),
             handler: () => {
-              this.router.navigate([ROUTES.ADMIN.COURSE.CREATE], {
+              this.router.navigate([ROUTES.ADMIN.COURSE.NEW], {
                 relativeTo: this.route.parent,
               });
             },
@@ -154,7 +154,7 @@ export class CourseListComponent implements OnInit {
   onBtnClick(params) {
     const courseId = params.data.id;
 
-    this.router.navigate([ROUTES.ADMIN.COURSE.EDIT_COURSE, courseId], {
+    this.router.navigate([ROUTES.ADMIN.COURSE.NEW, courseId], {
       relativeTo: this.route.parent,
     });
   }

@@ -3,6 +3,7 @@ import {FormControl} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CustomTranslateService} from '../../../shared/services/custom-translate/custom-translate.service';
 import { ROUTES } from "../../../shared/core/routes";
+import { RouterUtilsService } from "../../../shared/services/router/router-utils.service";
 
 @Component({
   selector: 'app-course',
@@ -18,7 +19,8 @@ export class CourseComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private customTranslateService: CustomTranslateService) {
+              private customTranslateService: CustomTranslateService,
+              private routerUtilsService: RouterUtilsService) {
   }
 
   ngOnInit(): void {
@@ -46,17 +48,16 @@ export class CourseComponent implements OnInit {
       {
         label: this.customTranslateService.getTranslation('admin.createCourse.showAllCourses'),
         handler: () => {
-          this.router.navigate([ROUTES.ADMIN.COURSE_LIST], {
-            relativeTo: this.route.parent,
+          this.router.navigate([ROUTES.ADMIN.COURSE.LIST], {
+            relativeTo: this.route.parent.parent
           });
         }
       },
       {
         label: this.customTranslateService.getTranslation('admin.createCourse.addNewCourse'),
         handler: () => {
-          this.router.navigate([ROUTES.ADMIN.COURSE.CREATE], {
-            relativeTo: this.route.parent,
-          });
+          this.routerUtilsService.refreshRoute(ROUTES.ADMIN.MAIN_ROUTE,
+              [ROUTES.ADMIN.MAIN_ROUTE, ROUTES.ADMIN.COURSE.LIST, ROUTES.ADMIN.COURSE.NEW]);
         }
       }
     ];
