@@ -139,7 +139,12 @@ export class CourseSectionAndContentComponent implements OnInit {
   public deleteSection(section) {
     const dialogRef = this.confirmationDialogService.show({
       data: {
-        message: this.customTranslateService.getTranslation('confirmationDialog.deleteCourseSectionConfirmation'),
+        title: this.customTranslateService.getTranslation(
+          'confirmationDialog.deleteCourseSectionConfirmation'
+        ),
+        message: this.customTranslateService.getTranslation(
+          'confirmationDialog.warning'
+        ),
         buttons: [
           {
             text: this.customTranslateService.getTranslation('general.cancel')
@@ -212,7 +217,12 @@ export class CourseSectionAndContentComponent implements OnInit {
   public deleteContent(content) {
     const dialogRef = this.confirmationDialogService.show({
       data: {
-        message: this.customTranslateService.getTranslation('confirmationDialog.deleteCourseContentConfirmation'),
+        title: this.customTranslateService.getTranslation(
+          'confirmationDialog.deleteCourseContentConfirmation'
+        ),
+        message: this.customTranslateService.getTranslation(
+          'confirmationDialog.warning'
+        ),
         buttons: [
           {
             text: this.customTranslateService.getTranslation('general.cancel')

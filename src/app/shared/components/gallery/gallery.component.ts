@@ -116,7 +116,12 @@ export class GalleryComponent implements OnInit {
 
     const dialogRef = this.confirmationDialogService.show({
       data: {
-        message: this.customTranslateService.getTranslation('confirmationDialog.deleteImgFile'),
+        title: this.customTranslateService.getTranslation(
+          'confirmationDialog.deleteImgFile'
+        ),
+        message: this.customTranslateService.getTranslation(
+          'confirmationDialog.warning'
+        ),
         buttons: [
           {
             text: this.customTranslateService.getTranslation('general.cancel')

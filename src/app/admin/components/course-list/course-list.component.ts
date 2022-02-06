@@ -162,7 +162,12 @@ export class CourseListComponent implements OnInit {
   private deleteRowActionHandler(params) {
     const dialogRef = this.confirmationDialogService.show({
       data: {
-        message: this.customTranslateService.getTranslation('confirmationDialog.deleteCourseConfirmation'),
+        title: this.customTranslateService.getTranslation(
+          'confirmationDialog.deleteCourseConfirmation'
+        ),
+        message: this.customTranslateService.getTranslation(
+          'confirmationDialog.warning'
+        ),
         buttons: [
           {
             text: this.customTranslateService.getTranslation('general.cancel')

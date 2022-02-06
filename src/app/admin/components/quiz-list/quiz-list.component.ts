@@ -148,8 +148,11 @@ export class QuizListComponent implements OnInit {
   private deleteQuiz(params) {
     const dialogRef = this.confirmationDialogService.show({
       data: {
-        message: this.customTranslateService.getTranslation(
+        title: this.customTranslateService.getTranslation(
           'confirmationDialog.deleteQuizConfirmation'
+        ),
+        message: this.customTranslateService.getTranslation(
+          'confirmationDialog.warning'
         ),
         buttons: [
           {

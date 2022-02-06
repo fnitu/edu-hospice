@@ -1,3 +1,5 @@
+@import "../../../../../../styles/scss/imports";
+
 .container {
   display: flex;
   height: 100%;
@@ -9,7 +11,8 @@
 
     .title {
       flex: 1;
-      font-size: 26px;
+      font-size: 20px;
+      line-height: 32px;
       font-family: Roboto;
       font-weight: 700;
     }
@@ -25,7 +28,9 @@
   }
 
   .mat-dialog-title.subtitle {
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 20px;
+    font-family: "Roboto";
     margin-bottom: 25px;
   }
 
@@ -33,6 +38,14 @@
     display: flex;
     button {
       float: right;
+    }
+
+    .mat-raised-button {
+      background-color: $cardOkButton;
+
+      &:hover {
+        background-color: $cardHoverButton;
+      }
     }
   }
 
@@ -115,5 +128,11 @@
     justify-content: flex-end;
     margin-left: auto;
     margin-top: 30px;
+
+    .mat-button {
+      &:hover {
+        background-color: $cardHoverButton;
+      };
+    }
   }
 }

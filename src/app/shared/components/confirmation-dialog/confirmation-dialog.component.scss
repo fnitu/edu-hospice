@@ -1,13 +1,38 @@
+@import "../../../../styles/scss/imports";
+
 app-confirmation-dialog {
   width: 100%;
 
   .confirmation-dialog {
+    .mat-dialog-title {
+      font-size: 20px;
+      line-height: 32px;
+      font-family: Roboto;
+      color: $cardTitleColor;
+    }
+
     .mat-dialog-content {
       display: flex;
       flex-direction: column;
+      font-size: 14px;
+      line-height: 20px;
+      font-family: Roboto;
 
       .comment-box {
         margin-top: 10px;
+      }
+    }
+
+    .mat-dialog-actions {
+      .confirmationButton {
+        background-color: $cardOkButton;
+        margin-left: 10px;
+      }
+
+      .mat-flat-button {
+        &:hover {
+          background-color: $cardHoverButton;
+        }
       }
     }
   }

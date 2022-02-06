@@ -61,6 +61,16 @@
 
       .mat-dialog-actions {
         justify-content: flex-end;
+
+        .confirmationButton {
+          background-color: $cardOkButton;
+        }
+
+        .mat-flat-button {
+          &:hover {
+            background-color: $cardHoverButton;
+          }
+        }
       }
     }
   }

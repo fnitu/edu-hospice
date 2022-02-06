@@ -41,6 +41,7 @@
     "deleteCourseContentConfirmation": "Sigur doriți să ștergeți acest continut?",
     "deleteQuizConfirmation": "Sigur doriți să ștergeți acest quiz?",
     "deleteImgFile": "Sigur doriți să ștergeți acestă imagine?",
+    "warning" : "Acțiunea este ireversibilă!",
     "courseRegister": "Sigur doriți să vă înregistrați la acest curs?"
   },
   "preview": {
