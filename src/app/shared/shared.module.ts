@@ -71,6 +71,8 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { ChangePassword } from './components/change-password/change-password.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { QuizComponent } from './components/quiz/quiz.component';
+import { NgxSliderModule } from "@angular-slider/ngx-slider";
+
 @NgModule({
   declarations: [
     MaterialElevationDirective,
@@ -120,6 +122,7 @@ import { QuizComponent } from './components/quiz/quiz.component';
     MatTooltipModule,
     MatNativeDateModule,
     FormlyMatDatepickerModule,
+    NgxSliderModule
   ],
 
   exports: [
@@ -168,7 +171,8 @@ import { QuizComponent } from './components/quiz/quiz.component';
     GalleryComponent,
     ChangePassword,
     GridTopToolbarComponent,
-    QuizComponent
+    QuizComponent,
+    NgxSliderModule
   ],
   providers: [
     {

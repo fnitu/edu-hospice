@@ -1,0 +1,10 @@
+app-textarea-field-configuration {
+  .textarea-container {
+    width: 100%;
+    display: flex;
+
+    .textarea-field {
+      flex: 1;
+    }
+  }
+}

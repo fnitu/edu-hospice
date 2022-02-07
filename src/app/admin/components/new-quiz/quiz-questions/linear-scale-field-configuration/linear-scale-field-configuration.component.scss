@@ -1,0 +1,19 @@
+@import "./src/styles/scss/imports";
+
+app-linear-scale-field-configuration {
+  .linear-scale-container {
+    .linear-scale-container-configuration {
+      margin-bottom: 10px;
+
+      .configuration-title {
+        font-size: 14px;
+        color: $generalTextColor;
+        margin-bottom: 20px;
+      }
+
+      .mat-form-field {
+        margin-right: 20px;
+      }
+    }
+  }
+}

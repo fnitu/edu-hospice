@@ -307,6 +307,7 @@
         "textareaBigType": "Paragraf lung",
         "textareaBigLabel": "Textul unui raspuns lung",
         "textareaShortLabel": "Textul unui raspuns scurt",
+        "linearScaleType": "Scară liniară",
         "deleteLastQuestionMessage": "Ultima întrebare nu se poate șterge. Chestionarul trebuie să aibă cel puțin o întrebare.",
         "deleteLastOptionMessage": "Ultima opțiune nu se poate șterge. Întrebarea trebuie să aibă cel puțin o opțiune.",
         "saveEmptyQuestionNameErrorMessage": "Întrebarea nu este definită pentru a putea fi salvată.",
@@ -314,7 +315,14 @@
         "chooseValidAnswer": "Alege răspunsul corect.",
         "newOption": "Opțiune nouă",
         "newQuestion": "Întrebare nouă",
-        "noQuestionsLabel": "Acest chestionar nu are întrebări adăugate."
+        "noQuestionsLabel": "Acest chestionar nu are întrebări adăugate.",
+        "minValueLinearScaleLabel": "Valoare minimă",
+        "maxValueLinearScaleLabel": "Valoare maximă",
+        "configLinearScaleLabel": "Configurare scară liniară",
+        "applyLinearScaleConfig": "Aplică noua configurație",
+        "linearConfigWarningMessage": "Ambele valori (minimă și maximă) trebuie introduse corect.",
+        "minValueValidationMessage": "Valoarea introdusă depășește valoarea maximă.",
+        "maxValueValidationMessage": "Valoarea introdusă este mai mică decât valoarea minimă."
       },
       "list": {
         "quizName": "Nume chestionar",

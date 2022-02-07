@@ -1,0 +1,31 @@
+<div class="linear-scale-container">
+    <div class="linear-scale-container-configuration">
+        <div class="configuration-title">{{ 'admin.quiz.question.configLinearScaleLabel' | translate }}</div>
+        <mat-form-field>
+            <mat-label>{{ 'admin.quiz.question.minValueLinearScaleLabel' | translate }}</mat-label>
+
+            <input type="number" matInput [formControl]="linearScaleMinValue">
+
+            <mat-error *ngIf="linearScaleMinValue.invalid && linearScaleMinValue.errors['max']">
+                {{ 'admin.quiz.question.minValueValidationMessage' | translate }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>{{ 'admin.quiz.question.maxValueLinearScaleLabel' | translate }}</mat-label>
+
+            <input type="number" matInput [formControl]="linearScaleMaxValue">
+
+            <mat-error *ngIf="linearScaleMaxValue.invalid && linearScaleMaxValue.errors['min']">
+                {{ 'admin.quiz.question.maxValueValidationMessage' | translate }}</mat-error>
+        </mat-form-field>
+
+        <button mat-button
+                color="success"
+                title="{{ 'admin.quiz.question.applyLinearScaleConfig' | translate }}"
+                (click)="applyLinearScaleConfig()">
+            <mat-icon class="material-icons-outlined">check_circle</mat-icon>
+        </button>
+    </div>
+
+    <ngx-slider [options]="linearScaleOptions"></ngx-slider>
+</div>

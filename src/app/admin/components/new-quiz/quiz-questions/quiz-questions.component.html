@@ -21,82 +21,62 @@
 
             <mat-form-field class="question-type-dropdown">
                 <mat-label>{{ 'admin.quiz.question.type' | translate }}</mat-label>
-                <mat-select [(value)]="question.type" (selectionChange)="selectionChangeHandler(question)">
-                    <mat-option value="{{FIELD_TYPES.RADIO}}">{{ 'admin.quiz.question.radioType' | translate }}</mat-option>
-                    <mat-option value="{{FIELD_TYPES.SELECT}}">{{ 'admin.quiz.question.selectType' | translate }}</mat-option>
-                    <mat-option value="{{FIELD_TYPES.CHECKBOXES}}">{{ 'admin.quiz.question.checkboxesType' | translate }}</mat-option>
-                    <mat-option value="{{FIELD_TYPES.TEXTAREA_SHORT}}">{{ 'admin.quiz.question.textareaShortType' | translate }}</mat-option>
-                    <mat-option value="{{FIELD_TYPES.TEXTAREA_BIG}}">{{ 'admin.quiz.question.textareaBigType' | translate }}</mat-option>
+                <mat-select [(value)]="question.type"
+                            (selectionChange)="selectionChangeHandler(question)"
+                            [panelClass]="'question-type-dropdown-panel'">
+                    <mat-select-trigger>
+                        <ng-container [ngSwitch]="question.type">
+                            <ng-container *ngSwitchCase="FIELD_TYPES.RADIO"
+                                          [ngTemplateOutlet]="radioOption"></ng-container>
+                            <ng-container *ngSwitchCase="FIELD_TYPES.SELECT"
+                                          [ngTemplateOutlet]="dropdownOption"></ng-container>
+                            <ng-container *ngSwitchCase="FIELD_TYPES.CHECKBOXES"
+                                          [ngTemplateOutlet]="checkboxesOption"></ng-container>
+                            <ng-container *ngSwitchCase="FIELD_TYPES.TEXTAREA_SHORT"
+                                          [ngTemplateOutlet]="textShotOption"></ng-container>
+                            <ng-container *ngSwitchCase="FIELD_TYPES.TEXTAREA_BIG"
+                                          [ngTemplateOutlet]="textBigOption"></ng-container>
+                            <ng-container *ngSwitchCase="FIELD_TYPES.LINEAR_SCALE"
+                                          [ngTemplateOutlet]="linearScaleOption"></ng-container>
+                        </ng-container>
+                    </mat-select-trigger>
+                    <mat-option value="{{FIELD_TYPES.RADIO}}">
+                        <ng-container [ngTemplateOutlet]="radioOption"></ng-container>
+                    </mat-option>
+                    <mat-option value="{{FIELD_TYPES.SELECT}}">
+                        <ng-container [ngTemplateOutlet]="dropdownOption"></ng-container>
+                    </mat-option>
+                    <mat-option value="{{FIELD_TYPES.CHECKBOXES}}">
+                        <ng-container [ngTemplateOutlet]="checkboxesOption"></ng-container>
+                    </mat-option>
+                    <mat-option value="{{FIELD_TYPES.TEXTAREA_SHORT}}">
+                        <ng-container [ngTemplateOutlet]="textShotOption"></ng-container>
+                    </mat-option>
+                    <mat-option value="{{FIELD_TYPES.TEXTAREA_BIG}}">
+                        <ng-container [ngTemplateOutlet]="textBigOption"></ng-container>
+                    </mat-option>
+                    <mat-option value="{{FIELD_TYPES.LINEAR_SCALE}}">
+                        <ng-container [ngTemplateOutlet]="linearScaleOption"></ng-container>
+                    </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
 
-        <div class="options-container"
-             *ngIf="question.type !== FIELD_TYPES.TEXTAREA_SHORT && question.type !== FIELD_TYPES.TEXTAREA_BIG">
-            <div class="option-wrapper" *ngFor="let option of question.options">
-                <mat-icon class="material-icons-outlined question-type-icon"
-                          *ngIf="question.type === FIELD_TYPES.RADIO">circle</mat-icon>
+        <ng-container *ngIf="question.type === FIELD_TYPES.SELECT || question.type === FIELD_TYPES.RADIO || question.type === FIELD_TYPES.CHECKBOXES">
+            <app-options-field-configuration [question]="question"
+                                             [optionIcon]="question.type === FIELD_TYPES.RADIO ? 'radio_button_unchecked' : question.type === FIELD_TYPES.CHECKBOXES ? 'check_box_outline_blank': ''">
+            </app-options-field-configuration>
+        </ng-container>
 
-                <mat-icon class="material-icons-outlined question-type-icon"
-                          *ngIf="question.type === FIELD_TYPES.CHECKBOXES">crop_square</mat-icon>
+        <ng-container *ngIf="question.type === 'TEXTAREA_SHORT' || question.type === 'TEXTAREA_BIG'">
+                <app-textarea-field-configuration [label]="(question.type === 'TEXTAREA_SHORT' ? 'admin.quiz.question.textareaShortLabel' : 'admin.quiz.question.textareaBigLabel') | translate"
+                                                  [limit]="question.type === 'TEXTAREA_SHORT' ? TEXTAREA_SHORT_LIMIT : TEXTAREA_BIG_LIMIT"></app-textarea-field-configuration>
+        </ng-container>
 
-                <mat-form-field class="option-field">
-                    <input matInput [(ngModel)]="option.option">
-                </mat-form-field>
+        <ng-container *ngIf="question.type === 'LINEAR_SCALE'">
+            <app-linear-scale-field-configuration></app-linear-scale-field-configuration>
+        </ng-container>
 
-                <div class="option-actions">
-                    <button mat-icon-button
-                            color="primary"
-                            title="{{ 'admin.quiz.question.addOption' | translate }}"
-                            (click)="addOption(question, option)">
-                        <mat-icon class="add material-icons-outlined">add_box</mat-icon>
-                    </button>
-                    <button mat-icon-button
-                            color="warn"
-                            title="{{ 'admin.quiz.question.deleteOption' | translate }}"
-                            (click)="removeOption(question, option)">
-                        <mat-icon class="delete">delete_forever</mat-icon>
-                    </button>
-
-                    <mat-slide-toggle
-                            title="{{ 'admin.quiz.question.chooseValidAnswer' | translate }}"
-                            [checked]="option.valid"
-                            (change)="validOptionChanged($event, question, option)"></mat-slide-toggle>
-                </div>
-            </div>
-        </div>
-
-        <div class="textarea-container" *ngIf="question.type === 'TEXTAREA_SHORT' || question.type === 'TEXTAREA_BIG'">
-            <mat-form-field *ngIf="question.type === 'TEXTAREA_SHORT'"
-                            [floatLabel]="'auto'" class="textarea-field">
-                <mat-label *ngIf="question.type === 'TEXTAREA_SHORT'">{{ 'admin.quiz.question.textareaShortLabel' | translate }}</mat-label>
-
-                <textarea #textareaElement matInput
-                          [maxLength]="TEXTAREA_SHORT_LIMIT"
-                          [cdkTextareaAutosize]="true"
-                          [mat-autosize]
-                          [cdkAutosizeMinRows]="TEXTAREA_MIN_ROWS"
-                          [cdkAutosizeMaxRows]="TEXTAREA_MAX_ROWS" disabled></textarea>
-
-                <mat-hint *ngIf="question.type === 'TEXTAREA_SHORT'"
-                          align="end">{{textareaElement.value.length}} / {{ TEXTAREA_SHORT_LIMIT }}</mat-hint>
-            </mat-form-field>
-
-            <mat-form-field *ngIf="question.type === 'TEXTAREA_BIG'"
-                            [floatLabel]="'auto'" class="textarea-field">
-                <mat-label *ngIf="question.type === 'TEXTAREA_BIG'">{{ 'admin.quiz.question.textareaBigLabel' | translate }}</mat-label>
-
-                <textarea #textareaElement matInput
-                          [maxLength]="TEXTAREA_BIG_LIMIT"
-                          [cdkTextareaAutosize]="true"
-                          [mat-autosize]
-                          [cdkAutosizeMinRows]="TEXTAREA_MIN_ROWS"
-                          [cdkAutosizeMaxRows]="TEXTAREA_MAX_ROWS" disabled></textarea>
-
-                <mat-hint *ngIf="question.type === 'TEXTAREA_BIG'"
-                          align="end">{{textareaElement.value.length}} / {{ TEXTAREA_BIG_LIMIT }}</mat-hint>
-            </mat-form-field>
-        </div>
     </mat-card-content>
 
     <mat-card-actions>
@@ -108,3 +88,34 @@
                 (click)="saveQuestion(question)">{{ 'admin.quiz.question.saveQuestion' | translate }}</button>
     </mat-card-actions>
 </mat-card>
+
+
+<ng-template #radioOption>
+    <mat-icon class="question-type-icon">radio_button_checked</mat-icon>
+    {{ 'admin.quiz.question.radioType' | translate }}
+</ng-template>
+
+<ng-template #dropdownOption>
+    <mat-icon class="question-type-icon">arrow_drop_down_circle</mat-icon>
+    {{ 'admin.quiz.question.selectType' | translate }}
+</ng-template>
+
+<ng-template #checkboxesOption>
+    <mat-icon class="question-type-icon">check_box</mat-icon>
+    {{ 'admin.quiz.question.checkboxesType' | translate }}
+</ng-template>
+
+<ng-template #textShotOption>
+    <mat-icon class="question-type-icon">short_text</mat-icon>
+    {{ 'admin.quiz.question.textareaShortType' | translate }}
+</ng-template>
+
+<ng-template #textBigOption>
+    <mat-icon class="question-type-icon">subject</mat-icon>
+    {{ 'admin.quiz.question.textareaBigType' | translate }}
+</ng-template>
+
+<ng-template #linearScaleOption>
+    <mat-icon class="question-type-icon">linear_scale</mat-icon>
+    {{ 'admin.quiz.question.linearScaleType' | translate }}
+</ng-template>

@@ -1,6 +1,10 @@
 @import "theme-colors";
 
-.mat-success {
+.mat-button.mat-success {
   background-color: $themeColor1-dark;
   color: $textWithBackground;
+}
+
+.mat-icon-button.mat-success {
+  color: $themeColor1-dark;
 }

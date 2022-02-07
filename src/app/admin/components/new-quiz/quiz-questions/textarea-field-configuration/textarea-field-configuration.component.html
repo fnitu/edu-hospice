@@ -1,0 +1,14 @@
+<div class="textarea-container">
+    <mat-form-field [floatLabel]="'auto'" class="textarea-field">
+        <mat-label>{{ label }}</mat-label>
+
+        <textarea #textareaElement matInput
+                  [maxLength]="limit"
+                  [cdkTextareaAutosize]="true"
+                  [mat-autosize]
+                  [cdkAutosizeMinRows]="TEXTAREA_MIN_ROWS"
+                  [cdkAutosizeMaxRows]="TEXTAREA_MAX_ROWS" disabled></textarea>
+
+        <mat-hint align="end">{{textareaElement.value.length}} / {{ limit }}</mat-hint>
+    </mat-form-field>
+</div>

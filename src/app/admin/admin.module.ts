@@ -29,6 +29,9 @@ import { UploadCoursePictureComponent } from './components/course/upload-course-
 import { AdminEditInfo } from './components/admin-edit-info/admin-edit-info.component';
 import { EditPersonalData } from './components/admin-edit-info/edit-personal-data/edit-personal-data.component';
 import { PreviewQuizDialogComponent } from './components/preview-quiz-dialog/preview-quiz-dialog.component';
+import { LinearScaleFieldConfigurationComponent } from './components/new-quiz/quiz-questions/linear-scale-field-configuration/linear-scale-field-configuration.component';
+import { TextareaFieldConfigurationComponent } from './components/new-quiz/quiz-questions/textarea-field-configuration/textarea-field-configuration.component';
+import { OptionsFieldConfigurationComponent } from './components/new-quiz/quiz-questions/options-field-configuration/options-field-configuration.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ import { PreviewQuizDialogComponent } from './components/preview-quiz-dialog/pre
     AdminEditInfo,
     EditPersonalData,
     PreviewQuizDialogComponent,
+    LinearScaleFieldConfigurationComponent,
+    TextareaFieldConfigurationComponent,
+    OptionsFieldConfigurationComponent,
   ],
   imports: [
     SharedModule,

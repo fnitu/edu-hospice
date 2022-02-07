@@ -6,9 +6,9 @@ import { GLOBALS } from '../../../../shared/core/globals';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomTranslateService } from '../../../../shared/services/custom-translate/custom-translate.service';
 import { QuestionInterface } from './question.interface';
-import { QuestionOptionInterface } from './question-option.interface';
 import { QuizQuestionsService } from './quiz-questions.service';
 import { QuizSettingsService } from '../quiz-settings/quiz-settings.service';
+import { OptionsFieldConfigurationService } from "./options-field-configuration/options-field-configuration.service";
 
 @Component({
     selector: 'app-quiz-questions',
@@ -17,6 +17,8 @@ import { QuizSettingsService } from '../quiz-settings/quiz-settings.service';
     encapsulation: ViewEncapsulation.None,
 })
 export class QuizQuestionsComponent implements OnInit {
+    @Input() quizSettingSaved: boolean = false;
+
     public questions: QuestionInterface[] = [];
 
     public readonly FIELD_TYPES = GLOBALS.FIELD_TYPES;
@@ -24,17 +26,13 @@ export class QuizQuestionsComponent implements OnInit {
     public readonly TEXTAREA_SHORT_LIMIT = GLOBALS.TEXTAREA.SHORT_LIMIT;
     public readonly TEXTAREA_BIG_LIMIT = GLOBALS.TEXTAREA.BIG_LIMIT;
 
-    public readonly TEXTAREA_MAX_ROWS = GLOBALS.TEXTAREA.MAX_ROWS;
-    public readonly TEXTAREA_MIN_ROWS = GLOBALS.TEXTAREA.MIN_ROWS;
-
-    @Input() quizSettingSaved: boolean = false;
-
     constructor(
         private route: ActivatedRoute,
         private matSnackBar: MatSnackBar,
         private customTranslateService: CustomTranslateService,
         private quizQuestionsService: QuizQuestionsService,
-        public quizSettingsService: QuizSettingsService) {
+        public quizSettingsService: QuizSettingsService,
+        private optionsFieldConfigurationService: OptionsFieldConfigurationService) {
     }
 
     ngOnInit(): void {
@@ -63,46 +61,13 @@ export class QuizQuestionsComponent implements OnInit {
             });
     }
 
-    private getDefaultOptionModel(): QuestionOptionInterface {
-        return {
-            option: this.customTranslateService.getTranslation('admin.quiz.question.newOption'),
-            valid: false
-        }
-    }
-
     private getDefaultQuestionModel(): QuestionInterface {
         return {
             name: this.customTranslateService.getTranslation('admin.quiz.question.newQuestion'),
             type: <any>this.FIELD_TYPES.SELECT,
             options: [
-                this.getDefaultOptionModel()
+                this.optionsFieldConfigurationService.getDefaultOptionModel(true)
             ]
-        }
-    }
-
-    public addOption(question, option) {
-        const currentOptionIndex = question.options.indexOf(option);
-
-        const newOption: QuestionOptionInterface = this.getDefaultOptionModel();
-
-        question.options.splice(currentOptionIndex + 1, 0, newOption);
-    }
-
-    public removeOption(question, option) {
-        if (question.options.length > 1) {
-            _.remove(question.options, function (item) {
-                return item === option;
-            });
-        } else {
-            this.matSnackBar.openFromComponent(SnackBarComponent, {
-                verticalPosition: 'top',
-                data: {
-                    content: this.customTranslateService.getTranslation(
-                        'admin.quiz.question.deleteLastOptionMessage'
-                    ),
-                    type: GLOBALS.NOTIFICATIONS.ERROR,
-                }
-            });
         }
     }
 
@@ -144,11 +109,11 @@ export class QuizQuestionsComponent implements OnInit {
         let messageTemplate = "";
 
         if (!hasQuestionName) {
-            messageTemplate += `<div>${this.customTranslateService.getTranslation('admin.quiz.question.saveEmptyQuestionNameErrorMessage')}</div>`
+            messageTemplate += `<div>${this.customTranslateService.getTranslation('admin.quiz.question.saveEmptyQuestionNameErrorMessage')}</div>`;
         }
 
-        if(!hasValidOptionChecked) {
-            messageTemplate += `<div>${this.customTranslateService.getTranslation('admin.quiz.question.hasValidOptionCheckedErrorMessage')}</div>`
+        if (!hasValidOptionChecked) {
+            messageTemplate += `<div>${this.customTranslateService.getTranslation('admin.quiz.question.hasValidOptionCheckedErrorMessage')}</div>`;
         }
 
         return messageTemplate;
@@ -182,28 +147,34 @@ export class QuizQuestionsComponent implements OnInit {
                     content: this.customTranslateService.getTranslation(
                         'admin.quiz.question.deleteLastQuestionMessage'
                     ),
-                    type: GLOBALS.NOTIFICATIONS.ERROR,
+                    type: GLOBALS.NOTIFICATIONS.ERROR
                 }
             });
     }
 
-    public validOptionChanged($event, question, option) {
-        if (question.type === this.FIELD_TYPES.RADIO || question.type === this.FIELD_TYPES.SELECT) {
-            QuizQuestionsComponent.resetOptionsValidState(question);
-        }
+    public selectionChangeHandler(question: QuestionInterface) {
+        switch (question.type) {
+            case this.FIELD_TYPES.TEXTAREA_SHORT:
+            case this.FIELD_TYPES.TEXTAREA_BIG: {
+                delete question.options;
+                delete question.linearScaleOptions;
+                break;
+            }
+            case this.FIELD_TYPES.SELECT:
+            case this.FIELD_TYPES.RADIO:
+            case this.FIELD_TYPES.CHECKBOXES: {
+                delete question.linearScaleOptions;
 
-        option.valid = $event.checked;
-    }
-
-    private static resetOptionsValidState(question) {
-        _.each(question.options, (option) => {
-            option.valid = false;
-        });
-    }
-
-    public selectionChangeHandler(question) {
-        if (question.type === this.FIELD_TYPES.TEXTAREA_SHORT || question.type === this.FIELD_TYPES.TEXTAREA_BIG) {
-            delete question.options;
+                if (!question.options) {
+                    question.options = [this.optionsFieldConfigurationService.getDefaultOptionModel()];
+                } else {
+                    this.optionsFieldConfigurationService.resetOptionsValidState(question);
+                }
+                break;
+            }
+            case this.FIELD_TYPES.LINEAR_SCALE: {
+                delete question.options;
+            }
         }
     }
 }

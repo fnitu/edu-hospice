@@ -1,0 +1,21 @@
+@import "theme-colors";
+
+ngx-slider.ngx-slider {
+  .ngx-slider-pointer {
+    background-color: $themeColor1-light;
+
+    &.ngx-slider-active {
+      &:after {
+        background-color: $themeColor1-dark;
+      }
+    }
+  }
+
+  &[disabled] {
+    .ngx-slider-pointer {
+      background-color: $lightBorder;
+    }
+  }
+}
+
+
