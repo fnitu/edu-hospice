@@ -154,18 +154,16 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       key: 'phone',
       type: 'input',
       templateOptions: {
-        type: 'text',
+        type: 'number',
         label: this.customTranslateService.getTranslation(
           'preview.register.phoneNumber'
         ),
         placeholder: this.customTranslateService.getTranslation(
           'preview.register.phoneNumberPlaceholder'
         ),
-        minLength: 10,
-        maxLength: 14,
       },
       validators: {
-        validation: [Validators.required, 'phone'],
+        validation: [Validators.required, 'phoneNumber'],
       },
     },
   ];

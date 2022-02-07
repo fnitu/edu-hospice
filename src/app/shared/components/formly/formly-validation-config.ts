@@ -7,9 +7,8 @@ export function formlyValidationConfig(
   return {
     validators: [
       { name: 'email', validation: EmailValidator },
-
       { name: 'multiRequired', validation: MultiRequiredValidator },
-      { name: 'phone', validation: PhoneNumberValidator },
+      { name: 'phoneNumber', validation: PhoneNumberValidator },
     ],
     validationMessages: [
       {
@@ -25,7 +24,7 @@ export function formlyValidationConfig(
         message: customTranslateService.getTranslation('field.email'),
       },
       {
-        name: 'phone',
+        name: 'phoneNumber',
         message: customTranslateService.getTranslation('field.phone'),
       },
       {
@@ -69,22 +68,31 @@ export function MultiRequiredValidator(control: FormControl): ValidationErrors {
 }
 
 export function PhoneNumberValidator(control: FormControl): ValidationErrors {
-  const countryCode = /^(\+[\d]{1,2}|[\d]{3,4})?/, // checks if provided
-    areaCode = /([\d]{3}|[\d]{4})/, // w or w/o ()
-    separator = /(\s|-|\.)?/, // between the numbers
-    localCode = /[\d]{3}/,
-    localNumber = /([\d]{3})$/g,
-    regEx = new RegExp( // concatenating the regExp
-      countryCode.source +
-        separator.source +
-        areaCode.source +
-        separator.source +
-        localCode.source +
-        separator.source +
-        localNumber.source
-    );
+  let isValid = true;
+  if (control.value) {
+    if (
+      control.value.toString().length < 10 ||
+      control.value.toString().length > 14
+    ) {
+      isValid = false;
+    }
+    return isValid ? null : { phoneNumber: true };
+  }
 
-  const telephoneCheck = (str) => regEx.test(str);
+  //   const countryCode = /^(\+[\d]{1,2}|[\d]{3,4})?/, // checks if provided
+  //     areaCode = /([\d]{3}|[\d]{4})/, // w or w/o ()
+  //     separator = /(\s|-|\.)?/, // between the numbers
+  //     localCode = /[\d]{3}/,
+  //     localNumber = /([\d]{3})$/g,
+  //     regEx = new RegExp( // concatenating the regExp
+  //       countryCode.source +
+  //         separator.source +
+  //         areaCode.source +
+  //         separator.source +
+  //         localCode.source +
+  //         separator.source +
+  //         localNumber.source
+  //     );
 
-  return telephoneCheck(control.value) ? null : { phoneNumber: true };
+  //   const telephoneCheck = (str) => regEx.test(str);
 }

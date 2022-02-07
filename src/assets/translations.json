@@ -30,7 +30,7 @@
     "email": "E-mail-ul nu are un format valid.",
     "emailNotExist": "E-mailul nu există. Va rugam sa introduceti un e-mail valid.",
     "profession": "Profesia trebuie specificată",
-    "phone": "Număr de telefon invalid",
+    "phone": "Numărul de telefon trebuie să conțină între 10 si 14 caractere!",
     "min": "Această valoare ar trebui să fie mai mare de",
     "max": "Această valoare ar trebui să fie mai mica de"
   },
