@@ -147,6 +147,8 @@ export class DashboardComponent implements OnInit {
   }
 
   public selectedTabChange(tab) {
+    this.selectedIndex = tab.index;
+
     const currentTab = this.courseTabs[tab.index];
 
     this.getTabData(currentTab);
