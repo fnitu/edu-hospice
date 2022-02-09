@@ -37,10 +37,6 @@ export class TopToolbarComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  ngAfterViewInit() {
-    this.loadingMaskService.init();
-  }
-
   public goToHome() {
     this.router.navigate([ROUTES.PREVIEW.MAIN_ROUTE]);
   }

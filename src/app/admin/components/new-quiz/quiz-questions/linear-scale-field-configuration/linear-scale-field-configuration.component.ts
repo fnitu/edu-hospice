@@ -33,6 +33,8 @@ export class LinearScaleFieldConfigurationComponent implements OnInit {
 
   ngOnInit(): void {
     this.linearScaleOptions = this.getLinearScaleOptions();
+
+    this.updateFieldsValidation();
   }
 
   public applyLinearScaleConfig() {
@@ -67,6 +69,17 @@ export class LinearScaleFieldConfigurationComponent implements OnInit {
     }
   }
 
-  //TODO add extra validation
+  private updateFieldsValidation() {
+    this.linearScaleMinValue.valueChanges.subscribe(value => {
+      if (value < this.linearScaleMaxValue.value) {
+        this.linearScaleMaxValue.setErrors(null);
+      }
+    });
 
+    this.linearScaleMaxValue.valueChanges.subscribe(value => {
+      if (value > this.linearScaleMinValue.value) {
+        this.linearScaleMinValue.setErrors(null);
+      }
+    });
+  }
 }

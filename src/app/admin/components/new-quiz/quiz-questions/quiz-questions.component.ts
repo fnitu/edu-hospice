@@ -49,7 +49,7 @@ export class QuizQuestionsComponent implements OnInit {
             });
     }
 
-    public addFirstQuestion() {
+    public addQuestion() {
         const newQuestion: QuestionInterface = this.getDefaultQuestionModel();
 
         this.quizQuestionsService
@@ -58,6 +58,26 @@ export class QuizQuestionsComponent implements OnInit {
                 newQuestion.id = response.id;
 
                 this.questions.push(newQuestion);
+
+            });
+    }
+
+    public removeQuestion(question) {
+        if (this.questions.length > 1) {
+            this.quizQuestionsService
+                .removeQuestion(question.id)
+                .subscribe((response) => {
+                    _.remove(this.questions, (item) => item === question);
+                });
+        } else
+            this.matSnackBar.openFromComponent(SnackBarComponent, {
+                verticalPosition: 'top',
+                data: {
+                    content: this.customTranslateService.getTranslation(
+                        'admin.quiz.question.deleteLastQuestionMessage'
+                    ),
+                    type: GLOBALS.NOTIFICATIONS.ERROR
+                }
             });
     }
 
@@ -117,39 +137,6 @@ export class QuizQuestionsComponent implements OnInit {
         }
 
         return messageTemplate;
-    }
-
-    public addQuestion(question) {
-        const currentQuestionIndex = this.questions.indexOf(question);
-
-        const newQuestion: QuestionInterface = this.getDefaultQuestionModel();
-
-        this.quizQuestionsService
-            .addQuestion(this.quizSettingsService.quizId, newQuestion)
-            .subscribe((response) => {
-                newQuestion.id = response.id;
-
-                this.questions.splice(currentQuestionIndex + 1, 0, newQuestion);
-            });
-    }
-
-    public removeQuestion(question) {
-        if (this.questions.length > 1) {
-            this.quizQuestionsService
-                .removeQuestion(question.id)
-                .subscribe((response) => {
-                    _.remove(this.questions, (item) => item === question);
-                });
-        } else
-            this.matSnackBar.openFromComponent(SnackBarComponent, {
-                verticalPosition: 'top',
-                data: {
-                    content: this.customTranslateService.getTranslation(
-                        'admin.quiz.question.deleteLastQuestionMessage'
-                    ),
-                    type: GLOBALS.NOTIFICATIONS.ERROR
-                }
-            });
     }
 
     public selectionChangeHandler(question: QuestionInterface) {
