@@ -72,6 +72,7 @@ import { ChangePassword } from './components/change-password/change-password.com
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { NgxSliderModule } from "@angular-slider/ngx-slider";
+import { DragDropModule } from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
@@ -122,7 +123,8 @@ import { NgxSliderModule } from "@angular-slider/ngx-slider";
     MatTooltipModule,
     MatNativeDateModule,
     FormlyMatDatepickerModule,
-    NgxSliderModule
+    NgxSliderModule,
+    DragDropModule
   ],
 
   exports: [
@@ -172,7 +174,8 @@ import { NgxSliderModule } from "@angular-slider/ngx-slider";
     ChangePassword,
     GridTopToolbarComponent,
     QuizComponent,
-    NgxSliderModule
+    NgxSliderModule,
+    DragDropModule
   ],
   providers: [
     {

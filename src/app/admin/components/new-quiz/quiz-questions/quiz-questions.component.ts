@@ -9,6 +9,7 @@ import { QuestionInterface } from './question.interface';
 import { QuizQuestionsService } from './quiz-questions.service';
 import { QuizSettingsService } from '../quiz-settings/quiz-settings.service';
 import { OptionsFieldConfigurationService } from "./options-field-configuration/options-field-configuration.service";
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
     selector: 'app-quiz-questions',
@@ -163,5 +164,9 @@ export class QuizQuestionsComponent implements OnInit {
                 delete question.options;
             }
         }
+    }
+
+    onListDropped(event: CdkDragDrop<string[]>) {
+        moveItemInArray(this.questions, event.previousIndex, event.currentIndex);
     }
 }
