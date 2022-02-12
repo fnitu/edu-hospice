@@ -71,8 +71,8 @@ export function PhoneNumberValidator(control: FormControl): ValidationErrors {
   let isValid = true;
   if (control.value) {
     if (
-      control.value.toString().length < 10 ||
-      control.value.toString().length > 14
+      control.value.toString().length < 9 ||
+      control.value.toString().length > 13
     ) {
       isValid = false;
     }
