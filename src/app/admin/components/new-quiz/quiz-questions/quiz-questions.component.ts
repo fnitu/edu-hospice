@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 import { SnackBarComponent } from '../../../../shared/components/snack-bar/snack-bar.component';
@@ -18,6 +18,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
     encapsulation: ViewEncapsulation.None,
 })
 export class QuizQuestionsComponent implements OnInit {
+    @ViewChildren('questionRef', { read: ElementRef }) questionRef: QueryList<ElementRef>;
     @Input() quizSettingSaved: boolean = false;
 
     public questions: QuestionInterface[] = [];
@@ -26,6 +27,8 @@ export class QuizQuestionsComponent implements OnInit {
 
     public readonly TEXTAREA_SHORT_LIMIT = GLOBALS.TEXTAREA.SHORT_LIMIT;
     public readonly TEXTAREA_BIG_LIMIT = GLOBALS.TEXTAREA.BIG_LIMIT;
+
+    private questionAdded: boolean = false;
 
     constructor(
         private route: ActivatedRoute,
@@ -40,6 +43,10 @@ export class QuizQuestionsComponent implements OnInit {
         if (this.quizSettingsService.quizId) {
             this.getQuestions();
         }
+    }
+
+    ngAfterViewInit() {
+        this.scrollToBottom();
     }
 
     private getQuestions() {
@@ -60,6 +67,7 @@ export class QuizQuestionsComponent implements OnInit {
 
                 this.questions.push(newQuestion);
 
+                this.questionAdded = true;
             });
     }
 
@@ -166,7 +174,17 @@ export class QuizQuestionsComponent implements OnInit {
         }
     }
 
-    onListDropped(event: CdkDragDrop<string[]>) {
+    public onListDropped(event: CdkDragDrop<string[]>) {
         moveItemInArray(this.questions, event.previousIndex, event.currentIndex);
+    }
+
+    private scrollToBottom() {
+        this.questionRef.changes.subscribe(t => {
+            if (this.questionAdded) {
+                this.questionRef.last.nativeElement.scrollIntoView();
+
+                this.questionAdded = false;
+            }
+        });
     }
 }

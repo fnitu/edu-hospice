@@ -1,6 +1,6 @@
 <div *ngIf="questions.length" cdkDropList
      (cdkDropListDropped)="onListDropped($event)">
-    <mat-card cdkDrag *ngFor="let question of questions"
+    <mat-card #questionRef cdkDrag *ngFor="let question of questions"
               class="question-card">
         <div cdkDragHandle>
             <mat-icon>drag_indicator</mat-icon>
