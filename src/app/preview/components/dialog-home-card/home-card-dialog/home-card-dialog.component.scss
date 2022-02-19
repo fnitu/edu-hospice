@@ -60,7 +60,6 @@
             .mat-ink-bar {
               background-color: #1e5a0b;
             }
-
           }
 
           .content {
@@ -161,8 +160,34 @@
       }
     }
   }
+  .status {
+    margin: 10px 0;
+    .status-pending {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 20px;
+      h5 {
+        margin: 10px;
+        font-size: 15px;
+        font-weight: 400;
+      }
+      p {
+        font-size: 0.8em;
+        line-height: 0.8rem;
+        text-align: center;
+        vertical-align: middle;
+        display: table-cell;
+      }
+    }
+    .status-pending-payment {
+      background: $themeColorWarning;
+    }
+    .status-pending-registration {
+      background: $themeColorInfo;
+    }
+    .status-rejected {
+      background: $themeColorError;
+    }
+  }
 }
-
-
-
-

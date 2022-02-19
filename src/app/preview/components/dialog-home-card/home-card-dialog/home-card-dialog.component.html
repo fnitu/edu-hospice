@@ -3,9 +3,8 @@
 </div>
 <ng-template #elseBlock>
   <div id="homeDialog">
-
     <div mat-dialog-title>
-      <h2 class="title">{{data.name}}</h2>
+      <h2 class="title">{{ data.name }}</h2>
       <button mat-dialog-close class="close">
         <span class="material-icons-outlined">close</span>
       </button>
@@ -13,67 +12,81 @@
 
     <mat-dialog-content class="mat-typography">
       <mat-tab-group id="dialogTabs">
-        <mat-tab id="labelContent" label="{{ 'preview.dialog.courseDetails' | translate }}">
-          <div class='content'>
-            <p class="description"><span [innerHTML]="data.description"></span></p>
-            <h2 class='title'>{{ 'preview.dialog.authors' | translate }}</h2>
+        <mat-tab
+          id="labelContent"
+          label="{{ 'preview.dialog.courseDetails' | translate }}"
+        >
+          <div class="content">
+            <p class="description">
+              <span [innerHTML]="data.description"></span>
+            </p>
+            <h2 class="title">{{ "preview.dialog.authors" | translate }}</h2>
             <p [innerHTML]="data.authors"></p>
-            <h2 calss="title">{{ 'preview.dialog.info' | translate }}</h2>
-            <div class='moreDetails'>
+            <h2 calss="title">{{ "preview.dialog.info" | translate }}</h2>
+            <div class="moreDetails">
               <div>
-                <span>{{'preview.dialog.courseType' | translate}} </span>
-                <p>{{data.courseType}}</p>
+                <span>{{ "preview.dialog.courseType" | translate }} </span>
+                <p>{{ data.courseType }}</p>
               </div>
               <div>
-                <span>{{ 'preview.dialog.accessDays' | translate }}</span>
-                <p>{{data.accessDays}} {{ 'preview.dialog.days' | translate }}</p>
+                <span>{{ "preview.dialog.accessDays" | translate }}</span>
+                <p>
+                  {{ data.accessDays }} {{ "preview.dialog.days" | translate }}
+                </p>
               </div>
               <div>
-                <span>{{ 'preview.dialog.time' | translate }}</span>
-                <p>{{data.hours}} {{'preview.dialog.hours' | translate}}</p>
+                <span>{{ "preview.dialog.time" | translate }}</span>
+                <p>{{ data.hours }} {{ "preview.dialog.hours" | translate }}</p>
               </div>
               <div>
-                <span>{{'preview.dialog.role' | translate}}</span>
-                <p>{{data.courseRole}}</p>
+                <span>{{ "preview.dialog.role" | translate }}</span>
+                <p>{{ data.courseRole }}</p>
               </div>
               <div>
-                <span>{{'preview.dialog.credits' | translate}}</span>
-                <p>{{data.credits}}</p>
+                <span>{{ "preview.dialog.credits" | translate }}</span>
+                <p>{{ data.credits }}</p>
               </div>
               <div>
-                <span>{{'preview.dialog.price' | translate}}</span>
-                <p>{{data.price}} {{data.currency}}</p>
+                <span>{{ "preview.dialog.price" | translate }}</span>
+                <p>{{ data.price }} {{ data.currency }}</p>
               </div>
               <div>
-                <span>{{'preview.dialog.interval' | translate}}</span>
-                <p>{{data.startDate | date: "dd.MM.yyyy"}} - {{data.endDate | date: "dd.MM.yyyy"}}</p>
+                <span>{{ "preview.dialog.interval" | translate }}</span>
+                <p>
+                  {{ data.startDate | date: "dd.MM.yyyy" }} -
+                  {{ data.endDate | date: "dd.MM.yyyy" }}
+                </p>
               </div>
-
             </div>
           </div>
         </mat-tab>
         <mat-tab label="{{ 'preview.dialog.courseStructure' | translate }}">
-          <div class='content' *ngIf="data">
+          <div class="content" *ngIf="data">
             <div *ngFor="let section of data.userSectionDetails">
               <mat-accordion multi>
-                <mat-expansion-panel expanded="true" class='accordion'>
+                <mat-expansion-panel expanded="true" class="accordion">
                   <mat-expansion-panel-header>
                     <mat-panel-title>
-                      <h2 class='title'>{{section?.name}}</h2>
+                      <h2 class="title">{{ section?.name }}</h2>
                     </mat-panel-title>
                   </mat-expansion-panel-header>
-                  <div class='sectionDetails'>
+                  <div class="sectionDetails">
                     <div *ngFor="let content of section.userContentDetails">
                       <div class="resource">
                         <div [ngSwitch]="content?.type" class="node-icon">
-                          <mat-icon *ngSwitchCase="'PDF'">library_books</mat-icon>
-                          <mat-icon *ngSwitchCase="'VIDEO'">play_circle_filled</mat-icon>
-                          <mat-icon *ngSwitchCase="'ZOOM'">video_camera_front</mat-icon>
+                          <mat-icon *ngSwitchCase="'PDF'"
+                            >library_books</mat-icon
+                          >
+                          <mat-icon *ngSwitchCase="'VIDEO'"
+                            >play_circle_filled</mat-icon
+                          >
+                          <mat-icon *ngSwitchCase="'ZOOM'"
+                            >video_camera_front</mat-icon
+                          >
                           <mat-icon *ngSwitchCase="'QUIZ'">quiz</mat-icon>
-                          <h4 class="contentCourse">{{content?.name}}</h4>
+                          <h4 class="contentCourse">{{ content?.name }}</h4>
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </mat-expansion-panel>
@@ -83,16 +96,43 @@
         </mat-tab>
       </mat-tab-group>
     </mat-dialog-content>
-    <mat-dialog-actions align="center">
-      <button class="cancel" mat-button mat-flat-button [mat-dialog-close]="true">
-        {{ "general.close" | translate }}
-      </button>
-      <button class='register' mat-button mat-flat-button
-              [mat-dialog-close]="true" cdkFocusInitial
-              (click)="registerButtonHandler()">
-        {{'preview.dialog.register'| translate}}
-      </button>
-    </mat-dialog-actions>
+    <div *ngIf="data.type === 'RECOMMENDED'">
+      <mat-dialog-actions align="center">
+        <button
+          class="cancel"
+          mat-button
+          mat-flat-button
+          [mat-dialog-close]="true"
+        >
+          {{ "general.close" | translate }}
+        </button>
+        <button
+          class="register"
+          mat-button
+          mat-flat-button
+          [mat-dialog-close]="true"
+          cdkFocusInitial
+          (click)="registerButtonHandler()"
+        >
+          {{ "preview.dialog.register" | translate }}
+        </button>
+      </mat-dialog-actions>
+    </div>
+    <div *ngIf="data.type === 'PENDING'" class="status">
+      <div
+        *ngIf="data['courseStatus'] === 'PAYMENT_PENDING'"
+        class="status-pending status-pending-payment"
+      >
+        <h5>{{ "card.payment_pending_title" | translate }}</h5>
+        <p>{{ "card.payment_pending_description" | translate }}</p>
+      </div>
+      <div
+        *ngIf="data['courseStatus'] === 'REGISTRATION_PENDING'"
+        class="status-pending status-pending-registration"
+      >
+        <h5>{{ "card.registration_pending_title" | translate }}</h5>
+        <p>{{ "card.registration_pending_description" | translate }}</p>
+      </div>
+    </div>
   </div>
-
 </ng-template>

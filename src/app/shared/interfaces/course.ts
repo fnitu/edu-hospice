@@ -19,4 +19,5 @@ export interface Course {
   courseRole: string;
   endDate: string;
   userSectionDetails: Array<any>;
+  type?: string;
 }

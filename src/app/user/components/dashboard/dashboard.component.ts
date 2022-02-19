@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
       tab.type === 'FINISHED' ||
       tab.type === 'REJECTED'
     ) {
-      this.dialogCourse(course.id);
+      this.dialogCourse(course.id, tab.type);
     } else {
       this.router.navigate([
         `${ROUTES.USER.MAIN_ROUTE}/${ROUTES.USER.COURSE}`,
@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  public dialogCourse(id) {
+  public dialogCourse(id, type) {
     const url = this.placeholderFormatService.stringFormat(
       GLOBALS.DATA_URL.GET_COURSE_INFO,
       {
@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit {
         minWidth: 800,
         maxHeight: 600,
         minHeight: 600,
-        data: courseContent,
+        data: { ...courseContent, type: type },
         disableClose: false,
       };
 
