@@ -134,5 +134,11 @@
         <p>{{ "card.registration_pending_description" | translate }}</p>
       </div>
     </div>
+    <div *ngIf="data.type === 'REJECTED'" class="status">
+      <div class="status-pending status-rejected">
+        <h5>{{ "card.rejected_title" | translate }}</h5>
+        <p>{{ "card.rejected_description" | translate }}</p>
+      </div>
+    </div>
   </div>
 </ng-template>
