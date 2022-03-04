@@ -65,14 +65,16 @@
                 </app-options-field-configuration>
             </ng-container>
 
-            <ng-container *ngIf="question.type === 'TEXTAREA_SHORT' || question.type === 'TEXTAREA_BIG'">
-                <app-textarea-field-configuration
-                        [label]="(question.type === 'TEXTAREA_SHORT' ? 'admin.quiz.question.textareaShortLabel' : 'admin.quiz.question.textareaBigLabel') | translate"
-                        [limit]="question.type === 'TEXTAREA_SHORT' ? TEXTAREA_SHORT_LIMIT : TEXTAREA_BIG_LIMIT"></app-textarea-field-configuration>
+            <ng-container *ngIf="question.type === 'TEXTAREA_SHORT'">
+                <app-textarea-field-configuration [question]="question"></app-textarea-field-configuration>
+            </ng-container>
+
+            <ng-container *ngIf="question.type === 'TEXTAREA_BIG'">
+                <app-textarea-field-configuration [question]="question"></app-textarea-field-configuration>
             </ng-container>
 
             <ng-container *ngIf="question.type === 'LINEAR_SCALE'">
-                <app-linear-scale-field-configuration></app-linear-scale-field-configuration>
+                <app-linear-scale-field-configuration [question]="question"></app-linear-scale-field-configuration>
             </ng-container>
 
         </mat-card-content>

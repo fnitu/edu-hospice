@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormControl, Validators } from "@angular/forms";
 import { Options } from "@angular-slider/ngx-slider";
 import { SnackBarComponent } from "../../../../../shared/components/snack-bar/snack-bar.component";
 import { GLOBALS } from "../../../../../shared/core/globals";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { CustomTranslateService } from "../../../../../shared/services/custom-translate/custom-translate.service";
+import { QuestionInterface } from "../question.interface";
 
 @Component({
   selector: 'app-linear-scale-field-configuration',
@@ -13,7 +14,9 @@ import { CustomTranslateService } from "../../../../../shared/services/custom-tr
   encapsulation: ViewEncapsulation.None
 })
 export class LinearScaleFieldConfigurationComponent implements OnInit {
-  public readonly LINEAR_SCALE_DEFAULT_MIN_VALUE: number = 0;
+  @Input() question: QuestionInterface;
+
+  private readonly LINEAR_SCALE_DEFAULT_MIN_VALUE: number = 0;
   private readonly LINEAR_SCALE_DEFAULT_MAX_VALUE: number = 10;
 
   public linearScaleMinValue: FormControl = new FormControl(this.LINEAR_SCALE_DEFAULT_MIN_VALUE, [
@@ -34,6 +37,8 @@ export class LinearScaleFieldConfigurationComponent implements OnInit {
   ngOnInit(): void {
     this.linearScaleOptions = this.getLinearScaleOptions();
 
+    this.updateQuestionSettings(this.LINEAR_SCALE_DEFAULT_MIN_VALUE, this.LINEAR_SCALE_DEFAULT_MAX_VALUE);
+
     this.updateFieldsValidation();
   }
 
@@ -48,6 +53,8 @@ export class LinearScaleFieldConfigurationComponent implements OnInit {
       newOptions.ceil = this.linearScaleMaxValue.value;
 
       this.linearScaleOptions = newOptions;
+
+      this.updateQuestionSettings(this.linearScaleMinValue.value, this.linearScaleMaxValue.value)
     } else {
       this.matSnackBar.openFromComponent(SnackBarComponent, {
         verticalPosition: 'top',
@@ -56,6 +63,13 @@ export class LinearScaleFieldConfigurationComponent implements OnInit {
           type: GLOBALS.NOTIFICATIONS.ERROR
         }
       });
+    }
+  }
+
+  private updateQuestionSettings(min, max) {
+    this.question.settings = {
+      minValue: min,
+      maxValue: max
     }
   }
 

@@ -18,15 +18,12 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
     encapsulation: ViewEncapsulation.None,
 })
 export class QuizQuestionsComponent implements OnInit {
-    @ViewChildren('questionRef', { read: ElementRef }) questionRef: QueryList<ElementRef>;
+    @ViewChildren('questionRef', {read: ElementRef}) questionRef: QueryList<ElementRef>;
     @Input() quizSettingSaved: boolean = false;
 
     public questions: QuestionInterface[] = [];
 
     public readonly FIELD_TYPES = GLOBALS.FIELD_TYPES;
-
-    public readonly TEXTAREA_SHORT_LIMIT = GLOBALS.TEXTAREA.SHORT_LIMIT;
-    public readonly TEXTAREA_BIG_LIMIT = GLOBALS.TEXTAREA.BIG_LIMIT;
 
     private questionAdded: boolean = false;
 
@@ -153,13 +150,13 @@ export class QuizQuestionsComponent implements OnInit {
             case this.FIELD_TYPES.TEXTAREA_SHORT:
             case this.FIELD_TYPES.TEXTAREA_BIG: {
                 delete question.options;
-                delete question.linearScaleOptions;
+                delete question.settings;
                 break;
             }
             case this.FIELD_TYPES.SELECT:
             case this.FIELD_TYPES.RADIO:
             case this.FIELD_TYPES.CHECKBOXES: {
-                delete question.linearScaleOptions;
+                delete question.settings;
 
                 if (!question.options) {
                     question.options = [this.optionsFieldConfigurationService.getDefaultOptionModel()];
@@ -170,6 +167,7 @@ export class QuizQuestionsComponent implements OnInit {
             }
             case this.FIELD_TYPES.LINEAR_SCALE: {
                 delete question.options;
+                delete question.settings;
             }
         }
     }
@@ -180,8 +178,8 @@ export class QuizQuestionsComponent implements OnInit {
         this.quizQuestionsService.reorderQuestions(this.quizSettingsService.quizId, this.prepareQuizQuestionsList()).subscribe();
     }
 
-    private prepareQuizQuestionsList(): {index: number; questionId: number}[] {
-        let questionsList: {index: number; questionId: number}[] = [];
+    private prepareQuizQuestionsList(): { index: number; questionId: number }[] {
+        let questionsList: { index: number; questionId: number }[] = [];
 
         questionsList = _.map(this.questions, (value, index) => {
             return {
