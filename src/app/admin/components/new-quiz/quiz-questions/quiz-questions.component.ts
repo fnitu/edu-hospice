@@ -176,6 +176,21 @@ export class QuizQuestionsComponent implements OnInit {
 
     public onListDropped(event: CdkDragDrop<string[]>) {
         moveItemInArray(this.questions, event.previousIndex, event.currentIndex);
+
+        this.quizQuestionsService.reorderQuestions(this.quizSettingsService.quizId, this.prepareQuizQuestionsList()).subscribe();
+    }
+
+    private prepareQuizQuestionsList(): {index: number; questionId: number}[] {
+        let questionsList: {index: number; questionId: number}[] = [];
+
+        questionsList = _.map(this.questions, (value, index) => {
+            return {
+                index: index,
+                questionId: value.id
+            }
+        });
+
+        return questionsList;
     }
 
     private scrollToBottom() {

@@ -36,6 +36,7 @@ export const GLOBALS = {
     DELETE_QUIZ_QUESTION: `${environment.BASE_URL}/api/admin/quizzes/questions/{questionId}/delete`,
     DELETE_QUIZ: `${environment.BASE_URL}/api/admin/quizzes/{quizId}`,
     GET_QUIZ_QUESTIONS: `${environment.BASE_URL}/api/admin/quizzes/{quizId}/questions/details`,
+    REORDER_QUIZ_QUESTIONS: `${environment.BASE_URL}/api/admin/quizzes/{quizId}/questions/reorder`,
     GET_COURSE_INFO: `${environment.BASE_URL}/api/courses/{id}`,
     CREATE_SECTION: `${environment.BASE_URL}/api/admin/courses/{courseId}/sections`,
     UPDATE_SECTION: `${environment.BASE_URL}/api/admin/courses/sections/{sectionId}/update`,

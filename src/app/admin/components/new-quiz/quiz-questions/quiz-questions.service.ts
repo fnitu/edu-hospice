@@ -65,4 +65,21 @@ export class QuizQuestionsService {
     );
     return this.http.delete(url);
   }
+
+  public reorderQuestions(quizId, questions): Observable<any> {
+    const url = this.placeHolderFormatService.stringFormat(
+        GLOBALS.DATA_URL.REORDER_QUIZ_QUESTIONS,
+        {
+          '{quizId}': quizId,
+        }
+    );
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+
+    const bodyParams = JSON.stringify(questions);
+
+    return this.http.put(url, bodyParams, httpOptions);
+  }
 }
