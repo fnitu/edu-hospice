@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation, Input, EventEmitter, Output } from '@angular/core';
-import { QuestionInterface } from "../question.interface";
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { QuestionInterface, RadioSettingsDisplay } from "../question.interface";
 import { QuestionOptionInterface } from "../question-option.interface";
 import * as _ from "lodash";
 import { SnackBarComponent } from "../../../../../shared/components/snack-bar/snack-bar.component";
@@ -7,6 +7,7 @@ import { GLOBALS } from "../../../../../shared/core/globals";
 import { CustomTranslateService } from "../../../../../shared/services/custom-translate/custom-translate.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { OptionsFieldConfigurationService } from "./options-field-configuration.service";
+import { MatButtonToggleChange } from "@angular/material/button-toggle";
 
 @Component({
   selector: 'app-options-field-configuration',
@@ -15,16 +16,22 @@ import { OptionsFieldConfigurationService } from "./options-field-configuration.
   encapsulation: ViewEncapsulation.None
 })
 export class OptionsFieldConfigurationComponent implements OnInit {
-  @Input() optionIcon: string;
   @Input() question: QuestionInterface;
 
   public readonly FIELD_TYPES = GLOBALS.FIELD_TYPES;
+
+  public position: RadioSettingsDisplay = 'vertical';
 
   constructor(private customTranslateService: CustomTranslateService,
               private matSnackBar: MatSnackBar,
               private optionsFieldConfigurationService: OptionsFieldConfigurationService) { }
 
   ngOnInit(): void {
+    if (this.question.type === this.FIELD_TYPES.RADIO) {
+      this.question.settings = {
+        display: this.position
+      }
+    }
   }
 
   public addOption(question, option) {
@@ -59,5 +66,11 @@ export class OptionsFieldConfigurationComponent implements OnInit {
     }
 
     option.valid = $event.checked;
+  }
+
+  public positionChanged(event: MatButtonToggleChange) {
+    this.question.settings = {
+      display: event.value
+    };
   }
 }

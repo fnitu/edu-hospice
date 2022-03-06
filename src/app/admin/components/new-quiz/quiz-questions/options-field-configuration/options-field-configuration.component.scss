@@ -5,6 +5,23 @@ app-options-field-configuration {
     display: flex;
     flex-direction: column;
 
+    .display-options {
+      .mat-button-toggle-group {
+        margin-left: 10px;
+
+        .mat-button-toggle-label-content {
+          line-height: normal;
+          padding: 5px;
+
+          .mat-icon {
+            height: 20px;
+            width: 20px;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+
     .option-wrapper {
       flex: 1;
       display: flex;

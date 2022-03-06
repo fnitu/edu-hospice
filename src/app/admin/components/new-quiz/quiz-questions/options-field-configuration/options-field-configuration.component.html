@@ -1,6 +1,21 @@
 <div class="options-container">
+    <div *ngIf="question.type === FIELD_TYPES.RADIO" class="display-options">
+        {{ 'admin.quiz.question.displayOptionsAs' | translate }}
+        <mat-button-toggle-group value="{{position}}" (change)="positionChanged($event)">
+            <mat-button-toggle value="vertical" title="{{ 'admin.quiz.question.verticalDisplay' | translate }}">
+                <mat-icon class="material-icons-outlined">vertical_distribute</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="horizontal" title="{{ 'admin.quiz.question.horizontalDisplay' | translate }}">
+                <mat-icon class="material-icons-outlined">horizontal_distribute</mat-icon>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
     <div class="option-wrapper" *ngFor="let option of question.options">
-        <mat-icon *ngIf="optionIcon" class="material-icons-outlined question-type-icon">{{optionIcon}}</mat-icon>
+        <mat-icon *ngIf="question.type !== FIELD_TYPES.SELECT" class="material-icons-outlined question-type-icon">
+            <ng-container *ngIf="question.type === FIELD_TYPES.RADIO; else checkboxIcon">radio_button_unchecked</ng-container>
+            <ng-template #checkboxIcon>check_box_outline_blank</ng-template>
+        </mat-icon>
 
         <mat-form-field class="option-field">
             <input matInput [(ngModel)]="option.option">

@@ -73,6 +73,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { NgxSliderModule } from "@angular-slider/ngx-slider";
 import { DragDropModule } from "@angular/cdk/drag-drop";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
 
 @NgModule({
   declarations: [
@@ -155,6 +156,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     MatCheckboxModule,
     MatBadgeModule,
     MatSlideToggleModule,
+    MatButtonToggleModule,
     CourseCardComponent,
     TranslateModule,
     GridComponent,
