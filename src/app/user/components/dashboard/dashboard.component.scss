@@ -103,31 +103,31 @@
           .card-icon-profile {
             background: linear-gradient(
               $gradientDegree,
-              $themeColor2-light,
-              $themeColor2-dark
+              $themeColor0-light,
+              $themeColor0-dark
             );
             box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
-              0 7px 10px -5px $themeColor2-light;
+              0 7px 10px -5px $themeColor0-light;
           }
 
           .card-icon-contact {
             background: linear-gradient(
               $gradientDegree,
-              $themeColor4-light,
-              $themeColor4-dark
+              $themeColor0-light,
+              $themeColor0-dark
             );
             box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
-              0 7px 10px -5px $themeColor4-light;
+              0 7px 10px -5px $themeColor0-light;
           }
 
           .card-icon-stats {
             background: linear-gradient(
               $gradientDegree,
-              $themeColor5-light,
-              $themeColor5-dark
+              $themeColor0-light,
+              $themeColor0-dark
             );
             box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
-              0 7px 10px -5px $themeColor5-light;
+              0 7px 10px -5px $themeColor0-light;
           }
 
           .card-icon-profile,
