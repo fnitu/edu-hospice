@@ -126,12 +126,11 @@
     align-items: center;
     .register {
       display: block;
-      background-color: $themeColor1-light;
       color: $textWithBackground;
       text-align: center;
       background-color: $registerButton;
-      font-size: large;
       font-weight: 400;
+      width: 150px;
     }
   }
 

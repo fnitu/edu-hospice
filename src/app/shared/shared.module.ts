@@ -71,9 +71,9 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { ChangePassword } from './components/change-password/change-password.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { QuizComponent } from './components/quiz/quiz.component';
-import { NgxSliderModule } from "@angular-slider/ngx-slider";
-import { DragDropModule } from "@angular/cdk/drag-drop";
-import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [

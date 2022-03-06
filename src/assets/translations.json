@@ -62,7 +62,7 @@
       "credits": "Numar Credite",
       "price": "Preț",
       "interval": "Perioada Cursului",
-      "register": "Inscriere"
+      "register": "Înscriere"
     },
     "login": {
       "clickHere": "Click aici!",
@@ -354,7 +354,8 @@
       "MEDICAL": "Medical",
       "MULTI_DISCIPLINARY": "Multidisciplinar"
     },
-    "register": "Înregistrează-te!",
+    "register": "Înscriere",
+
     "progress": "Progres",
     "hours": "Ore",
     "recommended": "Recomandat",
