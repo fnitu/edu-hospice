@@ -9,6 +9,10 @@
     flex: 1;
     overflow: auto;
   }
+  .breadcrumb {
+    margin-left: 5px;
+    line-height: 50px;
+  }
 
   ng-progress {
     .ng-progress-bar {

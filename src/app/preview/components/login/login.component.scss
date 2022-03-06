@@ -11,19 +11,27 @@
   }
 
   .mat-raised-button {
+    color: $textWithBackground;
     background-color: $registerButton;
     margin-bottom: 10px;
-    color: $navBarTextColor;
   }
+  .options {
+    display: flex;
+    margin-top: 50px;
+    .devider {
+      border-right: 1px solid #f0eded;
+    }
+    .register {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      margin: 5px;
+      font-weight: 500;
+    }
 
-  .register {
-    margin: 5px;
-    font-weight: 500;
-  }
-
-  .register a {
-    color: $loginLinkTextColor;
-    text-decoration: none;
+    .register a {
+      color: $loginLinkTextColor;
+      text-decoration: none;
+    }
   }
 }
-

@@ -24,10 +24,20 @@ const routes: Routes = [
       {
         path: `${ROUTES.USER.COURSE}/:courseId`,
         component: CourseComponent,
+        data: {
+          breadcrumb: {
+            label: 'user.breadcrumbs.course',
+          },
+        },
       },
       {
         path: `${ROUTES.USER.EDIT_USER_INFO}`,
         component: UserEditInfo,
+        data: {
+          breadcrumb: {
+            label: 'user.breadcrumbs.editInfo',
+          },
+        },
       },
     ],
   },

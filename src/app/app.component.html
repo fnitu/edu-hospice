@@ -2,6 +2,11 @@
   <app-top-toolbar></app-top-toolbar>
 
   <ng-progress [spinner]="false"></ng-progress>
+  <xng-breadcrumb [autoGenerate]="false" class="breadcrumb">
+    <ng-container *xngBreadcrumbItem="let breadcrumb">
+      <ng-container>{{ breadcrumb | translate }}</ng-container>
+    </ng-container>
+  </xng-breadcrumb>
 
   <!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
   <!-- The routed views render in the <router-outlet>-->

@@ -1,8 +1,15 @@
-import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  OnInit,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Course } from 'src/app/shared/interfaces/course';
-import {ROUTES} from '../../../../shared/core/routes';
-import {Router} from '@angular/router';
+import { ROUTES } from '../../../../shared/core/routes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-card-dialog',
@@ -11,12 +18,19 @@ import {Router} from '@angular/router';
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeCardDialogComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Course,
-              private router: Router) {}
+  @Output() registerFromDialog = new EventEmitter();
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: Course,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
   registerButtonHandler() {
-    this.router.navigate([ROUTES.PREVIEW.MAIN_ROUTE, ROUTES.PREVIEW.REGISTER]);
+    if (this.data.type) {
+      this.registerFromDialog.emit(this.data);
+    } else {
+      this.router.navigate([ROUTES.PREVIEW.MAIN_ROUTE, ROUTES.PREVIEW.LOGIN]);
+    }
   }
 }

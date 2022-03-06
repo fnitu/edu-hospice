@@ -43,6 +43,7 @@
     "rxjs": "6.5.5",
     "tippy.js": "5.1.4",
     "tslib": "1.10.0",
+    "xng-breadcrumb": "^6.0.0",
     "zone.js": "0.10.3"
   },
   "devDependencies": {

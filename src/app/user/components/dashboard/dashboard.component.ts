@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { User } from '../../../shared/interfaces/user';
 import { Router } from '@angular/router';
 import { Course } from '../../../shared/interfaces/course';
@@ -11,7 +11,10 @@ import { PlaceholderFormatService } from '../../../shared/services/format/placeh
 import { HomeCardDialogComponent } from '../../../preview/components/dialog-home-card/home-card-dialog/home-card-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UploadProfilePictureDialogComponent } from './upload-profile-picture-dialog/upload-profile-picture-dialog.component';
-
+import { ConfirmationDialogService } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.service';
+import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
+import { UserListService } from 'src/app/admin/components/user-list/user-list.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -29,7 +32,11 @@ export class DashboardComponent implements OnInit {
     private authService: AuthService,
     private placeholderFormat: PlaceholderFormatService,
     private placeholderFormatService: PlaceholderFormatService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private confirmationDialogService: ConfirmationDialogService,
+    private customTranslateService: CustomTranslateService,
+    private userListService: UserListService,
+    private matSnackBar: MatSnackBar
   ) {}
 
   user = {
@@ -81,7 +88,64 @@ export class DashboardComponent implements OnInit {
         disableClose: false,
       };
 
-      this.dialog.open(HomeCardDialogComponent, defaultConfig);
+      let dialogRef = this.dialog.open(HomeCardDialogComponent, defaultConfig);
+      dialogRef.componentInstance.registerFromDialog.subscribe((course) => {
+        console.log(course.id);
+
+        const confirmationDialogRef = this.confirmationDialogService.show({
+          data: {
+            message: this.customTranslateService.getTranslation(
+              'confirmationDialog.courseRegister'
+            ),
+            buttons: [
+              {
+                text: this.customTranslateService.getTranslation(
+                  'general.cancel'
+                ),
+              },
+              {
+                text: this.customTranslateService.getTranslation(
+                  'general.confirm'
+                ),
+                handler: () => {
+                  let userId;
+
+                  this.authService.currentUserResponse.subscribe(
+                    (data: User) => {
+                      userId = data.id;
+                    }
+                  );
+
+                  const urlParams = {
+                    '{userId}': userId,
+                    '{courseId}': course.id,
+                  };
+
+                  const url = this.placeholderFormat.stringFormat(
+                    GLOBALS.DATA_URL.REGISTER_COURSES,
+                    urlParams
+                  );
+                  this.userListService.register(url).subscribe((result) => {
+                    if (result) {
+                      this.matSnackBar.open(
+                        result.message,
+                        GLOBALS.NOTIFICATIONS.INFO,
+                        {
+                          duration:
+                            GLOBALS.NOTIFICATIONS.DURATION_IN_SECONDS * 1000,
+                          verticalPosition: 'bottom',
+                        }
+                      );
+                      this.redirectTab();
+                    }
+                  });
+                  confirmationDialogRef.close();
+                },
+              },
+            ],
+          },
+        });
+      });
     });
   }
 

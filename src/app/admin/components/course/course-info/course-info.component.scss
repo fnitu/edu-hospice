@@ -1,0 +1,11 @@
+.create-course {
+  form {
+    .button-row {
+      display: flex;
+      justify-content: flex-end;
+      button {
+        margin: 5px;
+      }
+    }
+  }
+}

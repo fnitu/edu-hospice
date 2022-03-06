@@ -9,7 +9,6 @@ import { ROUTES } from '../shared/core/routes';
 import { NewQuizComponent } from './components/new-quiz/new-quiz.component';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
 import { CourseComponent } from './components/course/course.component';
-import { RegisterComponent } from '../preview/components/register/register.component';
 import { AdminEditInfo } from './components/admin-edit-info/admin-edit-info.component';
 
 const routes: Routes = [
@@ -28,27 +27,52 @@ const routes: Routes = [
       },
       {
         path: ROUTES.ADMIN.COURSE.LIST,
+        data: {
+          breadcrumb: {
+            label: 'admin.dashboard.titleCourses',
+          },
+        },
         children: [
           {
             path: '',
-            component: CourseListComponent
+            component: CourseListComponent,
           },
           {
             path: ROUTES.ADMIN.COURSE.NEW,
             component: CourseComponent,
+            data: {
+              breadcrumb: {
+                label: 'admin.dashboard.newCourse',
+              },
+            },
           },
           {
             path: `${ROUTES.ADMIN.COURSE.NEW}/:courseId`,
             component: CourseComponent,
-          }
-        ]
+            data: {
+              breadcrumb: {
+                label: 'admin.dashboard.courseEdit',
+              },
+            },
+          },
+        ],
       },
       {
         path: `${ROUTES.ADMIN.USERS}/:listType`,
+        data: {
+          breadcrumb: {
+            label: 'admin.dashboard.users',
+          },
+        },
         component: UsersComponent,
       },
       {
         path: ROUTES.ADMIN.QUIZ.LIST,
+        data: {
+          breadcrumb: {
+            label: 'admin.dashboard.quizList',
+          },
+        },
         children: [
           {
             path: '',
@@ -57,16 +81,31 @@ const routes: Routes = [
           {
             path: ROUTES.ADMIN.QUIZ.NEW,
             component: NewQuizComponent,
+            data: {
+              breadcrumb: {
+                label: 'admin.dashboard.newQuiz',
+              },
+            },
           },
           {
             path: `${ROUTES.ADMIN.QUIZ.NEW}/:id`,
             component: NewQuizComponent,
+            data: {
+              breadcrumb: {
+                label: 'admin.dashboard.quizEdit',
+              },
+            },
           },
         ],
       },
       {
         path: `${ROUTES.ADMIN.PROFILE_EDIT}`,
         component: AdminEditInfo,
+        data: {
+          breadcrumb: {
+            label: 'admin.editInformations.editInfo',
+          },
+        },
       },
     ],
   },

@@ -98,7 +98,8 @@
   <mat-tab-group
     class="mat-tab-group"
     (selectedTabChange)="selectedTabChange($event)"
-    [selectedIndex]="selectedIndex">
+    [selectedIndex]="selectedIndex"
+  >
     <mat-tab
       *ngFor="let tab of courseTabs; let i = index"
       label="{{ tab.name | translate }}"

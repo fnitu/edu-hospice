@@ -11,17 +11,20 @@
       <button mat-raised-button (click)="onSubmit()" [disabled]="form.invalid">
         {{ "general.login" | translate }}
       </button>
-      <p class="register">
-        {{ "preview.login.forgotPassword" | translate
-        }}<a (click)="forgotPassword()">
-          {{ "preview.login.clickHere" | translate }}</a
-        >
-      </p>
-      <p class="register">
-        <a routerLink="../register">{{
-          "preview.login.register" | translate
-        }}</a>
-      </p>
+      <div class="options">
+        <p class="register devider">
+          <span> {{ "preview.login.forgotPassword" | translate }} </span
+          ><a (click)="forgotPassword()">
+            {{ "preview.login.clickHere" | translate }}</a
+          >
+        </p>
+        <p class="register">
+          <span>{{ "preview.login.noAccount" | translate }}</span>
+          <a routerLink="../register">{{
+            "preview.login.register" | translate
+          }}</a>
+        </p>
+      </div>
     </form>
   </mat-card-content>
 </mat-card>

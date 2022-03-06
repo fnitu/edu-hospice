@@ -38,7 +38,9 @@ export class TopToolbarComponent implements OnInit {
   ngOnInit(): void {}
 
   public goToHome() {
-    this.router.navigate([ROUTES.PREVIEW.MAIN_ROUTE]);
+    if (!this.authService.isAuthenticated())
+      this.router.navigate([ROUTES.PREVIEW.MAIN_ROUTE]);
+    else this.goToDashboard();
   }
 
   public goToDashboard() {

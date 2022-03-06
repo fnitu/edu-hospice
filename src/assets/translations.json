@@ -41,7 +41,7 @@
     "deleteCourseContentConfirmation": "Sigur doriți să ștergeți acest continut?",
     "deleteQuizConfirmation": "Sigur doriți să ștergeți acest quiz?",
     "deleteImgFile": "Sigur doriți să ștergeți acestă imagine?",
-    "warning" : "Acțiunea este ireversibilă!",
+    "warning": "Acțiunea este ireversibilă!",
     "courseRegister": "Sigur doriți să vă înregistrați la acest curs?"
   },
   "preview": {
@@ -71,7 +71,8 @@
       "password": "Parola",
       "passwordPlaceholder": "Introdu parola",
       "register": "Înregistrează-te!",
-      "invalidEmailOrPassword": "E-mail sau parolă incorectă!"
+      "invalidEmailOrPassword": "E-mail sau parolă incorectă!",
+      "noAccount": "Nu ai cont?"
     },
     "managePassword": {
       "changePassword": "Schimbă parola",
@@ -91,9 +92,9 @@
     },
     "register": {
       "firstName": "Nume",
-      "firstNamePlaceholder": "Introdu prenumele",
+      "firstNamePlaceholder": "Introdu numele",
       "lastName": "Prenume",
-      "lastNamePlaceholder": "Introdu numele",
+      "lastNamePlaceholder": "Introdu prenumele",
       "emailPlaceholder": "Introdu adresa de E-mail",
       "password": "Parola",
       "passwordPlaceholder": "Alege o parolă",
@@ -158,6 +159,10 @@
         "recommended": "Recomandate",
         "rejected": "Respinse"
       }
+    },
+    "breadcrumbs": {
+      "course": "Curs",
+      "editInfo": "Editare informații personale"
     }
   },
   "admin": {
@@ -178,7 +183,13 @@
       "statsRequest": "cerere",
       "statsRequests": "cereri",
       "statsPaymentConfirmation": "confirmare",
-      "statsPaymentConfirmations": "confirmări"
+      "statsPaymentConfirmations": "confirmări",
+      "users": "Cursanți",
+      "courseEdit": "Editare curs",
+      "newCourse": "Curs nou",
+      "quizList": "Chestionare",
+      "quizEdit": "Editare chestionar",
+      "newQuiz": "Chestionar nou"
     },
     "editInformations": {
       "editInfo": "Editare informații personale",
@@ -374,7 +385,8 @@
   },
   "topToolbar": {
     "tooltips": {
-      "userDashboard": "Profil",
+      "profile": "Profil",
+      "userDashboard": "Panou principal",
       "adminDashboard": "Panou principal",
       "logout": "Închidere sesiune"
     }

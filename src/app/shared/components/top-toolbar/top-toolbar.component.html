@@ -4,7 +4,7 @@
       {{ "general.siteName" | translate }}
     </h2>
     <span class="example-spacer"></span>
-    <nav class="navigation">
+    <nav class="navigation" *ngIf="!authService.isAuthenticated()">
       <ul>
         <li>
           <a
@@ -20,7 +20,6 @@
             mat-button
             routerLink="{{ loginRoute }}"
             routerLinkActive="active"
-            *ngIf="!authService.isAuthenticated()"
             >{{ "general.login" | translate }}</a
           >
         </li>
@@ -31,17 +30,9 @@
       <div>
         <mat-icon
           (click)="goToEditProfile()"
-          matTooltip="{{ 'topToolbar.tooltips.userDashboard' | translate }}"
+          matTooltip="{{ 'topToolbar.tooltips.profile' | translate }}"
           matTooltipClass="icon-tooltip"
           >account_circle
-        </mat-icon>
-      </div>
-      <div>
-        <mat-icon
-          (click)="goToDashboard()"
-          matTooltip="{{ 'topToolbar.tooltips.adminDashboard' | translate }}"
-          matTooltipClass="icon-tooltip"
-          >dashboard
         </mat-icon>
       </div>
       <div>
