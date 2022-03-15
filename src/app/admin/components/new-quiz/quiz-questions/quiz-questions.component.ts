@@ -149,7 +149,7 @@ export class QuizQuestionsComponent implements OnInit {
         switch (question.type) {
             case this.FIELD_TYPES.TEXTAREA_SHORT:
             case this.FIELD_TYPES.TEXTAREA_BIG: {
-                delete question.options;
+                question.options = null;
                 delete question.settings;
                 break;
             }
@@ -166,7 +166,7 @@ export class QuizQuestionsComponent implements OnInit {
                 break;
             }
             case this.FIELD_TYPES.LINEAR_SCALE: {
-                delete question.options;
+                question.options = null;
                 delete question.settings;
             }
         }
@@ -175,17 +175,14 @@ export class QuizQuestionsComponent implements OnInit {
     public onListDropped(event: CdkDragDrop<string[]>) {
         moveItemInArray(this.questions, event.previousIndex, event.currentIndex);
 
-        this.quizQuestionsService.reorderQuestions(this.quizSettingsService.quizId, this.prepareQuizQuestionsList()).subscribe();
+        this.quizQuestionsService.reorderQuestions(this.quizSettingsService.quizId, {ids: this.prepareQuizQuestionsList() }).subscribe();
     }
 
-    private prepareQuizQuestionsList(): { index: number; questionId: number }[] {
-        let questionsList: { index: number; questionId: number }[] = [];
+    private prepareQuizQuestionsList(): number[] {
+        let questionsList: number[];
 
         questionsList = _.map(this.questions, (value, index) => {
-            return {
-                index: index,
-                questionId: value.id
-            }
+            return value.id
         });
 
         return questionsList;
