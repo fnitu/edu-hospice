@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { QuestionInterface } from "../../../admin/components/new-quiz/quiz-questions/question.interface";
+import { QuestionInterface, QuestionResponseDataModel } from "../../../admin/components/new-quiz/quiz-questions/question.interface";
 import { QuizService } from "./quiz.service";
 import { FormGroup, Validators } from "@angular/forms";
 import { FormlyFieldConfig } from "@ngx-formly/core";
@@ -22,7 +22,7 @@ export class QuizComponent implements OnInit {
 
   public quizForm = new FormGroup({});
   public quizFields: FormlyFieldConfig[];
-  public quizModel = {};
+  public quizModel: QuestionResponseDataModel = {};
 
   constructor(private quizService: QuizService) { }
 
@@ -95,12 +95,29 @@ export class QuizComponent implements OnInit {
         break;
       case GLOBALS.FIELD_TYPES.TEXTAREA_SHORT:
         fieldConfig = {
-          type: "textarea"
+          type: "textareafield",
+          templateOptions: {
+            autosize: true,
+            autosizeMinRows: GLOBALS.TEXTAREA.MIN_ROWS,
+            autosizeMaxRows: GLOBALS.TEXTAREA.MAX_ROWS,
+            maxLength: GLOBALS.TEXTAREA.SHORT_LIMIT
+          }
         };
         break;
       case GLOBALS.FIELD_TYPES.TEXTAREA_BIG:
         fieldConfig = {
-          type: "textarea"
+          type: "textareafield",
+          templateOptions: {
+            autosize: true,
+            autosizeMinRows: GLOBALS.TEXTAREA.MIN_ROWS,
+            autosizeMaxRows: GLOBALS.TEXTAREA.MAX_ROWS,
+            maxLength: GLOBALS.TEXTAREA.BIG_LIMIT
+          }
+        };
+        break;
+      case GLOBALS.FIELD_TYPES.LINEAR_SCALE:
+        fieldConfig = {
+          type: "linearScale"
         };
         break;
     }
@@ -121,7 +138,7 @@ export class QuizComponent implements OnInit {
     return newModel;
   }
 
-  private generateQuizModel(): {} {
+  private generateQuizModel(): QuestionResponseDataModel {
     let model = {};
 
     for (const field of this.quizQuestions) {

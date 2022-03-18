@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { QuestionInterface, RadioSettingsDisplay } from "../question.interface";
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { QuestionInterface, RadioSettingsDisplayType } from "../question.interface";
 import { QuestionOptionInterface } from "../question-option.interface";
 import * as _ from "lodash";
 import { SnackBarComponent } from "../../../../../shared/components/snack-bar/snack-bar.component";
@@ -20,7 +20,7 @@ export class OptionsFieldConfigurationComponent implements OnInit {
 
   public readonly FIELD_TYPES = GLOBALS.FIELD_TYPES;
 
-  public position: RadioSettingsDisplay = 'vertical';
+  public position: RadioSettingsDisplayType = RadioSettingsDisplayType.VERTICAL;
 
   constructor(private customTranslateService: CustomTranslateService,
               private matSnackBar: MatSnackBar,

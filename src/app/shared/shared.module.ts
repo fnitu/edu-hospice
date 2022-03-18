@@ -62,8 +62,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { textareaFormlyFieldExtension } from '../admin/components/course/textarea-formly-field.extension';
-import { inputFormlyFieldExtension } from '../admin/components/course/input-formly-field.extension';
+import { textareaFormlyFieldExtension } from './components/formly/textarea-formly-field/textarea-formly-field.extension';
+import { inputWithCounterFormlyFieldExtension } from './components/formly/input-with-counter-formly-field/input-with-counter-formly-field.extension';
 import { MatBadgeModule } from '@angular/material/badge';
 import { AutoFocusDirective } from './services/auto-focus/auto-focus.directive';
 import { UploadComponent } from './components/upload/upload.component';
@@ -74,6 +74,9 @@ import { QuizComponent } from './components/quiz/quiz.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { LinearScaleFormlyFieldComponent } from './components/formly/linear-scale-formly-field/linear-scale-formly-field.component';
+import { linearScaleFormlyFieldExtension } from "./components/formly/linear-scale-formly-field/linear-scale-formly-field.extension";
+import { LinearScaleFormlyFieldValueAccessor } from "./components/formly/linear-scale-formly-field/linear-scale-formly-field-value-accessor";
 
 @NgModule({
   declarations: [
@@ -91,6 +94,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     GalleryComponent,
     ChangePassword,
     QuizComponent,
+    LinearScaleFormlyFieldComponent,
+    LinearScaleFormlyFieldValueAccessor
   ],
   imports: [
     CommonModule,
@@ -117,7 +122,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     TranslateModule,
     AgGridModule.withComponents([RowActionsCellRendererComponent]),
     FormlyModule.forRoot({
-      types: [textareaFormlyFieldExtension, inputFormlyFieldExtension],
+      types: [textareaFormlyFieldExtension, inputWithCounterFormlyFieldExtension, linearScaleFormlyFieldExtension],
     }),
     FormlyMaterialModule,
     RouterModule,
@@ -177,7 +182,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     GridTopToolbarComponent,
     QuizComponent,
     NgxSliderModule,
-    DragDropModule
+    DragDropModule,
+    LinearScaleFormlyFieldComponent,
   ],
   providers: [
     {

@@ -158,7 +158,7 @@ export class QuizQuestionsComponent implements OnInit {
             case this.FIELD_TYPES.CHECKBOXES: {
                 delete question.settings;
 
-                if (!question.options) {
+                if (!question.options.length) {
                     question.options = [this.optionsFieldConfigurationService.getDefaultOptionModel()];
                 } else {
                     this.optionsFieldConfigurationService.resetOptionsValidState(question);

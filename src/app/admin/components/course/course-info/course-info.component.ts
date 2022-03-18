@@ -63,7 +63,7 @@ export class CourseInfoComponent implements OnInit {
     return [
       {
         key: 'name',
-        type: 'inputField',
+        type: 'inputWithCounterField',
         templateOptions: {
           label: this.customTranslateService.getTranslation(
               'admin.createCourse.name'
