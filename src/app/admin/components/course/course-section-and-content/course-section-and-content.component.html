@@ -1,15 +1,15 @@
-<div class="create-course-content-container">
+<div class="create-course-content-container" >
   <div class="course-title">
     {{ course?.name }}
   </div>
-  <div class="button-container">
-    <button mat-raised-button class="addSection" (click)="addSection()">
-      {{ "admin.createCourseContent.addSectionButton" | translate }}
-    </button>
-  </div>
-  <div class="sections-container">
-    <div class="section" *ngFor="let section of course?.sectionList; let sectionIndex = index">
+  <div class="sections-container" cdkDropList (cdkDropListDropped)="onListDropped($event)">
+    <div class="section" *ngFor="let section of course?.sectionList; let sectionIndex = index" cdkDrag>
       <div class="section-container">
+
+        <div cdkDragHandle>
+          <mat-icon>drag_indicator</mat-icon>
+        </div>
+
         <div class="title" *ngIf="section.id !== editedSectionId">
           {{ section.name }}
         </div>
@@ -37,8 +37,12 @@
         </div>
       </div>
 
-      <div class="content-container">
-        <div class="content" *ngFor="let content of section.adminContentDetails; let i = index">
+      <div class="content-container" cdkDropList (cdkDropListDropped)="onContentListDropped($event, section)">
+        <div class="content" *ngFor="let content of section.adminContentDetails; let i = index" cdkDrag>
+
+          <div cdkDragHandle>
+            <mat-icon>drag_indicator</mat-icon>
+          </div>
 
           <div [ngSwitch]="content.type" class="node-icon">
             <mat-icon *ngSwitchCase="'PDF'">library_books</mat-icon>
@@ -83,10 +87,22 @@
         <button mat-raised-button class="addContent" (click)="addContent(section)">
           {{ "admin.createCourseContent.addContentButton" | translate }}
         </button>
-        <button mat-raised-button class="addSection" (click)="addSection()">
-          {{ "admin.createCourseContent.addSectionButton" | translate }}
-        </button>
       </div>
     </div>
   </div>
+
+  <mat-card class="add-sections-card" >
+    <div *ngIf="!course?.sectionList.length"
+         class="no-sections-label">{{ 'admin.createCourseContent.noSectionsLabel' | translate }}</div>
+
+    <button mat-fab
+            color="primary"
+            title="{{ 'admin.createCourseContent.addSectionButton' | translate }}"
+            (click)="addSection()">
+      <mat-icon class="add-question-icon material-icons-outlined">add</mat-icon>
+    </button>
+  </mat-card>
+
 </div>
+
+

@@ -8,7 +8,7 @@
     <mat-tab label="{{ 'admin.createCourse.uploadCoursePicture' | translate }}"  [disabled]="!courseId" >
       <app-upload-course-picture *ngIf="!!courseId" [courseId]="courseId"></app-upload-course-picture>
     </mat-tab>
-    <mat-tab label="{{ 'admin.createCourse.courseContent' | translate }}"  [disabled]="!courseId" >
+    <mat-tab label="{{ 'admin.createCourse.courseContent' | translate }}"  [disabled]="!courseId" cdkScrollable>
       <app-course-section-and-content *ngIf="!!courseId" [courseId]="courseId"></app-course-section-and-content>
     </mat-tab>
   </mat-tab-group>

@@ -247,6 +247,7 @@
       "editSectionButton": "Editare sectiune",
       "addContentButton": "Adauga continut",
       "editContentButton": "Editare continut",
+      "noSectionsLabel": "Acest curs nu are sectiuni adăugate.",
       "editCourseSectionDialog": {
         "title": "Editare sectiune"
       },

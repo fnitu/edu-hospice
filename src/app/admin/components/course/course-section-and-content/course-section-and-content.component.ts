@@ -15,6 +15,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {SnackBarComponent} from '../../../../shared/components/snack-bar/snack-bar.component';
 import {ConfirmationDialogService} from '../../../../shared/components/confirmation-dialog/confirmation-dialog.service';
 import {CustomTranslateService} from '../../../../shared/services/custom-translate/custom-translate.service';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-course-section-and-content',
@@ -315,5 +317,51 @@ export class CourseSectionAndContentComponent implements OnInit {
         },
       });
     });
+  }
+
+  public onListDropped(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.course.sectionList, event.previousIndex, event.currentIndex);
+
+    const url = this.placeholderFormatService.stringFormat(
+      GLOBALS.DATA_URL.REORDER_SECTION,
+      {
+        '{courseId}': this.courseId,
+      }
+    );
+
+    this.courseSectionAndContentService.reorderSections( url, {ids: this.prepareCourseSectionList() }).subscribe();
+  }
+
+  private prepareCourseSectionList(): number[] {
+    let sectionList: number[];
+
+    sectionList = _.map(this.course.sectionList, (value, index) => {
+      return value.id;
+    });
+
+    return sectionList;
+  }
+
+  public onContentListDropped(event: CdkDragDrop<string[]>, section) {
+    moveItemInArray(section.adminContentDetails, event.previousIndex, event.currentIndex);
+
+    const url = this.placeholderFormatService.stringFormat(
+      GLOBALS.DATA_URL.REORDER_SECTION_CONTENT,
+      {
+        '{sectionId}': section.id,
+      }
+    );
+
+    this.courseSectionAndContentService.reorderContent( url, {ids: this.prepareCourseSectionContentList(section) }).subscribe();
+  }
+
+  private prepareCourseSectionContentList(section): number[] {
+    let contentList: number[];
+
+    contentList = _.map(section.adminContentDetails, (value, index) => {
+      return value.id;
+    });
+
+    return contentList;
   }
 }

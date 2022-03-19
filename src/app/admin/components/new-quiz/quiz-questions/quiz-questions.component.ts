@@ -8,7 +8,7 @@ import { CustomTranslateService } from '../../../../shared/services/custom-trans
 import { QuestionInterface } from './question.interface';
 import { QuizQuestionsService } from './quiz-questions.service';
 import { QuizSettingsService } from '../quiz-settings/quiz-settings.service';
-import { OptionsFieldConfigurationService } from "./options-field-configuration/options-field-configuration.service";
+import { OptionsFieldConfigurationService } from './options-field-configuration/options-field-configuration.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -182,7 +182,7 @@ export class QuizQuestionsComponent implements OnInit {
         let questionsList: number[];
 
         questionsList = _.map(this.questions, (value, index) => {
-            return value.id
+            return value.id;
         });
 
         return questionsList;

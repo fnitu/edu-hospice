@@ -11,175 +11,178 @@
     font-weight: bold;
   }
 
-  .button-container {
-    padding: 10px;
+  .sections-container {}
+
+  .add-sections-card.mat-card {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    background-color: inherit;
+
+    .no-sections-label {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+  }
+}
+
+.section {
+  &:not(:last-child) {
+    margin-bottom: 40px;
+  }
+
+  .section-container {
+    display: flex;
+    align-items: center;
+    background-color: $sectionColour;
+    border: 1px solid $lightBorder;
+    padding: 0 15px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    height: 54px;
+
+    .edit, .delete, .visibility {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 25px;
+      cursor: pointer;
+    }
+
+    .edit {
+      margin-left: 10px;
+      color: $editPenColour;
+    }
+
+    .delete {
+      color: $actionRed;
+    }
+
+    .visibility {
+      .visibilityIcon {
+        color: $loginButtonColor
+      }
+
+      .visibilityOffIcon {
+        color: $actionRed;
+      }
+    }
+
+    .input {
+      padding: 10px;
+      background: $cardBackground;
+      width: 35%
+    }
+
+    .title {
+      font-weight: bold;
+    }
+
+    .button-container {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0;
+
+      .editSection {
+        background-color: $buttonColor1;
+        color: $navBarTextColor;
+      }
+    }
+  }
+
+  .content-container {}
+
+  .button-container {
+    padding: 10px 10px 10px 40px;
+    display: flex;
+    justify-content: space-between;
+
+    .addContent {
+      background-color: $buttonColor2;
+      color: $navBarTextColor;
+    }
 
     .addSection {
       background-color: $buttonColor1;
       color: $navBarTextColor;
     }
   }
+}
 
-  .sections-container {
-    .section {
-      &:not(:last-child) {
-        margin-bottom: 40px;
+.content {
+  display: flex;
+  align-items: center;
+  background-color: $sectionColour;
+  border: 1px solid $lightBorder;
+  padding: 0 15px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  height: 54px;
+
+  .node-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 50px;
+  }
+
+  .title {
+    margin: 15px 0
+  }
+
+  .input {
+    padding: 10px;
+    background: $cardBackground;
+    width: 35%
+  }
+
+  .edit, .delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    cursor: pointer;
+  }
+
+  .edit {
+    margin-left: 10px;
+    color: $editPenColour;
+  }
+
+  .delete {
+    color: $actionRed;
+  }
+
+  .button-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0;
+
+    .editContent {
+      background-color: $buttonColor2;
+      color: $navBarTextColor;
+    }
+
+    .manageResources {
+      background-color: $buttonColor3;
+      color: $navBarTextColor;
+
+      .mat-badge-content {
+        background-color: $buttonColor4;
       }
+    }
 
-      .section-container {
-        display: flex;
-        align-items: center;
-        background-color: $sectionColour;
-        border: 1px solid $lightBorder;
-        padding: 0 15px;
-        font-size: 16px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        height: 54px;
-
-        .edit, .delete, .visibility {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 25px;
-          cursor: pointer;
-        }
-
-        .edit {
-          margin-left: 10px;
-          color: $editPenColour;
-        }
-
-        .delete {
-          color: $actionRed;
-        }
-
-        .visibility {
-          .visibilityIcon {
-            color: $loginButtonColor
-          }
-
-          .visibilityOffIcon {
-            color: $actionRed;
-          }
-        }
-
-        .input {
-          padding: 10px;
-          background: $cardBackground;
-          width: 35%
-        }
-
-        .title {
-          font-weight: bold;
-        }
-
-        .button-container {
-          flex: 1;
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
-          padding: 0;
-
-          .editSection {
-            background-color: $buttonColor1;
-            color: $navBarTextColor;
-          }
-        }
-      }
-
-      .content-container {
-        .content {
-          display: flex;
-          align-items: center;
-          background-color: $sectionColour;
-          border: 1px solid $lightBorder;
-          padding: 0 15px;
-          font-size: 14px;
-          margin-bottom: 10px;
-          border-radius: 5px;
-          height: 54px;
-
-          .node-icon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            width: 50px;
-          }
-
-          .title {
-            margin: 15px 0
-          }
-
-          .input {
-            padding: 10px;
-            background: $cardBackground;
-            width: 35%
-          }
-
-          .edit, .delete {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 25px;
-            cursor: pointer;
-          }
-
-          .edit {
-            margin-left: 10px;
-            color: $editPenColour;
-          }
-
-          .delete {
-            color: $actionRed;
-          }
-
-          .button-container {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 0;
-
-            .editContent {
-              background-color: $buttonColor2;
-              color: $navBarTextColor;
-            }
-
-            .manageResources {
-              background-color: $buttonColor3;
-              color: $navBarTextColor;
-
-              .mat-badge-content {
-                background-color: $buttonColor4;
-              }
-            }
-
-            .button {
-              margin-left: 10px;
-            }
-          }
-        }
-      }
-
-      .button-container {
-        padding: 10px 10px 10px 40px;
-        display: flex;
-        justify-content: space-between;
-
-        .addContent {
-          background-color: $buttonColor2;
-          color: $navBarTextColor;
-        }
-
-        .addSection {
-          background-color: $buttonColor1;
-          color: $navBarTextColor;
-        }
-      }
+    .button {
+      margin-left: 10px;
     }
   }
 }
