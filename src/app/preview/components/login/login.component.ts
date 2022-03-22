@@ -17,7 +17,7 @@ export class LoginComponent {
   form = new FormGroup({});
   model = {
     email: 'student.user@test.com',
-    password: 'testpassword',
+    password: 'aaAA11!!',
   };
   fields: FormlyFieldConfig[] = [
     {
@@ -28,7 +28,7 @@ export class LoginComponent {
         placeholder: this.customTranslateService.getTranslation(
           'preview.login.loginPlaceholder'
         ),
-        appearance: "outline"
+        appearance: 'outline',
       },
       validators: {
         validation: [Validators.required, 'email'],
@@ -45,7 +45,7 @@ export class LoginComponent {
         placeholder: this.customTranslateService.getTranslation(
           'preview.login.passwordPlaceholder'
         ),
-        appearance: "outline"
+        appearance: 'outline',
       },
       validators: {
         validation: [Validators.required],

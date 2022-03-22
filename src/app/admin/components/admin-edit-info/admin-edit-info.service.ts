@@ -7,9 +7,6 @@ export class AdminEditInfoService {
   constructor(private http: HttpClient) {}
 
   getAdminPersonalData() {
-    // this.http.get(GLOBALS.----------)
-  }
-  setNewPassword() {
-    // this.http.post()
+    return this.http.get(GLOBALS.DATA_URL.CURRENT_USER);
   }
 }

@@ -193,9 +193,9 @@
     },
     "editInformations": {
       "editInfo": "Editare informații personale",
-      "newUsername": "Noul nume de utilizator",
+      "newUsername": "Nume",
       "newEmail": "Noua parolă",
-      "name": "Nume",
+      "newSurname": "Prenume",
       "email": "E-mail",
       "saveChanges": "Salvează modificările"
     },

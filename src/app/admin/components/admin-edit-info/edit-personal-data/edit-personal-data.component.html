@@ -3,7 +3,11 @@
     <form [formGroup]="form">
       <h2>{{ "admin.editInformations.editInfo" | translate }}</h2>
       <formly-form [form]="form" [fields]="fields"></formly-form>
-      <button mat-raised-button [disabled]="form.invalid">
+      <button
+        mat-raised-button
+        [disabled]="form.invalid"
+        (click)="onEditAdminInfo()"
+      >
         {{ "admin.editInformations.saveChanges" | translate }}
       </button>
     </form>

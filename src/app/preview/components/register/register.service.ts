@@ -16,4 +16,12 @@ export class RegisterService {
   public editUserData(userData) {
     return this.http.put(GLOBALS.DATA_URL.EDIT_USER_DATA, userData);
   }
+
+  public editAdminData(adminData) {
+    return this.http.put(GLOBALS.DATA_URL.EDIT_ADMIN_DATA, adminData);
+  }
+
+  public setNewPassword(newPasswordData) {
+    return this.http.put(GLOBALS.DATA_URL.UPDATE_PASSWORD, newPasswordData);
+  }
 }

@@ -6,6 +6,8 @@ export const GLOBALS = {
     LOGOUT: `${environment.BASE_URL}/api/auth/logout`,
     REGISTER: `${environment.BASE_URL}/api/auth/register`,
     EDIT_USER_DATA: `${environment.BASE_URL}/api/users/update`,
+    EDIT_ADMIN_DATA: `${environment.BASE_URL}/api/users/admin/update-profile`,
+    UPDATE_PASSWORD: `${environment.BASE_URL}/api/users/update-password`,
     CURRENT_USER: `${environment.BASE_URL}/api/users/current-user`,
     SEND_EMAIL_FOR_RECOVER_PASSWORD: `${environment.BASE_URL}/api/auth/send-reset-password-link`,
     RESET_PASSWORD: `${environment.BASE_URL}/api/auth/reset-password`,
@@ -70,11 +72,11 @@ export const GLOBALS = {
     BIG_LIMIT: 2000,
   },
   FIELD_TYPES: {
-    RADIO: "RADIO",
-    CHECKBOXES: "CHECKBOXES",
-    SELECT: "SELECT",
-    TEXTAREA_BIG: "TEXTAREA_BIG",
-    TEXTAREA_SHORT: "TEXTAREA_SHORT",
-    LINEAR_SCALE: "LINEAR_SCALE"
-  }
+    RADIO: 'RADIO',
+    CHECKBOXES: 'CHECKBOXES',
+    SELECT: 'SELECT',
+    TEXTAREA_BIG: 'TEXTAREA_BIG',
+    TEXTAREA_SHORT: 'TEXTAREA_SHORT',
+    LINEAR_SCALE: 'LINEAR_SCALE',
+  },
 };
