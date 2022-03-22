@@ -19,6 +19,7 @@ export class EditPersonalData {
       key: 'firstName',
       type: 'input',
       templateOptions: {
+        maxLength: 100,
         type: 'text',
         label: this.customTranslateService.getTranslation(
           'admin.editInformations.newUsername'
@@ -36,6 +37,7 @@ export class EditPersonalData {
       key: 'lastName',
       type: 'input',
       templateOptions: {
+        maxLength: 100,
         type: 'text',
         label: this.customTranslateService.getTranslation(
           'admin.editInformations.newSurname'
