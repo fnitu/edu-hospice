@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FieldType } from "@ngx-formly/material/form-field";
-import { LinearScaleFormlyFieldValueAccessor } from "./linear-scale-formly-field-value-accessor";
 
 @Component({
   selector: 'app-linear-scale-formly-field',
@@ -9,18 +8,22 @@ import { LinearScaleFormlyFieldValueAccessor } from "./linear-scale-formly-field
   encapsulation: ViewEncapsulation.None
 })
 export class LinearScaleFormlyFieldComponent extends FieldType implements OnInit {
-  @ViewChild(LinearScaleFormlyFieldValueAccessor) linearScaleFormlyFieldValueAccessor: LinearScaleFormlyFieldValueAccessor;
+  public linearScaleValue;
+
+  //FIXME this configuration should take into consideration the server settings
+  public linearScaleOptions = {
+    floor: 0,
+    ceil: 10,
+    showTicks: true,
+    showTicksValues: true
+  };
+
   constructor() {
     super();
   }
 
+  valueChangeHandler = (value) => {};
+
   ngOnInit(): void {
   }
-
-  registerOnChange(fn: any): void {
-  }
-
-  writeValue(obj: any): void {
-  }
-
 }

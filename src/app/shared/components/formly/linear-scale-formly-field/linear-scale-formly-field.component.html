@@ -1,6 +1,8 @@
 <div class="linear-scale-field-container">
     <input class="linear-scale-field field-hidden" [formControl]="formControl" [formlyAttributes]="field">
 
-    TO BE IMPLEMENTED
+    <ngx-slider [(value)]='linearScaleValue'
+                [options]="linearScaleOptions"
+                (valueChange)="valueChangeHandler($event)"></ngx-slider>
 
 </div>

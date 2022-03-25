@@ -1,6 +1,12 @@
-.linear-scale-field-container {
-  .linear-scale-field {
-    position: absolute;
-    opacity: 0;
+.linear-scale-form-field {
+  .linear-scale-field-container {
+    .linear-scale-field {
+      position: absolute;
+      opacity: 0;
+    }
+  }
+
+  .mat-form-field-underline {
+    display: none;
   }
 }

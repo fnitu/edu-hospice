@@ -4,5 +4,8 @@ import { LinearScaleFormlyFieldComponent } from "./linear-scale-formly-field.com
 export const linearScaleFormlyFieldExtension: TypeOption = {
     name: 'linearScale',
     component: LinearScaleFormlyFieldComponent,
-    wrappers: ['form-field']
+    wrappers: ['form-field'],
+    defaultOptions: {
+        className: 'linear-scale-form-field'
+    }
 }
