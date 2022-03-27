@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { QuestionInterface, QuestionResponseDataModel } from "../../../admin/components/new-quiz/quiz-questions/question.interface";
+import { QuestionInterface, QuestionResponseDataModel, RadioSettingsDisplayType } from "../../../admin/components/new-quiz/quiz-questions/question.interface";
 import { QuizService } from "./quiz.service";
 import { FormGroup, Validators } from "@angular/forms";
 import { FormlyFieldConfig } from "@ngx-formly/core";
@@ -82,7 +82,8 @@ export class QuizComponent implements OnInit {
           type: "radio",
           templateOptions: {
             options: this.transformOptionModel(field.options)
-          }
+          },
+          // className: `radio-field ${RadioSettingsDisplayType.HORIZONTAL}` //FIXME to be replaced with the correct setting from server
         };
         break;
       case GLOBALS.FIELD_TYPES.CHECKBOXES:

@@ -33,6 +33,23 @@ app-quiz {
       padding-right: 15px;
       padding-left: 15px;
 
+      formly-field {
+        &.radio-field {
+          &.horizontal {
+            .mat-radio-group {
+              flex-direction: row;
+              flex-wrap: wrap;
+
+              .mat-radio-button {
+                &:not(:last-child) {
+                  margin-right: 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+
       .mat-form-field {
         margin-bottom: 15px;
 
