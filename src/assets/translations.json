@@ -23,6 +23,7 @@
     "reset": "Resetează",
     "delete": "Șterge",
     "operationSuccessful": "Acțiune executată cu succes!",
+    "operationNotSuccessful": "Ups! A aparut o eroare!",
     "userCreated": "Contul dumneavoastră a fost creeat cu succes!"
   },
   "field": {

@@ -1,7 +1,11 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { RegisterService } from 'src/app/preview/components/register/register.service';
+import { SnackBarComponent } from 'src/app/shared/components/snack-bar/snack-bar.component';
+import { GLOBALS } from 'src/app/shared/core/globals';
 import { CustomTranslateService } from 'src/app/shared/services/custom-translate/custom-translate.service';
 import { AdminEditInfoService } from '../admin-edit-info.service';
 
@@ -73,7 +77,10 @@ export class EditPersonalData {
   constructor(
     private customTranslateService: CustomTranslateService,
     private adminEditInfoService: AdminEditInfoService,
-    private registerService: RegisterService
+    private registerService: RegisterService,
+    private matSnackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -94,6 +101,26 @@ export class EditPersonalData {
 
     this.registerService
       .editAdminData(userInfo)
-      .subscribe((response) => console.log(response));
+      .subscribe(
+        (response) => {
+          this.matSnackBar.openFromComponent(SnackBarComponent, {
+            verticalPosition: 'top',
+            data: {
+              content: this.customTranslateService.getTranslation(
+                response['message']
+              ),
+              type: GLOBALS.NOTIFICATIONS.INFO,
+            },
+          });
+          setTimeout(() => {
+            this.router.navigate(['dashboard'], {
+              relativeTo: this.route.parent,
+            });
+          }, 3000);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 }

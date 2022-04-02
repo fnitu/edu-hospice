@@ -1,9 +1,13 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { RegisterService } from 'src/app/preview/components/register/register.service';
+import { GLOBALS } from '../../core/globals';
 import { CustomTranslateService } from '../../services/custom-translate/custom-translate.service';
 import { TooltipService } from '../../services/tooltip/tooltip.service';
+import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-change-password',
@@ -90,7 +94,10 @@ export class ChangePassword {
   constructor(
     private customTranslateService: CustomTranslateService,
     private registerService: RegisterService,
-    private tooltipService: TooltipService
+    private tooltipService: TooltipService,
+    private matSnackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   validateInputPasswordSet(control) {
@@ -189,6 +196,29 @@ export class ChangePassword {
 
     this.registerService
       .setNewPassword(newPasswordData)
-      .subscribe((response) => console.log(response));
+      .subscribe(
+          (response) => {
+            this.matSnackBar.openFromComponent(SnackBarComponent, {
+              verticalPosition: 'top',
+              data: {
+                content: this.customTranslateService.getTranslation(
+                  response['message']
+                ),
+                type: GLOBALS.NOTIFICATIONS.INFO,
+              },
+            });
+
+            setTimeout(() => {
+              if(response['success']) {
+                this.router.navigate(['dashboard'], {
+                  relativeTo: this.route.parent,
+                });
+              }
+            }, 3000);
+          },
+          (err) => {
+            console.log(err);
+          }
+      );
   }
 }
