@@ -7,4 +7,5 @@ export interface User {
   memberSince: number;
   totalFinishedCourses: number;
   totalHoursFinishedCourses: number;
+  phoneNumber:String;
 }

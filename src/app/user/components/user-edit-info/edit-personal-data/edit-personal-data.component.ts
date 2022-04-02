@@ -99,7 +99,7 @@ export class EditPersonalData {
       key: 'phone',
       type: 'input',
       templateOptions: {
-        type: 'number',
+        type: 'input',
         label: this.customTranslateService.getTranslation(
           'preview.register.phoneNumber'
         ),

@@ -46,7 +46,8 @@ export class DashboardComponent implements OnInit {
     memberSince: 0,
     totalFinishedCourses: 0,
     totalHoursFinishedCourses: 0,
-  } as User;
+    phoneNumber: ""
+  } as unknown as User;
 
   ngOnInit(): void {
     this.getCurrentUser();

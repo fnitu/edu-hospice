@@ -78,6 +78,7 @@ export class LoginComponent {
             memberSince: response.memberSince,
             totalFinishedCourses: response.totalFinishedCourses,
             totalHoursFinishedCourses: response.totalHoursFinishedCourses,
+            phoneNumber:response.phoneNumber
           };
 
           this.authService.accessToken = response.accessToken;
