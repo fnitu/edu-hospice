@@ -10,6 +10,7 @@ import { QuizQuestionsService } from './quiz-questions.service';
 import { QuizSettingsService } from '../quiz-settings/quiz-settings.service';
 import { OptionsFieldConfigurationService } from './options-field-configuration/options-field-configuration.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { QuizService } from "../../../../shared/components/quiz/quiz.service";
 
 @Component({
     selector: 'app-quiz-questions',
@@ -33,7 +34,8 @@ export class QuizQuestionsComponent implements OnInit {
         private customTranslateService: CustomTranslateService,
         private quizQuestionsService: QuizQuestionsService,
         public quizSettingsService: QuizSettingsService,
-        private optionsFieldConfigurationService: OptionsFieldConfigurationService) {
+        private optionsFieldConfigurationService: OptionsFieldConfigurationService,
+        private quizService: QuizService) {
     }
 
     ngOnInit(): void {
@@ -50,7 +52,7 @@ export class QuizQuestionsComponent implements OnInit {
         this.quizQuestionsService
             .getQuestions(this.quizSettingsService.quizId)
             .subscribe((response) => {
-                this.questions = response;
+                this.questions = this.quizService.transformSettingsModel(response);
             });
     }
 
@@ -107,7 +109,7 @@ export class QuizQuestionsComponent implements OnInit {
         }
 
         if (hasQuestionName && hasValidOptionChecked) {
-            this.quizQuestionsService.saveQuestion(question).subscribe((response) => {
+            this.quizQuestionsService.saveQuestion({...question, settings: this.transformQuestionSettingsModel(question.settings)}).subscribe((response) => {
                 if (response.success) {
                     this.matSnackBar.openFromComponent(SnackBarComponent, {
                         verticalPosition: 'top',
@@ -129,6 +131,19 @@ export class QuizQuestionsComponent implements OnInit {
                 }
             });
         }
+    }
+
+    private transformQuestionSettingsModel(questionSetting): {name: string; value: string}[] {
+        const newSettingsModel: {name: string; value: string}[] = [];
+
+        for(const key in questionSetting) {
+            newSettingsModel.push({
+                name: key,
+                value: typeof questionSetting[key] !== 'string' ? questionSetting[key].toString() : questionSetting[key]
+            });
+        }
+
+        return newSettingsModel;
     }
 
     private buildSaveQuestionErrorMessage(hasQuestionName, hasValidOptionChecked): string {

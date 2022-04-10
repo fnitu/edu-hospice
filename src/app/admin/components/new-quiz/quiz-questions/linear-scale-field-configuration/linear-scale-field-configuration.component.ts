@@ -16,17 +16,14 @@ import { QuestionInterface } from "../question.interface";
 export class LinearScaleFieldConfigurationComponent implements OnInit {
   @Input() question: QuestionInterface;
 
-  private readonly LINEAR_SCALE_DEFAULT_MIN_VALUE: number = 0;
-  private readonly LINEAR_SCALE_DEFAULT_MAX_VALUE: number = 10;
-
-  public linearScaleMinValue: FormControl = new FormControl(this.LINEAR_SCALE_DEFAULT_MIN_VALUE, [
+  public linearScaleMinValue: FormControl = new FormControl(GLOBALS.LINEAR_SCALE.DEFAULT_MIN_VALUE, [
     // https://stackoverflow.com/a/45952838
-    (control: AbstractControl) => Validators.max(this.linearScaleMaxValue?.value ?? this.LINEAR_SCALE_DEFAULT_MAX_VALUE)(control)
+    (control: AbstractControl) => Validators.max(this.linearScaleMaxValue?.value ?? GLOBALS.LINEAR_SCALE.DEFAULT_MAX_VALUE)(control)
   ]);
 
-  public linearScaleMaxValue: FormControl = new FormControl(this.LINEAR_SCALE_DEFAULT_MAX_VALUE, [
+  public linearScaleMaxValue: FormControl = new FormControl(GLOBALS.LINEAR_SCALE.DEFAULT_MAX_VALUE, [
     // https://stackoverflow.com/a/45952838
-    (control: AbstractControl) => Validators.min(this.linearScaleMinValue?.value ?? this.LINEAR_SCALE_DEFAULT_MIN_VALUE)(control)
+    (control: AbstractControl) => Validators.min(this.linearScaleMinValue?.value ?? GLOBALS.LINEAR_SCALE.DEFAULT_MIN_VALUE)(control)
   ]);
 
   public linearScaleOptions: Options;
@@ -37,7 +34,7 @@ export class LinearScaleFieldConfigurationComponent implements OnInit {
   ngOnInit(): void {
     this.linearScaleOptions = this.getLinearScaleOptions();
 
-    this.updateQuestionSettings(this.LINEAR_SCALE_DEFAULT_MIN_VALUE, this.LINEAR_SCALE_DEFAULT_MAX_VALUE);
+    this.updateQuestionSettings(GLOBALS.LINEAR_SCALE.DEFAULT_MIN_VALUE, GLOBALS.LINEAR_SCALE.DEFAULT_MAX_VALUE);
 
     this.updateFieldsValidation();
   }
@@ -75,8 +72,8 @@ export class LinearScaleFieldConfigurationComponent implements OnInit {
 
   private getLinearScaleOptions(): Options {
     return {
-      floor: this.LINEAR_SCALE_DEFAULT_MIN_VALUE,
-      ceil: this.LINEAR_SCALE_DEFAULT_MAX_VALUE,
+      floor: GLOBALS.LINEAR_SCALE.DEFAULT_MIN_VALUE,
+      ceil: GLOBALS.LINEAR_SCALE.DEFAULT_MAX_VALUE,
       showTicks: true,
       showTicksValues: true,
       disabled: true

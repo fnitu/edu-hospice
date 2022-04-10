@@ -9,7 +9,7 @@ interface LinearScaleSettings {
     maxValue: number;
 }
 
-interface RadioSettings {
+export interface RadioSettings {
     display: RadioSettingsDisplay;
 }
 
@@ -34,7 +34,7 @@ export enum RadioSettingsDisplayType {
     VERTICAL = 'vertical',
     HORIZONTAL = 'horizontal'
 }
-export type RadioSettingsDisplay = 'vertical' | 'horizontal';
+export type RadioSettingsDisplay = RadioSettingsDisplayType.VERTICAL | RadioSettingsDisplayType.HORIZONTAL;
 
 export interface QuestionResponseDataModel {
     [key: number]: number | string | CheckboxResponseDataModel;

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { QuestionInterface, QuestionResponseDataModel, RadioSettingsDisplayType } from "../../../admin/components/new-quiz/quiz-questions/question.interface";
+import { QuestionInterface, QuestionResponseDataModel } from "../../../admin/components/new-quiz/quiz-questions/question.interface";
 import { QuizService } from "./quiz.service";
 import { FormGroup, Validators } from "@angular/forms";
 import { FormlyFieldConfig } from "@ngx-formly/core";
@@ -35,7 +35,7 @@ export class QuizComponent implements OnInit {
       this.quizDetails = response;
 
       this.quizService.getQuizQuestions(this.quizQuestionsUrl).subscribe((response) => {
-        this.quizQuestions = response;
+        this.quizQuestions = this.quizService.transformSettingsModel(response);
 
         this.quizFields = this.generateQuizFields(this.quizQuestions);
 
@@ -83,7 +83,7 @@ export class QuizComponent implements OnInit {
           templateOptions: {
             options: this.transformOptionModel(field.options)
           },
-          // className: `radio-field ${RadioSettingsDisplayType.HORIZONTAL}` //FIXME to be replaced with the correct setting from server
+          className: `radio-field ${field.settings.display}`
         };
         break;
       case GLOBALS.FIELD_TYPES.CHECKBOXES:
@@ -95,16 +95,6 @@ export class QuizComponent implements OnInit {
         };
         break;
       case GLOBALS.FIELD_TYPES.TEXTAREA_SHORT:
-        fieldConfig = {
-          type: "textareafield",
-          templateOptions: {
-            autosize: true,
-            autosizeMinRows: GLOBALS.TEXTAREA.MIN_ROWS,
-            autosizeMaxRows: GLOBALS.TEXTAREA.MAX_ROWS,
-            maxLength: GLOBALS.TEXTAREA.SHORT_LIMIT
-          }
-        };
-        break;
       case GLOBALS.FIELD_TYPES.TEXTAREA_BIG:
         fieldConfig = {
           type: "textareafield",
@@ -112,13 +102,19 @@ export class QuizComponent implements OnInit {
             autosize: true,
             autosizeMinRows: GLOBALS.TEXTAREA.MIN_ROWS,
             autosizeMaxRows: GLOBALS.TEXTAREA.MAX_ROWS,
-            maxLength: GLOBALS.TEXTAREA.BIG_LIMIT
+            maxLength: parseInt(field.settings.maxLength)
           }
         };
         break;
       case GLOBALS.FIELD_TYPES.LINEAR_SCALE:
         fieldConfig = {
-          type: "linearScale"
+          type: "linearScale",
+          templateOptions: {
+            additionalProperties: {
+              minValue: parseInt(field.settings.minValue),
+              maxValue: parseInt(field.settings.maxValue)
+            }
+          }
         };
         break;
     }

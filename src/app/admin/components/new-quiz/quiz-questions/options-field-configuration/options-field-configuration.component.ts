@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { QuestionInterface, RadioSettingsDisplayType } from "../question.interface";
+import { QuestionInterface, RadioSettings, RadioSettingsDisplayType } from "../question.interface";
 import { QuestionOptionInterface } from "../question-option.interface";
 import * as _ from "lodash";
 import { SnackBarComponent } from "../../../../../shared/components/snack-bar/snack-bar.component";
@@ -28,8 +28,14 @@ export class OptionsFieldConfigurationComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.question.type === this.FIELD_TYPES.RADIO) {
-      this.question.settings = {
-        display: this.position
+      const settings: RadioSettings = this.question.settings as RadioSettings;
+
+      if (settings.display) {
+        this.position = settings.display;
+      } else {
+        this.question.settings = {
+          display: this.position
+        };
       }
     }
   }
@@ -69,6 +75,8 @@ export class OptionsFieldConfigurationComponent implements OnInit {
   }
 
   public positionChanged(event: MatButtonToggleChange) {
+    this.position = event.value;
+
     this.question.settings = {
       display: event.value
     };

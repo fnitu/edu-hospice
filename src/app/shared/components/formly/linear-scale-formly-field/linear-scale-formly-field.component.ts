@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FieldType } from "@ngx-formly/material/form-field";
+import { GLOBALS } from "../../../core/globals";
 
 @Component({
   selector: 'app-linear-scale-formly-field',
@@ -10,10 +11,7 @@ import { FieldType } from "@ngx-formly/material/form-field";
 export class LinearScaleFormlyFieldComponent extends FieldType implements OnInit {
   public linearScaleValue;
 
-  //FIXME this configuration should take into consideration the server settings
   public linearScaleOptions = {
-    floor: 0,
-    ceil: 10,
     showTicks: true,
     showTicksValues: true
   };
@@ -25,5 +23,7 @@ export class LinearScaleFormlyFieldComponent extends FieldType implements OnInit
   valueChangeHandler = (value) => {};
 
   ngOnInit(): void {
+    this.linearScaleOptions['floor'] = this.field.templateOptions.additionalProperties?.minValue ?? GLOBALS.LINEAR_SCALE.DEFAULT_MIN_VALUE
+    this.linearScaleOptions['ceil'] = this.field.templateOptions.additionalProperties?.maxValue ?? GLOBALS.LINEAR_SCALE.DEFAULT_MAX_VALUE
   }
 }
