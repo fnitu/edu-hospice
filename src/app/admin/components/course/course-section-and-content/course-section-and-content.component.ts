@@ -270,7 +270,7 @@ export class CourseSectionAndContentComponent implements OnInit {
     this.dialogRef = this.dialog.open(EditSectionDialogComponent, defaultConfig);
   }
 
-  public editContent(content) {
+  public editContent(content) {    
     const defaultConfig = {
       minWidth: 650,
       minHeight: 400,

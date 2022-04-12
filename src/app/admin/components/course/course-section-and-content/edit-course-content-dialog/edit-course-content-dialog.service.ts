@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Observable, throwError} from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
+import { GLOBALS } from 'src/app/shared/core/globals';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,10 @@ export class EditCourseContentDialogService {
     );
 
     return dataResponse;
+  }
+
+  getQuizList() {
+    let params = new HttpParams().set("type", "template");
+    return this.http.get(GLOBALS.DATA_URL.GET_QUIZ_LIST, {params: params})
   }
 }

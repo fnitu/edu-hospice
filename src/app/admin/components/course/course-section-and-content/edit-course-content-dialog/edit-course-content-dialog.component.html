@@ -65,8 +65,12 @@
     </div>
     <div class="videoContainer" *ngIf="contentType?.type === 'QUIZ'">
       <mat-form-field>
-        <input matInput class="input" type="text" [(ngModel)]="url" placeholder="Add URL for Quiz file (https://)">
-
+        <mat-label>Selectare quiz</mat-label>
+        <mat-select [(ngModel)]="quizId">
+          <mat-option *ngFor="let quiz of quizList" [value]="quiz.id"  >
+            {{quiz.name}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 

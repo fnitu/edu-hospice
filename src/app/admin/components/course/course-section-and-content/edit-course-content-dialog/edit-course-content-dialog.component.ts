@@ -45,12 +45,17 @@ export class EditCourseContentDialogComponent implements OnInit {
   public contentType;
   public url;
 
+  public quizList;
+  public quizId ;
+
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private placeholderFormatService: PlaceholderFormatService,
               private editCourseContentDialogService: EditCourseContentDialogService,
               private matSnackBar: MatSnackBar,
               private dialogRef: MatDialogRef<EditCourseContentDialogComponent>,
-              private customTranslateService: CustomTranslateService) {
+              private customTranslateService: CustomTranslateService,
+              ) {
   }
 
   ngOnInit(): void {
@@ -59,8 +64,9 @@ export class EditCourseContentDialogComponent implements OnInit {
         this.contentType = item;
       }
     });
-
     this.url = this.data.url;
+    this.onGetQuizList()
+    this.quizId = this.data.quiz_template_id ? this.data.quiz_template_id : "";
   }
 
   displayHandler(option) {
@@ -71,20 +77,36 @@ export class EditCourseContentDialogComponent implements OnInit {
 
   public updateContent() {
 
+    
+
     const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.UPDATE_SECTION_CONTENT,
       {
         '{contentId}': this.data.id,
       }
     );
 
-    const data = {
-      name: this.data.name,
-      url: this.url,
-      type: this.contentType.type,
-      visible: true
-    };
+    
+    let payload;
+    switch(this.contentType.type) {
+      case "QUIZ":
+         payload = {
+          name: this.data.name,
+          type: this.contentType.type,
+          visible: true,
+          url: this.url,
+          quiz_template_id:this.quizId
+        };
+        break;
+      default:
+        payload = {
+          name: this.data.name,
+          url: this.url,
+          type: this.contentType.type,
+          visible: true,
+        };
+    }    
 
-    this.editCourseContentDialogService.updateContent(url, data).subscribe((response) => {
+    this.editCourseContentDialogService.updateContent(url, payload).subscribe((response) => {
       this.matSnackBar.openFromComponent(SnackBarComponent, {
         verticalPosition: 'top',
         data: {
@@ -100,6 +122,10 @@ export class EditCourseContentDialogComponent implements OnInit {
         this.dialogRef.close();
       }
     });
+  }
+
+  public onGetQuizList(){
+    this.editCourseContentDialogService.getQuizList().subscribe(x => this.quizList = x);
   }
 
 }
