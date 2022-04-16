@@ -3,12 +3,14 @@ import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { GLOBALS } from "../../../../shared/core/globals";
 import { PlaceholderFormatService } from "../../../../shared/services/format/placeholder-format.service";
+import { QUIZ_TYPE } from "./quiz-settings.component";
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizSettingsService {
   private _quizId;
+  private _quizType: QUIZ_TYPE;
 
   constructor(private http: HttpClient,
               private placeholderFormatService: PlaceholderFormatService) { }
@@ -19,6 +21,14 @@ export class QuizSettingsService {
 
   set quizId(value) {
     this._quizId = value;
+  }
+
+  get quizType(): QUIZ_TYPE {
+    return this._quizType;
+  }
+
+  set quizType(value: QUIZ_TYPE) {
+    this._quizType = value;
   }
 
   public saveNewQuizSettings(data): Observable<any> {

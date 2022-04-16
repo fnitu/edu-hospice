@@ -293,6 +293,9 @@
     "quiz": {
       "settings": {
         "titleLabel": "Titlu chestionar",
+        "quizTypeLabel": "Tipul chestionarului",
+        "quizTypeFeedback": "Chestionar pentru feedback",
+        "quizTypeKnowledge": "Chestionar pentru testarea cunostintelor",
         "titlePlaceholder": "Introduceți titlul chestionar",
         "minimumScoreLabel": "Punctajul minim pentru a trece chestionarul",
         "minimumScorePlaceholder": "Selectați punctajul minim pentru a trece chestionarul",
@@ -302,6 +305,7 @@
         "timeLimitLabel": "Timpul limită pentru a termina chestionarul",
         "timeLimitPlaceholder": "Selectați timpul limită pentru a termina chestionarul",
         "statusLabel": "Stare chestionar",
+        "restrictedNextContentLabel": "Permite validare chestionar",
         "quizCreatedSuccessMessage": "Chestionar creat cu succes!",
         "quizUpdatedSuccessMessage": "Chestionar actualizat cu succes!"
       },

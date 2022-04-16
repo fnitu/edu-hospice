@@ -9,6 +9,28 @@ import { GLOBALS } from "../../../../shared/core/globals";
 import { ActivatedRoute, Router } from "@angular/router";
 import { RouterUtilsService } from "../../../../shared/services/router/router-utils.service";
 
+export enum QUIZ_TYPE {
+    FEEDBACK_QUIZ = 'FEEDBACK_QUIZ',
+    KNOWLEDGE_QUIZ= 'KNOWLEDGE_QUIZ'
+}
+
+enum QUIZ_STATUS {
+    ACTIVE ='ACTIVE',
+    INACTIVE = 'INACTIVE'
+}
+
+interface QuizSettings {
+    id: number;
+    minScore: number;
+    name: string;
+    restrictNextContent: boolean;
+    retryAttempts: number;
+    shuffle: boolean;
+    status: QUIZ_STATUS;
+    timeLimit: number;
+    type: QUIZ_TYPE
+}
+
 @Component({
     selector: 'app-quiz-settings',
     templateUrl: './quiz-settings.component.html',
@@ -22,9 +44,9 @@ export class QuizSettingsComponent implements OnInit {
 
     public settingsFormFields: FormlyFieldConfig[];
 
-    public settingsFormModel = {
+    public settingsFormModel: Partial<QuizSettings> = {
         shuffle: false,
-        status: "INACTIVE"
+        status: QUIZ_STATUS.INACTIVE
     };
 
     constructor(private customTranslateService: CustomTranslateService,
@@ -49,6 +71,8 @@ export class QuizSettingsComponent implements OnInit {
         this.quizSettingsService.getQuizSettings().subscribe(
             (response) => {
                 this.settingsFormModel = response;
+
+                this.quizSettingsService.quizType = this.settingsFormModel.type;
             }
         );
     }
@@ -59,16 +83,37 @@ export class QuizSettingsComponent implements OnInit {
                 key: "status"
             },
             {
-                key: "name",
-                type: "input",
-                templateOptions: {
-                    label: this.customTranslateService.getTranslation("admin.quiz.settings.titleLabel"),
-                    placeholder: this.customTranslateService.getTranslation("admin.quiz.settings.titlePlaceholder"),
-                    required: true
-                },
-                validators: {
-                    validation: [Validators.required],
-                }
+                fieldGroupClassName: "row-layout",
+                fieldGroup: [
+                    {
+                        key: "name",
+                        type: "input",
+                        templateOptions: {
+                            label: this.customTranslateService.getTranslation("admin.quiz.settings.titleLabel"),
+                            placeholder: this.customTranslateService.getTranslation("admin.quiz.settings.titlePlaceholder"),
+                            required: true
+                        },
+                        validators: {
+                            validation: [Validators.required],
+                        }
+                    },
+                    {
+                        key: 'type',
+                        type: 'select',
+                        templateOptions: {
+                            label: this.customTranslateService.getTranslation("admin.quiz.settings.quizTypeLabel"),
+                            placeholder: this.customTranslateService.getTranslation("admin.quiz.settings.quizTypeLabel"),
+                            required: true,
+                            options: [
+                                {value: QUIZ_TYPE.KNOWLEDGE_QUIZ, label: this.customTranslateService.getTranslation("admin.quiz.settings.quizTypeKnowledge")},
+                                {value: QUIZ_TYPE.FEEDBACK_QUIZ, label: this.customTranslateService.getTranslation("admin.quiz.settings.quizTypeFeedback")}
+                            ]
+                        },
+                        validators: {
+                            validation: [Validators.required],
+                        }
+                    },
+                ]
             },
             {
                 fieldGroupClassName: "row-layout",
@@ -138,14 +183,28 @@ export class QuizSettingsComponent implements OnInit {
                             validation: [Validators.required],
                         }
                     }
-                ]
+                ],
+                hideExpression: `field.parent.model.type !== '${QUIZ_TYPE.KNOWLEDGE_QUIZ}'`
             },
             {
-                key: 'shuffle',
-                type: 'toggle',
-                templateOptions: {
-                    label: this.customTranslateService.getTranslation("admin.quiz.settings.shuffleQuestionsLabel")
-                }
+                fieldGroupClassName: "row-layout",
+                fieldGroup: [
+                    {
+                        key: 'shuffle',
+                        type: 'toggle',
+                        templateOptions: {
+                            label: this.customTranslateService.getTranslation("admin.quiz.settings.shuffleQuestionsLabel")
+                        }
+                    },
+                    {
+                        key: 'restrictNextContent',
+                        type: 'toggle',
+                        templateOptions: {
+                            label: this.customTranslateService.getTranslation("admin.quiz.settings.restrictedNextContentLabel")
+                        }
+                    }
+                ],
+                hideExpression: `field.parent.model.type !== '${QUIZ_TYPE.KNOWLEDGE_QUIZ}'`
             }
         ]
     }
