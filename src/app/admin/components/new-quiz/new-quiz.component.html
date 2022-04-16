@@ -1,7 +1,8 @@
 <app-grid-top-toolbar [pageActions]="pageActions"></app-grid-top-toolbar>
 
 <div class="new-quiz-container" cdkScrollable>
-    <app-quiz-settings (quizSettingsSavedEvent)="quizSettingsSavedEventHandler()"></app-quiz-settings>
+    <app-quiz-settings (quizSettingsSavedEvent)="quizSettingsSavedEventHandler()"
+                       (quizTypeChanged)="quizTypeChangedHandler()"></app-quiz-settings>
 
     <app-quiz-questions [quizSettingSaved]="quizSettingSaved"></app-quiz-questions>
 </div>

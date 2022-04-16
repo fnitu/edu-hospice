@@ -8,6 +8,8 @@ import { CustomTranslateService } from "../../../../../shared/services/custom-tr
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { OptionsFieldConfigurationService } from "./options-field-configuration.service";
 import { MatButtonToggleChange } from "@angular/material/button-toggle";
+import { QuizSettingsService } from "../../quiz-settings/quiz-settings.service";
+import { QUIZ_TYPE } from "../../quiz-settings/quiz-settings.component";
 
 @Component({
   selector: 'app-options-field-configuration',
@@ -19,12 +21,14 @@ export class OptionsFieldConfigurationComponent implements OnInit {
   @Input() question: QuestionInterface;
 
   public readonly FIELD_TYPES = GLOBALS.FIELD_TYPES;
+  public readonly QUIZ_KNOWLEDGE_TYPE = QUIZ_TYPE.KNOWLEDGE_QUIZ;
 
   public position: RadioSettingsDisplayType = RadioSettingsDisplayType.VERTICAL;
 
   constructor(private customTranslateService: CustomTranslateService,
               private matSnackBar: MatSnackBar,
-              private optionsFieldConfigurationService: OptionsFieldConfigurationService) { }
+              private optionsFieldConfigurationService: OptionsFieldConfigurationService,
+              public quizSettingsService: QuizSettingsService) { }
 
   ngOnInit(): void {
     if (this.question.type === this.FIELD_TYPES.RADIO) {

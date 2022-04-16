@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { PreviewQuizDialogComponent } from "../preview-quiz-dialog/preview-quiz-dialog.component";
 import { RouterUtilsService } from "../../../shared/services/router/router-utils.service";
+import { QuizQuestionsService } from "./quiz-questions/quiz-questions.service";
 
 @Component({
     selector: 'app-new-quiz',
@@ -21,7 +22,8 @@ export class NewQuizComponent implements OnInit {
                 private router: Router,
                 private route: ActivatedRoute,
                 private dialog: MatDialog,
-                private routerUtilsService: RouterUtilsService) {
+                private routerUtilsService: RouterUtilsService,
+                private quizQuestionsService: QuizQuestionsService) {
     }
 
     ngOnInit(): void {
@@ -40,6 +42,10 @@ export class NewQuizComponent implements OnInit {
 
         // rebuild page actions after a quiz is saved first time
         this.pageActions = this.generatePageActions();
+    }
+
+    public quizTypeChangedHandler() {
+        this.quizQuestionsService.resetQuestions.emit();
     }
 
     private generatePageActions(): {}[] {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PlaceholderFormatService } from '../../../../shared/services/format/placeholder-format.service';
@@ -12,6 +12,8 @@ export class QuizQuestionsService {
     private http: HttpClient,
     private placeHolderFormatService: PlaceholderFormatService
   ) {}
+
+  public resetQuestions: EventEmitter<any> = new EventEmitter<any>();
 
   public addQuestion(quizId, questionConfig): Observable<any> {
     const url = this.placeHolderFormatService.stringFormat(

@@ -35,7 +35,7 @@
                 <mat-icon class="delete">delete_forever</mat-icon>
             </button>
 
-            <mat-slide-toggle
+            <mat-slide-toggle *ngIf="quizSettingsService.quizType === QUIZ_KNOWLEDGE_TYPE"
                     title="{{ 'admin.quiz.question.chooseValidAnswer' | translate }}"
                     [checked]="option.valid"
                     (change)="validOptionChanged($event, question, option)"></mat-slide-toggle>

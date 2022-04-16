@@ -8,6 +8,7 @@ import { SnackBarComponent } from "../../../../shared/components/snack-bar/snack
 import { GLOBALS } from "../../../../shared/core/globals";
 import { ActivatedRoute, Router } from "@angular/router";
 import { RouterUtilsService } from "../../../../shared/services/router/router-utils.service";
+import { ConfirmationDialogService } from "../../../../shared/components/confirmation-dialog/confirmation-dialog.service";
 
 export enum QUIZ_TYPE {
     FEEDBACK_QUIZ = 'FEEDBACK_QUIZ',
@@ -40,6 +41,8 @@ interface QuizSettings {
 export class QuizSettingsComponent implements OnInit {
     @Output() quizSettingsSavedEvent = new EventEmitter();
 
+    @Output() quizTypeChanged = new EventEmitter();
+
     public settingsForm = new FormGroup({});
 
     public settingsFormFields: FormlyFieldConfig[];
@@ -54,7 +57,8 @@ export class QuizSettingsComponent implements OnInit {
                 private matSnackBar: MatSnackBar,
                 private router: Router,
                 private route: ActivatedRoute,
-                private routerUtilsService: RouterUtilsService) {
+                private routerUtilsService: RouterUtilsService,
+                private confirmationDialogService: ConfirmationDialogService) {
     }
 
     ngOnInit(): void {
@@ -107,7 +111,8 @@ export class QuizSettingsComponent implements OnInit {
                             options: [
                                 {value: QUIZ_TYPE.KNOWLEDGE_QUIZ, label: this.customTranslateService.getTranslation("admin.quiz.settings.quizTypeKnowledge")},
                                 {value: QUIZ_TYPE.FEEDBACK_QUIZ, label: this.customTranslateService.getTranslation("admin.quiz.settings.quizTypeFeedback")}
-                            ]
+                            ],
+                            change: (field, event) => this.onChangeQuizTypeHandler(event)
                         },
                         validators: {
                             validation: [Validators.required],
@@ -250,5 +255,28 @@ export class QuizSettingsComponent implements OnInit {
                 });
             }
         );
+    }
+
+    private onChangeQuizTypeHandler(event) {
+        const dialogRef = this.confirmationDialogService.show({
+            data: {
+                title: this.customTranslateService.getTranslation("admin.quiz.settings.quizTypeChangeConfirmationTitle"),
+                message: this.customTranslateService.getTranslation("admin.quiz.settings.quizTypeChangeConfirmationMessage"),
+                buttons: [
+                    {
+                        text: this.customTranslateService.getTranslation('general.cancel')
+                    },
+                    {
+                        text: this.customTranslateService.getTranslation('general.confirm'),
+                        handler: () => {
+                            this.quizSettingsService.quizType = event.value;
+                            this.quizTypeChanged.emit();
+
+                            dialogRef.close();
+                        }
+                    }
+                ]
+            }
+        });
     }
 }

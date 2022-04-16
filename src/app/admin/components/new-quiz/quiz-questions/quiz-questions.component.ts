@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Input, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 import { SnackBarComponent } from '../../../../shared/components/snack-bar/snack-bar.component';
@@ -11,6 +11,7 @@ import { QuizSettingsService } from '../quiz-settings/quiz-settings.service';
 import { OptionsFieldConfigurationService } from './options-field-configuration/options-field-configuration.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { QuizService } from "../../../../shared/components/quiz/quiz.service";
+import { QUIZ_TYPE } from "../quiz-settings/quiz-settings.component";
 
 @Component({
     selector: 'app-quiz-questions',
@@ -42,10 +43,18 @@ export class QuizQuestionsComponent implements OnInit {
         if (this.quizSettingsService.quizId) {
             this.getQuestions();
         }
+
+        this.initEvents();
     }
 
     ngAfterViewInit() {
         this.scrollToBottom();
+    }
+
+    private initEvents() {
+        this.quizQuestionsService.resetQuestions.subscribe(() => {
+            this.questions = [];
+        });
     }
 
     private getQuestions() {
@@ -103,7 +112,7 @@ export class QuizQuestionsComponent implements OnInit {
         let hasQuestionName = !!question.name;
         let hasValidOptionChecked = true;
 
-        if ([this.FIELD_TYPES.RADIO, this.FIELD_TYPES.SELECT, this.FIELD_TYPES.CHECKBOXES].indexOf(question.type) !== -1) {
+        if ([this.FIELD_TYPES.RADIO, this.FIELD_TYPES.SELECT, this.FIELD_TYPES.CHECKBOXES].indexOf(question.type) !== -1 && this.quizSettingsService.quizType === QUIZ_TYPE.KNOWLEDGE_QUIZ) {
             // check if question has at least one option checked as valid
             hasValidOptionChecked = _.filter(question.options, "valid").length !== 0;
         }
