@@ -11,6 +11,7 @@ import { PlaceholderFormatService } from 'src/app/shared/services/format/placeho
 import { QuizListService } from './quiz-list.service';
 import { PreviewQuizDialogComponent } from "../preview-quiz-dialog/preview-quiz-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
+import { QUIZ_TYPE } from "../new-quiz/quiz-settings/quiz-settings.component";
 
 @Component({
   selector: 'app-quiz-list',
@@ -83,6 +84,20 @@ export class QuizListComponent implements OnInit {
           'admin.quiz.list.quizStatus'
         ),
         field: 'status',
+      },
+      {
+        headerName: this.customTranslateService.getTranslation(
+            'admin.quiz.list.quizType'
+        ),
+        field: 'type',
+        maxWidth: 70,
+        minWidth: 70,
+        cellClass: (data) => data.type === QUIZ_TYPE.FEEDBACK_QUIZ ? 'feedback-quiz' : 'knowledge-quiz',
+        cellRenderer: (data) => `<span class='icon' title="${data.type === QUIZ_TYPE.FEEDBACK_QUIZ ? this.customTranslateService.getTranslation(
+            'admin.quiz.settings.quizTypeFeedback'
+        ) : this.customTranslateService.getTranslation(
+            'admin.quiz.settings.quizTypeKnowledge'
+        )}"></span>`
       },
       {
         headerName: this.customTranslateService.getTranslation(
