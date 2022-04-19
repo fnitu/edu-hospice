@@ -16,7 +16,7 @@
         <input type="text" matInput
                placeholder="{{'admin.createCourseContent.editCourseContentDialog.choseContentType' | translate}}"
                [formControl]="myControl"
-               [matAutocomplete]="auto" [(ngModel)]="contentType">
+               [matAutocomplete]="auto" [(ngModel)]="contentType" (ngModelChange)="onContentTypeChange($event)">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayHandler">
           <mat-option *ngFor="let option of options " [value]="option">
             {{option.label}}

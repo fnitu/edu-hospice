@@ -92,7 +92,7 @@
   </div>
 
   <mat-card class="add-sections-card" >
-    <div *ngIf="!course?.sectionList.length"
+    <div *ngIf="!course?.sectionList?.length"
          class="no-sections-label">{{ 'admin.createCourseContent.noSectionsLabel' | translate }}</div>
 
     <button mat-fab

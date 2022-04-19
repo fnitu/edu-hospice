@@ -65,7 +65,6 @@ export class EditCourseContentDialogComponent implements OnInit {
       }
     });
     this.url = this.data.url;
-    this.onGetQuizList()
     this.quizId = this.data.quiz_template_id ? this.data.quiz_template_id : "";
   }
 
@@ -75,9 +74,13 @@ export class EditCourseContentDialogComponent implements OnInit {
     return option?.label ? option.label : '';
   }
 
-  public updateContent() {
+  public onContentTypeChange(obj) {
+    if(obj.type === "QUIZ") {
+      this.onGetQuizList()
+    }
+  }
 
-    
+  public updateContent() {
 
     const url = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.UPDATE_SECTION_CONTENT,
       {
