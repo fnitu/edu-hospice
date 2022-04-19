@@ -28,7 +28,7 @@ export class EditCourseContentDialogService {
   }
 
   getQuizList() {
-    let params = new HttpParams().set("type", "template").append("ststus", "ACTIVE");    
+    let params = new HttpParams().set("type", "template").append("status", "ACTIVE");    
     return this.http.get(GLOBALS.DATA_URL.GET_QUIZ_LIST, {params: params})
   }
 }
