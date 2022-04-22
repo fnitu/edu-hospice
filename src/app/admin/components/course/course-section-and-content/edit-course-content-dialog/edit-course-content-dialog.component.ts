@@ -8,6 +8,7 @@ import {SnackBarComponent} from '../../../../../shared/components/snack-bar/snac
 import {PlaceholderFormatService} from '../../../../../shared/services/format/placeholder-format.service';
 import {EditCourseContentDialogService} from './edit-course-content-dialog.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { QUIZ_TYPE } from "../../../new-quiz/quiz-settings/quiz-settings.component";
 
 @Component({
   selector: 'app-edit-course-content-dialog',
@@ -48,13 +49,11 @@ export class EditCourseContentDialogComponent implements OnInit {
   public quizList;
   public quizId ;
 
-
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private placeholderFormatService: PlaceholderFormatService,
               private editCourseContentDialogService: EditCourseContentDialogService,
               private matSnackBar: MatSnackBar,
               private dialogRef: MatDialogRef<EditCourseContentDialogComponent>,
-              private customTranslateService: CustomTranslateService,
               ) {
   }
 
@@ -88,26 +87,26 @@ export class EditCourseContentDialogComponent implements OnInit {
       }
     );
 
-    
-    let payload;
+    let options;
     switch(this.contentType.type) {
       case "QUIZ":
-         payload = {
-          name: this.data.name,
-          type: this.contentType.type,
-          visible: true,
-          url: this.url,
-          quiz_template_id:this.quizId
+         options = {
+            quiz_template_id:this.quizId
         };
         break;
       default:
-        payload = {
-          name: this.data.name,
-          url: this.url,
-          type: this.contentType.type,
-          visible: true,
+        options = {
+            url: this.url,
         };
-    }    
+
+      }
+          
+      let payload = {
+        name: this.data.name,
+        type: this.contentType.type,
+        visible: true,
+        options:options
+      }
 
     this.editCourseContentDialogService.updateContent(url, payload).subscribe((response) => {
       this.matSnackBar.openFromComponent(SnackBarComponent, {
@@ -129,6 +128,10 @@ export class EditCourseContentDialogComponent implements OnInit {
 
   public onGetQuizList(){
     this.editCourseContentDialogService.getQuizList().subscribe(x => this.quizList = x);
+  }
+
+  public getQuizClass(quiz){
+    return quiz.type === QUIZ_TYPE.FEEDBACK_QUIZ ? 'feedback-quiz' : 'knowledge-quiz'
   }
 
 }

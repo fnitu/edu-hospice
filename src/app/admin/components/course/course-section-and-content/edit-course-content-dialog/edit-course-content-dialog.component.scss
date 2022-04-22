@@ -74,4 +74,33 @@
       }
     }
   }
+
 }
+.quizName{
+  display:flex;
+  align-items: center;
+}
+  
+  
+  .knowledge-quiz, .feedback-quiz {
+    .icon {
+      font-size: 20px;
+      margin-right: 10px;
+      &:before {
+        font-family: 'Material Icons';
+      }
+    }
+  }
+
+  .knowledge-quiz {
+    .icon:before {
+      content: '\e885';
+    }
+  }
+  
+  .feedback-quiz {
+    .icon:before {
+      content: '\e8dd';
+    }
+  }
+  

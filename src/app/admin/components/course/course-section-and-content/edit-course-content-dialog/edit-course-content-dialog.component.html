@@ -68,7 +68,10 @@
         <mat-label>Selectare quiz</mat-label>
         <mat-select [(ngModel)]="quizId">
           <mat-option *ngFor="let quiz of quizList" [value]="quiz.id"  >
-            {{quiz.name}}
+            <div class="quizName" [ngClass]="getQuizClass(quiz)">
+              <span class="icon" ></span>
+              <span >{{quiz.name}}</span>
+            </div>
           </mat-option>
         </mat-select>
       </mat-form-field>
