@@ -71,10 +71,12 @@ export class UserListComponent implements OnInit {
 
     gridColumns.push(
       {
+        floatingFilter: true,
         headerName: this.customTranslateService.getTranslation('admin.users.userList.columns.firstName'),
         field: 'firstName'
       },
       {
+        floatingFilter: true,
         headerName: this.customTranslateService.getTranslation('admin.users.userList.columns.lastName'),
         field: 'lastName'
       }
@@ -83,16 +85,9 @@ export class UserListComponent implements OnInit {
     if (!allList) {
       gridColumns.push(
         {
+          floatingFilter: true,
           headerName: this.customTranslateService.getTranslation('admin.users.userList.columns.courseName'),
           field: 'courseName'
-        },
-        {
-          headerName: this.customTranslateService.getTranslation('admin.users.userList.columns.status'),
-          cellRenderer: (data) => {
-            return this.customTranslateService.getTranslation(`course.status.${data.value}`);
-          },
-          width: 300,
-          field: 'status'
         }
       );
     } else {

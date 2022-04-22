@@ -34,7 +34,7 @@ export class GridComponent implements OnInit {
     return {
       defaultColDef: {
         sortable: true,
-        filter: false,
+        filter: true,
         suppressMenu: true,
         unSortIcon: true,
         menuTabs: [],
