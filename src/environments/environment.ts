@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BASE_URL: 'https://edu-hospice-api.herokuapp.com'
+  BASE_URL: 'https://edu-hospice-api-temp.herokuapp.com'
 };
 
 /*
