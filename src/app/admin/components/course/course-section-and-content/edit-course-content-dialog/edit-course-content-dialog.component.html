@@ -9,7 +9,6 @@
 </div>
 
 <div mat-dialog-content>
-
   <div class="choseContentType">
     <form class="form">
       <mat-form-field>
@@ -66,9 +65,9 @@
     <div class="videoContainer" *ngIf="contentType?.type === 'QUIZ'">
       <mat-form-field>
         <mat-label>Selectare quiz</mat-label>
-        <mat-select [(ngModel)]="quizId">
-          <mat-option *ngFor="let quiz of quizList" [value]="quiz.id"  >
-            <div class="quizName" [ngClass]="getQuizClass(quiz)">
+        <mat-select [(ngModel)]="selectedQuiz">
+          <mat-option *ngFor="let quiz of quizList"  [value]="quiz" >
+            <div class="quizName" [ngClass]="getQuizClass(quiz)" >
               <span class="icon" ></span>
               <span >{{quiz.name}}</span>
             </div>
