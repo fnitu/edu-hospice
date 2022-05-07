@@ -264,7 +264,13 @@ export class QuizSettingsComponent implements OnInit {
                 message: this.customTranslateService.getTranslation("admin.quiz.settings.quizTypeChangeConfirmationMessage"),
                 buttons: [
                     {
-                        text: this.customTranslateService.getTranslation('general.cancel')
+                        text: this.customTranslateService.getTranslation('general.cancel'),
+                        handler: () => {
+                            this.settingsFormModel.type = this.quizSettingsService.quizType;
+                            this.settingsForm.get('type').setValue(this.quizSettingsService.quizType);
+
+                            dialogRef.close();
+                        },
                     },
                     {
                         text: this.customTranslateService.getTranslation('general.confirm'),
