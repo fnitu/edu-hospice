@@ -92,8 +92,8 @@ export class QuizListComponent implements OnInit {
         field: 'type',
         maxWidth: 70,
         minWidth: 70,
-        cellClass: (data) => data.type === QUIZ_TYPE.FEEDBACK_QUIZ ? 'feedback-quiz' : 'knowledge-quiz',
-        cellRenderer: (data) => `<span class='icon' title="${data.type === QUIZ_TYPE.FEEDBACK_QUIZ ? this.customTranslateService.getTranslation(
+        cellClass: (data) => data.value === QUIZ_TYPE.FEEDBACK_QUIZ ? 'feedback-quiz' : 'knowledge-quiz',
+        cellRenderer: (data) => `<span class='icon' title="${data.value === QUIZ_TYPE.FEEDBACK_QUIZ ? this.customTranslateService.getTranslation(
             'admin.quiz.settings.quizTypeFeedback'
         ) : this.customTranslateService.getTranslation(
             'admin.quiz.settings.quizTypeKnowledge'

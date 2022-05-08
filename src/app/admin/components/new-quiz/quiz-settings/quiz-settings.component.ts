@@ -239,6 +239,8 @@ export class QuizSettingsComponent implements OnInit {
 
                 this.routerUtilsService.updateRouteUrl(this.router.url,
                     /\/quiz-list\/quiz.*$/, `/quiz-list/quiz/${this.quizSettingsService.quizId}`);
+
+                this.quizSettingsService.quizType = this.settingsFormModel.type;
             }
         );
     }
@@ -253,11 +255,20 @@ export class QuizSettingsComponent implements OnInit {
                         type: GLOBALS.NOTIFICATIONS.INFO
                     }
                 });
+
+                this.quizSettingsService.quizType = this.settingsFormModel.type;
             }
         );
     }
 
     private onChangeQuizTypeHandler(event) {
+        if (this.quizSettingsService.quizType) {
+            this.showConfirmationQuizChange(event.value);
+        }
+
+    }
+
+    private showConfirmationQuizChange(value) {
         const dialogRef = this.confirmationDialogService.show({
             data: {
                 title: this.customTranslateService.getTranslation("admin.quiz.settings.quizTypeChangeConfirmationTitle"),
@@ -275,7 +286,7 @@ export class QuizSettingsComponent implements OnInit {
                     {
                         text: this.customTranslateService.getTranslation('general.confirm'),
                         handler: () => {
-                            this.quizSettingsService.quizType = event.value;
+                            this.quizSettingsService.quizType = value;
                             this.quizTypeChanged.emit();
 
                             dialogRef.close();
