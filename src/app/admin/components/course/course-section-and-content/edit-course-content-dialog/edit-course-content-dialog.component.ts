@@ -63,6 +63,7 @@ export class EditCourseContentDialogComponent implements OnInit {
         this.contentType = item;        
       }
     });
+    
     this.url = this.data.url;
   }
 
