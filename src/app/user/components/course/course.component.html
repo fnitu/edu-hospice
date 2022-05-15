@@ -23,10 +23,10 @@
                          (click)="openNode(node.id)"
                          [ngClass]="{'active': nodesMap.get(node.id).active, 'disabled': !nodesMap.get(node.id).enabled}">
                         <div [ngSwitch]="node.contentType" class="node-icon">
-                            <mat-icon *ngSwitchCase="'PDF'">library_books</mat-icon>
-                            <mat-icon *ngSwitchCase="'VIDEO'">play_circle_filled</mat-icon>
-                            <mat-icon *ngSwitchCase="'ZOOM'">video_camera_front</mat-icon>
-                            <mat-icon *ngSwitchCase="'QUIZ'">quiz</mat-icon>
+                            <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.PDF">library_books</mat-icon>
+                            <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.VIDEO">play_circle_filled</mat-icon>
+                            <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.ZOOM">video_camera_front</mat-icon>
+                            <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.QUIZ">quiz</mat-icon>
                         </div>
 
                         {{node.name}}
@@ -76,23 +76,29 @@
                         <mat-icon>navigate_next</mat-icon>
                     </button>
                 </div>
-
                 <mat-card class="course-information">
-                    <iframe *ngIf="selectedNode?.url"
-                            class="iframe"
-                            frameborder="0"
-                            [src]="selectedNode.url"
-                            type="application/pdf"></iframe>
+                    <ng-container *ngIf="selectedNode.type !== CONTENT_TYPE_TEMPLATE.QUIZ; else previewQuiz">
+                        <iframe *ngIf="selectedNode?.url"
+                                class="iframe"
+                                frameborder="0"
+                                [src]="selectedNode.url"
+                                type="application/pdf"></iframe>
 
-                    <div class="external-resources" *ngIf="selectedNode?.resourceSummary.length">
-                        <div class="header">{{ "user.course.externalResources" | translate }}</div>
+                        <div class="external-resources" *ngIf="selectedNode?.resourceSummary.length">
+                            <div class="header">{{ "user.course.externalResources" | translate }}</div>
 
-                        <ul class="content">
-                            <li class="resource" *ngFor="let resource of selectedNode.resourceSummary">
-                                <a class="link" target="_blank" [href]="resource.url">{{ resource.name }}</a>
-                            </li>
-                        </ul>
-                    </div>
+                            <ul class="content">
+                                <li class="resource" *ngFor="let resource of selectedNode.resourceSummary">
+                                    <a class="link" target="_blank" [href]="resource.url">{{ resource.name }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </ng-container>
+
+                    <ng-template #previewQuiz>
+                        <app-quiz [quizDetailsUrl]="quizDetailsUrl"
+                                  [quizQuestionsUrl]="quizQuestionsUrl"></app-quiz>
+                    </ng-template>
 
                     <button *ngIf="!selectedNode.isCompleted" mat-button color="success"
                             class="finalize-content"

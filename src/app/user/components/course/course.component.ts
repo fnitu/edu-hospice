@@ -10,6 +10,9 @@ import { User } from "../../../shared/interfaces/user";
 import { AuthService } from "../../../shared/services/authentication/auth.service";
 import { ROUTES } from "../../../shared/core/routes";
 import { Subscription } from "rxjs";
+import { CONTENT_TYPE } from "../../../admin/components/course/course.component";
+import { GLOBALS } from "../../../shared/core/globals";
+import { PlaceholderFormatService } from "../../../shared/services/format/placeholder-format.service";
 
 @Component({
     selector: 'app-course',
@@ -22,6 +25,7 @@ export class CourseComponent implements OnInit {
     @ViewChild("tree") tree;
     public selectedNode;
     private selectedNodeId;
+    public readonly CONTENT_TYPE_TEMPLATE = CONTENT_TYPE;
 
     private readonly SECTION: string = "section";
     private readonly CONTENT: string = "content";
@@ -40,11 +44,15 @@ export class CourseComponent implements OnInit {
     public disablePrevButton: boolean = false;
     public disableNextButton: boolean = false;
 
+    public quizDetailsUrl = "";
+    public quizQuestionsUrl = "";
+
     constructor(private courseService: CourseService,
                 private route: ActivatedRoute,
                 private router: Router,
                 private sanitizer: DomSanitizer,
-                private authService: AuthService) {
+                private authService: AuthService,
+                private placeholderFormatService: PlaceholderFormatService) {
     }
 
     ngOnInit() {
@@ -123,7 +131,8 @@ export class CourseComponent implements OnInit {
                 resourceSummary: null,
                 enabled: value.enabled,
                 isCompleted: !!value.completionDate,
-                contentId: value.id
+                contentId: value.id,
+                type: value.type
             });
 
             children.push({
@@ -179,7 +188,8 @@ export class CourseComponent implements OnInit {
                         ...this.nodesMap.get(nodeId),
                         active: true,
                         url: this.sanitizer.bypassSecurityTrustResourceUrl(response.url),
-                        resourceSummary: response.resourceSummary
+                        resourceSummary: response.resourceSummary,
+                        settings: response.settings
                     })
 
                     this.selectedNode = this.nodesMap.get(nodeId);
@@ -187,6 +197,10 @@ export class CourseComponent implements OnInit {
                     this.selectedNodeId = nodeId;
 
                     this.disableNavigationButtons();
+
+                    if (this.selectedNode.type === CONTENT_TYPE.QUIZ) {
+                        this.formatQuizUrls(this.selectedNode.settings.ASSIGNED_QUIZ_ID);
+                    }
                 }
             )
         }
@@ -303,5 +317,15 @@ export class CourseComponent implements OnInit {
                 break;
             }
         }
+    }
+
+    private formatQuizUrls(quizId) {
+        this.quizDetailsUrl = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.GET_QUIZ_SETTINGS, {
+            "{quizId}": quizId
+        });
+
+        this.quizQuestionsUrl = this.placeholderFormatService.stringFormat(GLOBALS.DATA_URL.GET_QUIZ_QUESTIONS, {
+            "{quizId}": quizId
+        });
     }
 }

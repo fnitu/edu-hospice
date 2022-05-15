@@ -10,6 +10,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Course } from 'src/app/shared/interfaces/course';
 import { ROUTES } from '../../../../shared/core/routes';
 import { Router } from '@angular/router';
+import { CONTENT_TYPE } from "../../../../admin/components/course/course.component";
 
 @Component({
   selector: 'app-home-card-dialog',
@@ -19,6 +20,8 @@ import { Router } from '@angular/router';
 })
 export class HomeCardDialogComponent implements OnInit {
   @Output() registerFromDialog = new EventEmitter();
+
+  public readonly CONTENT_TYPE_TEMPLATE = CONTENT_TYPE;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Course,
     private router: Router

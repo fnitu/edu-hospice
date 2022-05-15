@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {CourseInterface} from './course.interface';
-import {ROUTES} from '../../../../shared/core/routes';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {EditCourseContentDialogComponent} from './edit-course-content-dialog/edit-course-content-dialog.component';
@@ -17,6 +16,7 @@ import {ConfirmationDialogService} from '../../../../shared/components/confirmat
 import {CustomTranslateService} from '../../../../shared/services/custom-translate/custom-translate.service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import * as _ from 'lodash';
+import { CONTENT_TYPE } from "../course.component";
 
 @Component({
   selector: 'app-course-section-and-content',
@@ -27,6 +27,7 @@ import * as _ from 'lodash';
 export class CourseSectionAndContentComponent implements OnInit {
 
   @Input() courseId: number;
+  public readonly CONTENT_TYPE_TEMPLATE = CONTENT_TYPE;
   public course: CourseInterface = {};
   public editedSectionId;
 

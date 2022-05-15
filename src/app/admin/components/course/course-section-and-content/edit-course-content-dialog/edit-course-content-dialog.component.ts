@@ -9,6 +9,7 @@ import {PlaceholderFormatService} from '../../../../../shared/services/format/pl
 import {EditCourseContentDialogService} from './edit-course-content-dialog.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { QUIZ_TYPE } from "../../../new-quiz/quiz-settings/quiz-settings.component";
+import { CONTENT_TYPE } from '../../course.component';
 
 @Component({
   selector: 'app-edit-course-content-dialog',
@@ -18,27 +19,28 @@ import { QUIZ_TYPE } from "../../../new-quiz/quiz-settings/quiz-settings.compone
 })
 export class EditCourseContentDialogComponent implements OnInit {
 
+  public readonly CONTENT_TYPE_TEMPLATE = CONTENT_TYPE;
   myControl = new FormControl();
   dateControl = new FormControl();
   options: { type: string, label: string, id: number }[] = [
     {
-      type: 'PDF',
-      label: 'Presentation',
+      type: CONTENT_TYPE.PDF,
+      label: this.customTranslateService.getTranslation('admin.createCourseContent.editCourseContentDialog.presentation'),
       id: 1
     },
     {
-      type: 'VIDEO',
-      label: 'Video',
+      type: CONTENT_TYPE.VIDEO,
+      label: this.customTranslateService.getTranslation('admin.createCourseContent.editCourseContentDialog.video'),
       id: 3
     },
     {
-      type: 'ZOOM',
-      label: 'Zoom Meeting',
+      type: CONTENT_TYPE.ZOOM,
+      label: this.customTranslateService.getTranslation('admin.createCourseContent.editCourseContentDialog.conference'),
       id: 4
     },
     {
-      type: 'QUIZ',
-      label: 'Quiz',
+      type: CONTENT_TYPE.QUIZ,
+      label: this.customTranslateService.getTranslation('admin.createCourseContent.editCourseContentDialog.quiz'),
       id: 2
     }
   ];
@@ -54,6 +56,7 @@ export class EditCourseContentDialogComponent implements OnInit {
               private editCourseContentDialogService: EditCourseContentDialogService,
               private matSnackBar: MatSnackBar,
               private dialogRef: MatDialogRef<EditCourseContentDialogComponent>,
+              private customTranslateService: CustomTranslateService
               ) {
   }
 
@@ -74,7 +77,7 @@ export class EditCourseContentDialogComponent implements OnInit {
   }
 
   public onContentTypeChange(obj) {
-    if(obj.type === "QUIZ") {
+    if(obj.type === CONTENT_TYPE.QUIZ) {
       this.onGetQuizList()
     }
   }
@@ -89,7 +92,7 @@ export class EditCourseContentDialogComponent implements OnInit {
     
     let settings;
     switch(this.contentType.type) {
-      case "QUIZ":
+      case CONTENT_TYPE.QUIZ:
         settings = {
           QUIZ_TEMPLATE_ID:this.selectedQuiz.id
         };

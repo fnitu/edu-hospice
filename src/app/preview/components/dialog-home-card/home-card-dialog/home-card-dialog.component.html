@@ -74,16 +74,16 @@
                     <div *ngFor="let content of section.userContentDetails">
                       <div class="resource">
                         <div [ngSwitch]="content?.type" class="node-icon">
-                          <mat-icon *ngSwitchCase="'PDF'"
+                          <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.PDF"
                             >library_books</mat-icon
                           >
-                          <mat-icon *ngSwitchCase="'VIDEO'"
+                          <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.VIDEO"
                             >play_circle_filled</mat-icon
                           >
-                          <mat-icon *ngSwitchCase="'ZOOM'"
+                          <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.ZOOM"
                             >video_camera_front</mat-icon
                           >
-                          <mat-icon *ngSwitchCase="'QUIZ'">quiz</mat-icon>
+                          <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.QUIZ">quiz</mat-icon>
                           <h4 class="contentCourse">{{ content?.name }}</h4>
                         </div>
                       </div>

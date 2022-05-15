@@ -5,6 +5,13 @@ import {CustomTranslateService} from '../../../shared/services/custom-translate/
 import { ROUTES } from "../../../shared/core/routes";
 import { RouterUtilsService } from "../../../shared/services/router/router-utils.service";
 
+export enum CONTENT_TYPE {
+  PDF = 'PDF',
+  VIDEO = 'VIDEO',
+  ZOOM = 'ZOOM',
+  QUIZ = 'QUIZ'
+}
+
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
