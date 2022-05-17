@@ -1,6 +1,6 @@
 <app-grid-top-toolbar [pageActions]="pageActions"></app-grid-top-toolbar>
 
-<div class="app-course-wrapper">
+<div class="app-course-wrapper" cdkScrollable>
   <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
     <mat-tab label="{{ 'admin.createCourse.courseDetails' | translate }}">
       <app-course-info (cardInfoHasBeenSubmitted)="cardInfoSubmitedHandler($event)" [courseId]="courseId"></app-course-info>
