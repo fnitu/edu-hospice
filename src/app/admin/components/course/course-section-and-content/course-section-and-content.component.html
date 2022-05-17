@@ -1,97 +1,100 @@
-<div class="create-course-content-container" >
+<div class="create-course-content-container" cdkScrollable>
   <div class="course-title">
     {{ course?.name }}
   </div>
-  <div class="sections-container" cdkDropList (cdkDropListDropped)="onListDropped($event)">
-    <div class="section" *ngFor="let section of course?.sectionList; let sectionIndex = index" cdkDrag>
-      <div class="section-container">
-
-        <div cdkDragHandle>
-          <mat-icon>drag_indicator</mat-icon>
-        </div>
-
-        <div class="title" *ngIf="section.id !== editedSectionId">
-          {{ section.name }}
-        </div>
-
-        <input class="input" matInput value="{{ section.name }}"
-               *ngIf="section.id === editedSectionId" appAutoFocus
-               (keypress)="setSectionTitle($event, section)"
-               (focusout)="setSectionTitle($event, section)"/>
-
-        <div class="edit" (click)="editSectionTitle(section)" *ngIf="section.id !== editedSectionId">
-          <span class="material-icons-outlined">mode_edit</span>
-        </div>
-        <div class="delete" (click)="deleteSection(section)" *ngIf="section.id !== editedSectionId">
-          <span class="material-icons-outlined">delete_forever</span>
-        </div>
-        <div class="visibility" (click)="editVisibilityStatus(section)" *ngIf="section.id !== editedContentId">
-          <span class="material-icons-outlined visibilityIcon" *ngIf="section.visible" >visibility</span>
-          <span class="material-icons-outlined visibilityOffIcon" *ngIf="!section.visible" >visibility_off</span>
-        </div>
-
-        <div class="button-container">
-          <button mat-raised-button class="editSection" (click)="editSection(section)">
-            {{ "admin.createCourseContent.editSectionButton" | translate }}
-          </button>
-        </div>
-      </div>
-
-      <div class="content-container" cdkDropList (cdkDropListDropped)="onContentListDropped($event, section)">
-        <div class="content" *ngFor="let content of section.adminContentDetails; let i = index" cdkDrag>
+  <div cdkScrollable>
+    <div class="sections-container" cdkDropList (cdkDropListDropped)="onListDropped($event)">
+      <div class="section" *ngFor="let section of course?.sectionList; let sectionIndex = index" cdkDrag cdkScrollable>
+        <div class="section-container">
 
           <div cdkDragHandle>
             <mat-icon>drag_indicator</mat-icon>
           </div>
 
-          <div [ngSwitch]="content.type" class="node-icon">
-            <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.PDF">library_books</mat-icon>
-            <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.VIDEO">play_circle_filled</mat-icon>
-            <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.ZOOM">video_camera_front</mat-icon>
-            <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.QUIZ">quiz</mat-icon>
+          <div class="title" *ngIf="section.id !== editedSectionId">
+            {{ section.name }}
           </div>
 
-          <div class="title" *ngIf="content.id !== editedContentId">
-            {{ sectionIndex + 1 }}.{{ i + 1 }} {{ content.name }}
-          </div>
+          <input class="input" matInput value="{{ section.name }}"
+                 *ngIf="section.id === editedSectionId" appAutoFocus
+                 (keypress)="setSectionTitle($event, section)"
+                 (focusout)="setSectionTitle($event, section)"/>
 
-          <input class="input" matInput value="{{ content.name }}"
-                 *ngIf="content.id === editedContentId" appAutoFocus
-                 (keypress)="setContentTitle($event, content)"
-                 (focusout)="setContentTitle($event, content)"  />
-
-          <div class="edit" (click)="editContentTitle(content)" *ngIf="content.id !== editedContentId">
+          <div class="edit" (click)="editSectionTitle(section)" *ngIf="section.id !== editedSectionId">
             <span class="material-icons-outlined">mode_edit</span>
           </div>
-          <div class="delete" (click)="deleteContent(content)" *ngIf="content.id !== editedContentId">
+          <div class="delete" (click)="deleteSection(section)" *ngIf="section.id !== editedSectionId">
             <span class="material-icons-outlined">delete_forever</span>
+          </div>
+          <div class="visibility" (click)="editVisibilityStatus(section)" *ngIf="section.id !== editedContentId">
+            <span class="material-icons-outlined visibilityIcon" *ngIf="section.visible">visibility</span>
+            <span class="material-icons-outlined visibilityOffIcon" *ngIf="!section.visible">visibility_off</span>
           </div>
 
           <div class="button-container">
-            <button mat-raised-button class="editContent button"
-                    (click)="editContent(content)">
-              {{ "admin.createCourseContent.editContentButton" | translate }}
-            </button>
-
-            <button mat-raised-button class="manageResources button"
-                    [matBadge]="content.resourceSummary.length"
-                    matBadgePosition="after" matBadgeColor="accent"
-                    matBadgeSize="medium" (click)="manageResources(content)">
-              Gestioneaza resurse
+            <button mat-raised-button class="editSection" (click)="editSection(section)">
+              {{ "admin.createCourseContent.editSectionButton" | translate }}
             </button>
           </div>
         </div>
-      </div>
 
-      <div class="button-container">
-        <button mat-raised-button class="addContent" (click)="addContent(section)">
-          {{ "admin.createCourseContent.addContentButton" | translate }}
-        </button>
+        <div cdkScrollable>
+          <div class="content-container" cdkDropList (cdkDropListDropped)="onContentListDropped($event, section)">
+            <div class="content" *ngFor="let content of section.adminContentDetails; let i = index" cdkDrag>
+
+              <div cdkDragHandle>
+                <mat-icon>drag_indicator</mat-icon>
+              </div>
+
+              <div [ngSwitch]="content.type" class="node-icon">
+                <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.PDF">library_books</mat-icon>
+                <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.VIDEO">play_circle_filled</mat-icon>
+                <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.ZOOM">video_camera_front</mat-icon>
+                <mat-icon *ngSwitchCase="CONTENT_TYPE_TEMPLATE.QUIZ">quiz</mat-icon>
+              </div>
+
+              <div class="title" *ngIf="content.id !== editedContentId">
+                {{ sectionIndex + 1 }}.{{ i + 1 }} {{ content.name }}
+              </div>
+
+              <input class="input" matInput value="{{ content.name }}"
+                     *ngIf="content.id === editedContentId" appAutoFocus
+                     (keypress)="setContentTitle($event, content)"
+                     (focusout)="setContentTitle($event, content)"/>
+
+              <div class="edit" (click)="editContentTitle(content)" *ngIf="content.id !== editedContentId">
+                <span class="material-icons-outlined">mode_edit</span>
+              </div>
+              <div class="delete" (click)="deleteContent(content)" *ngIf="content.id !== editedContentId">
+                <span class="material-icons-outlined">delete_forever</span>
+              </div>
+
+              <div class="button-container">
+                <button mat-raised-button class="editContent button"
+                        (click)="editContent(content)">
+                  {{ "admin.createCourseContent.editContentButton" | translate }}
+                </button>
+
+                <button mat-raised-button class="manageResources button"
+                        [matBadge]="content.resourceSummary.length"
+                        matBadgePosition="after" matBadgeColor="accent"
+                        matBadgeSize="medium" (click)="manageResources(content)">
+                  Gestioneaza resurse
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button-container">
+          <button mat-raised-button class="addContent" (click)="addContent(section)">
+            {{ "admin.createCourseContent.addContentButton" | translate }}
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
-  <mat-card class="add-sections-card" >
+  <mat-card class="add-sections-card">
     <div *ngIf="!course?.sectionList?.length"
          class="no-sections-label">{{ 'admin.createCourseContent.noSectionsLabel' | translate }}</div>
 
